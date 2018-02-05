@@ -1,0 +1,39 @@
+<resources>
+    <!-- Сonstants -->
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="ok">ОК</string>
+    <string name="open">Открыть</string>
+    <string name="cancel">Отменить</string>
+    <string name="cancellation">Отмена</string>
+    <string name="apply">Применить</string>
+    <string name="choose">Выбрать</string>
+    <string name="continue_label">Далее</string>
+    <string name="ready">Готово</string>
+    <string name="action_start">Начать</string>
+    <string name="send">Отправить</string>
+    <string name="save">Сохранить</string>
+    <string name="label_share">Поделиться</string>
+    <string name="dismiss">Скрыть</string>
+    <string name="close">Закрыть</string>
+    <string name="allow">Разрешить</string>
+    <string name="reject">Отклонить</string>
+    <string name="finish">Завершить</string>
+    <string name="not_found">не найдено</string>
+    <string name="invalid_token_title">Ошибка</string>
+    <string name="invalid_token">Ошибка аутентификации</string>
+    <string name="your_request_is_being_processed">Ваш запрос обрабатывается</string>
+    <string name="success_response">Запрос успешно отправлен</string>
+    <string name="info_empty_data">Отсутствуют данные</string>
+
+    <!-- Network strings -->
+    <string name="loading">Загрузка&#8230;</string>
+    <string name="connection_error">Сеть недоступна. Проверьте соединение с интернетом.</string>
+    <string name="server_error">Сервис временно недоступен. Попробуйте позже.</string>
+    <string name="error_occurred">Произошла ошибка. Попробуйте снова.</string>
+    <string name="obtaining_data">Получение данных. Подождите, пожалуйста.</string>
+    <string name="obtaining_data_fail">Произошла ошибка при получении данных.</string>
+    <string name="try_again">Повторить попытку</string>
+    <string name="please_wait">Подождите, пожалуйста.</string>
+    <string name="click_here_to_repeat_request">Нажмите, чтобы повторить запрос.</string>
+</resources>

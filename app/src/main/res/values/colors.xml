@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- Colors from http://clrs.cc -->
+    <color name="navy">#001f3f</color>
+    <color name="blue">#0074d9</color>
+    <color name="aqua">#7fdbff</color>
+    <color name="teal">#39cccc</color>
+    <color name="olive">#3d9970</color>
+    <color name="green">#2ecc40</color>
+    <color name="lime">#01ff70</color>
+    <color name="yellow">#ffdc00</color>
+    <color name="orange">#ff851b</color>
+    <color name="red">#ff4136</color>
+    <color name="maroon">#85144b</color>
+    <color name="fuchsia">#f012be</color>
+    <color name="black">#111111</color>
+    <color name="gray">#aaaaaa</color>
+    <color name="silver">#dddddd</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white_60">#99ffffff</color>
+    <color name="shadow_60">#99e7e7e7</color>
+    <color name="white_clicked">#f9f9f9</color>
+    <color name="gray_transparent">#BF7D7173</color>
+    <color name="dialog_negative">#9e9e9e</color>
+
+</resources>

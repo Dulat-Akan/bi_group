@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/fl_parent"
+             style="@style/MM"
+             android:background="@color/white">
+
+    <LinearLayout
+        style="@style/LL_MM_V"
+        android:fitsSystemWindows="true">
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/pb_indicator"
+        layout="@layout/inc_pb_transparent"/>
+
+</FrameLayout>
+

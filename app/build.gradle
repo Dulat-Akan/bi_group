@@ -1,0 +1,161 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "bi.bigroup.life"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def apk = output.outputFile;
+            def newName = variant.baseName.replace("-release", "") + "-" + defaultConfig.versionName + ".apk";
+            output.outputFile = new File(apk.parentFile, newName);
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            // Nullify signingConfig to override default debug keystore. See http://stackoverflow.com/a/29618981.
+            signingConfig null
+            versionNameSuffix "-debug"
+        }
+    }
+
+    signingConfigs {
+        dev {
+            storeFile file("keys/development.jks")
+            storePassword "kenesary1212"
+            keyAlias "development_key"
+            keyPassword "kenesary1212"
+        }
+        prod {
+            storeFile file("keys/mypregnancy.jks")
+            storePassword "C%X_U:+vf9IQ"
+            keyAlias "mypregnancy"
+            keyPassword "C%X_U:+vf9IQ"
+        }
+    }
+
+    productFlavors {
+        dev {
+            applicationIdSuffix ".dev"
+            signingConfig signingConfigs.dev
+            buildConfigField "String", "URL_BASE", '"pc-staging.zlife.kz/api/"'
+            buildConfigField "boolean", "IS_DEBUG", "true"
+            buildConfigField "String", "FILE_PROVIDER", '"bi.bigroup.life.dev.fileprovider"'
+            manifestPlaceholders = [manifestFileProvider: "bi.bigroup.life.dev.fileprovider"]
+            // Define resources
+            resValue "string", "app_name", "BI Group DEV"
+//            resValue "string", "google_maps_key", "AIzaSyDqCZ31R8YHUm6f2WE1UysfD0v_humMtPg"
+        }
+
+        prod {
+            signingConfig signingConfigs.prod
+            buildConfigField "String", "URL_BASE", '"pc.zlife.kz/api/"'
+            buildConfigField "boolean", "IS_DEBUG", "false"
+            buildConfigField "String", "FILE_PROVIDER", '"bi.bigroup.life.fileprovider"'
+            manifestPlaceholders = [manifestFileProvider: "bi.bigroup.life.fileprovider"]
+
+            // Define default resources
+            resValue "string", "app_name", "BI Group"
+//            resValue "string", "google_maps_key", "AIzaSyCjX7XFdUK2NTutnNqN2Ou9reR7_cuTgwc"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // Android Support Libraries
+    compile "com.android.support:appcompat-v7:$depSupportVersion"
+    compile "com.android.support:support-v4:$depSupportVersion"
+    compile "com.android.support:design:$depSupportVersion"
+    compile "com.android.support:customtabs:$depSupportVersion"
+    compile "com.android.support:cardview-v7:$depSupportVersion"
+
+    // Network communication
+    compile "com.squareup.okhttp3:okhttp:$depOkhttp"
+    compile "com.squareup.okhttp3:logging-interceptor:$depOkhttp"
+
+    // Retrofit
+    compile "com.squareup.retrofit2:retrofit:$depRetrofit"
+    compile "com.squareup.retrofit2:converter-gson:$depRetrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava:$depRetrofit"
+    debugCompile "com.squareup.retrofit2:retrofit-mock:$depRetrofit"
+
+    // Rx
+    compile "io.reactivex:rxandroid:$rxVersion"
+    compile "io.reactivex:rxjava:$rxVersion"
+
+    // OkHttp3
+    compile "com.squareup.okhttp3:okhttp:$okhttp3"
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttp3LoggingInterceptor"
+
+    // UI ButterKnife
+    compile "com.jakewharton:butterknife:$depButterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$depButterKnifeVersion"
+
+    // CircleImageView
+    compile "de.hdodenhof:circleimageview:${circleImgViewVersion}"
+
+    // Glide
+    compile "com.github.bumptech.glide:glide:$glideVersion"
+
+    // Logging
+    compile "com.jakewharton.timber:timber:$depTimberVersion"
+
+    // Stetho
+    compile "com.facebook.stetho:stetho:${stethoVersion}"
+    compile "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
+
+    // UI MaterialEditText
+    compile "com.rengwuxian.materialedittext:library:${materialEtVersion}"
+
+    // Parceler
+    compile "org.parceler:parceler-api:${parcelerVersion}"
+    annotationProcessor "org.parceler:parceler:${parcelerVersion}"
+
+    // Fabric (Crashlytics)
+    compile("com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}") {
+        transitive = true;
+    }
+
+    // UCrop
+    compile "com.github.yalantis:ucrop:${ucropVersion}"
+
+    // Moxy (MVP)
+    compile "com.arello-mobile:moxy:${moxyVersion}"
+    compile "com.arello-mobile:moxy-app-compat:${moxyVersion}"
+    annotationProcessor "com.arello-mobile:moxy-compiler:${moxyVersion}"
+
+    // MultiDex
+//    compile "com.android.support:multidex:${multidex}"
+
+    testCompile 'junit:junit:4.12'
+}
