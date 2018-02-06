@@ -12,6 +12,7 @@
     <string name="ready">Готово</string>
     <string name="action_start">Начать</string>
     <string name="send">Отправить</string>
+    <string name="change">Изменить</string>
     <string name="save">Сохранить</string>
     <string name="label_share">Поделиться</string>
     <string name="dismiss">Скрыть</string>
@@ -26,7 +27,6 @@
     <string name="success_response">Запрос успешно отправлен</string>
     <string name="info_empty_data">Отсутствуют данные</string>
     <string name="field_error">Данное поле требует заполнения</string>
-    <string name="password_invalid_error">Длина пароля должен быть не менее 6 и не более 16 символов</string>
 
     <!-- Network strings -->
     <string name="loading">Загрузка&#8230;</string>
@@ -46,6 +46,20 @@
     <string name="forgot_your_data">Забыли свои данные для входа?</string>
     <string name="help">Помощь</string>
     <string name="copyright">BI Group 2017</string>
+
+    <!-- ForgotPwdActivity -->
+    <string name="can_not_join">Не можете войти?</string>
+    <string name="enter_phone_number">Введите имя пользователя или e-mail,\nи мы отправим Вам ссылку для\nвосстановления доступа к учетной записи.</string>
+    <string name="label_phone">Телефон</string>
+
+    <!-- NewPwdActivity -->
+    <string name="new_pwd">Новый пароль</string>
+    <string name="new_pwd_confirm">Повторите новый пароль</string>
+    <string name="form_input_too_long">Максимальная длина строки превышена.</string>
+    <string name="passwords_not_matches">Пароли не совпадают</string>
+    <string name="pwd_success_changed">Ваш пароль успешно изменен</string>
+    <string name="password_invalid_error">Длина пароля должен быть не менее 6 и не более 16 символов</string>
+
     <string name="q"></string>
 
 </resources>

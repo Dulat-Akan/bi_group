@@ -10,8 +10,8 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.mvp.auth.AuthPresenter;
-import bi.bigroup.life.mvp.auth.AuthView;
+import bi.bigroup.life.mvp.auth.NewPwdPresenter;
+import bi.bigroup.life.mvp.auth.NewPwdView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,23 +20,20 @@ import butterknife.OnEditorAction;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
 import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
 
-public class AuthActivity extends BaseActivity implements AuthView {
+public class NewPwdActivity extends BaseActivity implements NewPwdView {
     @InjectPresenter
-    AuthPresenter mvpPresenter;
-    @BindView(R.id.et_phone) MaterialEditText et_phone;
-    @BindView(R.id.et_pwd) MaterialEditText et_pwd;
+    NewPwdPresenter mvpPresenter;
 
-    public static Intent newLogoutIntent(Context context) {
-        return new Intent(context, AuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    }
+    @BindView(R.id.et_pwd) MaterialEditText et_pwd;
+    @BindView(R.id.et_pwd_confirm) MaterialEditText et_pwd_confirm;
 
     public static Intent getIntent(Context context) {
-        return new Intent(context, AuthActivity.class);
+        return new Intent(context, NewPwdActivity.class);
     }
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.activity_auth;
+        return R.layout.activity_new_pwd;
     }
 
     @Override
@@ -51,13 +48,13 @@ public class AuthActivity extends BaseActivity implements AuthView {
         mvpPresenter.onDestroyView();
     }
 
-    @OnClick(R.id.btn_login)
-    void onLoginClick() {
+    @OnClick(R.id.btn_change)
+    void onChangeClick() {
         clearFocusFromAllViews(fl_parent);
         hideSoftKeyboard(fl_parent);
-        mvpPresenter.setPhone(et_phone.getText().toString());
-        mvpPresenter.setPwd(et_pwd.getText().toString());
-        mvpPresenter.checkGeneralInfo();
+        mvpPresenter.setNewPwd(et_pwd.getText().toString());
+        mvpPresenter.setConfirmPwd(et_pwd_confirm.getText().toString());
+        mvpPresenter.checkPasswords();
     }
 
     @OnEditorAction(R.id.et_pwd)
@@ -74,32 +71,17 @@ public class AuthActivity extends BaseActivity implements AuthView {
         inputField.setError(getString(errorRes));
     }
 
-    @OnClick(R.id.tv_help)
-    void onForgotPwdClick() {
-        mvpPresenter.onForgotPwdClick();
-    }
-
     ///////////////////////////////////////////////////////////////////////////
-    // AuthView implementation                                              ///
+    // NewPwdView implementation                                              ///
     ///////////////////////////////////////////////////////////////////////////
-
     @Override
-    public void showPhoneError(@StringRes int errorRes) {
-        showInputFieldError(et_phone, errorRes);
-    }
-
-    @Override
-    public void showPwdError(@StringRes int errorRes) {
+    public void showNewPwdError(int errorRes) {
         showInputFieldError(et_pwd, errorRes);
     }
 
     @Override
-    public void openForgotPwdActivity() {
-        startActivity(ForgotPwdActivity.getIntent(this));
+    public void showConfirmPwdError(int errorRes) {
+        showInputFieldError(et_pwd_confirm, errorRes);
     }
 
-    @Override
-    public void onAuthorizationSuccess() {
-//        startActivity(MainActivity.getIntent(this));
-    }
 }

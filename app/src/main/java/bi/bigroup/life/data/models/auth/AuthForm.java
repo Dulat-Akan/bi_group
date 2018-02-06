@@ -1,28 +1,16 @@
 package bi.bigroup.life.data.models.auth;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
-import android.util.Patterns;
 
 import org.parceler.Parcel;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
-
-import bi.bigroup.life.R;
-
-import static android.text.TextUtils.isEmpty;
-import static java.util.Calendar.DAY_OF_YEAR;
-import static java.util.Calendar.YEAR;
 
 @Parcel
 public class AuthForm {
-    private static final int DEFAULT_MAX_LENGTH = 255;
-    private static final int MIN_AGE = 1;
     public String email;
     public String pwd;
     public String firstName;
