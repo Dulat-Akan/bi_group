@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -61,5 +61,46 @@
     <style name="LL_WW_H" parent="WW">
         <item name="android:orientation">horizontal</item>
     </style>
+
+    <!-- activity_auth -->
+    <style name="ic_auth_logo" parent="WW">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:src">@drawable/ic_version_logo</item>
+    </style>
+
+    <style name="et_auth" parent="MW">
+        <item name="android:background">@color/white</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:layout_marginLeft">@dimen/dp_28</item>
+        <item name="android:layout_marginRight">@dimen/dp_28</item>
+        <item name="android:textCursorDrawable">@drawable/shape_auth_cursor_color</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/et_hint</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="met_hideUnderline">true</item>
+        <item name="met_textColor">@color/black</item>
+        <item name="met_textColorHint">@color/et_hint</item>
+    </style>
+
+    <style name="auth_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/dp_20</item>
+        <item name="android:layout_marginRight">@dimen/dp_20</item>
+        <item name="android:layout_height">@dimen/dp_1</item>
+        <item name="android:background">@color/et_divider</item>
+    </style>
+
+    <style name="auth_rounded_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_44</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginLeft">@dimen/dp_20</item>
+        <item name="android:layout_marginRight">@dimen/dp_20</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@drawable/btn_selector_blue_rounded</item>
+    </style>
+
 
 </resources>

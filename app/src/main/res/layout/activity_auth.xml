@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_parent"
+    style="@style/MM"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        style="@style/LL_MM_V"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            style="@style/MW"
+            android:background="@drawable/gradient_blue_bg"
+            android:gravity="center_horizontal|center_vertical"
+            android:paddingBottom="@dimen/dp_30"
+            android:paddingTop="@dimen/dp_30">
+
+            <ImageView
+                style="@style/ic_auth_logo"
+                android:layout_width="@dimen/dp_110"
+                android:layout_height="@dimen/dp_59"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <bi.bigroup.life.views.SettingsEditText
+                android:id="@+id/et_phone"
+                style="@style/et_auth"
+                android:layout_marginTop="@dimen/dp_40"
+                android:hint="@string/enter_phone"
+                android:inputType="phone"
+                android:maxLength="12"/>
+
+            <View
+                style="@style/auth_divider"/>
+
+            <bi.bigroup.life.views.SettingsEditText
+                android:id="@+id/et_pwd"
+                style="@style/et_auth"
+                android:layout_marginTop="@dimen/dp_12"
+                android:hint="@string/enter_pwd"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"/>
+
+            <View
+                style="@style/auth_divider"/>
+
+            <Button
+                android:id="@+id/btn_login"
+                style="@style/auth_rounded_btn"
+                android:layout_marginTop="@dimen/dp_22"
+                android:text="@string/label_login"/>
+
+            <LinearLayout
+                style="@style/LL_MW_H"
+                android:layout_marginTop="@dimen/dp_28"
+                android:gravity="center_horizontal|center_vertical">
+
+                <bi.bigroup.life.views.fonts.TextViewOpenSansNeueMedium
+                    style="@style/WW"
+                    android:text="@string/forgot_your_data"
+                    android:textColor="@color/forgot_your_data"
+                    android:textSize="@dimen/sp_13"/>
+
+                <bi.bigroup.life.views.fonts.TextViewOpenSansNeueMedium
+                    android:id="@+id/tv_help"
+                    style="@style/WW"
+                    android:layout_marginLeft="@dimen/dp_8"
+                    android:text="@string/help"
+                    android:textColor="@color/help"
+                    android:textSize="@dimen/sp_13"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <bi.bigroup.life.views.fonts.TextViewOpenSansNeueMedium
+            style="@style/MW"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center"
+            android:text="@string/copyright"
+            android:textColor="@color/forgot_your_data"
+            android:textSize="@dimen/sp_13"/>
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/pb_indicator"
+        layout="@layout/inc_pb_transparent"/>
+
+</FrameLayout>

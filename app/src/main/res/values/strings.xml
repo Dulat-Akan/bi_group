@@ -25,6 +25,8 @@
     <string name="your_request_is_being_processed">Ваш запрос обрабатывается</string>
     <string name="success_response">Запрос успешно отправлен</string>
     <string name="info_empty_data">Отсутствуют данные</string>
+    <string name="field_error">Данное поле требует заполнения</string>
+    <string name="password_invalid_error">Длина пароля должен быть не менее 6 и не более 16 символов</string>
 
     <!-- Network strings -->
     <string name="loading">Загрузка&#8230;</string>
@@ -36,4 +38,14 @@
     <string name="try_again">Повторить попытку</string>
     <string name="please_wait">Подождите, пожалуйста.</string>
     <string name="click_here_to_repeat_request">Нажмите, чтобы повторить запрос.</string>
+
+    <!-- AuthActivity -->
+    <string name="enter_phone">Введите номер телефона</string>
+    <string name="enter_pwd">Введите пароль</string>
+    <string name="label_login">Войти</string>
+    <string name="forgot_your_data">Забыли свои данные для входа?</string>
+    <string name="help">Помощь</string>
+    <string name="copyright">BI Group 2017</string>
+    <string name="q"></string>
+
 </resources>
