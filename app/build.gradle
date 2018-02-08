@@ -154,6 +154,8 @@ dependencies {
     compile "com.arello-mobile:moxy-app-compat:${moxyVersion}"
     annotationProcessor "com.arello-mobile:moxy-compiler:${moxyVersion}"
 
+    // EditText mask
+    compile "com.redmadrobot:inputmask:$inputMaskVersion"
     // MultiDex
 //    compile "com.android.support:multidex:${multidex}"
 

@@ -2,11 +2,11 @@ package bi.bigroup.life.utils;
 
 public class Constants {
     public static final String OS_ANDROID = "android";
-
     public static final String KEY_USER = "user";
     public static final String KEY_TOKEN = "token";
     public static final String CACHE_TIME = "cache_time";
 
+    public static final String PHONE_MASK = "+7 ([000]) [000]-[00]-[00]";
     public static final int LENGTH_PHONE_NUMBER = 12;
     public static final int MIN_LENGHT_PASSWORD = 6;
     public static final int DEFAULT_MAX_LENGTH = 255;
