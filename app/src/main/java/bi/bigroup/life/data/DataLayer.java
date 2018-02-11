@@ -15,7 +15,8 @@ public class DataLayer {
     public static DataLayer getInstance(Context context) {
         if (instance == null) {
             synchronized (DataLayer.class) {
-                if (instance == null) instance = new DataLayer(context.getApplicationContext());
+                if (instance == null)
+                    instance = new DataLayer(context.getApplicationContext());
             }
         }
         return instance;
@@ -23,10 +24,11 @@ public class DataLayer {
 
     private final PreferencesProvider preferencesProvider;
     private final API api;
+
     private DataLayer(Context context) {
         preferencesProvider = new PreferencesProvider(context);
         RetrofitServiceGenerator retrofitServiceGenerator = RetrofitServiceGenerator.getInstance(preferencesProvider);
-        api = retrofitServiceGenerator.createService(API.class, API_BASE_URL);
+        api = retrofitServiceGenerator.createService(API.class);
     }
 
     public Preferences getPreferences() {

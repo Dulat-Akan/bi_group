@@ -40,7 +40,7 @@
     <string name="click_here_to_repeat_request">Нажмите, чтобы повторить запрос.</string>
 
     <!-- AuthActivity -->
-    <string name="enter_phone">Введите номер телефона</string>
+    <string name="enter_username">Введите логин</string>
     <string name="enter_pwd">Введите пароль</string>
     <string name="label_login">Войти</string>
     <string name="forgot_your_data">Забыли свои данные для входа?</string>
@@ -53,6 +53,7 @@
     <string name="label_phone">Телефон</string>
 
     <!-- NewPwdActivity -->
+    <string name="enter_phone">Введите номер телефона</string>
     <string name="new_pwd">Новый пароль</string>
     <string name="new_pwd_confirm">Повторите новый пароль</string>
     <string name="form_input_too_long">Максимальная длина строки превышена.</string>

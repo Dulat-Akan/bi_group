@@ -62,7 +62,7 @@ android {
         dev {
             applicationIdSuffix ".dev"
             signingConfig signingConfigs.dev
-            buildConfigField "String", "URL_BASE", '"pc-staging.zlife.kz/api/"'
+            buildConfigField "String", "URL_BASE", '"life.bi-group.org/api/"'
             buildConfigField "boolean", "IS_DEBUG", "true"
             buildConfigField "String", "FILE_PROVIDER", '"bi.bigroup.life.dev.fileprovider"'
             manifestPlaceholders = [manifestFileProvider: "bi.bigroup.life.dev.fileprovider"]
@@ -73,7 +73,7 @@ android {
 
         prod {
             signingConfig signingConfigs.prod
-            buildConfigField "String", "URL_BASE", '"pc.zlife.kz/api/"'
+            buildConfigField "String", "URL_BASE", '"life.bi-group.org/api/"'
             buildConfigField "boolean", "IS_DEBUG", "false"
             buildConfigField "String", "FILE_PROVIDER", '"bi.bigroup.life.fileprovider"'
             manifestPlaceholders = [manifestFileProvider: "bi.bigroup.life.fileprovider"]

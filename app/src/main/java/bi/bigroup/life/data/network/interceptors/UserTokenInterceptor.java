@@ -18,11 +18,11 @@ public class UserTokenInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request originalRequest = chain.request();
         Request.Builder newRequestBuilder = originalRequest.newBuilder();
-        if (!preferences.isAuthenticated()) {
-            newRequestBuilder.header("userDeviceToken", "TOKEN");
-        }
-        newRequestBuilder.header("FBUser-Agent", "android");
-        newRequestBuilder.header("Accept", "MeekConfig.BASIC_AUTH_HEADER");
+//        if (!preferences.isAuthenticated()) {
+//            newRequestBuilder.header("userDeviceToken", "TOKEN");
+//        }
+//        newRequestBuilder.header("FBUser-Agent", "android");
+//        newRequestBuilder.header("Accept", "MeekConfig.BASIC_AUTH_HEADER");
 
         newRequestBuilder.method(originalRequest.method(), originalRequest.body());
         Request newRequest = newRequestBuilder.build();

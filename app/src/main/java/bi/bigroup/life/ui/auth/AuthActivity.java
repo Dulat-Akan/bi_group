@@ -4,34 +4,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
-import android.support.design.widget.TextInputLayout;
 import android.view.inputmethod.EditorInfo;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.redmadrobot.inputmask.MaskedTextChangedListener;
-import com.redmadrobot.inputmask.helper.Mask;
-import com.redmadrobot.inputmask.model.CaretString;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.config.DebugConfig;
 import bi.bigroup.life.mvp.auth.AuthPresenter;
 import bi.bigroup.life.mvp.auth.AuthView;
 import bi.bigroup.life.ui.base.BaseActivity;
-import bi.bigroup.life.utils.EditTextWatcher;
-import bi.bigroup.life.utils.LOTimber;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 
-import static bi.bigroup.life.utils.Constants.PHONE_MASK;
+import static bi.bigroup.life.utils.Constants.TEST_PWD;
+import static bi.bigroup.life.utils.Constants.TEST_USERNAME;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
 import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
 
 public class AuthActivity extends BaseActivity implements AuthView {
     @InjectPresenter
     AuthPresenter mvpPresenter;
-    @BindView(R.id.et_phone) MaterialEditText et_phone;
-    @BindView(R.id.til_phone_number) TextInputLayout til_phone_number;
+    @BindView(R.id.et_username) MaterialEditText et_username;
     @BindView(R.id.et_pwd) MaterialEditText et_pwd;
 
     public static Intent newLogoutIntent(Context context) {
@@ -50,52 +45,51 @@ public class AuthActivity extends BaseActivity implements AuthView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (DebugConfig.DEV_BUILD) {
+            et_username.setText(TEST_USERNAME);
+            et_pwd.setText(TEST_PWD);
+        }
+
         mvpPresenter.init(this, dataLayer);
-        final MaskedTextChangedListener listener = new MaskedTextChangedListener(
-                PHONE_MASK,
-                true,
-                et_phone,
-                null,
-                (maskFilled, extractedValue) -> {
-                    LOTimber.d(extractedValue);
-                    LOTimber.d(String.valueOf(maskFilled));
-                }
-        );
+//        final MaskedTextChangedListener listener = new MaskedTextChangedListener(
+//                PHONE_MASK,
+//                true,
+//                et_phone,
+//                null,
+//                (maskFilled, extractedValue) -> {
+//                    LOTimber.d(extractedValue);
+//                    LOTimber.d(String.valueOf(maskFilled));
+//                }
+//        );
 
-        et_phone.addTextChangedListener(listener);
-        et_phone.setOnFocusChangeListener(listener);
-        et_phone.setHint(listener.placeholder());
+//        et_phone.addTextChangedListener(listener);
+//        et_phone.setOnFocusChangeListener(listener);
+//        et_phone.setHint(listener.placeholder());
 
-        EditTextWatcher watcherPhoneNumber = new EditTextWatcher(this, til_phone_number);
-        et_phone.addTextChangedListener(watcherPhoneNumber);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mvpPresenter.onDestroyView();
+//        EditTextWatcher watcherPhoneNumber = new EditTextWatcher(this, til_phone_number);
+//        et_phone.addTextChangedListener(watcherPhoneNumber);
     }
 
     @OnClick(R.id.btn_login)
     void onLoginClick() {
         clearFocusFromAllViews(fl_parent);
         hideSoftKeyboard(fl_parent);
-        mvpPresenter.setPhone(getPhone());
+        mvpPresenter.setUsername(et_username.getText().toString());
         mvpPresenter.setPwd(et_pwd.getText().toString());
         mvpPresenter.checkGeneralInfo();
     }
 
-    private String getPhone() {
-        Mask mask = new Mask(PHONE_MASK);
-        final String input = et_phone.getText().toString();
-        Mask.Result result = mask.apply(
-                new CaretString(input, input.length()),
-                true // you may consider disabling autocompletion for your case
-        );
-
-        //String output = result.getFormattedText().getString();
-        return "7" + result.getExtractedValue();
-    }
+//    private String getPhone() {
+//        Mask mask = new Mask(PHONE_MASK);
+//        final String input = et_phone.getText().toString();
+//        Mask.Result result = mask.apply(
+//                new CaretString(input, input.length()),
+//                true // you may consider disabling autocompletion for your case
+//        );
+//
+//        //String output = result.getFormattedText().getString();
+//        return "7" + result.getExtractedValue();
+//    }
 
     @OnEditorAction(R.id.et_pwd)
     boolean onPwdInputAction(int action) {
@@ -121,8 +115,8 @@ public class AuthActivity extends BaseActivity implements AuthView {
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void showPhoneError(@StringRes int errorRes) {
-        showInputFieldError(et_phone, errorRes);
+    public void showUsernameError(@StringRes int errorRes) {
+        showInputFieldError(et_username, errorRes);
     }
 
     @Override

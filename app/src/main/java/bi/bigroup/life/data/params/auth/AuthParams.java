@@ -5,20 +5,17 @@ import android.support.annotation.StringRes;
 import bi.bigroup.life.R;
 
 import static android.text.TextUtils.isEmpty;
-import static bi.bigroup.life.utils.Constants.LENGTH_PHONE_NUMBER;
 import static bi.bigroup.life.utils.Constants.MIN_LENGHT_PASSWORD;
 import static bi.bigroup.life.utils.StringUtils.length;
 
 public class AuthParams {
-    public String phone;
+    public String login;
     public String password;
 
     @StringRes
-    public int validatePhone() {
-        if (isEmpty(phone)) {
+    public int validateLogin() {
+        if (isEmpty(login)) {
             return R.string.field_error;
-        } else if (length(phone) == LENGTH_PHONE_NUMBER) {
-            return R.string.invalid_token_title;
         } else {
             return 0;
         }

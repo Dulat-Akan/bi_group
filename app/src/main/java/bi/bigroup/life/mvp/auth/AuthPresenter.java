@@ -5,12 +5,12 @@ import android.content.Context;
 import com.arellomobile.mvp.InjectViewState;
 
 import bi.bigroup.life.data.DataLayer;
-import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import bi.bigroup.life.data.repository.auth.AuthRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
+import bi.bigroup.life.utils.LOTimber;
+import okhttp3.ResponseBody;
 import rx.Subscriber;
-import rx.Subscription;
 
 import static bi.bigroup.life.utils.StringUtils.trim;
 
@@ -23,8 +23,8 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
         form = new AuthParams();
     }
 
-    public void setPhone(String phone) {
-        form.phone = trim(phone);
+    public void setUsername(String login) {
+        form.login = trim(login);
     }
 
     public void setPwd(String password) {
@@ -32,7 +32,7 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
     }
 
     public void checkGeneralInfo() {
-        boolean ok = validatePhone();
+        boolean ok = validateUsername();
         ok &= validatePwd();
         if (ok) {
             signIn();
@@ -40,11 +40,11 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
     }
 
     private void signIn() {
-        Subscription subscription = AuthRepositoryProvider.provideRepository(dataLayer.getApi())
+        AuthRepositoryProvider.provideRepository(dataLayer.getApi())
                 .signIn(form)
                 .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
                 .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
-                .subscribe(new Subscriber<Auth>() {
+                .subscribe(new Subscriber<ResponseBody>() {
                     @Override
                     public void onCompleted() {
 
@@ -52,15 +52,15 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
 
                     @Override
                     public void onError(Throwable e) {
+                        LOTimber.d("asdklasjdla::" + e.toString());
                         handleResponseError(context, e);
                     }
 
                     @Override
-                    public void onNext(Auth auth) {
+                    public void onNext(ResponseBody auth) {
                         getViewState().onAuthorizationSuccess();
                     }
                 });
-        compositeSubscription.add(subscription);
     }
 
     public void onForgotPwdClick() {
@@ -71,10 +71,10 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
     // Validation                                                           ///
     ///////////////////////////////////////////////////////////////////////////
 
-    private boolean validatePhone() {
-        int errorRes = form.validatePhone();
+    private boolean validateUsername() {
+        int errorRes = form.validateLogin();
         if (errorRes != 0) {
-            getViewState().showPhoneError(errorRes);
+            getViewState().showUsernameError(errorRes);
         }
         return errorRes == 0;
     }

@@ -5,7 +5,7 @@ import android.support.annotation.StringRes;
 import bi.bigroup.life.mvp.BaseMvpView;
 
 public interface AuthView extends BaseMvpView {
-    void showPhoneError(@StringRes int errorRes);
+    void showUsernameError(@StringRes int errorRes);
 
     void showPwdError(@StringRes int errorRes);
 

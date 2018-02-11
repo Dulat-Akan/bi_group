@@ -5,14 +5,12 @@ import android.content.Context;
 import com.arellomobile.mvp.InjectViewState;
 
 import bi.bigroup.life.data.DataLayer;
-import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import bi.bigroup.life.data.repository.auth.AuthRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
+import okhttp3.ResponseBody;
 import rx.Subscriber;
 import rx.Subscription;
-
-import static bi.bigroup.life.utils.StringUtils.trim;
 
 @InjectViewState
 public class ForgotPwdPresenter extends BaseMvpPresenter<ForgotPwdView> {
@@ -24,7 +22,7 @@ public class ForgotPwdPresenter extends BaseMvpPresenter<ForgotPwdView> {
     }
 
     public void setPhone(String phone) {
-        form.phone = trim(phone);
+//        form.phone = trim(phone);
     }
 
     public void checkGeneralInfo() {
@@ -40,7 +38,7 @@ public class ForgotPwdPresenter extends BaseMvpPresenter<ForgotPwdView> {
                 .signIn(form)
                 .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
                 .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
-                .subscribe(new Subscriber<Auth>() {
+                .subscribe(new Subscriber<ResponseBody>() {
                     @Override
                     public void onCompleted() {
 
@@ -52,7 +50,7 @@ public class ForgotPwdPresenter extends BaseMvpPresenter<ForgotPwdView> {
                     }
 
                     @Override
-                    public void onNext(Auth auth) {
+                    public void onNext(ResponseBody auth) {
 //                        getViewState().onAuthorizationSuccess();
                     }
                 });
@@ -64,7 +62,7 @@ public class ForgotPwdPresenter extends BaseMvpPresenter<ForgotPwdView> {
     ///////////////////////////////////////////////////////////////////////////
 
     private boolean validatePhone() {
-        int errorRes = form.validatePhone();
+        int errorRes = 0; //form.validatePhone();
         if (errorRes != 0) {
             getViewState().showPhoneError(errorRes);
         }
