@@ -18,9 +18,7 @@
             android:paddingTop="@dimen/dp_30">
 
             <ImageView
-                style="@style/ic_auth_logo"
-                android:layout_width="@dimen/dp_110"
-                android:layout_height="@dimen/dp_59"/>
+                style="@style/ic_auth_logo"/>
 
         </LinearLayout>
 

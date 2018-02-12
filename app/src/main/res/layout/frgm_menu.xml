@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/fl_parent"
+             style="@style/MM">
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        style="@style/LL_MM_V"
+        android:background="@color/main_bg">
+
+        <LinearLayout
+            style="@style/LL_MW_H"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp_12"
+            android:paddingRight="@dimen/dp_12">
+
+            <bi.bigroup.life.views.RoundedImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="@dimen/dp_35"
+                android:layout_height="@dimen/dp_35"
+                android:layout_marginBottom="@dimen/dp_13"
+                android:layout_marginTop="@dimen/dp_13"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_avatar"/>
+
+            <LinearLayout
+                style="@style/LL_MM_V"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <bi.bigroup.life.views.fonts.TextViewOpenSansBold
+                    android:id="@+id/tv_name"
+                    style="@style/MW"
+                    android:text="Username"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"/>
+
+                <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+                    android:id="@+id/tv_username"
+                    style="@style/MW"
+                    android:text="Personal"
+                    android:textColor="@color/personal"
+                    android:textSize="@dimen/sp_13"/>
+
+            </LinearLayout>
+
+            <ImageView
+                style="@style/WW"
+                android:src="@drawable/arrow_up_right"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/pb_indicator"
+        layout="@layout/inc_pb_transparent"/>
+</FrameLayout>

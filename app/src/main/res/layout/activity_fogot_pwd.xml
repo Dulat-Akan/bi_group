@@ -13,8 +13,7 @@
 
         <ImageView
             android:id="@+id/img_close"
-            android:layout_width="@dimen/dp_25"
-            android:layout_height="@dimen/dp_25"
+            style="@style/WW"
             android:layout_gravity="left"
             android:layout_marginLeft="@dimen/dp_25"
             android:layout_marginTop="@dimen/dp_25"

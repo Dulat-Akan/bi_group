@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:id="@+id/fl_parent"
              style="@style/MM"
-             android:background="@color/white">
+             android:background="@color/main_bg">
 
-    <LinearLayout
-        style="@style/LL_MM_V"
-        android:fitsSystemWindows="true">
+    <RelativeLayout
+        style="@style/MM">
 
-    </LinearLayout>
+        <LinearLayout
+            style="@style/LL_MM_V"
+            android:layout_marginBottom="@dimen/dp_55"
+            android:fitsSystemWindows="true">
+
+            <include
+                layout="@layout/mrg_toolbar"/>
+
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                style="@style/MM"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MW"
+            android:layout_height="@dimen/dp_55"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@color/tabs_bg"
+            android:gravity="center_vertical">
+
+            <android.support.design.widget.BottomNavigationView
+                android:id="@+id/v_bottom_navigation"
+                style="@style/MW"
+                android:layout_marginTop="@dimen/dp_8"
+                app:menu="@menu/bottom_navigation_view_main"/>
+        </LinearLayout>
+    </RelativeLayout>
 
     <include
         android:id="@+id/pb_indicator"

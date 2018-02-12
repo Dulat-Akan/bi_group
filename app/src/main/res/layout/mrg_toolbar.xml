@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/toolbar_bg"
+    android:title="@null"
+    app:navigationIcon="@null"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:title="@null">
+
+    <LinearLayout
+        style="@style/LL_MW_H"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            style="@style/MW"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp_55"
+                android:layout_height="@dimen/dp_30"
+                android:src="@drawable/bi"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_notification"
+            style="@style/WW"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/ic_notification"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_8"
+            android:src="@drawable/ic_avatar"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

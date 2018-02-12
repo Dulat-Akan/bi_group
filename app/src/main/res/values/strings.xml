@@ -1,6 +1,7 @@
 <resources>
     <!-- Сonstants -->
     <string name="yes">Да</string>
+    <string name="empty_str"></string>
     <string name="no">Нет</string>
     <string name="ok">ОК</string>
     <string name="open">Открыть</string>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              style="@style/LL_MW_V">
+
+    <LinearLayout
+        android:id="@+id/ll_row"
+        style="@style/LL_MW_H"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dp_12">
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:background="@drawable/view_selector_rounded_option"/>
+
+        <LinearLayout
+            style="@style/LL_MW_V"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_weight="1">
+
+            <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+                android:id="@+id/tv_title"
+                style="@style/MW"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                tools:text="Yeapta"/>
+
+            <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+                android:id="@+id/tv_description"
+                style="@style/MW"
+                android:textColor="@color/item_description"
+                android:textSize="@dimen/sp_13"
+                tools:text="Text"/>
+        </LinearLayout>
+
+        <ImageView
+            style="@style/WW"
+            android:src="@drawable/arrow_up_right"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginLeft="@dimen/dp_45"
+        android:layout_marginTop="@dimen/dp_2"
+        android:background="@color/divider"/>
+
+</LinearLayout>

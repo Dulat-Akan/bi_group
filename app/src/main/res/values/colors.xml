@@ -38,5 +38,14 @@
     <color name="forgot_your_data">#808084</color>
     <color name="help">#3499ea</color>
 
+    <!-- ************** MainActivity ************** -->
+    <color name="toolbar_bg">#fcfcfc</color>
+    <color name="main_bg">#f7f7f7</color>
+    <color name="tabs_bg">#fdfdfd</color>
+    <!-- MenuFragment-->
+    <color name="personal">#a5a5a9</color>
+    <color name="item_option">#e5e8ef</color>
+    <color name="item_description">#a9a9ad</color>
+    <color name="divider">#dedde0</color>
 
 </resources>
