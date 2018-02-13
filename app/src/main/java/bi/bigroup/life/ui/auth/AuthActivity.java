@@ -14,6 +14,7 @@ import bi.bigroup.life.config.DebugConfig;
 import bi.bigroup.life.mvp.auth.AuthPresenter;
 import bi.bigroup.life.mvp.auth.AuthView;
 import bi.bigroup.life.ui.base.BaseActivity;
+import bi.bigroup.life.ui.main.MainActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
@@ -131,6 +132,12 @@ public class AuthActivity extends BaseActivity implements AuthView {
 
     @Override
     public void onAuthorizationSuccess() {
-//        startActivity(MainActivity.getIntent(this));
+        startActivity(MainActivity.getIntent(this));
+    }
+
+    @Override
+    public void alreadyAuthorized() {
+        startActivity(MainActivity.alreadyAuthorized(this));
+        finish();
     }
 }

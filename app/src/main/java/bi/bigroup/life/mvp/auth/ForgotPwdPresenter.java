@@ -6,11 +6,7 @@ import com.arellomobile.mvp.InjectViewState;
 
 import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.params.auth.AuthParams;
-import bi.bigroup.life.data.repository.auth.AuthRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
-import okhttp3.ResponseBody;
-import rx.Subscriber;
-import rx.Subscription;
 
 @InjectViewState
 public class ForgotPwdPresenter extends BaseMvpPresenter<ForgotPwdView> {
@@ -34,27 +30,27 @@ public class ForgotPwdPresenter extends BaseMvpPresenter<ForgotPwdView> {
     }
 
     private void signIn() {
-        Subscription subscription = AuthRepositoryProvider.provideRepository(dataLayer.getApi())
-                .signIn(form)
-                .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
-                .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
-                .subscribe(new Subscriber<ResponseBody>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        handleResponseError(context, e);
-                    }
-
-                    @Override
-                    public void onNext(ResponseBody auth) {
-//                        getViewState().onAuthorizationSuccess();
-                    }
-                });
-        compositeSubscription.add(subscription);
+//        Subscription subscription = AuthRepositoryProvider.provideRepository(dataLayer.getApi())
+//                .signIn(form)
+//                .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
+//                .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
+//                .subscribe(new Subscriber<ResponseBody>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        handleResponseError(context, e);
+//                    }
+//
+//                    @Override
+//                    public void onNext(ResponseBody auth) {
+////                        getViewState().onAuthorizationSuccess();
+//                    }
+//                });
+//        compositeSubscription.add(subscription);
     }
 
     ///////////////////////////////////////////////////////////////////////////

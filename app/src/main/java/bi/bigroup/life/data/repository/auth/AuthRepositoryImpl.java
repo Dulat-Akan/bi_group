@@ -1,5 +1,6 @@
 package bi.bigroup.life.data.repository.auth;
 
+import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.network.api.bi_group.API;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import okhttp3.ResponseBody;
@@ -16,7 +17,7 @@ class AuthRepositoryImpl implements AuthRepository {
     }
 
     @Override
-    public Observable<ResponseBody> signIn(AuthParams params) {
+    public Observable<Auth> signIn(AuthParams params) {
         return api
                 .signIn(params)
                 .subscribeOn(Schedulers.io())

@@ -1,9 +1,9 @@
 package bi.bigroup.life.data.network.error;
 
 public class APIError {
-    private String errorMessage;
+    private String error;
 
     public String getErrorMessage() {
-        return errorMessage;
+        return error;
     }
 }

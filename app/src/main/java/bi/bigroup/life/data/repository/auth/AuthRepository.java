@@ -1,5 +1,6 @@
 package bi.bigroup.life.data.repository.auth;
 
+import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.network.api.bi_group.API;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import okhttp3.ResponseBody;
@@ -9,5 +10,5 @@ public interface AuthRepository {
 
     void setAPI(API api);
 
-    Observable<ResponseBody> signIn(AuthParams params);
+    Observable<Auth> signIn(AuthParams params);
 }

@@ -12,4 +12,6 @@ public interface AuthView extends BaseMvpView {
     void openForgotPwdActivity();
 
     void onAuthorizationSuccess();
+
+    void alreadyAuthorized();
 }

@@ -1,5 +1,7 @@
 package bi.bigroup.life.ui.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -27,6 +29,16 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseFragmentActivity implements MainView, BottomNavigationView.OnNavigationItemSelectedListener,
         BottomNavigationView.OnNavigationItemReselectedListener {
+
+    public static Intent getIntent(Context context) {
+        return new Intent(context, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    }
+
+    public static Intent alreadyAuthorized(Context context) {
+        return new Intent(context, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+
+
     @InjectPresenter
     MainPresenter mvpPresenter;
 

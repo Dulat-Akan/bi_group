@@ -5,13 +5,14 @@ import android.content.Context;
 import com.arellomobile.mvp.InjectViewState;
 
 import bi.bigroup.life.data.DataLayer;
+import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import bi.bigroup.life.data.repository.auth.AuthRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
 import bi.bigroup.life.utils.LOTimber;
-import okhttp3.ResponseBody;
 import rx.Subscriber;
 
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 import static bi.bigroup.life.utils.StringUtils.trim;
 
 @InjectViewState
@@ -21,6 +22,10 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
         form = new AuthParams();
+
+        if (preferences.isAuthenticated()) {
+            getViewState().alreadyAuthorized();
+        }
     }
 
     public void setUsername(String login) {
@@ -44,7 +49,7 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
                 .signIn(form)
                 .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
                 .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
-                .subscribe(new Subscriber<ResponseBody>() {
+                .subscribe(new Subscriber<Auth>() {
                     @Override
                     public void onCompleted() {
 
@@ -57,8 +62,13 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
                     }
 
                     @Override
-                    public void onNext(ResponseBody auth) {
-                        getViewState().onAuthorizationSuccess();
+                    public void onNext(Auth auth) {
+                        if (auth != null) {
+                            if (isStringOk(auth.token)) {
+                                preferences.setToken(auth.token);
+                                getViewState().onAuthorizationSuccess();
+                            }
+                        }
                     }
                 });
     }

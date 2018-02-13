@@ -46,18 +46,6 @@ public class PreferencesProvider implements Preferences {
         return sharedPreferences.getString(KEY_TOKEN, EMPTY_STR);
     }
 
-    @Override
-    public boolean hasShownSplashScreen(String key) {
-        return sharedPreferences.getBoolean(key, false);
-    }
-
-    @Override
-    public void setShownSplashScreen(boolean shown, String key) {
-        synchronized (sharedPreferences) {
-            sharedPreferences.edit().putBoolean(key, shown).apply();
-        }
-    }
-
     /****** Gradient colors *******/
     @Override
     public void setGradientCacheTime(long time) {

@@ -7,10 +7,6 @@ public interface Preferences {
 
     String getToken();
 
-    boolean hasShownSplashScreen(String key);
-
-    void setShownSplashScreen(boolean shown, String key);
-
     void setGradientCacheTime(long time);
 
     long getGradientCacheTime();
