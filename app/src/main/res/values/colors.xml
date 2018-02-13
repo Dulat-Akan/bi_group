@@ -48,4 +48,7 @@
     <color name="item_description">#a9a9ad</color>
     <color name="divider">#dedde0</color>
 
+    <!-- NotificationsActivity -->
+    <color name="notification_option">#d8d8d8</color>
+
 </resources>

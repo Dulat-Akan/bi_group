@@ -31,13 +31,13 @@ public abstract class BaseFragment extends MvpAppCompatFragment implements BaseM
 
     protected abstract int getLayoutResourceId();
 
-    protected abstract void onViewCreated(Bundle savedInstanceState);
+    protected abstract void onViewCreated(Bundle savedInstanceState, View view);
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutResourceId(), container, false);
         ButterKnife.bind(this, view);
-        onViewCreated(savedInstanceState);
+        onViewCreated(savedInstanceState, view);
         return view;
     }
 
@@ -67,6 +67,7 @@ public abstract class BaseFragment extends MvpAppCompatFragment implements BaseM
 
     @Override
     public void showNotFoundPlaceholder() {
+        SnackbarUtils.showSnackbar(fl_parent, getString(R.string.info_empty_data));
     }
 
     @Override

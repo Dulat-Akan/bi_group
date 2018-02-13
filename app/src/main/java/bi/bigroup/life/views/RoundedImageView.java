@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class RoundedImageView extends ImageView {
 
-    private float radius = 18.0f;
+    private float radius = 22.0f;
     private Path path;
     private RectF rect;
 

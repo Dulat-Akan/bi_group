@@ -1,6 +1,7 @@
 package bi.bigroup.life.ui.main.office;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
@@ -27,7 +28,7 @@ public class OfficeFragment extends BaseFragment implements OfficeView {
     }
 
     @Override
-    protected void onViewCreated(Bundle savedInstanceState) {
+    protected void onViewCreated(Bundle savedInstanceState, View view) {
         handleIntent();
     }
 

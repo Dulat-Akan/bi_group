@@ -59,7 +59,7 @@ public abstract class BaseActivity extends MvpAppCompatActivity implements BaseM
 
     @Override
     public void showNotFoundPlaceholder() {
-
+        SnackbarUtils.showSnackbar(fl_parent, getString(R.string.info_empty_data));
     }
 
     @Override

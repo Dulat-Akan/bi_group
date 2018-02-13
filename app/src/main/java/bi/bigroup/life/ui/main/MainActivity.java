@@ -18,8 +18,11 @@ import bi.bigroup.life.R;
 import bi.bigroup.life.mvp.main.MainPresenter;
 import bi.bigroup.life.mvp.main.MainView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
+import bi.bigroup.life.ui.main.menu.MenuFragment;
+import bi.bigroup.life.ui.main.notifications.NotificationsActivity;
 import bi.bigroup.life.ui.main.office.OfficeFragment;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseFragmentActivity implements MainView, BottomNavigationView.OnNavigationItemSelectedListener,
         BottomNavigationView.OnNavigationItemReselectedListener {
@@ -48,6 +51,11 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         initFragments();
     }
 
+    @OnClick(R.id.img_notification)
+    void onNotificationClick() {
+        startActivity(NotificationsActivity.getIntent(this));
+    }
+
     private void initBottomNavigationView() {
         v_bottom_navigation.setOnNavigationItemSelectedListener(this);
         v_bottom_navigation.setOnNavigationItemReselectedListener(this);
@@ -59,7 +67,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         fragments.add(ACTION_BOARD, OfficeFragment.newInstance());
         fragments.add(ACTION_FEED, OfficeFragment.newInstance());
         fragments.add(ACTION_STUFF, OfficeFragment.newInstance());
-        fragments.add(ACTION_MENU, OfficeFragment.newInstance());
+        fragments.add(ACTION_MENU, MenuFragment.newInstance());
     }
 
     private void disableShiftMode(BottomNavigationView view) {

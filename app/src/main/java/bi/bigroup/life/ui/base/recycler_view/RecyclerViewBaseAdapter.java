@@ -5,7 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import bi.bigroup.life.R;
+
 public abstract class RecyclerViewBaseAdapter extends RecyclerView.Adapter<RecyclerViewBaseAdapter.MainViewHolder> {
+    protected static final int PROGRESS_BAR_LAYOUT_ID = R.layout.inc_pb_opaque_small;
+
     public class MainViewHolder extends RecyclerView.ViewHolder {
         public MainViewHolder(View v) {
             super(v);

@@ -36,7 +36,7 @@
             android:id="@+id/img_avatar"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
-            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginRight="@dimen/dp_8"
             android:src="@drawable/ic_avatar"/>
 

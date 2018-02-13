@@ -1,6 +1,7 @@
 package bi.bigroup.life.ui.main.menu;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
@@ -8,17 +9,14 @@ import bi.bigroup.life.R;
 import bi.bigroup.life.mvp.main.menu.MenuPresenter;
 import bi.bigroup.life.mvp.main.menu.MenuView;
 import bi.bigroup.life.ui.base.BaseFragment;
+import bi.bigroup.life.utils.LOTimber;
 
 public class MenuFragment extends BaseFragment implements MenuView {
     @InjectPresenter
     MenuPresenter mvpPresenter;
 
     public static MenuFragment newInstance() {
-        MenuFragment fragment = new MenuFragment();
-        Bundle data = new Bundle();
-//        data.putParcelable(FORM_KEY, Parcels.wrap(authForm));
-        fragment.setArguments(data);
-        return fragment;
+        return new MenuFragment();
     }
 
     @Override
@@ -27,8 +25,23 @@ public class MenuFragment extends BaseFragment implements MenuView {
     }
 
     @Override
-    protected void onViewCreated(Bundle savedInstanceState) {
+    protected void onViewCreated(Bundle savedInstanceState, View view) {
         handleIntent();
+        RowViewHolder v1 = new RowViewHolder(view.findViewById(R.id.v1));
+        v1.bindHolder(R.string.menu_title_1, R.string.menu_desc_1);
+        v1.setCallback(() -> LOTimber.d("asldkasjd clicked 1"));
+
+        RowViewHolder v2 = new RowViewHolder(view.findViewById(R.id.v2));
+        v2.bindHolder(R.string.menu_title_2, R.string.menu_desc_2);
+        v2.setCallback(() -> LOTimber.d("asldkasjd clicked 2"));
+
+        RowViewHolder v3 = new RowViewHolder(view.findViewById(R.id.v3));
+        v3.bindHolder(R.string.menu_title_3, R.string.menu_desc_3);
+        v3.setCallback(() -> LOTimber.d("asldkasjd clicked 3"));
+
+        RowViewHolder v4 = new RowViewHolder(view.findViewById(R.id.v4));
+        v4.bindHolder(R.string.menu_title_4, R.string.menu_desc_4);
+        v4.setCallback(() -> LOTimber.d("asldkasjd clicked 4"));
     }
 
     private void handleIntent() {
