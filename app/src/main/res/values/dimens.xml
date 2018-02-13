@@ -9,6 +9,7 @@
     <dimen name="dp_3">3dp</dimen>
     <dimen name="dp_3_5">3.5dp</dimen>
     <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_4_ngtv">-4dp</dimen>
     <dimen name="dp_5">5dp</dimen>
     <dimen name="dp_6">6dp</dimen>
     <dimen name="dp_7">7dp</dimen>

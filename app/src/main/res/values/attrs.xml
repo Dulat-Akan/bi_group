@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RoundedImageView -->
+    <declare-styleable name="RoundedImageView">
+        <attr name="radius_width" format="float"/>
+    </declare-styleable>
+
+</resources>

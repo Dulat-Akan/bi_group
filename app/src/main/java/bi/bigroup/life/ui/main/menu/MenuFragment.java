@@ -9,7 +9,9 @@ import bi.bigroup.life.R;
 import bi.bigroup.life.mvp.main.menu.MenuPresenter;
 import bi.bigroup.life.mvp.main.menu.MenuView;
 import bi.bigroup.life.ui.base.BaseFragment;
+import bi.bigroup.life.ui.profile.ProfileActivity;
 import bi.bigroup.life.utils.LOTimber;
+import butterknife.OnClick;
 
 public class MenuFragment extends BaseFragment implements MenuView {
     @InjectPresenter
@@ -49,6 +51,11 @@ public class MenuFragment extends BaseFragment implements MenuView {
 //            AuthForm form = Parcels.unwrap(getArguments().getParcelable(FORM_KEY));
 //            mvpPresenter.init(dataLayer, form);
 //        }
+    }
+
+    @OnClick(R.id.ll_profile)
+    void onProfileClick() {
+        startActivity(ProfileActivity.getIntent(getContext()));
     }
 
     ///////////////////////////////////////////////////////////////////////////

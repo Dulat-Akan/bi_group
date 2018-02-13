@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:id="@+id/fl_parent"
              style="@style/MM">
 
@@ -10,6 +11,7 @@
         android:paddingLeft="@dimen/dp_16">
 
         <LinearLayout
+            android:id="@+id/ll_profile"
             style="@style/LL_MW_H"
             android:gravity="center_vertical"
             android:paddingRight="@dimen/dp_12">
@@ -21,7 +23,8 @@
                 android:layout_marginBottom="@dimen/dp_13"
                 android:layout_marginTop="@dimen/dp_13"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_avatar"/>
+                android:src="@drawable/ic_avatar"
+                app:radius_width="@dimen/dp_11"/>
 
             <LinearLayout
                 style="@style/LL_MM_V"
@@ -52,19 +55,19 @@
 
         <include
             android:id="@+id/v1"
-            layout="@layout/inc_menu_item"/>
+            layout="@layout/inc_item_menu"/>
 
         <include
             android:id="@+id/v2"
-            layout="@layout/inc_menu_item"/>
+            layout="@layout/inc_item_menu"/>
 
         <include
             android:id="@+id/v3"
-            layout="@layout/inc_menu_item"/>
+            layout="@layout/inc_item_menu"/>
 
         <include
             android:id="@+id/v4"
-            layout="@layout/inc_menu_item"/>
+            layout="@layout/inc_item_menu"/>
 
 
     </LinearLayout>

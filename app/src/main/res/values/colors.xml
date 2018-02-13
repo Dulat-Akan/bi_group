@@ -47,8 +47,14 @@
     <color name="item_option">#e5e8ef</color>
     <color name="item_description">#a9a9ad</color>
     <color name="divider">#dedde0</color>
+    <color name="divider2">#bcbbc1</color>
 
     <!-- NotificationsActivity -->
     <color name="notification_option">#d8d8d8</color>
+
+    <!-- ProfileActivity -->
+    <color name="tab_text">#6d6d72</color>
+    <color name="tab_indicator">#108aeb</color>
+    <color name="specialty">#8e8e93</color>
 
 </resources>

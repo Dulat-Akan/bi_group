@@ -1,4 +1,4 @@
-package bi.bigroup.life.ui.main.notifications;
+package bi.bigroup.life.ui.notifications;
 
 import android.content.Context;
 import android.content.Intent;

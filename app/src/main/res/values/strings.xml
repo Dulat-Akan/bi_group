@@ -74,6 +74,34 @@
 
     <!-- NotificationsActivity -->
     <string name="notifications">Уведомления</string>
+    <string name="tabs_data">Данные</string>
+    <string name="tabs_results">Результаты</string>
+    <string name="tabs_plans">Планы</string>
+    <string name="tabs_advantages">Преимущества</string>
+
+    <!-- ProfileActivity -->
+    <string name="label_profile">Профиль</string>
+    <string name="prof_data_sub_company">Подразделение</string>
+    <string name="prof_data_mobile">Мобильный</string>
+    <string name="prof_data_email">Почта</string>
+    <string name="prof_data_work_phone">Служебный телефон</string>
+    <string name="prof_data_extra_info">Подробная информация</string>
+    <string name="prof_data_hide_extra_info">Скрыть информацию</string>
+    <string name="own_and_family">Личные и семья</string>
+    <string name="label_iin">ИИН</string>
+    <string name="label_date_of_birth">Дата рождения</string>
+    <string name="label_family_status">Семейное положение</string>
+    <string name="label_family_v_brake">В браке</string>
+    <string name="label_family_gender">Пол</string>
+    <string name="label_gender">Пол</string>
+    <string name="label_gender_male">Мужской</string>
+    <string name="label_gender_female">Женский</string>
+    <string name="label_childs">Дети</string>
+    <string name="label_childs_second">Двое</string>
+    <string name="label_clothes_size">Размер одежды</string>
+    <string name="label_working">Трудовая деятельность</string>
+    <string name="label_experience">Общий стаж</string>
+    <string name="label_coorporative_experience">Корпоративный стаж</string>
     <string name="q"></string>
 
 </resources>

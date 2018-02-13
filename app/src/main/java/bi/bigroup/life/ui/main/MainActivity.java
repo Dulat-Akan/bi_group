@@ -19,8 +19,9 @@ import bi.bigroup.life.mvp.main.MainPresenter;
 import bi.bigroup.life.mvp.main.MainView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
 import bi.bigroup.life.ui.main.menu.MenuFragment;
-import bi.bigroup.life.ui.main.notifications.NotificationsActivity;
 import bi.bigroup.life.ui.main.office.OfficeFragment;
+import bi.bigroup.life.ui.notifications.NotificationsActivity;
+import bi.bigroup.life.ui.profile.ProfileActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -54,6 +55,11 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @OnClick(R.id.img_notification)
     void onNotificationClick() {
         startActivity(NotificationsActivity.getIntent(this));
+    }
+
+    @OnClick(R.id.img_avatar)
+    void onAvatarClick() {
+        startActivity(ProfileActivity.getIntent(this));
     }
 
     private void initBottomNavigationView() {

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              style="@style/LL_MW_V">
+
+    <LinearLayout
+        android:id="@+id/ll_row"
+        style="@style/LL_MW_H"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_12">
+
+        <ImageView
+            android:id="@+id/img_icon"
+            style="@style/WW"
+            android:src="@drawable/domain"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/MW"
+            android:layout_marginLeft="@dimen/dp_18"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="@dimen/sp_10"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14"
+            tools:text="Yeapta"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_43"
+        android:background="@color/divider2"/>
+
+</LinearLayout>

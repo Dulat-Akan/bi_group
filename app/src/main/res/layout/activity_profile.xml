@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/fl_parent"
+             style="@style/MM"
+             android:background="@color/main_bg">
+
+    <RelativeLayout
+        style="@style/MM">
+
+        <LinearLayout
+            style="@style/LL_MM_V"
+            android:fitsSystemWindows="true">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/back_toolbar"
+                android:title="@string/label_profile"
+                app:title="@string/label_profile"/>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                style="@style/customTabLayout"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                style="@style/MW"
+                android:layout_marginTop="@dimen/dp_20"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/pb_indicator"
+        layout="@layout/inc_pb_transparent"/>
+
+</FrameLayout>
+

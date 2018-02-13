@@ -156,6 +156,10 @@ dependencies {
 
     // EditText mask
     compile "com.redmadrobot:inputmask:$inputMaskVersion"
+
+    // ExpandableLayout
+    compile "net.cachapa.expandablelayout:expandablelayout:${expandableLayout}"
+
     // MultiDex
 //    compile "com.android.support:multidex:${multidex}"
 
