@@ -106,7 +106,7 @@
                 style="@style/MW"
                 android:layout_marginTop="@dimen/dp_20"
                 app:el_duration="40"
-                app:el_expanded="false">
+                app:el_expanded="true">
 
                 <LinearLayout
                     android:id="@+id/ll_hidden_block"
