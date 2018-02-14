@@ -8,27 +8,26 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import java.util.List;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.models.feed.FilterButton;
 import bi.bigroup.life.mvp.main.feed.FeedPresenter;
 import bi.bigroup.life.mvp.main.feed.FeedView;
-import bi.bigroup.life.ui.base.BaseFragment;
+import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
 import bi.bigroup.life.utils.LOTimber;
+import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 import butterknife.BindView;
 import it.sephiroth.android.library.widget.HListView;
 
-public class FeedFragment extends BaseFragment implements FeedView {
+public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     @InjectPresenter
     FeedPresenter mvpPresenter;
 
     @BindView(R.id.hlv_filters) HListView hlv_filters;
     private FilterButtonsAdapter horizontalAdapter;
+    private FeedAdapter mAdapter;
 
     public static FeedFragment newInstance() {
-        FeedFragment fragment = new FeedFragment();
-        Bundle data = new Bundle();
-//        data.putParcelable(FORM_KEY, Parcels.wrap(authForm));
-        fragment.setArguments(data);
-        return fragment;
+        return new FeedFragment();
     }
 
     @Override
@@ -38,16 +37,30 @@ public class FeedFragment extends BaseFragment implements FeedView {
 
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
-        handleIntent();
         configureHorizontalList();
         mvpPresenter.init(getContext(), dataLayer);
+        mvpPresenter.getFeedList(false, false);
+        configureRecyclerView();
     }
 
-    private void handleIntent() {
-//        if (getArguments() != null && getArguments().containsKey(FORM_KEY)) {
-//            AuthForm form = Parcels.unwrap(getArguments().getParcelable(FORM_KEY));
-//            mvpPresenter.init(dataLayer, form);
-//        }
+    protected void configureRecyclerView() {
+        super.configureRecyclerView();
+        mAdapter = new FeedAdapter();
+//        mAdapter.setCallback(area -> startActivity(AreaDetailActivity.getIntent(this, area.id)));
+        recycler_view.setAdapter(mAdapter);
+        recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view, 1) {
+            @Override
+            public void onRequestMoreItems() {
+                if (!mAdapter.getLoading()) {
+                    mvpPresenter.getFeedList(true, false);
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void swipeToRefresh() {
+        mvpPresenter.getFeedList(false, true);
     }
 
     private void configureHorizontalList() {
@@ -67,5 +80,21 @@ public class FeedFragment extends BaseFragment implements FeedView {
     @Override
     public void setFiltersList(List<FilterButton> filterButtonList) {
         horizontalAdapter.setData(filterButtonList);
+    }
+
+    @Override
+    public void setFeedList(List<Feed> list) {
+        mAdapter.clearData();
+        mAdapter.addData(list);
+    }
+
+    @Override
+    public void addFeedList(List<Feed> list) {
+        mAdapter.addData(list);
+    }
+
+    @Override
+    public void showLoadingItemIndicator(boolean show) {
+        recycler_view.post(() -> mAdapter.setLoading(show));
     }
 }

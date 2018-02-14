@@ -55,6 +55,7 @@ public abstract class BaseActivity extends MvpAppCompatActivity implements BaseM
 
     @Override
     public void onInvalidToken() {
+        SnackbarUtils.showSnackbar(fl_parent, "UnAuthorized");
     }
 
     @Override

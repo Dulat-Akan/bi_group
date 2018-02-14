@@ -11,6 +11,7 @@ import bi.bigroup.life.data.cache.preferences.Preferences;
 import bi.bigroup.life.data.network.error.RetrofitErrorHandler;
 import bi.bigroup.life.data.network.exceptions.APIException;
 import bi.bigroup.life.data.network.exceptions.ConnectionTimeOutException;
+import bi.bigroup.life.data.network.exceptions.UnAuthorizeException;
 import bi.bigroup.life.data.network.exceptions.UnknownException;
 import bi.bigroup.life.utils.StringUtils;
 import rx.subscriptions.CompositeSubscription;
@@ -39,6 +40,8 @@ public abstract class BaseMvpPresenter<T extends BaseMvpView> extends MvpPresent
             getViewState().showRequestError(context.getString(R.string.server_error));
         } catch (ConnectionTimeOutException e1) {
             getViewState().showRequestError(context.getString(R.string.connection_error));
+        } catch (UnAuthorizeException e1) {
+            getViewState().onInvalidToken();
         }
     }
 

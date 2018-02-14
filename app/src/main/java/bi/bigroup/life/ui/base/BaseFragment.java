@@ -62,6 +62,7 @@ public abstract class BaseFragment extends MvpAppCompatFragment implements BaseM
 
     @Override
     public void onInvalidToken() {
+        SnackbarUtils.showSnackbar(fl_parent, "UnAuthorized");
 //        InvalidToken.wipeOut(getContext(), dataLayer);
     }
 
