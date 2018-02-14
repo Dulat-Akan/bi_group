@@ -32,14 +32,14 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical">
 
-                <bi.bigroup.life.views.fonts.TextViewOpenSansBold
+                <bi.bigroup.life.views.fonts.TextViewRobotoBold
                     android:id="@+id/tv_name"
                     style="@style/MW"
                     android:text="User Name"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_16"/>
 
-                <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                     android:id="@+id/tv_username"
                     style="@style/MW"
                     android:text="Personal"

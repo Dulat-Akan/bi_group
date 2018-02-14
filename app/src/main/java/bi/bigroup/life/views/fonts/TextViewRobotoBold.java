@@ -7,25 +7,25 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 
-public class TextViewOpenSansNeueMedium extends AppCompatTextView {
+public class TextViewRobotoBold extends AppCompatTextView {
 
-    public TextViewOpenSansNeueMedium(Context context) {
+    public TextViewRobotoBold(Context context) {
         super(context);
         init();
     }
 
-    public TextViewOpenSansNeueMedium(Context context, AttributeSet attrs) {
+    public TextViewRobotoBold(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public TextViewOpenSansNeueMedium(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TextViewRobotoBold(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     private void init() {
-        Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "OpenSans-Semibold.ttf");
+        Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "Roboto-Bold.ttf");
         setTypeface(tf, Typeface.NORMAL);
         setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3.0f, getResources().getDisplayMetrics()), 1.0f);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

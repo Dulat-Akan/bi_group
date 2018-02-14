@@ -15,7 +15,7 @@
             android:alpha=".7"
             android:src="@drawable/met_ic_clear"/>
 
-        <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
             android:id="@+id/tv_msg"
             style="@style/WW"
             android:layout_marginTop="@dimen/dp_12"
@@ -24,7 +24,7 @@
             android:textColor="@color/gray"
             android:textSize="@dimen/sp_16"/>
 
-        <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
             android:id="@+id/btn_try_again"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_36"

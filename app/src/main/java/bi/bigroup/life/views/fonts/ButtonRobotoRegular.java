@@ -5,25 +5,25 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.Button;
 
-public class ButtonOpenSansRegular extends Button {
+public class ButtonRobotoRegular extends Button {
 
-    public ButtonOpenSansRegular(Context context) {
+    public ButtonRobotoRegular(Context context) {
         super(context);
         init();
     }
 
-    public ButtonOpenSansRegular(Context context, AttributeSet attrs) {
+    public ButtonRobotoRegular(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public ButtonOpenSansRegular(Context context, AttributeSet attrs, int defStyle) {
+    public ButtonRobotoRegular(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
     private void init() {
-        Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "OpenSans-Regular.ttf");
+        Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "Roboto-Regular.ttf");
         setTypeface(tf, Typeface.NORMAL);
     }
 }

@@ -24,7 +24,7 @@
                 android:textSize="@dimen/sp_14"
                 android:textStyle="normal"/>
 
-            <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                 android:id="@+id/tv_time"
                 style="@style/MW"
                 android:text="5 minutes ago"

@@ -27,13 +27,13 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <bi.bigroup.life.views.fonts.TextViewOpenSansNeueMedium
+            <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                 style="@style/WW"
                 android:text="@string/can_not_join"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_17"/>
 
-            <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                 style="@style/WW"
                 android:layout_marginTop="@dimen/dp_5"
                 android:gravity="center_horizontal"
@@ -41,7 +41,7 @@
                 android:textColor="@color/white_60"
                 android:textSize="@dimen/sp_12"/>
 
-            <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                 style="@style/WW"
                 android:layout_gravity="left"
                 android:layout_marginLeft="@dimen/dp_28"
@@ -62,7 +62,7 @@
             <View
                 style="@style/auth_divider"/>
 
-            <bi.bigroup.life.views.fonts.ButtonOpenSansRegular
+            <bi.bigroup.life.views.fonts.ButtonRobotoRegular
                 android:id="@+id/btn_send"
                 style="@style/auth_rounded_btn"
                 android:layout_marginLeft="@dimen/dp_25"
@@ -72,7 +72,7 @@
 
         </LinearLayout>
 
-        <bi.bigroup.life.views.fonts.TextViewOpenSansNeueMedium
+        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
             style="@style/MW"
             android:layout_marginBottom="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"

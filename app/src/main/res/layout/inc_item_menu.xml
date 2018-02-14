@@ -21,7 +21,7 @@
             android:layout_marginLeft="@dimen/dp_18"
             android:layout_weight="1">
 
-            <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                 android:id="@+id/tv_title"
                 style="@style/MW"
                 android:maxLines="1"
@@ -29,7 +29,7 @@
                 android:textSize="@dimen/sp_14"
                 tools:text="Yeapta"/>
 
-            <bi.bigroup.life.views.fonts.TextViewOpenSansNeueRegular
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                 android:id="@+id/tv_description"
                 style="@style/MW"
                 android:textColor="@color/item_description"

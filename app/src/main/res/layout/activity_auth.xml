@@ -52,7 +52,7 @@
             <View
                 style="@style/auth_divider"/>
 
-            <bi.bigroup.life.views.fonts.ButtonOpenSansRegular
+            <bi.bigroup.life.views.fonts.ButtonRobotoRegular
                 android:id="@+id/btn_login"
                 style="@style/auth_rounded_btn"
                 android:layout_marginTop="@dimen/dp_22"
@@ -63,13 +63,13 @@
                 android:layout_marginTop="@dimen/dp_28"
                 android:gravity="center_horizontal|center_vertical">
 
-                <bi.bigroup.life.views.fonts.TextViewOpenSansNeueMedium
+                <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                     style="@style/WW"
                     android:text="@string/forgot_your_data"
                     android:textColor="@color/forgot_your_data"
                     android:textSize="@dimen/sp_13"/>
 
-                <bi.bigroup.life.views.fonts.TextViewOpenSansNeueMedium
+                <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                     android:id="@+id/tv_help"
                     style="@style/WW"
                     android:layout_marginLeft="@dimen/dp_8"
@@ -81,7 +81,7 @@
 
         </LinearLayout>
 
-        <bi.bigroup.life.views.fonts.TextViewOpenSansNeueMedium
+        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
             style="@style/MW"
             android:layout_marginBottom="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
