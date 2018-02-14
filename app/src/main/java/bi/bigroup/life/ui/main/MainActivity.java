@@ -20,6 +20,7 @@ import bi.bigroup.life.R;
 import bi.bigroup.life.mvp.main.MainPresenter;
 import bi.bigroup.life.mvp.main.MainView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
+import bi.bigroup.life.ui.main.feed.FeedFragment;
 import bi.bigroup.life.ui.main.menu.MenuFragment;
 import bi.bigroup.life.ui.main.office.OfficeFragment;
 import bi.bigroup.life.ui.notifications.NotificationsActivity;
@@ -37,7 +38,6 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     public static Intent alreadyAuthorized(Context context) {
         return new Intent(context, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
-
 
     @InjectPresenter
     MainPresenter mvpPresenter;
@@ -83,7 +83,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     private void initFragments() {
         fragments.add(ACTION_MAIN, OfficeFragment.newInstance());
         fragments.add(ACTION_BOARD, OfficeFragment.newInstance());
-        fragments.add(ACTION_FEED, OfficeFragment.newInstance());
+        fragments.add(ACTION_FEED, FeedFragment.newInstance());
         fragments.add(ACTION_STUFF, OfficeFragment.newInstance());
         fragments.add(ACTION_MENU, MenuFragment.newInstance());
     }

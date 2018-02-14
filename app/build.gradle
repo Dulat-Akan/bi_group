@@ -160,6 +160,9 @@ dependencies {
     // ExpandableLayout
     compile "net.cachapa.expandablelayout:expandablelayout:${expandableLayout}"
 
+    // Horizontal ListView
+    compile "it.sephiroth.android.library.horizontallistview:hlistview:${horizontalListView}"
+
     // MultiDex
 //    compile "com.android.support:multidex:${multidex}"
 

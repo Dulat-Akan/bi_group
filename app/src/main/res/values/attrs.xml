@@ -5,4 +5,9 @@
         <attr name="radius_width" format="float"/>
     </declare-styleable>
 
+    <!-- Rounded LinearLayout -->
+    <declare-styleable name="RoundedLL">
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
+
 </resources>

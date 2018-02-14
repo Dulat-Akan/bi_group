@@ -48,6 +48,11 @@
     <color name="item_description">#a9a9ad</color>
     <color name="divider">#dedde0</color>
     <color name="divider2">#bcbbc1</color>
+    <!-- FeedFragment -->
+    <color name="filter_news">#50e3c2</color>
+    <color name="filter_poll">#4a90e2</color>
+    <color name="filter_offer">#f5a623</color>
+
 
     <!-- NotificationsActivity -->
     <color name="notification_option">#d8d8d8</color>
