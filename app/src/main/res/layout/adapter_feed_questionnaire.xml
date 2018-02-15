@@ -22,12 +22,12 @@
                 android:paddingRight="@dimen/dp_12">
 
                 <ImageView
-                    android:id="@+id/img_dislike"
+                    android:id="@+id/img_like"
                     style="@style/WW"
-                    android:src="@drawable/dislike_inactive"/>
+                    android:src="@drawable/like_inactive"/>
 
                 <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_dislike_quantity"
+                    android:id="@+id/tv_like_quantity"
                     style="@style/WW"
                     android:layout_marginLeft="@dimen/dp_3"
                     android:textColor="@color/feed_time"
@@ -35,13 +35,13 @@
                     tools:text="423"/>
 
                 <ImageView
-                    android:id="@+id/img_like"
+                    android:id="@+id/img_comment"
                     style="@style/WW"
                     android:layout_marginLeft="@dimen/dp_8"
-                    android:src="@drawable/like_inactive"/>
+                    android:src="@drawable/chat_inactive"/>
 
                 <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_like_quantity"
+                    android:id="@+id/tv_comment_quantity"
                     style="@style/MW"
                     android:layout_marginLeft="@dimen/dp_3"
                     android:layout_weight="1"
@@ -50,13 +50,13 @@
                     tools:text="423"/>
 
                 <ImageView
-                    android:id="@+id/img_views"
+                    android:id="@+id/img_poll"
                     style="@style/WW"
                     android:layout_marginLeft="@dimen/dp_8"
-                    android:src="@drawable/view"/>
+                    android:src="@drawable/poll"/>
 
                 <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_view_quantity"
+                    android:id="@+id/tv_poll_quantity"
                     style="@style/WW"
                     android:layout_marginLeft="@dimen/dp_3"
                     android:textColor="@color/feed_time"

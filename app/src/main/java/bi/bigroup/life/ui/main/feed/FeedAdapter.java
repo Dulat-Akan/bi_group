@@ -20,10 +20,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static bi.bigroup.life.data.models.feed.FeedEntityType.FEED_TYPE_NEWS;
+import static bi.bigroup.life.data.models.feed.FeedEntityType.FEED_TYPE_QUESTIONNAIRE;
+import static bi.bigroup.life.data.models.feed.FeedEntityType.FEED_TYPE_SUGGESTION;
 
 class FeedAdapter extends RecyclerViewBaseAdapter {
     private static final int NEWS_LAYOUT_ID = R.layout.adapter_feed_news;
     private static final int SUGGESTION_LAYOUT_ID = R.layout.adapter_feed_suggestion;
+    private static final int QUESTIONNAIRE_LAYOUT_ID = R.layout.adapter_feed_questionnaire;
 
     private List<Feed> data;
     private Context context;
@@ -71,7 +74,9 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
             case NEWS_LAYOUT_ID:
                 return new NewsViewHolder(inflate(parent, NEWS_LAYOUT_ID));
             case SUGGESTION_LAYOUT_ID:
-                return new SimpleViewHolder(inflate(parent, SUGGESTION_LAYOUT_ID));
+                return new SuggestionViewHolder(inflate(parent, SUGGESTION_LAYOUT_ID));
+            case QUESTIONNAIRE_LAYOUT_ID:
+                return new QuestionnaireViewHolder(inflate(parent, QUESTIONNAIRE_LAYOUT_ID));
             case PROGRESS_BAR_LAYOUT_ID:
                 return new SimpleViewHolder(inflate(parent, PROGRESS_BAR_LAYOUT_ID));
             default:
@@ -86,10 +91,13 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
         } else {
             if (data.get(position).getLayoutType() == FEED_TYPE_NEWS) {
                 return NEWS_LAYOUT_ID;
-            } else {
+            } else if (data.get(position).getLayoutType() == FEED_TYPE_SUGGESTION) {
                 return SUGGESTION_LAYOUT_ID;
+            } else if (data.get(position).getLayoutType() == FEED_TYPE_QUESTIONNAIRE) {
+                return QUESTIONNAIRE_LAYOUT_ID;
             }
         }
+        return 0;
     }
 
     @Override
@@ -106,6 +114,12 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
         switch (holder.getItemViewType()) {
             case NEWS_LAYOUT_ID:
                 ((NewsViewHolder) holder).bind(data.get(position), position);
+                break;
+            case SUGGESTION_LAYOUT_ID:
+                ((SuggestionViewHolder) holder).bind(data.get(position), position);
+                break;
+            case QUESTIONNAIRE_LAYOUT_ID:
+                ((QuestionnaireViewHolder) holder).bind(data.get(position), position);
                 break;
         }
     }
@@ -141,6 +155,86 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
             vp_images.setAdapter(adapter);
             ci_images.setViewPager(vp_images);
 
+            tv_content.setText(feed.title);
+            tv_time.setText(feed.getDate(context));
+            tv_username.setText(feed.authorName);
+
+            tv_like_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.likesQuantity)));
+            tv_comment_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.commentsQuantity)));
+            tv_view_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.viewsQuantity)));
+        }
+
+        @OnClick(R.id.img_more)
+        void onMoreClick() {
+//            if (callback != null) {
+//                callback.onItemClick(bindedObject);
+//            }
+        }
+    }
+
+    class SuggestionViewHolder extends MainViewHolder {
+        @BindView(R.id.img_avatar) RoundedImageView img_avatar;
+        @BindView(R.id.tv_username) TextView tv_username;
+        @BindView(R.id.tv_time) TextView tv_time;
+        @BindView(R.id.tv_content) TextView tv_content;
+        @BindView(R.id.tv_like_quantity) TextView tv_like_quantity;
+        @BindView(R.id.tv_dislike_quantity) TextView tv_dislike_quantity;
+        @BindView(R.id.tv_view_quantity) TextView tv_view_quantity;
+
+        Feed bindedObject;
+        int bindedPosition;
+
+        SuggestionViewHolder(View v) {
+            super(v);
+            ButterKnife.bind(this, v);
+        }
+
+        void bind(Feed feed, int position) {
+            bindedObject = feed;
+            bindedPosition = position;
+            if (feed == null) {
+                return;
+            }
+            tv_content.setText(feed.title);
+            tv_time.setText(feed.getDate(context));
+            tv_username.setText(feed.authorName);
+
+            tv_like_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.likesQuantity)));
+            tv_dislike_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.dislikesQuantity)));
+            tv_view_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.viewsQuantity)));
+        }
+
+        @OnClick(R.id.img_more)
+        void onMoreClick() {
+//            if (callback != null) {
+//                callback.onItemClick(bindedObject);
+//            }
+        }
+    }
+
+    class QuestionnaireViewHolder extends MainViewHolder {
+        @BindView(R.id.img_avatar) RoundedImageView img_avatar;
+        @BindView(R.id.tv_username) TextView tv_username;
+        @BindView(R.id.tv_time) TextView tv_time;
+        @BindView(R.id.tv_content) TextView tv_content;
+        @BindView(R.id.tv_like_quantity) TextView tv_like_quantity;
+        @BindView(R.id.tv_comment_quantity) TextView tv_comment_quantity;
+        @BindView(R.id.tv_view_quantity) TextView tv_view_quantity;
+
+        Feed bindedObject;
+        int bindedPosition;
+
+        QuestionnaireViewHolder(View v) {
+            super(v);
+            ButterKnife.bind(this, v);
+        }
+
+        void bind(Feed feed, int position) {
+            bindedObject = feed;
+            bindedPosition = position;
+            if (feed == null) {
+                return;
+            }
             tv_content.setText(feed.title);
             tv_time.setText(feed.getDate(context));
             tv_username.setText(feed.authorName);
