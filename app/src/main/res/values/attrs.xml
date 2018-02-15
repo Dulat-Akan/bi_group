@@ -7,7 +7,7 @@
 
     <!-- Rounded LinearLayout -->
     <declare-styleable name="RoundedLL">
-        <attr name="radius" format="dimension"/>
+        <attr name="cornerRadius" format="dimension"/>
     </declare-styleable>
 
 </resources>

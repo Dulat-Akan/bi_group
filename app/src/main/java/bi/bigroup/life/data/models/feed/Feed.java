@@ -1,6 +1,10 @@
 package bi.bigroup.life.data.models.feed;
 
-import java.util.Date;
+import android.content.Context;
+
+import static bi.bigroup.life.utils.DateUtils.getDisplayableTime;
+import static bi.bigroup.life.utils.StringUtils.getOkInt;
+import static bi.bigroup.life.utils.StringUtils.replaceNull;
 
 public class Feed {
     public String id;
@@ -20,4 +24,24 @@ public class Feed {
     public Boolean isLikedByMe;
     public Boolean isFromSharepoint;
     public FeedEntityType entityType;
+
+    public int getLayoutType() {
+        if (entityType != null) {
+            return getOkInt(entityType.code);
+        } else {
+            return 0;
+        }
+    }
+
+    public String getImageUrl() {
+        return replaceNull(imageUrl);
+    }
+
+    public int getOkIntQuantity(Integer sum) {
+        return getOkInt(sum);
+    }
+
+    public String getDate(Context context) {
+        return getDisplayableTime(createDate, context);
+    }
 }

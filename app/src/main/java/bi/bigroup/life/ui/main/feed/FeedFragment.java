@@ -45,7 +45,7 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
 
     protected void configureRecyclerView() {
         super.configureRecyclerView();
-        mAdapter = new FeedAdapter();
+        mAdapter = new FeedAdapter(getContext());
 //        mAdapter.setCallback(area -> startActivity(AreaDetailActivity.getIntent(this, area.id)));
         recycler_view.setAdapter(mAdapter);
         recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view, 1) {

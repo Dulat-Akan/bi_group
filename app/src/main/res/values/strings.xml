@@ -40,6 +40,22 @@
     <string name="please_wait">Подождите, пожалуйста.</string>
     <string name="click_here_to_repeat_request">Нажмите, чтобы повторить запрос.</string>
 
+    <string-array name="months_array_long">
+        <item>января</item>
+        <item>февраля</item>
+        <item>марта</item>
+        <item>апреля</item>
+        <item>мая</item>
+        <item>июня</item>
+        <item>июля</item>
+        <item>августа</item>
+        <item>сентября</item>
+        <item>октября</item>
+        <item>ноября</item>
+        <item>декабря</item>
+    </string-array>
+    <string name="label_yesterday">вчера</string>
+
     <!-- AuthActivity -->
     <string name="enter_username">Введите логин</string>
     <string name="enter_pwd">Введите пароль</string>

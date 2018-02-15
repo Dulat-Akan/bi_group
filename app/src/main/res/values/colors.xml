@@ -62,4 +62,11 @@
     <color name="tab_indicator">#108aeb</color>
     <color name="specialty">#8e8e93</color>
 
+    <!-- FeedFragment -->
+    <color name="feed_time">#8e8e93</color>
+    <color name="pager_indicator_unselected">#d1d1d2</color>
+    <color name="pager_indicator_fill">#6d6d72</color>
+    <color name="slider_img_bg">#e5e8ef</color>
+
+
 </resources>

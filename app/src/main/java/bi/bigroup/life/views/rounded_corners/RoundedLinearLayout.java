@@ -1,6 +1,5 @@
 package bi.bigroup.life.views.rounded_corners;
 
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -41,7 +40,7 @@ public class RoundedLinearLayout extends LinearLayout {
 //        cornerRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, radius, metrics);
 
         final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.RoundedLL, defStyleAttr, 0);
-        cornerRadius = attributes.getDimension(R.styleable.RoundedLL_radius, 15f);
+        cornerRadius = attributes.getDimension(R.styleable.RoundedLL_cornerRadius, 15f);
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         maskPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
