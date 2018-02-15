@@ -3,6 +3,7 @@ package bi.bigroup.life.data.network.api.bi_group;
 import java.util.List;
 
 import bi.bigroup.life.data.models.auth.Auth;
+import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import retrofit2.http.Body;
@@ -21,4 +22,9 @@ public interface API {
     Observable<List<Feed>> getFeedList(@Query("rows") int rows,
                                        @Query("offset") int offset,
                                        @Query("withDescription") Boolean withDescription);
+
+    @GET("Lenta/")
+    Observable<List<Employee>> getEmployees(@Query("rows") int rows,
+                                            @Query("offset") int offset,
+                                            @Query("withDescription") Boolean withDescription);
 }

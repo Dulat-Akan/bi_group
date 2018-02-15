@@ -40,7 +40,7 @@
                 android:textColor="@color/help"
                 android:textSize="@dimen/sp_12"/>
 
-            <bi.bigroup.life.views.SettingsEditText
+            <bi.bigroup.life.views.edittext.SettingsEditText
                 android:id="@+id/et_pwd"
                 style="@style/et_auth"
                 android:hint="@string/new_pwd"
@@ -58,7 +58,7 @@
                 android:textColor="@color/help"
                 android:textSize="@dimen/sp_12"/>
 
-            <bi.bigroup.life.views.SettingsEditText
+            <bi.bigroup.life.views.edittext.SettingsEditText
                 android:id="@+id/et_pwd_confirm"
                 style="@style/et_auth"
                 android:hint="@string/new_pwd_confirm"

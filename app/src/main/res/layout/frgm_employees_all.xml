@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:id="@+id/fl_parent"
              style="@style/MM">
 
@@ -8,22 +9,28 @@
         style="@style/LL_MM_V"
         android:background="@color/main_bg">
 
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search_view"
+            style="@style/MW"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_15"
+            android:background="@drawable/et_selector_searchview"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="@string/search_hint"/>
+
         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
             style="@style/PARENT_TITLE"
-            android:text="@string/label_feed"/>
-
-        <it.sephiroth.android.library.widget.HListView
-            android:id="@+id/hlv_filters"
-            style="@style/MW"
-            android:layout_height="@dimen/dp_90"
-            android:layout_marginLeft="@dimen/dp_18"
-            android:layout_marginRight="@dimen/dp_18"
-            android:layout_marginTop="@dimen/dp_5"
-            android:listSelector="@null"/>
+            android:text="@string/employees"/>
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
-            style="@style/WW">
+            style="@style/WW"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_15">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
@@ -31,6 +38,7 @@
                 android:scrollbarSize="@dimen/dp_2"
                 android:scrollbars="vertical"/>
         </android.support.v4.widget.SwipeRefreshLayout>
+
     </LinearLayout>
 
     <include

@@ -20,6 +20,7 @@ import bi.bigroup.life.R;
 import bi.bigroup.life.mvp.main.MainPresenter;
 import bi.bigroup.life.mvp.main.MainView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
+import bi.bigroup.life.ui.main.employees.EmployeesFragment;
 import bi.bigroup.life.ui.main.feed.FeedFragment;
 import bi.bigroup.life.ui.main.menu.MenuFragment;
 import bi.bigroup.life.ui.main.office.OfficeFragment;
@@ -45,7 +46,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     private static final int ACTION_MAIN = 0;
     private static final int ACTION_BOARD = 1;
     private static final int ACTION_FEED = 2;
-    private static final int ACTION_STUFF = 3;
+    private static final int ACTION_EMPLOYEES = 3;
     private static final int ACTION_MENU = 4;
     private List<Fragment> fragments = new ArrayList<>();
     @BindView(R.id.v_bottom_navigation) BottomNavigationView v_bottom_navigation;
@@ -84,7 +85,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         fragments.add(ACTION_MAIN, OfficeFragment.newInstance());
         fragments.add(ACTION_BOARD, OfficeFragment.newInstance());
         fragments.add(ACTION_FEED, FeedFragment.newInstance());
-        fragments.add(ACTION_STUFF, OfficeFragment.newInstance());
+        fragments.add(ACTION_EMPLOYEES, EmployeesFragment.newInstance());
         fragments.add(ACTION_MENU, MenuFragment.newInstance());
     }
 
@@ -131,7 +132,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
                 replaceFragment(fragments.get(ACTION_FEED), false, null);
                 return true;
             case R.id.action_stuff:
-                replaceFragment(fragments.get(ACTION_STUFF), true, null);
+                replaceFragment(fragments.get(ACTION_EMPLOYEES), true, null);
                 return true;
             case R.id.action_menu:
                 replaceFragment(fragments.get(ACTION_MENU), false, null);

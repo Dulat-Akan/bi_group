@@ -10,16 +10,16 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import net.cachapa.expandablelayout.ExpandableLayout;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.mvp.main.office.OfficePresenter;
-import bi.bigroup.life.mvp.main.office.OfficeView;
+import bi.bigroup.life.mvp.profile.ProfileDataPresenter;
+import bi.bigroup.life.mvp.profile.ProfileDataView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.utils.LOTimber;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ProfileDataFragment extends BaseFragment implements OfficeView {
+public class ProfileDataFragment extends BaseFragment implements ProfileDataView {
     @InjectPresenter
-    OfficePresenter mvpPresenter;
+    ProfileDataPresenter mvpPresenter;
     @BindView(R.id.ll_hidden_block) LinearLayout ll_hidden_block;
     @BindView(R.id.exp_layout) ExpandableLayout exp_layout;
     @BindView(R.id.tv_hide_show) TextView tv_hide_show;
@@ -78,10 +78,11 @@ public class ProfileDataFragment extends BaseFragment implements OfficeView {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // OfficeView implementation
+    // ProfileDataView implementation
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void successSent() {
+    public void onAuthorizationSuccess() {
+
     }
 }

@@ -50,7 +50,7 @@
                 android:textColor="@color/white_60"
                 android:textSize="@dimen/sp_12"/>
 
-            <bi.bigroup.life.views.SettingsEditText
+            <bi.bigroup.life.views.edittext.SettingsEditText
                 android:id="@+id/et_phone"
                 style="@style/et_auth"
                 android:hint="@string/enter_phone"

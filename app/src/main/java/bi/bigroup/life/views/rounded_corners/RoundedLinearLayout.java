@@ -10,7 +10,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.widget.LinearLayout;
 
 import bi.bigroup.life.R;
@@ -36,9 +35,6 @@ public class RoundedLinearLayout extends LinearLayout {
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-//        cornerRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, radius, metrics);
-
         final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.RoundedLL, defStyleAttr, 0);
         cornerRadius = attributes.getDimension(R.styleable.RoundedLL_cornerRadius, 15f);
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);

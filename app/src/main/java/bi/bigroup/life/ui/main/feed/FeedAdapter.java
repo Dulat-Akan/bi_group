@@ -219,7 +219,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
         @BindView(R.id.tv_content) TextView tv_content;
         @BindView(R.id.tv_like_quantity) TextView tv_like_quantity;
         @BindView(R.id.tv_comment_quantity) TextView tv_comment_quantity;
-        @BindView(R.id.tv_view_quantity) TextView tv_view_quantity;
+        @BindView(R.id.tv_poll_quantity) TextView tv_poll_quantity;
 
         Feed bindedObject;
         int bindedPosition;
@@ -241,7 +241,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 
             tv_like_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.likesQuantity)));
             tv_comment_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.commentsQuantity)));
-            tv_view_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.viewsQuantity)));
+            tv_poll_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.questionsQuantity)));
         }
 
         @OnClick(R.id.img_more)

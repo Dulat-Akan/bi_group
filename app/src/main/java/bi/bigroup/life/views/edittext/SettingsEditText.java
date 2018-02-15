@@ -1,4 +1,4 @@
-package bi.bigroup.life.views;
+package bi.bigroup.life.views.edittext;
 
 import android.annotation.TargetApi;
 import android.content.Context;

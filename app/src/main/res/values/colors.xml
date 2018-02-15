@@ -53,7 +53,6 @@
     <color name="filter_poll">#4a90e2</color>
     <color name="filter_offer">#f5a623</color>
 
-
     <!-- NotificationsActivity -->
     <color name="notification_option">#d8d8d8</color>
 
@@ -68,5 +67,7 @@
     <color name="pager_indicator_fill">#6d6d72</color>
     <color name="slider_img_bg">#e5e8ef</color>
 
+    <!-- EmployeesFragment -->
+    <color name="searchview_bg">#1e8e8e93</color>
 
 </resources>
