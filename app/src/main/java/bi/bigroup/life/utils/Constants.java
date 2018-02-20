@@ -12,6 +12,7 @@ public class Constants {
     public static final String KEY_USER = "user";
     public static final String KEY_TOKEN = "token";
     public static final String CACHE_TIME = "cache_time";
+    public static final String KEY_CODE = "code";
 
     // Mask, length, statics
     public static final String PHONE_MASK = "+7 ([000]) [000]-[00]-[00]";
@@ -29,6 +30,6 @@ public class Constants {
     public static final String PROFILE_PICTURE = API_BASE_URL + "employees/%s/avatar/";
 
     public static String getProfilePicture(String employeeCode) {
-        return String.format(PROFILE_PICTURE, employeeCode).trim();
+        return String.format(PROFILE_PICTURE, employeeCode);
     }
 }

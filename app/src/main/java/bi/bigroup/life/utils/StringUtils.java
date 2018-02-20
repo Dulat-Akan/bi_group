@@ -47,7 +47,7 @@ public class StringUtils {
 
     public static String replaceNull(String text) {
         if (isStringOk(text)) {
-            return text;
+            return text.trim();
         } else {
             return EMPTY_STR;
         }

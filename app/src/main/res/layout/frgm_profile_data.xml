@@ -33,19 +33,17 @@
                     android:layout_marginLeft="@dimen/dp_12"
                     android:gravity="center_vertical">
 
-                    <TextView
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                         android:id="@+id/tv_surname"
                         style="@style/MW"
-                        android:fontFamily="sans-serif-medium"
                         android:text="Фамилия"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_20"/>
 
-                    <TextView
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                         android:id="@+id/tv_firstname"
                         style="@style/MW"
                         android:layout_marginTop="@dimen/dp_4_ngtv"
-                        android:fontFamily="sans-serif-medium"
                         android:text="Имя"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_20"/>
@@ -106,7 +104,7 @@
                 style="@style/MW"
                 android:layout_marginTop="@dimen/dp_20"
                 app:el_duration="40"
-                app:el_expanded="true">
+                app:el_expanded="false">
 
                 <LinearLayout
                     android:id="@+id/ll_hidden_block"

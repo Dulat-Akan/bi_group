@@ -64,6 +64,10 @@
             android:name=".ui.profile.ProfileActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".ui.main.employees.EmployeePageActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

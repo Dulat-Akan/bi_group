@@ -24,4 +24,12 @@ class EmployeesRepositoryImpl implements EmployeesRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    @Override
+    public Observable<Employee> getEmployee(String code) {
+        return api
+                .getEmployee(code)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

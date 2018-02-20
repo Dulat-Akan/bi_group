@@ -141,16 +141,16 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
             }
             tv_fullname.setText(object.getFullName());
             tv_specialty.setText(object.getJobPosition());
-            GlideUtils.showAvatar(context, img_avatar, getProfilePicture(object.code), R.drawable.ic_avatar);
+            GlideUtils.showAvatar(context, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_avatar);
         }
 
         @OnClick(R.id.ll_row)
         void onRowClick() {
-            callback.onItemClick(bindedObject);
+            callback.onItemClick(bindedObject.getCode());
         }
     }
 
     interface Callback {
-        void onItemClick(Employee employee);
+        void onItemClick(String code);
     }
 }

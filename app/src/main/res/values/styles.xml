@@ -159,6 +159,12 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="PARENT_DIVIDER" parent="MW">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_1</item>
+        <item name="android:layout_margin">@dimen/dp_15</item>
+        <item name="android:background">@color/divider</item>
+    </style>
 
     <!-- FeedFragment -->
     <style name="feed_cardview" parent="MW">

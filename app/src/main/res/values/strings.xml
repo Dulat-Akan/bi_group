@@ -130,6 +130,14 @@
     <string name="label_working">Трудовая деятельность</string>
     <string name="label_experience">Общий стаж</string>
     <string name="label_coorporative_experience">Корпоративный стаж</string>
+
+    <!-- EmployeePageActivity -->
+    <string name="label_employee">Сотрудник</string>
+    <string name="specialty">Должность</string>
+    <string name="login">Логин</string>
+    <string name="manager">Руководитель</string>
+    <string name="email">Почта</string>
+
     <string name="q"></string>
 
 </resources>

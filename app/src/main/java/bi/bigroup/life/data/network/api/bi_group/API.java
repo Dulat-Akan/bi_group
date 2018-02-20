@@ -10,6 +10,7 @@ import bi.bigroup.life.data.params.auth.AuthParams;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -28,4 +29,7 @@ public interface API {
     Observable<ListOf<Employee>> getEmployees(@Query("Rows") int Rows,
                                               @Query("Offset") int Offset,
                                               @Query("IsBirthdayToday") Boolean IsBirthdayToday);
+
+    @GET("employees/{code}")
+    Observable<Employee> getEmployee(@Path("code") String code);
 }
