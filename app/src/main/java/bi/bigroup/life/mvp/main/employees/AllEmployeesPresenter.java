@@ -9,7 +9,6 @@ import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.repository.employees.EmployeesRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
-import bi.bigroup.life.utils.LOTimber;
 import rx.Subscriber;
 import rx.Subscription;
 
@@ -26,7 +25,7 @@ public class AllEmployeesPresenter extends BaseMvpPresenter<AllEmployeesView> {
         super.init(context, dataLayer);
     }
 
-    public void getEmployees(boolean is_load_more, boolean is_refresh) {
+    public void getEmployees(boolean is_load_more, boolean is_refresh, boolean isBirthdayToday) {
         if (listSubscription != null
                 && !listSubscription.isUnsubscribed()) {
             listSubscription.unsubscribe();
@@ -37,7 +36,7 @@ public class AllEmployeesPresenter extends BaseMvpPresenter<AllEmployeesView> {
             current_page = INITIAL_PAGE_NUMBER;
         }
         listSubscription = EmployeesRepositoryProvider.provideRepository(dataLayer.getApi())
-                .getEmployees(REQUEST_COUNT, current_page, null)
+                .getEmployees(REQUEST_COUNT, current_page, isBirthdayToday)
                 .doOnSubscribe(() -> showLoading(true, is_load_more, is_refresh))
                 .doOnTerminate(() -> showLoading(false, is_load_more, is_refresh))
                 .subscribe(new Subscriber<ListOf<Employee>>() {
@@ -68,7 +67,6 @@ public class AllEmployeesPresenter extends BaseMvpPresenter<AllEmployeesView> {
     }
 
     private void showLoading(boolean show, boolean is_load_more, boolean is_refresh) {
-        LOTimber.d("salkdjasdlkasd show=" + show);
         if (!is_load_more && !is_refresh) {
             getViewState().showLoadingIndicator(show);
         } else if (is_load_more) {

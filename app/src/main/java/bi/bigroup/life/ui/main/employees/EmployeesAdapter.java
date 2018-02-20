@@ -51,6 +51,10 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
         return loading;
     }
 
+    public List<Employee> getData() {
+        return data;
+    }
+
     void clearData() {
         data.clear();
         notifyDataSetChanged();

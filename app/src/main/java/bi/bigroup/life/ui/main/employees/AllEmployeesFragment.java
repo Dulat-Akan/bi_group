@@ -18,17 +18,22 @@ import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 import butterknife.BindView;
 
+import static bi.bigroup.life.utils.Constants.KEY_BOOL;
 import static bi.bigroup.life.views.edittext.EditTextUtils.setCursorColor;
 
 public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements AllEmployeesView {
     @InjectPresenter
     AllEmployeesPresenter mvpPresenter;
     @BindView(R.id.search_view) SearchView search_view;
-
     private EmployeesAdapter mAdapter;
+    private boolean isBirthdayToday;
 
-    public static AllEmployeesFragment newInstance() {
-        return new AllEmployeesFragment();
+    public static AllEmployeesFragment newInstance(boolean isBirthdayToday) {
+        AllEmployeesFragment fragment = new AllEmployeesFragment();
+        Bundle data = new Bundle();
+        data.putBoolean(KEY_BOOL, isBirthdayToday);
+        fragment.setArguments(data);
+        return fragment;
     }
 
     @Override
@@ -39,9 +44,16 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
-        mvpPresenter.getEmployees(false, false);
+        handleIntent();
+        mvpPresenter.getEmployees(false, false, isBirthdayToday);
         configureSearchView();
         configureRecyclerView();
+    }
+
+    private void handleIntent() {
+        if (getArguments() != null && getArguments().containsKey(KEY_BOOL)) {
+            isBirthdayToday = getArguments().getBoolean(KEY_BOOL);
+        }
     }
 
     private void configureSearchView() {
@@ -73,8 +85,8 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
         recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view, 1) {
             @Override
             public void onRequestMoreItems() {
-                if (!mAdapter.getLoading()) {
-                    mvpPresenter.getEmployees(true, false);
+                if (!mAdapter.getLoading() && mAdapter.getData().size() > 0) {
+                    mvpPresenter.getEmployees(true, false, isBirthdayToday);
                 }
             }
         });
@@ -82,7 +94,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
 
     @Override
     protected void swipeToRefresh() {
-        mvpPresenter.getEmployees(false, true);
+        mvpPresenter.getEmployees(false, true, isBirthdayToday);
     }
 
     ///////////////////////////////////////////////////////////////////////////

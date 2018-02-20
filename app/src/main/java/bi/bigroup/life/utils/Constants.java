@@ -11,6 +11,7 @@ public class Constants {
     public static final String OS_ANDROID = "android";
     public static final String KEY_USER = "user";
     public static final String KEY_TOKEN = "token";
+    public static final String KEY_BOOL = "bool";
     public static final String CACHE_TIME = "cache_time";
     public static final String KEY_CODE = "code";
 
