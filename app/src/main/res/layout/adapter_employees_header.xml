@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bi.bigroup.life.views.fonts.TextViewRobotoMedium
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/PARENT_TITLE"
+    android:layout_marginBottom="@dimen/dp_15"
+    android:text="@string/employees"/>

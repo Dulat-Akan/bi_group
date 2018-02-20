@@ -2,7 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MW"
-    android:background="@color/white"
+    android:background="@color/transparent"
     android:clickable="true">
 
     <ProgressBar

@@ -2,6 +2,7 @@ package bi.bigroup.life.data.repository.employees;
 
 import java.util.List;
 
+import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.network.api.bi_group.API;
 import rx.Observable;
@@ -17,9 +18,9 @@ class EmployeesRepositoryImpl implements EmployeesRepository {
     }
 
     @Override
-    public Observable<List<Employee>> getEmployees(int rows, int offset, Boolean withDescription) {
+    public Observable<ListOf<Employee>> getEmployees(int rows, int offset, Boolean IsBirthdayToday) {
         return api
-                .getEmployees(rows, offset, withDescription)
+                .getEmployees(rows, offset, IsBirthdayToday)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

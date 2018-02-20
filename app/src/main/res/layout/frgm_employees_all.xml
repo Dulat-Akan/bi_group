@@ -15,22 +15,17 @@
             android:layout_height="@dimen/dp_40"
             android:layout_marginLeft="@dimen/dp_15"
             android:layout_marginRight="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_11"
             android:background="@drawable/et_selector_searchview"
             app:iconifiedByDefault="false"
             app:queryBackground="@android:color/transparent"
             app:queryHint="@string/search_hint"/>
 
-        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
-            style="@style/PARENT_TITLE"
-            android:text="@string/employees"/>
-
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
             style="@style/WW"
             android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginRight="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_15">
+            android:layout_marginRight="@dimen/dp_15">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"

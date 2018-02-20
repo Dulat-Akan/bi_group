@@ -68,7 +68,9 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
     protected void configureRecyclerView() {
         super.configureRecyclerView();
         mAdapter = new EmployeesAdapter(getContext());
-//        mAdapter.setCallback(area -> startActivity(AreaDetailActivity.getIntent(this, area.id)));
+        mAdapter.setCallback(employee -> {
+//                startActivity(AreaDetailActivity.getIntent(this, area.id));
+        });
         recycler_view.setAdapter(mAdapter);
         recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view, 1) {
             @Override

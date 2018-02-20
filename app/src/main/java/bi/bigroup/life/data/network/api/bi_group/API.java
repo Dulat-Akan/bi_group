@@ -2,6 +2,7 @@ package bi.bigroup.life.data.network.api.bi_group;
 
 import java.util.List;
 
+import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.feed.Feed;
@@ -23,8 +24,8 @@ public interface API {
                                        @Query("offset") int offset,
                                        @Query("withDescription") Boolean withDescription);
 
-    @GET("Lenta/")
-    Observable<List<Employee>> getEmployees(@Query("rows") int rows,
-                                            @Query("offset") int offset,
-                                            @Query("withDescription") Boolean withDescription);
+    @GET("employees/")
+    Observable<ListOf<Employee>> getEmployees(@Query("Rows") int Rows,
+                                              @Query("Offset") int Offset,
+                                              @Query("IsBirthdayToday") Boolean IsBirthdayToday);
 }

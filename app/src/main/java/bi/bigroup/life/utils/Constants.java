@@ -1,5 +1,7 @@
 package bi.bigroup.life.utils;
 
+import static bi.bigroup.life.config.BiGroupConfig.API_BASE_URL;
+
 public class Constants {
     // TEST users
     public static final String TEST_USERNAME = "test_bi_life";
@@ -23,4 +25,10 @@ public class Constants {
     public static final int INITIAL_PAGE_NUMBER = 1;
     public static final int REQUEST_COUNT = 20;
 
+    // Employees profile picture
+    public static final String PROFILE_PICTURE = API_BASE_URL + "employees/%s/avatar/";
+
+    public static String getProfilePicture(String employeeCode) {
+        return String.format(PROFILE_PICTURE, employeeCode).trim();
+    }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               style="@style/LL_MW_V">
 
     <LinearLayout
@@ -12,6 +13,7 @@
         android:paddingTop="@dimen/dp_12">
 
         <bi.bigroup.life.views.RoundedImageView
+            android:id="@+id/img_avatar"
             android:layout_width="@dimen/dp_40"
             android:layout_height="@dimen/dp_40"
             android:src="@drawable/ic_avatar"
@@ -26,14 +28,14 @@
                 android:id="@+id/tv_fullname"
                 style="@style/MW"
                 android:maxLines="1"
-                android:text="Фамилия Имя"
+                tools:text="Фамилия Имя"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_14"/>
 
             <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                 android:id="@+id/tv_specialty"
                 style="@style/MW"
-                android:text="Должность"
+                tools:text="Должность"
                 android:textColor="@color/feed_time"
                 android:textSize="@dimen/sp_12"/>
         </LinearLayout>

@@ -3,17 +3,24 @@ package bi.bigroup.life.ui.main.employees;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.employees.Employee;
-import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.ui.base.recycler_view.RecyclerViewBaseAdapter;
+import bi.bigroup.life.utils.GlideUtils;
+import bi.bigroup.life.views.RoundedImageView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static bi.bigroup.life.utils.Constants.getProfilePicture;
 
 class EmployeesAdapter extends RecyclerViewBaseAdapter {
+    private static final int HEADER_LAYOUT_ID = R.layout.adapter_employees_header;
     private static final int LAYOUT_ID = R.layout.adapter_employees;
 
     private List<Employee> data;
@@ -59,6 +66,8 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
     @Override
     public MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
+            case HEADER_LAYOUT_ID:
+                return new HeaderViewHolder(inflate(parent, HEADER_LAYOUT_ID));
             case LAYOUT_ID:
                 return new BViewHolder(inflate(parent, LAYOUT_ID));
             case PROGRESS_BAR_LAYOUT_ID:
@@ -70,7 +79,9 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (loading && position == getItemCount() - 1) {
+        if (position == 0) {
+            return HEADER_LAYOUT_ID;
+        } else if (loading && position == getItemCount() - 1) {
             return PROGRESS_BAR_LAYOUT_ID;
         } else {
             return LAYOUT_ID;
@@ -79,7 +90,7 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
 
     @Override
     public int getItemCount() {
-        int count = data.size();
+        int count = data.size() + 1; // header position
         if (loading) {
             count += 1;
         }
@@ -90,13 +101,30 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
     public void onBindViewHolder(MainViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
             case LAYOUT_ID:
-                ((BViewHolder) holder).bind(data.get(position), position);
+                ((BViewHolder) holder).bind(data.get(position - 1), position - 1);
+                break;
+            case HEADER_LAYOUT_ID:
+                ((HeaderViewHolder) holder).bindHeader();
                 break;
         }
     }
 
+    class HeaderViewHolder extends MainViewHolder {
+        //        @BindView(R.id.tv_answer_text) TextView tv_answer_text;
+        HeaderViewHolder(View v) {
+            super(v);
+            ButterKnife.bind(this, v);
+        }
+
+        void bindHeader() {
+
+        }
+    }
+
     class BViewHolder extends MainViewHolder {
-//        @BindView(R.id.tv_username) TextView tv_username;
+        @BindView(R.id.tv_fullname) TextView tv_fullname;
+        @BindView(R.id.tv_specialty) TextView tv_specialty;
+        @BindView(R.id.img_avatar) RoundedImageView img_avatar;
         Employee bindedObject;
         int bindedPosition;
 
@@ -111,10 +139,18 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
             if (object == null) {
                 return;
             }
+            tv_fullname.setText(object.getFullName());
+            tv_specialty.setText(object.getJobPosition());
+            GlideUtils.showAvatar(context, img_avatar, getProfilePicture(object.code), R.drawable.ic_avatar);
+        }
+
+        @OnClick(R.id.ll_row)
+        void onRowClick() {
+            callback.onItemClick(bindedObject);
         }
     }
 
     interface Callback {
-        void onItemClick(Feed notification);
+        void onItemClick(Employee employee);
     }
 }

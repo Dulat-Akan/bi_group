@@ -4,12 +4,12 @@ import android.content.Context;
 
 import com.arellomobile.mvp.InjectViewState;
 
-import java.util.List;
-
 import bi.bigroup.life.data.DataLayer;
+import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.repository.employees.EmployeesRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
+import bi.bigroup.life.utils.LOTimber;
 import rx.Subscriber;
 import rx.Subscription;
 
@@ -40,7 +40,7 @@ public class AllEmployeesPresenter extends BaseMvpPresenter<AllEmployeesView> {
                 .getEmployees(REQUEST_COUNT, current_page, null)
                 .doOnSubscribe(() -> showLoading(true, is_load_more, is_refresh))
                 .doOnTerminate(() -> showLoading(false, is_load_more, is_refresh))
-                .subscribe(new Subscriber<List<Employee>>() {
+                .subscribe(new Subscriber<ListOf<Employee>>() {
                     @Override
                     public void onCompleted() {
 
@@ -52,12 +52,13 @@ public class AllEmployeesPresenter extends BaseMvpPresenter<AllEmployeesView> {
                     }
 
                     @Override
-                    public void onNext(List<Employee> list) {
-                        if (list != null && list.size() > 0) {
+                    public void onNext(ListOf<Employee> list) {
+                        if (list != null && list.list != null && list.list.size() > 0) {
                             if (is_refresh) {
-                                getViewState().setEmployeesList(list);
+                                getViewState().setEmployeesList(list.list);
                             } else {
-                                getViewState().addEmployeesList(list);
+                                getViewState().showLoadingIndicator(false);
+                                getViewState().addEmployeesList(list.list);
                             }
                         } else if (!is_load_more) {
                             getViewState().showNotFoundPlaceholder();
@@ -67,6 +68,7 @@ public class AllEmployeesPresenter extends BaseMvpPresenter<AllEmployeesView> {
     }
 
     private void showLoading(boolean show, boolean is_load_more, boolean is_refresh) {
+        LOTimber.d("salkdjasdlkasd show=" + show);
         if (!is_load_more && !is_refresh) {
             getViewState().showLoadingIndicator(show);
         } else if (is_load_more) {

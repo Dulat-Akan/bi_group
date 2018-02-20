@@ -1,6 +1,5 @@
 package bi.bigroup.life.mvp;
 
-
 import com.arellomobile.mvp.MvpView;
 
 public interface BaseMvpView extends MvpView {
