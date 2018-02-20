@@ -5,6 +5,7 @@ import java.util.List;
 import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.models.employees.Employee;
+import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import retrofit2.http.Body;
@@ -29,6 +30,9 @@ public interface API {
     Observable<ListOf<Employee>> getEmployees(@Query("Rows") int Rows,
                                               @Query("Offset") int Offset,
                                               @Query("IsBirthdayToday") Boolean IsBirthdayToday);
+
+    @GET("vacancies/")
+    Observable<List<Vacancy>> getVacancies();
 
     @GET("employees/{code}")
     Observable<Employee> getEmployee(@Path("code") String code);

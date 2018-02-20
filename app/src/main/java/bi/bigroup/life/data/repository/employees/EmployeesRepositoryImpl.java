@@ -4,6 +4,7 @@ import java.util.List;
 
 import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.employees.Employee;
+import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.network.api.bi_group.API;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -23,6 +24,15 @@ class EmployeesRepositoryImpl implements EmployeesRepository {
                 .getEmployees(rows, offset, IsBirthdayToday)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<List<Vacancy>> getVacancies() {
+        return api
+                .getVacancies()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
     }
 
     @Override

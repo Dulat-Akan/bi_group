@@ -41,7 +41,7 @@ public class EmployeesFragment extends BaseFragment implements EmployeesView {
         tabs.setupWithViewPager(viewPager);
         adapter.addFrag(AllEmployeesFragment.newInstance(false), getString(R.string.employees_all));
         adapter.addFrag(AllEmployeesFragment.newInstance(true), getString(R.string.employees_dob));
-        adapter.addFrag(AllEmployeesFragment.newInstance(false), getString(R.string.employees_vacancies));
+        adapter.addFrag(VacanciesFragment.newInstance(), getString(R.string.employees_vacancies));
         viewPager.setAdapter(adapter);
     }
 

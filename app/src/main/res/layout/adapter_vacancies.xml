@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              style="@style/LL_MW_V">
+
+    <LinearLayout
+        android:id="@+id/ll_row"
+        style="@style/LL_MW_H"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_12">
+
+        <bi.bigroup.life.views.RoundedImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:background="@color/slider_img_bg"
+            app:radius_width="@dimen/dp_8"/>
+
+        <LinearLayout
+            style="@style/LL_MW_V"
+            android:layout_marginLeft="@dimen/dp_18"
+            android:layout_weight="1">
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_job_position"
+                style="@style/MW"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                tools:text="Фамилия Имя"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_company"
+                style="@style/MW"
+                android:textColor="@color/feed_time"
+                android:textSize="@dimen/sp_12"
+                tools:text="Должность"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_salary"
+                style="@style/MW"
+                android:textColor="@color/feed_time"
+                android:textSize="@dimen/sp_12"
+                tools:text="Должность"/>
+        </LinearLayout>
+
+        <ImageView
+            style="@style/WW"
+            android:src="@drawable/arrow_up_right"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginLeft="@dimen/dp_43"
+        android:layout_marginTop="@dimen/dp_2"
+        android:background="@color/divider"/>
+
+</LinearLayout>
