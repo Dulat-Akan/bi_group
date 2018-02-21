@@ -166,9 +166,11 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 
         @OnClick(R.id.img_more)
         void onMoreClick() {
-//            if (callback != null) {
-//                callback.onItemClick(bindedObject);
-//            }
+        }
+
+        @OnClick(R.id.ll_content)
+        void onItemClick() {
+            callback.onNewsItemClick(bindedObject.getId());
         }
     }
 
@@ -253,6 +255,8 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
     }
 
     interface Callback {
-        void onItemClick(Feed notification);
+        void onNewsItemClick(String newsId);
+
+        void onSuggestionItemClick(String suggestionId);
     }
 }

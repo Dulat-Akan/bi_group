@@ -13,6 +13,7 @@ import bi.bigroup.life.data.models.feed.FilterButton;
 import bi.bigroup.life.mvp.main.feed.FeedPresenter;
 import bi.bigroup.life.mvp.main.feed.FeedView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
+import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
 import bi.bigroup.life.utils.LOTimber;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 import butterknife.BindView;
@@ -46,7 +47,17 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     protected void configureRecyclerView() {
         super.configureRecyclerView();
         mAdapter = new FeedAdapter(getContext());
-//        mAdapter.setCallback(area -> startActivity(AreaDetailActivity.getIntent(this, area.id)));
+        mAdapter.setCallback(new FeedAdapter.Callback() {
+            @Override
+            public void onNewsItemClick(String newsId) {
+                startActivity(NewsDetailActivity.getIntent(getContext(), newsId));
+            }
+
+            @Override
+            public void onSuggestionItemClick(String suggestionId) {
+
+            }
+        });
         recycler_view.setAdapter(mAdapter);
         recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view, 1) {
             @Override

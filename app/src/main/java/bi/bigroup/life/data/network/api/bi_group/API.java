@@ -7,6 +7,7 @@ import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.models.feed.Feed;
+import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -21,10 +22,17 @@ public interface API {
     @POST("token/")
     Observable<Auth> signIn(@Body AuthParams params);
 
+    /****** Feed *******/
     @GET("Lenta/")
     Observable<List<Feed>> getFeedList(@Query("rows") int rows,
                                        @Query("offset") int offset,
                                        @Query("withDescription") Boolean withDescription);
+
+    /****** News *******/
+    @GET("News/{id}")
+    Observable<News> getNews(@Path("id") String id);
+
+    /****** Employees *******/
 
     @GET("employees/")
     Observable<ListOf<Employee>> getEmployees(@Query("Rows") int Rows,

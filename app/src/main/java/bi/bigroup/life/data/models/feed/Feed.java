@@ -33,6 +33,10 @@ public class Feed {
         }
     }
 
+    public String getId() {
+        return replaceNull(id);
+    }
+
     public String getImageUrl() {
         return replaceNull(imageUrl);
     }
