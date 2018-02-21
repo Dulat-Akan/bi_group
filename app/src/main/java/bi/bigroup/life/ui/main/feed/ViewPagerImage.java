@@ -15,7 +15,7 @@ import bi.bigroup.life.utils.GlideUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-class ViewPagerImage extends PagerAdapter {
+public class ViewPagerImage extends PagerAdapter {
     private Context context;
 
     private List<String> sliders = new ArrayList<>();

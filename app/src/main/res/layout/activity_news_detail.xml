@@ -8,164 +8,131 @@
     android:background="@color/white"
     android:fitsSystemWindows="true">
 
-    <LinearLayout
-        style="@style/LL_MM_V"
-        android:gravity="center_horizontal">
+    <ScrollView
+        style="@style/MW">
 
         <LinearLayout
-            style="@style/LL_MW_H"
-            android:layout_marginTop="@dimen/dp_15"
-            android:gravity="center_vertical">
+            style="@style/LL_MM_V"
+            android:gravity="center_horizontal">
 
-            <TextView
-                style="@style/PARENT_TITLE"
-                android:layout_marginTop="@dimen/dp_0"
-                android:layout_weight="1"
-                android:text="@string/label_employee"/>
+            <RelativeLayout
+                style="@style/MW">
 
-            <ImageView
-                android:id="@+id/img_close"
-                style="@style/WW"
-                android:layout_marginRight="@dimen/dp_15"
-                android:src="@drawable/close_circle_dark"/>
-        </LinearLayout>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_images"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_205"
+                    android:background="@color/slider_img_bg"/>
 
-        <View
-            style="@style/PARENT_DIVIDER"/>
+                <bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator
+                    android:id="@+id/ci_images"
+                    style="@style/MW"
+                    android:layout_below="@id/vp_images"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dp_6"
+                    app:fillColor="@color/pager_indicator_fill"
+                    app:pageColor="@color/pager_indicator_unselected"
+                    app:radius="@dimen/dp_4"/>
 
-        <ScrollView
-            style="@style/MW">
-
-            <LinearLayout
-                style="@style/LL_MW_V">
 
                 <LinearLayout
                     style="@style/LL_MW_H"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:gravity="center_vertical"
-                    android:paddingRight="@dimen/dp_12">
-
-                    <bi.bigroup.life.views.RoundedImageView
-                        android:id="@+id/img_avatar"
-                        android:layout_width="@dimen/dp_52"
-                        android:layout_height="@dimen/dp_52"
-                        android:layout_marginBottom="@dimen/dp_13"
-                        android:layout_marginTop="@dimen/dp_13"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_avatar"
-                        app:radius_width="@dimen/dp_11"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/dp_18"
+                    android:layout_marginRight="@dimen/dp_18"
+                    android:layout_marginTop="@dimen/dp_15">
 
                     <LinearLayout
-                        style="@style/LL_MM_V"
-                        android:layout_marginLeft="@dimen/dp_12"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical">
+                        style="@style/MW"
+                        android:layout_weight="1">
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
-                            android:id="@+id/tv_surname"
-                            style="@style/MW"
-                            android:text="Фамилия"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/sp_16"/>
-
-                        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
-                            android:id="@+id/tv_firstname"
-                            style="@style/MW"
-                            android:layout_marginTop="@dimen/dp_4_ngtv"
-                            android:text="Имя"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/sp_16"/>
-
+                            android:id="@+id/tv_subhead_top"
+                            style="@style/WW"
+                            android:background="@drawable/tv_selector_white_rounded"
+                            android:maxLines="2"
+                            android:padding="@dimen/dp_4"
+                            android:textAllCaps="true"
+                            android:textColor="@color/pager_indicator_fill"
+                            android:textSize="@dimen/sp_12"
+                            tools:text="@string/lorem_ipsum_short"/>
                     </LinearLayout>
 
                     <ImageView
-                        android:id="@+id/img_call"
+                        android:id="@+id/img_close"
                         style="@style/WW"
-                        android:src="@drawable/phone_active"/>
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:src="@drawable/ic_close"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/LL_MW_H"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginRight="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_15"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dp_12">
+
+                <bi.bigroup.life.views.RoundedImageView
+                    android:id="@+id/img_avatar"
+                    android:layout_width="@dimen/dp_42"
+                    android:layout_height="@dimen/dp_42"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_avatar"
+                    app:radius_width="@dimen/dp_6"/>
+
+                <LinearLayout
+                    style="@style/LL_MM_V"
+                    android:layout_marginLeft="@dimen/dp_17"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                        android:id="@+id/tv_username"
+                        style="@style/MW"
+                        android:text="Имя пользователя"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_time"
+                        style="@style/MW"
+                        android:textColor="@color/feed_time"
+                        android:textSize="@dimen/sp_14"
+                        tools:text="5 минут назад"/>
+
                 </LinearLayout>
 
-                <View
-                    style="@style/PARENT_DIVIDER"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    style="@style/extra_info_label"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:text="@string/specialty"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_specialty"
-                    style="@style/extra_info_value"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginTop="@dimen/dp_5"
-                    tools:text="Главный бухгалтер Сервисной службы"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    style="@style/extra_info_label"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginTop="@dimen/dp_13"
-                    android:text="@string/login"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_login"
-                    style="@style/extra_info_value"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginTop="@dimen/dp_5"
-                    tools:text="max"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    style="@style/extra_info_label"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginTop="@dimen/dp_13"
-                    android:text="@string/manager"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_manager"
-                    style="@style/extra_info_value"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginTop="@dimen/dp_5"
-                    tools:text="Нугманова Айлида Рашидовна"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    style="@style/extra_info_label"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginTop="@dimen/dp_13"
-                    android:text="@string/label_phone"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_phone"
-                    style="@style/extra_info_value"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginTop="@dimen/dp_5"
-                    tools:text="+7 771 777 77 77"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    style="@style/extra_info_label"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginTop="@dimen/dp_13"
-                    android:text="@string/email"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_email"
-                    style="@style/extra_info_value"
-                    android:layout_marginBottom="@dimen/dp_15"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginTop="@dimen/dp_5"
-                    tools:text="some@gmail.com"/>
-
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+
+            <View
+                style="@style/PARENT_DIVIDER"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                android:id="@+id/tv_title"
+                style="@style/MW"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginRight="@dimen/dp_15"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16"
+                tools:text="Sudheads text"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_description"
+                style="@style/MW"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginRight="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_12"
+                android:lineSpacingExtra="6sp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                tools:text="@string/lorem_ipsum_long"/>
+
+
+        </LinearLayout>
+    </ScrollView>
 
     <include
         android:id="@+id/pb_indicator"

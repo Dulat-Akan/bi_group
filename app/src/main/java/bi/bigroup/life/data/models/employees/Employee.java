@@ -2,6 +2,7 @@ package bi.bigroup.life.data.models.employees;
 
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
+import static bi.bigroup.life.utils.StringUtils.replaceNullTrim;
 
 public class Employee {
     public String code;
@@ -21,7 +22,7 @@ public class Employee {
     public Boolean hasAvatar;
 
     public String getCode() {
-        return replaceNull(code);
+        return replaceNullTrim(code);
     }
 
     public String getFullName() {
