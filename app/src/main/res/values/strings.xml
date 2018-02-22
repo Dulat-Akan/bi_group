@@ -140,6 +140,11 @@
     <string name="manager">Руководитель</string>
     <string name="email">Почта</string>
 
+    <!-- TasksSdeskActivity -->
+    <string name="title_task_sdesk">Заявки и задачи</string>
+    <string name="inbox">Входящие</string>
+    <string name="outbox">Исходящие</string>
+
     <string name="q"></string>
 
 </resources>

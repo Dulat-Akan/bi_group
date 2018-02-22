@@ -9,6 +9,8 @@ import bi.bigroup.life.R;
 import bi.bigroup.life.mvp.main.office.OfficePresenter;
 import bi.bigroup.life.mvp.main.office.OfficeView;
 import bi.bigroup.life.ui.base.BaseFragment;
+import bi.bigroup.life.ui.main.office.tasks_sdesk.TasksSdeskActivity;
+import butterknife.OnClick;
 
 public class OfficeFragment extends BaseFragment implements OfficeView {
     @InjectPresenter
@@ -30,6 +32,11 @@ public class OfficeFragment extends BaseFragment implements OfficeView {
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         handleIntent();
+    }
+
+    @OnClick(R.id.btn_tasks_sdesk)
+    void onClick() {
+        startActivity(TasksSdeskActivity.getIntent(getContext()));
     }
 
     private void handleIntent() {

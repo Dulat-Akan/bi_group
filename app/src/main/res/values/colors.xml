@@ -70,4 +70,6 @@
     <!-- EmployeesFragment -->
     <color name="searchview_bg">#1e8e8e93</color>
 
+    <!-- TasksSdeskActivity -->
+    <color name="tasks_sdesk_description">#8e8e93</color>
 </resources>

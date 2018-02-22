@@ -72,6 +72,10 @@
             android:name=".ui.main.feed.news.NewsDetailActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".ui.main.office.tasks_sdesk.TasksSdeskActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>
