@@ -157,6 +157,7 @@
         <item name="android:textSize">@dimen/sp_20</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
     <style name="PARENT_DIVIDER" parent="MW">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dp_1</item>
@@ -174,4 +175,19 @@
         <item name="android:layout_marginTop">@dimen/dp_6</item>
         <item name="android:layout_marginBottom">@dimen/dp_6</item>
     </style>
+
+    <!-- TasksSdeskActivity -->
+    <style name="menu_labels_style">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+    </style>
+
+    <style name="fb_sub_menu" parent="WW">
+        <item name="fab_colorNormal">@color/float_menu_default</item>
+        <item name="fab_colorPressed">@color/float_menu_click</item>
+        <item name="fab_icon">@drawable/ic_plus</item>
+        <item name="fab_size">mini</item>
+    </style>
+
 </resources>

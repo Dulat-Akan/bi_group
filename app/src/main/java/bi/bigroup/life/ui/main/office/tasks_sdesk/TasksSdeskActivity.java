@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.mvp.main.office.tasks_sdesk.TasksSdeskPresenter;
@@ -21,7 +24,8 @@ public class TasksSdeskActivity extends BaseFragmentActivity implements TasksSde
 
     @BindView(R.id.tabs) TabLayout tabs;
     @BindView(R.id.pager) ViewPager viewPager;
-    private ViewPagerAdapter adapter;
+    @BindView(R.id.floating_menu) FloatingActionsMenu floating_menu;
+    @BindView(R.id.ll_float_menu) LinearLayout ll_float_menu;
 
     public static Intent getIntent(Context context) {
         return new Intent(context, TasksSdeskActivity.class);
@@ -36,12 +40,22 @@ public class TasksSdeskActivity extends BaseFragmentActivity implements TasksSde
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mvpPresenter.init(this, dataLayer);
+        floating_menu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                ll_float_menu.setVisibility(View.VISIBLE);
+            }
 
+            @Override
+            public void onMenuCollapsed() {
+                ll_float_menu.setVisibility(View.GONE);
+            }
+        });
         configureViewPager();
     }
 
     private void configureViewPager() {
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         tabs.setupWithViewPager(viewPager);
         adapter.addFrag(TasksServicesFragment.newInstance(true), getString(R.string.inbox));
         adapter.addFrag(TasksServicesFragment.newInstance(false), getString(R.string.outbox));

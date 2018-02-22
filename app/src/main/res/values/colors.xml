@@ -23,6 +23,7 @@
     <color name="transparent">#00000000</color>
     <color name="white">#ffffff</color>
     <color name="white_60">#99ffffff</color>
+    <color name="white_85">#D9ffffff</color>
     <color name="shadow_60">#99e7e7e7</color>
     <color name="white_clicked">#f9f9f9</color>
     <color name="gray_transparent">#BF7D7173</color>
@@ -72,4 +73,8 @@
 
     <!-- TasksSdeskActivity -->
     <color name="tasks_sdesk_description">#8e8e93</color>
+    <color name="float_menu_active">#e5e8ef</color>
+    <color name="float_menu_default">#108aeb</color>
+    <color name="float_menu_click">#117fd6</color>
+    <color name="float_ripple">#99FFFFFF</color>
 </resources>

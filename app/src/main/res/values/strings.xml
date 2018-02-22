@@ -144,6 +144,10 @@
     <string name="title_task_sdesk">Заявки и задачи</string>
     <string name="inbox">Входящие</string>
     <string name="outbox">Исходящие</string>
+    <string name="fb_it">IT отдел</string>
+    <string name="fb_buhgalterya">Бухгалтерия</string>
+    <string name="fb_hr">HR отдел</string>
+    <string name="fb_employee">Сотруднику</string>
 
     <string name="q"></string>
 

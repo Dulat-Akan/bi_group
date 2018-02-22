@@ -36,8 +36,8 @@
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
-                app:tabMode="fixed"
-                style="@style/customTabLayout"/>
+                style="@style/customTabLayout"
+                app:tabMode="fixed"/>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/pager"
@@ -45,6 +45,49 @@
                 android:layout_marginTop="@dimen/dp_20"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_float_menu"
+            style="@style/LL_MM_H"
+            android:background="@color/white_85"
+            android:visibility="gone"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/floating_menu"
+            style="@style/WW"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            app:fab_addButtonColorNormal="@color/float_menu_default"
+            app:fab_addButtonColorPressed="@color/float_menu_click"
+            app:fab_addButtonPlusIconColor="@color/white"
+            app:fab_addButtonSize="normal"
+            app:fab_labelStyle="@style/menu_labels_style"
+            app:fab_labelsPosition="left">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fbn_it"
+                style="@style/fb_sub_menu"
+                app:fab_title="@string/fb_it"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fbn_buhgalterya"
+                style="@style/fb_sub_menu"
+                app:fab_title="@string/fb_buhgalterya"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fbn_hr"
+                style="@style/fb_sub_menu"
+                app:fab_title="@string/fb_hr"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fbn_employee"
+                style="@style/fb_sub_menu"
+                app:fab_title="@string/fb_employee"/>
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
     </RelativeLayout>
 
     <include

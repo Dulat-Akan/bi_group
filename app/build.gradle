@@ -163,6 +163,9 @@ dependencies {
     // Horizontal ListView
     compile "it.sephiroth.android.library.horizontallistview:hlistview:${horizontalListView}"
 
+    // Float menu
+    compile "com.getbase:floatingactionbutton:${floatMenu}"
+
     // MultiDex
 //    compile "com.android.support:multidex:${multidex}"
 
