@@ -9,8 +9,6 @@ import bi.bigroup.life.mvp.BaseSwipeRefreshMvpView;
 public interface FeedView extends BaseSwipeRefreshMvpView {
     void successSent();
 
-    void setFiltersList(List<FilterButton> filterButtonList);
-
     void setFeedList(List<Feed> list);
 
     void addFeedList(List<Feed> list);

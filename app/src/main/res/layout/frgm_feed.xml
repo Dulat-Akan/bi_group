@@ -10,16 +10,8 @@
 
         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
             style="@style/PARENT_TITLE"
+            android:layout_marginBottom="@dimen/dp_6"
             android:text="@string/label_feed"/>
-
-        <it.sephiroth.android.library.widget.HListView
-            android:id="@+id/hlv_filters"
-            style="@style/MW"
-            android:layout_height="@dimen/dp_90"
-            android:layout_marginLeft="@dimen/dp_18"
-            android:layout_marginRight="@dimen/dp_18"
-            android:layout_marginTop="@dimen/dp_5"
-            android:listSelector="@null"/>
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"

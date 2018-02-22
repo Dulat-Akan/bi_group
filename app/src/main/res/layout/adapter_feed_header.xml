@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<it.sephiroth.android.library.widget.HListView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/hlv_filters"
+    style="@style/MW"
+    android:layout_height="@dimen/dp_90"
+    android:layout_marginLeft="@dimen/dp_18"
+    android:layout_marginRight="@dimen/dp_18"
+    android:layout_marginTop="@dimen/dp_5"
+    android:listSelector="@null"/>
