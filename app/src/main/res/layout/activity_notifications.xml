@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:id="@+id/fl_parent"
              style="@style/MM"
-             android:background="@color/main_bg">
+             android:background="@color/white">
 
     <RelativeLayout
         style="@style/MM">
@@ -11,15 +11,27 @@
             style="@style/LL_MM_V"
             android:fitsSystemWindows="true">
 
-            <include
-                layout="@layout/mrg_toolbar"/>
+            <LinearLayout
+                style="@style/LL_MW_H"
+                android:layout_marginTop="@dimen/dp_15"
+                android:gravity="center_vertical">
 
-            <TextView
-                style="@style/PARENT_TITLE"
-                android:text="@string/notifications"/>
+                <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                    style="@style/PARENT_TITLE"
+                    android:layout_marginTop="@dimen/dp_0"
+                    android:layout_weight="1"
+                    android:text="@string/notifications"/>
+
+                <ImageView
+                    android:id="@+id/img_close"
+                    style="@style/WW"
+                    android:layout_marginRight="@dimen/dp_15"
+                    android:src="@drawable/close_circle_dark"/>
+            </LinearLayout>
 
             <View
-                style="@style/PARENT_DIVIDER"/>
+                style="@style/PARENT_DIVIDER"
+                android:layout_marginBottom="@dimen/dp_5"/>
 
             <android.support.v4.widget.SwipeRefreshLayout
                 android:id="@+id/swipeRefresh"

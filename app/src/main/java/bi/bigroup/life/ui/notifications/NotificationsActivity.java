@@ -3,8 +3,6 @@ package bi.bigroup.life.ui.notifications;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
@@ -16,14 +14,12 @@ import bi.bigroup.life.mvp.notifications.NotificationsPresenter;
 import bi.bigroup.life.mvp.notifications.NotificationsView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshActivity;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
-import butterknife.BindView;
+import butterknife.OnClick;
 
 public class NotificationsActivity extends BaseSwipeRefreshActivity implements NotificationsView {
     @InjectPresenter
     NotificationsPresenter mvpPresenter;
     private NotificationsAdapter mAdapter;
-
-    @BindView(R.id.toolbar) Toolbar toolbar;
 
     public static Intent getIntent(Context context) {
         return new Intent(context, NotificationsActivity.class);
@@ -37,15 +33,7 @@ public class NotificationsActivity extends BaseSwipeRefreshActivity implements N
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
-        }
         mvpPresenter.init(this, dataLayer);
-
         mvpPresenter.getNotifications(false, false);
         configureRecyclerView();
     }
@@ -54,6 +42,11 @@ public class NotificationsActivity extends BaseSwipeRefreshActivity implements N
     protected void onDestroy() {
         super.onDestroy();
         mvpPresenter.onDestroyView();
+    }
+
+    @OnClick(R.id.img_close)
+    void onCloseClick() {
+        finish();
     }
 
     protected void configureRecyclerView() {

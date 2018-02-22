@@ -10,7 +10,7 @@
 
         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
             style="@style/PARENT_TITLE"
-            android:layout_marginBottom="@dimen/dp_6"
+            android:layout_marginBottom="@dimen/dp_4"
             android:text="@string/label_feed"/>
 
         <android.support.v4.widget.SwipeRefreshLayout

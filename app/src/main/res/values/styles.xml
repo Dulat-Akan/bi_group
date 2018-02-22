@@ -155,8 +155,6 @@
         <item name="android:layout_marginRight">@dimen/dp_15</item>
         <item name="android:layout_marginTop">@dimen/dp_15</item>
         <item name="android:textSize">@dimen/sp_20</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/black</item>
     </style>
     <style name="PARENT_DIVIDER" parent="MW">
