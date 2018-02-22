@@ -17,6 +17,7 @@ import bi.bigroup.life.mvp.main.office.tasks_sdesk.TasksSdeskView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
 import bi.bigroup.life.ui.base.view_pager.ViewPagerAdapter;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class TasksSdeskActivity extends BaseFragmentActivity implements TasksSdeskView {
     @InjectPresenter
@@ -52,6 +53,11 @@ public class TasksSdeskActivity extends BaseFragmentActivity implements TasksSde
             }
         });
         configureViewPager();
+    }
+
+    @OnClick(R.id.img_close)
+    void onCloseClick() {
+        finish();
     }
 
     private void configureViewPager() {

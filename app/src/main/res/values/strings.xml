@@ -135,7 +135,7 @@
     <string name="label_employee">Сотрудник</string>
     <string name="specialty">Должность</string>
     <string name="specialty_value">Должность: %s</string>
-    <string name="salary">Зарплата: %s</string>
+    <string name="salary">з/п: %s</string>
     <string name="login">Логин</string>
     <string name="manager">Руководитель</string>
     <string name="email">Почта</string>

@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 class VacanciesAdapter extends RecyclerViewBaseAdapter {
+    private static final int HEADER_LAYOUT_ID = R.layout.adapter_employees_header;
     private static final int LAYOUT_ID = R.layout.adapter_vacancies;
 
     private List<Vacancy> data;
@@ -65,6 +66,8 @@ class VacanciesAdapter extends RecyclerViewBaseAdapter {
     @Override
     public MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
+            case HEADER_LAYOUT_ID:
+                return new HeaderViewHolder(inflate(parent, HEADER_LAYOUT_ID));
             case LAYOUT_ID:
                 return new BViewHolder(inflate(parent, LAYOUT_ID));
             case PROGRESS_BAR_LAYOUT_ID:
@@ -76,7 +79,9 @@ class VacanciesAdapter extends RecyclerViewBaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (loading && position == getItemCount() - 1) {
+        if (position == 0) {
+            return HEADER_LAYOUT_ID;
+        } else if (loading && position == getItemCount() - 1) {
             return PROGRESS_BAR_LAYOUT_ID;
         } else {
             return LAYOUT_ID;
@@ -85,7 +90,7 @@ class VacanciesAdapter extends RecyclerViewBaseAdapter {
 
     @Override
     public int getItemCount() {
-        int count = data.size();
+        int count = data.size() + 1; // header position
         if (loading) {
             count += 1;
         }
@@ -96,14 +101,30 @@ class VacanciesAdapter extends RecyclerViewBaseAdapter {
     public void onBindViewHolder(MainViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
             case LAYOUT_ID:
-                ((BViewHolder) holder).bind(data.get(position), position);
+                ((BViewHolder) holder).bind(data.get(position - 1), position - 1);
+                break;
+            case HEADER_LAYOUT_ID:
+                ((HeaderViewHolder) holder).bindHeader();
                 break;
         }
     }
 
+    class HeaderViewHolder extends MainViewHolder {
+        @BindView(R.id.tv_title) TextView tv_title;
+
+        HeaderViewHolder(View v) {
+            super(v);
+            ButterKnife.bind(this, v);
+        }
+
+        void bindHeader() {
+            tv_title.setText(context.getString(R.string.employees_vacancies));
+        }
+    }
+
     class BViewHolder extends MainViewHolder {
-        @BindView(R.id.tv_job_position) TextView tv_job_position;
-        @BindView(R.id.tv_company) TextView tv_company;
+        @BindView(R.id.tv_title) TextView tv_title;
+        @BindView(R.id.tv_description) TextView tv_description;
         @BindView(R.id.tv_salary) TextView tv_salary;
         Vacancy bindedObject;
         int bindedPosition;
@@ -119,8 +140,8 @@ class VacanciesAdapter extends RecyclerViewBaseAdapter {
             if (object == null) {
                 return;
             }
-            tv_job_position.setText(context.getString(R.string.specialty_value, object.getJobPosition()));
-            tv_company.setText(object.getCompanyName() + ", " + object.getDepartmentName());
+            tv_title.setText(context.getString(R.string.specialty_value, object.getJobPosition()));
+            tv_description.setText(object.getCompanyName() + ", " + object.getDepartmentName());
             tv_salary.setText(context.getString(R.string.salary, object.getSalary()));
         }
 
