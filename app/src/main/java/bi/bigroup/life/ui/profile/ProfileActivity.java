@@ -13,6 +13,8 @@ import bi.bigroup.life.mvp.profile.ProfilePresenter;
 import bi.bigroup.life.mvp.profile.ProfileView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
 import bi.bigroup.life.ui.base.view_pager.ViewPagerAdapter;
+import bi.bigroup.life.ui.profile.data.ProfileDataFragment;
+import bi.bigroup.life.ui.profile.results.ResultsFragment;
 import butterknife.BindView;
 
 public class ProfileActivity extends BaseFragmentActivity implements ProfileView {
@@ -44,7 +46,7 @@ public class ProfileActivity extends BaseFragmentActivity implements ProfileView
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         tabs.setupWithViewPager(viewPager);
         adapter.addFrag(ProfileDataFragment.newInstance(), getString(R.string.tabs_data));
-        adapter.addFrag(ProfileDataFragment.newInstance(), getString(R.string.tabs_results));
+        adapter.addFrag(ResultsFragment.newInstance(), getString(R.string.tabs_results));
         adapter.addFrag(ProfileDataFragment.newInstance(), getString(R.string.tabs_plans));
         adapter.addFrag(ProfileDataFragment.newInstance(), getString(R.string.tabs_advantages));
 

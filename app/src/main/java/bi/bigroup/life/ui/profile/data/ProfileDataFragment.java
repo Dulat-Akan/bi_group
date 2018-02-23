@@ -1,4 +1,4 @@
-package bi.bigroup.life.ui.profile;
+package bi.bigroup.life.ui.profile.data;
 
 import android.os.Bundle;
 import android.view.View;

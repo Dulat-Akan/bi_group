@@ -166,6 +166,9 @@ dependencies {
     // Float menu
     compile "com.getbase:floatingactionbutton:${floatMenu}"
 
+    // StickyHeadersRecyclerView
+    compile "com.timehop.stickyheadersrecyclerview:library:${stickyHeader}"
+
     // MultiDex
 //    compile "com.android.support:multidex:${multidex}"
 
