@@ -1,5 +1,7 @@
 package bi.bigroup.life.data.cache.preferences;
 
+import bi.bigroup.life.data.models.user.User;
+
 public interface Preferences {
     boolean isAuthenticated();
 
@@ -10,5 +12,9 @@ public interface Preferences {
     void setGradientCacheTime(long time);
 
     long getGradientCacheTime();
+
+    void setUser(User user);
+
+    User getUser();
 
 }

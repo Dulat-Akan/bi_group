@@ -8,6 +8,7 @@ import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.models.feed.news.News;
+import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -29,6 +30,10 @@ public interface API {
                                        @Query("withDescription") Boolean withDescription);
 
     /****** News *******/
+    @GET("UserProfile/")
+    Observable<User> getUserProfile();
+
+    /****** User *******/
     @GET("News/{id}")
     Observable<News> getNews(@Path("id") String id);
 

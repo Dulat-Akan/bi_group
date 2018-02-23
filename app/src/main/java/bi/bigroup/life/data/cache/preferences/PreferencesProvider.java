@@ -6,9 +6,12 @@ import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
+import bi.bigroup.life.data.models.user.User;
+
 import static android.text.TextUtils.isEmpty;
 import static bi.bigroup.life.utils.Constants.CACHE_TIME;
 import static bi.bigroup.life.utils.Constants.KEY_TOKEN;
+import static bi.bigroup.life.utils.Constants.KEY_USER;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 
 public class PreferencesProvider implements Preferences {
@@ -59,4 +62,16 @@ public class PreferencesProvider implements Preferences {
         return sharedPreferences.getLong(CACHE_TIME, 0);
     }
 
+    /****** User *******/
+    @Override
+    public void setUser(User user) {
+        synchronized (sharedPreferences) {
+            sharedPreferences.edit().putString(KEY_USER, gson.toJson(user)).apply();
+        }
+    }
+
+    @Override
+    public User getUser() {
+        return gson.fromJson(sharedPreferences.getString(KEY_USER, null), User.class);
+    }
 }

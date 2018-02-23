@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
              android:id="@+id/fl_parent"
              style="@style/MM">
 
@@ -36,24 +37,16 @@
                     <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                         android:id="@+id/tv_surname"
                         style="@style/MW"
-                        android:text="Фамилия"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp_20"/>
-
-                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
-                        android:id="@+id/tv_firstname"
-                        style="@style/MW"
-                        android:layout_marginTop="@dimen/dp_4_ngtv"
-                        android:text="Имя"
+                        tools:text="Фамилия"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_20"/>
 
                     <TextView
-                        android:id="@+id/tv_username"
+                        android:id="@+id/tv_specialty"
                         style="@style/MW"
                         android:layout_marginTop="@dimen/dp_6"
                         android:fontFamily="sans-serif"
-                        android:text="Должность"
+                        tools:text="Должность"
                         android:textColor="@color/specialty"
                         android:textSize="@dimen/sp_14"/>
 
@@ -137,13 +130,13 @@
                             android:id="@+id/tv_iin"
                             style="@style/extra_info_value"
                             android:layout_weight="1"
-                            android:text="000900800666"/>
+                            tools:text="000900800666"/>
 
                         <TextView
                             android:id="@+id/tv_date_of_birth"
                             style="@style/extra_info_value"
                             android:layout_weight="1"
-                            android:text="13 декабря 1989"/>
+                            tools:text="13 декабря 1989"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -169,13 +162,13 @@
                             android:id="@+id/tv_family_status"
                             style="@style/extra_info_value"
                             android:layout_weight="1"
-                            android:text="В брак"/>
+                            tools:text="В брак"/>
 
                         <TextView
                             android:id="@+id/tv_gender"
                             style="@style/extra_info_value"
                             android:layout_weight="1"
-                            android:text="@string/label_gender_male"/>
+                            tools:text="@string/label_gender_male"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -201,13 +194,13 @@
                             android:id="@+id/tv_childs"
                             style="@style/extra_info_value"
                             android:layout_weight="1"
-                            android:text="@string/label_childs_second"/>
+                            tools:text="@string/label_childs_second"/>
 
                         <TextView
                             android:id="@+id/tv_clothes_size"
                             style="@style/extra_info_value"
                             android:layout_weight="1"
-                            android:text="42 - 48"/>
+                            tools:text="42 - 48"/>
                     </LinearLayout>
 
                     <View
@@ -231,7 +224,7 @@
                         android:id="@+id/tv_experience"
                         style="@style/extra_info_value"
                         android:layout_weight="1"
-                        android:text="5 лет"/>
+                        tools:text="5 лет"/>
 
                     <TextView
                         style="@style/extra_info_label"
@@ -244,7 +237,7 @@
                         style="@style/extra_info_value"
                         android:layout_marginBottom="@dimen/dp_20"
                         android:layout_weight="1"
-                        android:text="2 года"/>
+                        tools:text="2 года"/>
 
                 </LinearLayout>
 

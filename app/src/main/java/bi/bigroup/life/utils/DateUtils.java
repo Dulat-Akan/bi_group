@@ -3,6 +3,7 @@ package bi.bigroup.life.utils;
 import android.content.Context;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,7 +14,7 @@ import bi.bigroup.life.R;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 
 public class DateUtils {
-    public static final DateFormat BIRTHDATE_DISPLAY_FORMAT = new SimpleDateFormat("d MMMM yyyy", Locale.getDefault());
+    public static final DateFormat BIRTHDATE_DISPLAY_FORMAT = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
     public static final SimpleDateFormat DATE_FORMAT_T_Z = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());
     private static final SimpleDateFormat FEED_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
@@ -22,8 +23,14 @@ public class DateUtils {
         return DATE_FORMAT_T_Z.format(date);
     }
 
-    public static String getBirthDateString(Date date) {
-        return BIRTHDATE_DISPLAY_FORMAT.format(date).toLowerCase();
+    public static String getBirthDateStr(String birthDate) {
+        Date origDate = null;
+        try {
+            origDate = FEED_DATE_FORMAT.parse(birthDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return BIRTHDATE_DISPLAY_FORMAT.format(origDate).toLowerCase();
     }
 
     public static String dateToString(Date date, SimpleDateFormat format) {

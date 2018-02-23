@@ -1,7 +1,6 @@
 package bi.bigroup.life.ui.profile;
 
 import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,13 +27,13 @@ public class RowViewHolder {
         this.callback = callback;
     }
 
-    void bindHolder(@StringRes int titleRes, @DrawableRes int icon) {
-        if (titleRes == 0 && icon == 0) {
+    void bindHolder(String title, @DrawableRes int icon) {
+        if (title.isEmpty() && icon == 0) {
             rowView.setVisibility(View.GONE);
             tv_title.setText(null);
         } else {
             rowView.setVisibility(View.VISIBLE);
-            tv_title.setText(titleRes);
+            tv_title.setText(title);
             img_icon.setImageResource(icon);
         }
     }

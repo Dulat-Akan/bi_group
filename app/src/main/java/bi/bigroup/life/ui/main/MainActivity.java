@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.mvp.main.MainPresenter;
 import bi.bigroup.life.mvp.main.MainView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
@@ -26,8 +27,12 @@ import bi.bigroup.life.ui.main.menu.MenuFragment;
 import bi.bigroup.life.ui.main.office.OfficeFragment;
 import bi.bigroup.life.ui.notifications.NotificationsActivity;
 import bi.bigroup.life.ui.profile.ProfileActivity;
+import bi.bigroup.life.utils.GlideUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static bi.bigroup.life.utils.Constants.getProfilePicture;
 
 public class MainActivity extends BaseFragmentActivity implements MainView, BottomNavigationView.OnNavigationItemSelectedListener,
         BottomNavigationView.OnNavigationItemReselectedListener {
@@ -50,6 +55,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     private static final int ACTION_MENU = 4;
     private List<Fragment> fragments = new ArrayList<>();
     @BindView(R.id.v_bottom_navigation) BottomNavigationView v_bottom_navigation;
+    @BindView(R.id.img_avatar) CircleImageView img_avatar;
 
     @Override
     protected int getLayoutResourceId() {
@@ -103,7 +109,6 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
                 // set once again checked value, so view will be updated
                 //noinspection RestrictedApi
                 item.setChecked(item.getItemData().isChecked());
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,7 +152,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onAuthorizationSuccess() {
-
+    public void showUserInfo(User localUser) {
+        GlideUtils.showAvatar(this, img_avatar, getProfilePicture(localUser.getCode()), R.drawable.ic_avatar);
     }
 }
