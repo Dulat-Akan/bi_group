@@ -62,7 +62,7 @@ android {
         dev {
             applicationIdSuffix ".dev"
             signingConfig signingConfigs.dev
-            buildConfigField "String", "URL_BASE", '"life.bi-group.org/api/"'
+            buildConfigField "String", "URL_BASE", '"life.bi-group.org:8090/api/"'
             buildConfigField "boolean", "IS_DEBUG", "true"
             buildConfigField "String", "FILE_PROVIDER", '"bi.bigroup.life.dev.fileprovider"'
             manifestPlaceholders = [manifestFileProvider: "bi.bigroup.life.dev.fileprovider"]

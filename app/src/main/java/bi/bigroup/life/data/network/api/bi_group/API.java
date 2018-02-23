@@ -8,6 +8,7 @@ import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.models.feed.news.News;
+import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import retrofit2.http.Body;
@@ -37,8 +38,11 @@ public interface API {
     @GET("News/{id}")
     Observable<News> getNews(@Path("id") String id);
 
-    /****** Employees *******/
+    /****** Notifications *******/
+    @GET("Notifications/")
+    Observable<List<Notification>> getNotifications();
 
+    /****** Employees *******/
     @GET("employees/")
     Observable<ListOf<Employee>> getEmployees(@Query("Rows") int Rows,
                                               @Query("Offset") int Offset,

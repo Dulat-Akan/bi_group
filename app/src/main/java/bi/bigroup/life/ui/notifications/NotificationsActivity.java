@@ -13,7 +13,6 @@ import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.mvp.notifications.NotificationsPresenter;
 import bi.bigroup.life.mvp.notifications.NotificationsView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshActivity;
-import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 import butterknife.OnClick;
 
 public class NotificationsActivity extends BaseSwipeRefreshActivity implements NotificationsView {
@@ -34,7 +33,7 @@ public class NotificationsActivity extends BaseSwipeRefreshActivity implements N
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mvpPresenter.init(this, dataLayer);
-        mvpPresenter.getNotifications(false, false);
+        mvpPresenter.getNotifications(false);
         configureRecyclerView();
     }
 
@@ -51,22 +50,14 @@ public class NotificationsActivity extends BaseSwipeRefreshActivity implements N
 
     protected void configureRecyclerView() {
         super.configureRecyclerView();
-        mAdapter = new NotificationsAdapter();
+        mAdapter = new NotificationsAdapter(this);
 //        mAdapter.setCallback(area -> startActivity(AreaDetailActivity.getIntent(this, area.id)));
         recycler_view.setAdapter(mAdapter);
-        recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view, 1) {
-            @Override
-            public void onRequestMoreItems() {
-                if (!mAdapter.getLoading()) {
-                    mvpPresenter.getNotifications(true, false);
-                }
-            }
-        });
     }
 
     @Override
     protected void swipeToRefresh() {
-        mvpPresenter.getNotifications(false, true);
+        mvpPresenter.getNotifications(true);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -82,10 +73,5 @@ public class NotificationsActivity extends BaseSwipeRefreshActivity implements N
     @Override
     public void addNotificationsList(List<Notification> list) {
         mAdapter.addNotificationsList(list);
-    }
-
-    @Override
-    public void showLoadingItemIndicator(boolean show) {
-        mAdapter.setLoading(show);
     }
 }

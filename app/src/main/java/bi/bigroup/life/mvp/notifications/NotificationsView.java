@@ -10,6 +10,4 @@ public interface NotificationsView extends BaseSwipeRefreshMvpView {
     void setNotificationsList(List<Notification> list);
 
     void addNotificationsList(List<Notification> list);
-
-    void showLoadingItemIndicator(boolean show);
 }
