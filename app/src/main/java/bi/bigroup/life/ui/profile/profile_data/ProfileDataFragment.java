@@ -1,4 +1,4 @@
-package bi.bigroup.life.ui.profile.data;
+package bi.bigroup.life.ui.profile.profile_data;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +11,8 @@ import net.cachapa.expandablelayout.ExpandableLayout;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.user.User;
-import bi.bigroup.life.mvp.profile.ProfileDataPresenter;
-import bi.bigroup.life.mvp.profile.ProfileDataView;
+import bi.bigroup.life.mvp.profile.profile_data.ProfileDataPresenter;
+import bi.bigroup.life.mvp.profile.profile_data.ProfileDataView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.utils.LOTimber;
 import bi.bigroup.life.views.RoundedImageView;

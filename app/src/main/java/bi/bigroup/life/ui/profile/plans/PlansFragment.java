@@ -1,4 +1,4 @@
-package bi.bigroup.life.ui.profile.results;
+package bi.bigroup.life.ui.profile.plans;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,20 +11,20 @@ import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 import java.util.List;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.data.models.user.results.Results;
-import bi.bigroup.life.mvp.profile.results.ResultsPresenter;
-import bi.bigroup.life.mvp.profile.results.ResultsView;
+import bi.bigroup.life.data.models.user.plans.Plans;
+import bi.bigroup.life.mvp.profile.plans.PlansPresenter;
+import bi.bigroup.life.mvp.profile.plans.PlansView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import butterknife.BindView;
 
-public class ResultsFragment extends BaseFragment implements ResultsView {
+public class PlansFragment extends BaseFragment implements PlansView {
     @InjectPresenter
-    ResultsPresenter mvpPresenter;
-    private ResultsAdapter mAdapter;
+    PlansPresenter mvpPresenter;
+    private PlansAdapter mAdapter;
     @BindView(R.id.recycler_view) RecyclerView recycler_view;
 
-    public static ResultsFragment newInstance() {
-        return new ResultsFragment();
+    public static PlansFragment newInstance() {
+        return new PlansFragment();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ResultsFragment extends BaseFragment implements ResultsView {
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
-        mAdapter = new ResultsAdapter();
+        mAdapter = new PlansAdapter();
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recycler_view.setLayoutManager(mLayoutManager);
         recycler_view.setAdapter(mAdapter);
@@ -46,11 +46,11 @@ public class ResultsFragment extends BaseFragment implements ResultsView {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // ResultsView implementation
+    // PlansView implementation
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void addResultsList(List<Results> list) {
+    public void addPlansList(List<Plans> list) {
         mAdapter.setData(list);
     }
 }

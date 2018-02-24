@@ -1,4 +1,4 @@
-package bi.bigroup.life.mvp.profile;
+package bi.bigroup.life.mvp.profile.profile_data;
 
 import android.content.Context;
 

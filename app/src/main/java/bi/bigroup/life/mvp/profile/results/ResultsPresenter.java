@@ -1,4 +1,4 @@
-package bi.bigroup.life.mvp.profile;
+package bi.bigroup.life.mvp.profile.results;
 
 import android.content.Context;
 
@@ -39,7 +39,6 @@ public class ResultsPresenter extends BaseMvpPresenter<ResultsView> {
             }
         }
 
-        LOTimber.d("sadklasmdklas size=" + resultsList.size());
         getViewState().addResultsList(resultsList);
     }
 }

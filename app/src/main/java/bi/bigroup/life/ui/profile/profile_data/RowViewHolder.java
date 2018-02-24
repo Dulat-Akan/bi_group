@@ -1,4 +1,4 @@
-package bi.bigroup.life.ui.profile.data;
+package bi.bigroup.life.ui.profile.profile_data;
 
 import android.support.annotation.DrawableRes;
 import android.view.View;
