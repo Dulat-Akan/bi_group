@@ -154,6 +154,11 @@
     <string name="subject">Тема</string>
     <string name="content_of_question">Текст вопроса</string>
     <string name="ask_question">Задать вопрос</string>
-    <string name="q"></string>
 
+    <!-- NewSuggestionQuestion -->
+    <string name="new_suggestion">Новое предложение</string>
+    <string name="content_description">Описание текст</string>
+    <string name="attach">Прикрепить</string>
+
+    <string name="q"></string>
 </resources>

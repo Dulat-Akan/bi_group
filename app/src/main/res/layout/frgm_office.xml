@@ -17,6 +17,11 @@
             android:id="@+id/btn_add_question"
             style="@style/MW"
             android:text="@string/add_question"/>
+
+        <Button
+            android:id="@+id/btn_new_suggestion"
+            style="@style/MW"
+            android:text="@string/new_suggestion"/>
     </LinearLayout>
 
     <include
