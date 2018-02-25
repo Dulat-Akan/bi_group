@@ -13,6 +13,7 @@ import bi.bigroup.life.mvp.profile.ProfilePresenter;
 import bi.bigroup.life.mvp.profile.ProfileView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
 import bi.bigroup.life.ui.base.view_pager.ViewPagerAdapter;
+import bi.bigroup.life.ui.profile.advantages.AdvantagesFragment;
 import bi.bigroup.life.ui.profile.plans.PlansFragment;
 import bi.bigroup.life.ui.profile.profile_data.ProfileDataFragment;
 import bi.bigroup.life.ui.profile.results.ResultsFragment;
@@ -24,7 +25,6 @@ public class ProfileActivity extends BaseFragmentActivity implements ProfileView
 
     @BindView(R.id.tabs) TabLayout tabs;
     @BindView(R.id.pager) ViewPager viewPager;
-    private ViewPagerAdapter adapter;
 
     public static Intent getIntent(Context context) {
         return new Intent(context, ProfileActivity.class);
@@ -39,18 +39,16 @@ public class ProfileActivity extends BaseFragmentActivity implements ProfileView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mvpPresenter.init(this, dataLayer);
-
         configureViewPager();
     }
 
     private void configureViewPager() {
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         tabs.setupWithViewPager(viewPager);
         adapter.addFrag(ProfileDataFragment.newInstance(), getString(R.string.tabs_data));
         adapter.addFrag(ResultsFragment.newInstance(), getString(R.string.tabs_results));
         adapter.addFrag(PlansFragment.newInstance(), getString(R.string.tabs_plans));
-        adapter.addFrag(ProfileDataFragment.newInstance(), getString(R.string.tabs_advantages));
-
+        adapter.addFrag(AdvantagesFragment.newInstance(), getString(R.string.tabs_advantages));
         viewPager.setAdapter(adapter);
     }
 
