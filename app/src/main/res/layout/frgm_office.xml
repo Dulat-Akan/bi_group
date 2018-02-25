@@ -32,6 +32,11 @@
             android:id="@+id/btn_add_news"
             style="@style/MW"
             android:text="@string/add_news"/>
+
+        <Button
+            android:id="@+id/btn_new_sdesk"
+            style="@style/MW"
+            android:text="@string/new_sdesk"/>
     </LinearLayout>
 
     <include

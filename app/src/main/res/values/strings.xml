@@ -174,5 +174,12 @@
     <string name="tags">Теги</string>
     <string name="popular_event">Знаменательное событие (в историю)</string>
 
+    <!-- AddSdeskActivity -->
+    <string name="new_sdesk">Новая заявка</string>
+    <string name="performer">Исполнитель</string>
+    <string name="category">Категория</string>
+    <string name="it_service">IT cлужба</string>
+    <string name="deadline">Срок исполнения"</string>
+
     <string name="q"></string>
 </resources>

@@ -11,6 +11,7 @@ import bi.bigroup.life.mvp.main.office.OfficeView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.main.feed.news.AddNewsActivity;
 import bi.bigroup.life.ui.main.office.tasks_sdesk.TasksSdeskActivity;
+import bi.bigroup.life.ui.main.office.tasks_sdesk.add_sdesk.AddSdeskActivity;
 import bi.bigroup.life.ui.main.publication.PublicationActivity;
 import bi.bigroup.life.ui.main.question.AddQuestionActivity;
 import bi.bigroup.life.ui.main.suggestion.NewSuggestionActivity;
@@ -61,6 +62,11 @@ public class OfficeFragment extends BaseFragment implements OfficeView {
     @OnClick(R.id.btn_add_news)
     void onAddNews() {
         startActivity(AddNewsActivity.getIntent(getContext()));
+    }
+
+    @OnClick(R.id.btn_new_sdesk)
+    void onNewSdesk() {
+        startActivity(AddSdeskActivity.getIntent(getContext()));
     }
 
     private void handleIntent() {
