@@ -166,5 +166,13 @@
     <string name="publication_title">Название</string>
     <string name="write_content">Написать текст</string>
 
+    <!-- AddNewsActivity -->
+    <string name="add_news">Добавить новость</string>
+    <string name="add_cover">Добавить обложку</string>
+    <string name="news_head">Заголовок</string>
+    <string name="enter_text">Введите текст</string>
+    <string name="tags">Теги</string>
+    <string name="popular_event">Знаменательное событие (в историю)</string>
+
     <string name="q"></string>
 </resources>

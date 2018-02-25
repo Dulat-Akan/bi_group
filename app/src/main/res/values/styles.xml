@@ -190,4 +190,8 @@
         <item name="fab_size">mini</item>
     </style>
 
+    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
+        <item name="colorAccent">@color/et_border</item>
+        <item name="android:textColorSecondary">@color/et_border</item>
+    </style>
 </resources>

@@ -88,6 +88,10 @@
             android:name=".ui.main.publication.PublicationActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".ui.main.feed.news.AddNewsActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>
