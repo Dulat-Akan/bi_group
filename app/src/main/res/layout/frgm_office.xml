@@ -13,6 +13,10 @@
             style="@style/MW"
             android:text="@string/title_task_sdesk"/>
 
+        <Button
+            android:id="@+id/btn_add_question"
+            style="@style/MW"
+            android:text="@string/add_question"/>
     </LinearLayout>
 
     <include

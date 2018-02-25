@@ -10,6 +10,7 @@ import bi.bigroup.life.mvp.main.office.OfficePresenter;
 import bi.bigroup.life.mvp.main.office.OfficeView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.main.office.tasks_sdesk.TasksSdeskActivity;
+import bi.bigroup.life.ui.main.question.AddQuestionActivity;
 import butterknife.OnClick;
 
 public class OfficeFragment extends BaseFragment implements OfficeView {
@@ -37,6 +38,11 @@ public class OfficeFragment extends BaseFragment implements OfficeView {
     @OnClick(R.id.btn_tasks_sdesk)
     void onClick() {
         startActivity(TasksSdeskActivity.getIntent(getContext()));
+    }
+
+    @OnClick(R.id.btn_add_question)
+    void onAddClick() {
+        startActivity(AddQuestionActivity.getIntent(getContext()));
     }
 
     private void handleIntent() {

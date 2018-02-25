@@ -78,4 +78,10 @@
     <color name="float_menu_default">#108aeb</color>
     <color name="float_menu_click">#117fd6</color>
     <color name="float_ripple">#99FFFFFF</color>
+
+    <!-- AddQuestionActivity -->
+    <color name="et_hint_subject">#66333333</color>
+    <color name="et_bg">#efeff4</color>
+    <color name="et_border">#bcbbc1</color>
+
 </resources>
