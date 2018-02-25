@@ -155,10 +155,16 @@
     <string name="content_of_question">Текст вопроса</string>
     <string name="ask_question">Задать вопрос</string>
 
-    <!-- NewSuggestionQuestion -->
+    <!-- NewSuggestionActivity -->
     <string name="new_suggestion">Новое предложение</string>
     <string name="content_description">Описание текст</string>
     <string name="attach">Прикрепить</string>
+
+    <!-- PublicationActivity -->
+    <string name="new_publication">Новая публикация</string>
+    <string name="head">Заголовок</string>
+    <string name="publication_title">Название</string>
+    <string name="write_content">Написать текст</string>
 
     <string name="q"></string>
 </resources>
