@@ -29,13 +29,13 @@ public class AdvantagesFragment extends BaseFragment implements AdvantagesView {
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.frgm_profile_results;
+        return R.layout.frgm_profile_advantages;
     }
 
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
-        mAdapter = new AdvantagesAdapter();
+        mAdapter = new AdvantagesAdapter(getContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recycler_view.setLayoutManager(mLayoutManager);
         recycler_view.setAdapter(mAdapter);

@@ -61,6 +61,7 @@
     <color name="tab_text">#6d6d72</color>
     <color name="tab_indicator">#108aeb</color>
     <color name="specialty">#8e8e93</color>
+    <color name="bricks_gallery">#d1d1d6</color>
 
     <!-- FeedFragment -->
     <color name="feed_time">#8e8e93</color>

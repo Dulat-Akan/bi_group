@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
@@ -25,6 +27,7 @@ public class ProfileActivity extends BaseFragmentActivity implements ProfileView
 
     @BindView(R.id.tabs) TabLayout tabs;
     @BindView(R.id.pager) ViewPager viewPager;
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     public static Intent getIntent(Context context) {
         return new Intent(context, ProfileActivity.class);
@@ -38,8 +41,18 @@ public class ProfileActivity extends BaseFragmentActivity implements ProfileView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setSupportActionBar(toolbar);
         mvpPresenter.init(this, dataLayer);
         configureViewPager();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void configureViewPager() {

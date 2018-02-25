@@ -1,9 +1,12 @@
 package bi.bigroup.life.ui.profile.advantages;
 
+import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
@@ -16,14 +19,21 @@ import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.user.advantages.Advantages;
 import bi.bigroup.life.utils.LOTimber;
 
+import static bi.bigroup.life.mvp.profile.advantages.AdvantagesPresenter.BRICKS_GALLERY;
+
 class AdvantagesAdapter<VH extends RecyclerView.ViewHolder>
         extends RecyclerView.Adapter<VH> implements StickyRecyclerHeadersAdapter<RecyclerView.ViewHolder> {
     private static final int ITEM_LAYOUT_ID = R.layout.adapter_advantages;
     private static final int ITEM_HEADER_LAYOUT_ID = R.layout.adapter_advantages_header;
     private List<Advantages> data = Collections.emptyList();
 
-    AdvantagesAdapter() {
+    private Context context;
+    private LinearLayoutManager horizontalLayoutManager;
+
+    AdvantagesAdapter(Context context) {
         setHasStableIds(true);
+        this.context = context;
+        horizontalLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
     }
 
     public void setData(List<Advantages> newList) {
@@ -63,14 +73,29 @@ class AdvantagesAdapter<VH extends RecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        TextView tv_title = holder.itemView.findViewById(R.id.tv_title);
-        tv_title.setText(data.get(position).title);
-
-        TextView tv_description = holder.itemView.findViewById(R.id.tv_description);
-        tv_description.setText(data.get(position).description);
-
+        RecyclerView recyclerView = holder.itemView.findViewById(R.id.recycler_view);
+        LinearLayout ll_row = holder.itemView.findViewById(R.id.ll_row);
         View view_divider = holder.itemView.findViewById(R.id.view_divider);
-        view_divider.setVisibility(position == 0 ? View.INVISIBLE : View.VISIBLE);
+
+        if (data.get(position).title.equals(BRICKS_GALLERY)) {
+            recyclerView.setVisibility(View.VISIBLE);
+            ll_row.setVisibility(View.GONE);
+            recyclerView.setLayoutManager(horizontalLayoutManager);
+            BricksGalleryAdapter adapter = new BricksGalleryAdapter(context);
+            recyclerView.setAdapter(adapter);
+
+            view_divider.setVisibility(View.GONE);
+        } else {
+            recyclerView.setVisibility(View.GONE);
+            ll_row.setVisibility(View.VISIBLE);
+
+            TextView tv_title = holder.itemView.findViewById(R.id.tv_title);
+            tv_title.setText(data.get(position).title);
+
+            TextView tv_description = holder.itemView.findViewById(R.id.tv_description);
+            tv_description.setText(data.get(position).description);
+            view_divider.setVisibility(position == 0 ? View.INVISIBLE : View.VISIBLE);
+        }
     }
 
     @Override
