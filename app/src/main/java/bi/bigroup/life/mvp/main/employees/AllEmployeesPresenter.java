@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -128,5 +129,17 @@ public class AllEmployeesPresenter extends BaseMvpPresenter<AllEmployeesView> {
                         }
                     }
                 });
+    }
+
+    public List<Employee> filter(List<Employee> userList, String query) {
+        query = query.toLowerCase();
+        final List<Employee> filteredModelList = new ArrayList<>();
+        for (Employee model : userList) {
+            final String text = model.getFullName().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
     }
 }

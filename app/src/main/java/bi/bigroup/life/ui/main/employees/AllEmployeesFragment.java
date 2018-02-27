@@ -84,7 +84,12 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
 
             @Override
             public boolean onQueryTextChange(String query) {
-                mvpPresenter.onQueryTextChange(query);
+                if (isBirthdayToday) {
+                    final List<Employee> employeesList = mvpPresenter.filter(originalEmployeesList, query);
+                    setSearchResults(employeesList);
+                } else {
+                    mvpPresenter.onQueryTextChange(query);
+                }
                 return false;
             }
         });
