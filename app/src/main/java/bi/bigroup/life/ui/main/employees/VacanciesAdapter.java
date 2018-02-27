@@ -51,6 +51,12 @@ class VacanciesAdapter extends RecyclerViewBaseAdapter {
         return data;
     }
 
+    void setSearchResult(List<Vacancy> searchResult) {
+        data.clear();
+        data.addAll(searchResult);
+        notifyDataSetChanged();
+    }
+
     void clearData() {
         data.clear();
         notifyDataSetChanged();

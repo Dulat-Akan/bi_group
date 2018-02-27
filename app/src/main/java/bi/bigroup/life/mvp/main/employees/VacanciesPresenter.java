@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.data.DataLayer;
@@ -66,5 +67,18 @@ public class VacanciesPresenter extends BaseMvpPresenter<VacanciesView> {
         } else {
             getViewState().showRefreshLoading(show);
         }
+    }
+
+    public List<Vacancy> filter(List<Vacancy> userList, String query) {
+        query = query.toLowerCase();
+        final List<Vacancy> filteredModelList = new ArrayList<>();
+        for (Vacancy model : userList) {
+            if (model.getJobPosition().toLowerCase().contains(query) ||
+                    model.getCompanyName().toLowerCase().contains(query) ||
+                    model.getJobPosition().toLowerCase().contains(query)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
     }
 }
