@@ -66,7 +66,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
 
     private void configureSearchView() {
         searchEditText = search_view.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        searchEditText.setHint(getString(R.string.search_hint)); 
+        searchEditText.setHint(getString(R.string.search_hint));
         searchEditText.setTextSize(14f);
 
         ImageView search_close_btn = search_view.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
