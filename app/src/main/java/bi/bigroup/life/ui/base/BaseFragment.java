@@ -13,6 +13,7 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.mvp.BaseMvpView;
+import bi.bigroup.life.ui.auth.AuthActivity;
 import bi.bigroup.life.utils.SnackbarUtils;
 import bi.bigroup.life.utils.ToastUtils;
 import butterknife.BindView;
@@ -62,8 +63,8 @@ public abstract class BaseFragment extends MvpAppCompatFragment implements BaseM
 
     @Override
     public void onInvalidToken() {
-        SnackbarUtils.showSnackbar(fl_parent, "UnAuthorized");
-//        InvalidToken.wipeOut(getContext(), dataLayer);
+        dataLayer.wipeOut();
+        startActivity(AuthActivity.newLogoutIntent(getContext()));
     }
 
     @Override

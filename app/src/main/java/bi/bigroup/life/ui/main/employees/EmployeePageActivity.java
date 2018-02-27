@@ -33,7 +33,6 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     @BindView(R.id.tv_phone) TextView tv_phone;
     @BindView(R.id.tv_email) TextView tv_email;
 
-
     private String code;
     private String mobilePhoneNumber;
 
