@@ -11,9 +11,11 @@ import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.data.params.auth.AuthParams;
+import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -41,6 +43,9 @@ public interface API {
     /****** Notifications *******/
     @GET("Notifications/")
     Observable<List<Notification>> getNotifications();
+
+    @PUT("Notifications/{id}")
+    Observable<ResponseBody> removeNotification(@Path("id") String id);
 
     /****** Employees *******/
     @GET("employees/")

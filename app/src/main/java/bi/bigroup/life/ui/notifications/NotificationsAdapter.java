@@ -52,10 +52,17 @@ class NotificationsAdapter extends RecyclerViewBaseAdapter {
     }
 
     void addNotificationsList(List<Notification> newItems) {
-        int positionStart = data.size();
-        int itemCount = newItems.size();
         data.addAll(newItems);
-        notifyItemRangeChanged(positionStart, itemCount);
+        notifyDataSetChanged();
+    }
+
+    String getId(int position) {
+        return data.get(position).id;
+    }
+
+    void remove(int position) {
+        data.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override

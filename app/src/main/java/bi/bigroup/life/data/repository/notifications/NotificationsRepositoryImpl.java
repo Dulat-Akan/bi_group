@@ -2,9 +2,9 @@ package bi.bigroup.life.data.repository.notifications;
 
 import java.util.List;
 
-import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.network.api.bi_group.API;
+import okhttp3.ResponseBody;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -26,9 +26,9 @@ class NotificationsRepositoryImpl implements NotificationsRepository {
     }
 
     @Override
-    public Observable<Employee> getEmployee(String code) {
+    public Observable<ResponseBody> removeNotification(String id) {
         return api
-                .getEmployee(code)
+                .removeNotification(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

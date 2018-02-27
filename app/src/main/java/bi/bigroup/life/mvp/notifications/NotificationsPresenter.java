@@ -7,6 +7,7 @@ import java.util.List;
 import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.repository.notifications.NotificationsRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
+import okhttp3.ResponseBody;
 import rx.Subscriber;
 import rx.Subscription;
 
@@ -39,6 +40,33 @@ public class NotificationsPresenter extends BaseMvpPresenter<NotificationsView> 
                             }
                         } else {
                             getViewState().showNotFoundPlaceholder();
+                        }
+                    }
+                });
+
+        compositeSubscription.add(subscription);
+    }
+
+    public void removeNotification(String id) {
+        Subscription subscription = NotificationsRepositoryProvider.provideRepository(dataLayer.getApi())
+                .removeNotification(id)
+                .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
+                .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
+                .subscribe(new Subscriber<ResponseBody>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        if (responseBody != null) {
+
                         }
                     }
                 });
