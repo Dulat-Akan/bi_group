@@ -11,4 +11,6 @@ public interface AllEmployeesView extends BaseSwipeRefreshMvpView {
     void addEmployeesList(List<Employee> list);
 
     void showLoadingItemIndicator(boolean show);
+
+    void setSearchResults(List<Employee> searchResults);
 }

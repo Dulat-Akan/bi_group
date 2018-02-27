@@ -53,6 +53,10 @@ public interface API {
                                               @Query("Offset") int Offset,
                                               @Query("IsBirthdayToday") Boolean IsBirthdayToday);
 
+    @GET("employees/search/")
+    Observable<List<Employee>> searchEmployees(@Query("filterText") String filterText,
+                                               @Query("top") String top);
+
     @GET("vacancies/")
     Observable<List<Vacancy>> getVacancies();
 

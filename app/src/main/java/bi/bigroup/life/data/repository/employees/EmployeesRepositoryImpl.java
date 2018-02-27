@@ -27,6 +27,14 @@ class EmployeesRepositoryImpl implements EmployeesRepository {
     }
 
     @Override
+    public Observable<List<Employee>> searchEmployees(String filterText, String top) {
+        return api
+                .searchEmployees(filterText, top)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
     public Observable<List<Vacancy>> getVacancies() {
         return api
                 .getVacancies()
