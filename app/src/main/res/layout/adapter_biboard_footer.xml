@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              style="@style/LL_MW_V"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        style="@style/MW"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/dp_10"
+        app:cardElevation="@dimen/dp_0">
+
+        <LinearLayout
+            style="@style/LL_MW_V">
+
+            <LinearLayout
+                style="@style/LL_WW_H"
+                android:layout_margin="@dimen/dp_8"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="@dimen/dp_19"
+                    android:layout_height="@dimen/dp_19"
+                    android:background="@drawable/view_selector_rounded_option"/>
+
+                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                    android:id="@+id/tv_row_title"
+                    style="@style/WW"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="@string/question_top_7"
+                    android:textAllCaps="true"
+                    android:textColor="@color/bi_header_date"
+                    android:textSize="@dimen/sp_12"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                style="@style/MW"
+                android:layout_marginBottom="@dimen/dp_16"
+                android:layout_marginLeft="@dimen/dp_17"
+                android:layout_marginTop="@dimen/dp_14"
+                android:orientation="horizontal"
+                android:scrollbarSize="@dimen/dp_2"
+                android:scrollbars="vertical"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

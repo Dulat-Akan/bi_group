@@ -3,6 +3,8 @@ package bi.bigroup.life.ui.main.biboard;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,23 +44,22 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     }
 
     private void configureListView() {
+        // ========== Add footer ==============
         LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
-//        ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.lv_bustickets_footer, lv_bustickets, false);
-//        btn_buy = footer.findViewById(R.id.btn_buy);
-//        btn_buy.setOnClickListener(v -> {
-//            if (card != null) {
-//                presenter.passActivate(card.cardNumber);
-//            }
-//        });
-//        lv_bustickets.addFooterView(footer, null, false);
+        ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.adapter_biboard_footer, lv_board, false);
+        RecyclerView recycler_view = footer.findViewById(R.id.recycler_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recycler_view.setLayoutManager(layoutManager);
+        BricksTop7Adapter top7Adapter = new BricksTop7Adapter(getContext());
+        recycler_view.setAdapter(top7Adapter);
+        lv_board.addFooterView(footer, null, false);
 
-        // Add header
+        // ========== Add header ==============
         ViewGroup header = (ViewGroup) inflater.inflate(R.layout.adapter_biboard_header, lv_board, false);
         configureViewPager(header);
         lv_board.addHeaderView(header, null, false);
 
         BiBoardAdapter adapter = new BiBoardAdapter(getContext());
-//        adapter.setCallback(busTicketItem -> busTicket = busTicketItem);
         lv_board.setAdapter(adapter);
 
         List<BiBoard> biOffices = new ArrayList<>();

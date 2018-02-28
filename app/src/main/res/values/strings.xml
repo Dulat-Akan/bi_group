@@ -101,6 +101,7 @@
     <!-- BiBoardFragment -->
     <string name="predlojeniya">Предложения</string>
     <string name="oprosnik">Опросник</string>
+    <string name="question_top_7">вопрос тор-7</string>
     <string name="novyh">новых</string>
     <string name="dni_rojdenya">дни рождения</string>
     <string name="vacancii">вакансии</string>
