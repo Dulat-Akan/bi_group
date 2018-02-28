@@ -20,10 +20,9 @@ public class BiGroupApp extends Application {
         super.onCreate();
         setupFabric();
         setupTimber();
-        if (DebugConfig.DEV_BUILD) {
-            setupStetho();
-        }
-
+//        if (DebugConfig.DEV_BUILD) {
+        setupStetho();
+//        }
         Preferences preferences = new PreferencesProvider(this);
     }
 

@@ -1,6 +1,15 @@
 package bi.bigroup.life.data.network;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import bi.bigroup.life.config.DebugConfig;
 import bi.bigroup.life.data.cache.preferences.Preferences;
@@ -37,10 +46,40 @@ public class RetrofitServiceGenerator {
     }
 
     public <S> S createService(Class<S> serviceClass) {
-        configureOkHttpClientBuilder();
         if (okHttpClient == null) {
             configureOkHttpClientBuilder();
-            okHttpClient = okHttpClientBuilder.build();
+//            okHttpClient = okHttpClientBuilder.build();
+
+            final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+                @Override
+                public X509Certificate[] getAcceptedIssuers() {
+                    return new X509Certificate[0];
+                }
+
+                @Override
+                public void checkServerTrusted(final X509Certificate[] chain,
+                                               final String authType) throws CertificateException {
+                }
+
+                @Override
+                public void checkClientTrusted(final X509Certificate[] chain,
+                                               final String authType) throws CertificateException {
+                }
+            }};
+
+            SSLContext sslContext;
+            try {
+                sslContext = SSLContext.getInstance("SSL");
+                sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+                okHttpClientBuilder.sslSocketFactory(sslContext.getSocketFactory());
+
+                HostnameVerifier hostnameVerifier = (hostname, session) -> true;
+                okHttpClientBuilder.hostnameVerifier( hostnameVerifier);
+                okHttpClient = okHttpClientBuilder.build();
+
+            } catch (NoSuchAlgorithmException | KeyManagementException e) {
+                e.printStackTrace();
+            }
         }
 
         if (retrofit == null) {
@@ -57,11 +96,11 @@ public class RetrofitServiceGenerator {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             okHttpClientBuilder.addInterceptor(logging);
-
-            // If Stetho is enabled, StethoInterceptor allows monitoring network packets in Chrome Dev Tools on your
-            // PC through chrome://inspect
-            okHttpClientBuilder.addNetworkInterceptor(new com.facebook.stetho.okhttp3.StethoInterceptor());
         }
+
+        // If Stetho is enabled, StethoInterceptor allows monitoring network packets in Chrome Dev Tools on your
+        // PC through chrome://inspect
+        okHttpClientBuilder.addNetworkInterceptor(new com.facebook.stetho.okhttp3.StethoInterceptor());
         okHttpClientBuilder.addInterceptor(new UserTokenInterceptor(preferences));
     }
 

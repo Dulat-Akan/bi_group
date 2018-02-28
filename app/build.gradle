@@ -77,7 +77,6 @@ android {
             buildConfigField "boolean", "IS_DEBUG", "false"
             buildConfigField "String", "FILE_PROVIDER", '"bi.bigroup.life.fileprovider"'
             manifestPlaceholders = [manifestFileProvider: "bi.bigroup.life.fileprovider"]
-
             // Define default resources
             resValue "string", "app_name", "BI Group"
 //            resValue "string", "google_maps_key", "AIzaSyCjX7XFdUK2NTutnNqN2Ou9reR7_cuTgwc"
