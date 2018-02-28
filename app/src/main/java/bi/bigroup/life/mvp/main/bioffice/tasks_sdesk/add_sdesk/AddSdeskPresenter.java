@@ -1,4 +1,4 @@
-package bi.bigroup.life.mvp.main.office.tasks_sdesk.add_sdesk;
+package bi.bigroup.life.mvp.main.bioffice.tasks_sdesk.add_sdesk;
 
 import android.content.Context;
 

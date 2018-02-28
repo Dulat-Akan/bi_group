@@ -1,4 +1,4 @@
-package bi.bigroup.life.ui.main.office;
+package bi.bigroup.life.ui.main.biboard;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,23 +6,23 @@ import android.view.View;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.mvp.main.office.OfficePresenter;
-import bi.bigroup.life.mvp.main.office.OfficeView;
+import bi.bigroup.life.mvp.main.biboard.BiBoardPresenter;
+import bi.bigroup.life.mvp.main.biboard.BiBoardView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.main.feed.news.AddNewsActivity;
-import bi.bigroup.life.ui.main.office.tasks_sdesk.TasksSdeskActivity;
-import bi.bigroup.life.ui.main.office.tasks_sdesk.add_sdesk.AddSdeskActivity;
+import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.TasksSdeskActivity;
+import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity;
 import bi.bigroup.life.ui.main.publication.PublicationActivity;
 import bi.bigroup.life.ui.main.question.AddQuestionActivity;
 import bi.bigroup.life.ui.main.suggestion.NewSuggestionActivity;
 import butterknife.OnClick;
 
-public class OfficeFragment extends BaseFragment implements OfficeView {
+public class BiBoardFragment extends BaseFragment implements BiBoardView {
     @InjectPresenter
-    OfficePresenter mvpPresenter;
+    BiBoardPresenter mvpPresenter;
 
-    public static OfficeFragment newInstance() {
-        OfficeFragment fragment = new OfficeFragment();
+    public static BiBoardFragment newInstance() {
+        BiBoardFragment fragment = new BiBoardFragment();
         Bundle data = new Bundle();
 //        data.putParcelable(FORM_KEY, Parcels.wrap(authForm));
         fragment.setArguments(data);
@@ -31,7 +31,7 @@ public class OfficeFragment extends BaseFragment implements OfficeView {
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.frgm_office;
+        return R.layout.frgm_biboard;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class OfficeFragment extends BaseFragment implements OfficeView {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // OfficeView implementation
+    // BiBoardView implementation
     ///////////////////////////////////////////////////////////////////////////
 
     @Override

@@ -1,4 +1,4 @@
-package bi.bigroup.life.ui.main.office.tasks_sdesk;
+package bi.bigroup.life.ui.main.bioffice.tasks_sdesk;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +9,8 @@ import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.employees.Employee;
-import bi.bigroup.life.mvp.main.office.tasks_sdesk.TasksServicesPresenter;
-import bi.bigroup.life.mvp.main.office.tasks_sdesk.TasksServicesView;
+import bi.bigroup.life.mvp.main.bioffice.tasks_sdesk.TasksServicesPresenter;
+import bi.bigroup.life.mvp.main.bioffice.tasks_sdesk.TasksServicesView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 

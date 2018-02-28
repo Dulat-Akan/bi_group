@@ -34,7 +34,6 @@
                     app:pageColor="@color/pager_indicator_unselected"
                     app:radius="@dimen/dp_4"/>
 
-
                 <LinearLayout
                     style="@style/LL_MW_H"
                     android:layout_alignParentRight="true"
@@ -51,7 +50,10 @@
                             style="@style/WW"
                             android:background="@drawable/tv_selector_white_rounded"
                             android:maxLines="2"
-                            android:padding="@dimen/dp_4"
+                            android:paddingBottom="@dimen/dp_4"
+                            android:paddingLeft="@dimen/dp_6"
+                            android:paddingRight="@dimen/dp_6"
+                            android:paddingTop="@dimen/dp_4"
                             android:textAllCaps="true"
                             android:textColor="@color/pager_indicator_fill"
                             android:textSize="@dimen/sp_12"

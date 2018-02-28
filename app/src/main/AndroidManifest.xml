@@ -73,7 +73,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.main.office.tasks_sdesk.TasksSdeskActivity"
+            android:name=".ui.main.bioffice.tasks_sdesk.TasksSdeskActivity"
             android:screenOrientation="portrait"/>
 
         <activity
@@ -93,7 +93,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.main.office.tasks_sdesk.add_sdesk.AddSdeskActivity"
+            android:name=".ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity"
             android:screenOrientation="portrait"/>
 
     </application>

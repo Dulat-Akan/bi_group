@@ -21,10 +21,11 @@ import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.mvp.main.MainPresenter;
 import bi.bigroup.life.mvp.main.MainView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
+import bi.bigroup.life.ui.main.biboard.BiBoardFragment;
+import bi.bigroup.life.ui.main.bioffice.BiOfficeFragment;
 import bi.bigroup.life.ui.main.employees.EmployeesFragment;
 import bi.bigroup.life.ui.main.feed.FeedFragment;
 import bi.bigroup.life.ui.main.menu.MenuFragment;
-import bi.bigroup.life.ui.main.office.OfficeFragment;
 import bi.bigroup.life.ui.notifications.NotificationsActivity;
 import bi.bigroup.life.ui.profile.ProfileActivity;
 import bi.bigroup.life.utils.GlideUtils;
@@ -69,6 +70,10 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
 
         initBottomNavigationView();
         initFragments();
+        if (v_bottom_navigation != null) {
+            v_bottom_navigation.setSelectedItemId(R.id.action_main);
+            replaceFragment(fragments.get(ACTION_MAIN), false, null);
+        }
     }
 
     @OnClick(R.id.img_notification)
@@ -88,8 +93,8 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     }
 
     private void initFragments() {
-        fragments.add(ACTION_MAIN, OfficeFragment.newInstance());
-        fragments.add(ACTION_BOARD, OfficeFragment.newInstance());
+        fragments.add(ACTION_MAIN, BiOfficeFragment.newInstance());
+        fragments.add(ACTION_BOARD, BiBoardFragment.newInstance());
         fragments.add(ACTION_FEED, FeedFragment.newInstance());
         fragments.add(ACTION_EMPLOYEES, EmployeesFragment.newInstance());
         fragments.add(ACTION_MENU, MenuFragment.newInstance());

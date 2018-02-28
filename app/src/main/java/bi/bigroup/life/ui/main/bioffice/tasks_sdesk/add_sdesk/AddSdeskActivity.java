@@ -1,4 +1,4 @@
-package bi.bigroup.life.ui.main.office.tasks_sdesk.add_sdesk;
+package bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_sdesk;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.mvp.main.office.tasks_sdesk.add_sdesk.AddSdeskPresenter;
-import bi.bigroup.life.mvp.main.office.tasks_sdesk.add_sdesk.AddSdeskView;
+import bi.bigroup.life.mvp.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskPresenter;
+import bi.bigroup.life.mvp.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import butterknife.OnClick;
 

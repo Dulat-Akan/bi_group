@@ -1,4 +1,4 @@
-package bi.bigroup.life.ui.main.office.tasks_sdesk;
+package bi.bigroup.life.ui.main.bioffice.tasks_sdesk;
 
 import android.content.Context;
 import android.view.View;

@@ -1,4 +1,4 @@
-package bi.bigroup.life.mvp.main.office.tasks_sdesk;
+package bi.bigroup.life.mvp.main.biboard;
 
 import android.content.Context;
 
@@ -8,8 +8,8 @@ import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
 
 @InjectViewState
-public class TasksSdeskPresenter extends BaseMvpPresenter<TasksSdeskView> {
-
+public class BiBoardPresenter extends BaseMvpPresenter<BiBoardView> {
+    @Override
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
     }
