@@ -8,35 +8,14 @@
         style="@style/LL_MM_V"
         android:background="@color/main_bg">
 
-        <Button
-            android:id="@+id/btn_tasks_sdesk"
-            style="@style/MW"
-            android:text="@string/title_task_sdesk"/>
+        <ListView
+            android:id="@+id/lv_board"
+            style="@style/MM"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"
+            android:orientation="vertical"/>
 
-        <Button
-            android:id="@+id/btn_add_question"
-            style="@style/MW"
-            android:text="@string/add_question"/>
-
-        <Button
-            android:id="@+id/btn_new_suggestion"
-            style="@style/MW"
-            android:text="@string/new_suggestion"/>
-
-        <Button
-            android:id="@+id/btn_new_publication"
-            style="@style/MW"
-            android:text="@string/new_publication"/>
-
-        <Button
-            android:id="@+id/btn_add_news"
-            style="@style/MW"
-            android:text="@string/add_news"/>
-
-        <Button
-            android:id="@+id/btn_new_sdesk"
-            style="@style/MW"
-            android:text="@string/new_sdesk"/>
     </LinearLayout>
 
     <include

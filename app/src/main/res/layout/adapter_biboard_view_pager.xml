@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MW">
+
+    <ImageView
+        android:id="@+id/img_slider"
+        style="@style/MM"
+        android:scaleType="centerCrop"
+        android:src="@drawable/temp_img"/>
+
+    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+        android:id="@+id/tv_subhead_top"
+        style="@style/WW"
+        android:layout_marginLeft="@dimen/dp_17"
+        android:layout_marginTop="@dimen/dp_17"
+        android:background="@drawable/tv_selector_white_rounded"
+        android:maxLines="2"
+        android:paddingBottom="@dimen/dp_4"
+        android:paddingLeft="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_6"
+        android:paddingTop="@dimen/dp_4"
+        android:text="новости"
+        android:textAllCaps="true"
+        android:textColor="@color/pager_indicator_fill"
+        android:textSize="@dimen/sp_12"/>
+
+    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+        android:id="@+id/tv_title"
+        style="@style/MW"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_18"
+        android:layout_marginLeft="@dimen/dp_18"
+        android:layout_marginRight="@dimen/dp_18"
+        android:text="День открытых дверей
+пройдет в ЖК «Милано"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_22"/>
+</RelativeLayout>

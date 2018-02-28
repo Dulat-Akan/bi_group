@@ -60,10 +60,11 @@
                         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                             style="@style/WW"
                             android:text="1"
-                            android:textColor="@color/bi_header_blues"
-                            android:textSize="@dimen/sp_20"/>
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_16"/>
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                            android:id="@+id/tv_first"
                             style="@style/WW"
                             android:layout_marginLeft="@dimen/dp_5"
                             android:text="@string/row_new"
@@ -82,10 +83,11 @@
                         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                             style="@style/WW"
                             android:text="19"
-                            android:textColor="@color/bi_header_blues"
-                            android:textSize="@dimen/sp_20"/>
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_16"/>
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                            android:id="@+id/tv_second"
                             style="@style/WW"
                             android:layout_marginLeft="@dimen/dp_5"
                             android:text="@string/row_prin"
@@ -103,11 +105,12 @@
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                             style="@style/WW"
-                            android:text="0"
-                            android:textColor="@color/bi_header_blues"
-                            android:textSize="@dimen/sp_20"/>
+                            android:text="19"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_16"/>
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                            android:id="@+id/tv_third"
                             style="@style/WW"
                             android:layout_marginLeft="@dimen/dp_5"
                             android:text="@string/row_pros"

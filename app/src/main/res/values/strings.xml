@@ -98,6 +98,13 @@
     <string name="row_prin">прин.</string>
     <string name="row_pros">прос.</string>
 
+    <!-- BiBoardFragment -->
+    <string name="predlojeniya">Предложения</string>
+    <string name="oprosnik">Опросник</string>
+    <string name="novyh">новых</string>
+    <string name="dni_rojdenya">дни рождения</string>
+    <string name="vacancii">вакансии</string>
+
     <!-- FeedFragment -->
     <string name="label_feed">Лента</string>
     <string name="filter_news">Новости</string>
