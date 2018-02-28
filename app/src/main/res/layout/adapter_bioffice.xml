@@ -6,17 +6,152 @@
 
     <android.support.v7.widget.CardView
         style="@style/MW"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/dp_10"
-        app:cardElevation="@dimen/dp_10">
+        app:cardElevation="@dimen/dp_0">
 
         <LinearLayout
             style="@style/LL_MW_V">
 
             <LinearLayout
-                style="@style/LL_MW_H">
+                style="@style/LL_MW_V"
+                android:layout_margin="@dimen/dp_8">
+
+                <LinearLayout
+                    android:id="@+id/ll_expand_collapse"
+                    style="@style/LL_WW_H"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/dp_19"
+                        android:layout_height="@dimen/dp_19"
+                        android:background="@drawable/view_selector_rounded_option"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_row_title"
+                        style="@style/WW"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/zayavki_i_zadachi"
+                        android:textAllCaps="true"
+                        android:textColor="@color/bi_header_date"
+                        android:textSize="@dimen/sp_12"/>
+
+                    <ImageView
+                        style="@style/WW"
+                        android:src="@drawable/arrow_down"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/LL_MW_H"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:layout_marginLeft="@dimen/dp_29"
+                    android:layout_marginRight="@dimen/dp_6"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:gravity="bottom">
+
+                    <LinearLayout
+                        style="@style/LL_MW_H"
+                        android:layout_weight="1">
+
+                        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                            style="@style/WW"
+                            android:text="1"
+                            android:textColor="@color/bi_header_blues"
+                            android:textSize="@dimen/sp_20"/>
+
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                            style="@style/WW"
+                            android:layout_marginLeft="@dimen/dp_5"
+                            android:text="@string/row_new"
+                            android:textColor="@color/bi_header_date"
+                            android:textSize="@dimen/sp_12"/>
+
+                        <View
+                            android:layout_width="@dimen/dp_0_43"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/dp_4"
+                            android:layout_marginLeft="@dimen/dp_13"
+                            android:layout_marginRight="@dimen/dp_13"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:background="@color/bi_separator"/>
+
+                        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                            style="@style/WW"
+                            android:text="19"
+                            android:textColor="@color/bi_header_blues"
+                            android:textSize="@dimen/sp_20"/>
+
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                            style="@style/WW"
+                            android:layout_marginLeft="@dimen/dp_5"
+                            android:text="@string/row_prin"
+                            android:textColor="@color/bi_header_date"
+                            android:textSize="@dimen/sp_12"/>
+
+                        <View
+                            android:layout_width="@dimen/dp_0_43"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/dp_4"
+                            android:layout_marginLeft="@dimen/dp_13"
+                            android:layout_marginRight="@dimen/dp_13"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:background="@color/bi_separator"/>
+
+                        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                            style="@style/WW"
+                            android:text="0"
+                            android:textColor="@color/bi_header_blues"
+                            android:textSize="@dimen/sp_20"/>
+
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                            style="@style/WW"
+                            android:layout_marginLeft="@dimen/dp_5"
+                            android:text="@string/row_pros"
+                            android:textColor="@color/bi_header_date"
+                            android:textSize="@dimen/sp_12"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/img_add"
+                        style="@style/WW"
+                        android:src="@drawable/ic_btn_add"/>
+                </LinearLayout>
             </LinearLayout>
 
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/exp_layout"
+                style="@style/MW"
+                android:layout_marginBottom="@dimen/dp_27"
+                app:el_duration="50"
+                app:el_expanded="false">
+
+                <LinearLayout
+                    style="@style/LL_MW_V"
+                    android:layout_marginLeft="@dimen/dp_8">
+
+                    <View
+                        android:id="@+id/view_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_1"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:background="@color/divider"/>
+
+                    <include
+                        layout="@layout/inc_item_bioffice_items"/>
+
+                    <include
+                        layout="@layout/inc_item_bioffice_items"/>
+
+                    <include
+                        layout="@layout/inc_item_bioffice_items"/>
+
+                </LinearLayout>
+            </net.cachapa.expandablelayout.ExpandableLayout>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

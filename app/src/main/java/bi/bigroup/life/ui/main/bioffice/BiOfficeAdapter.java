@@ -6,13 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.bioffice.BiOffice;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 class BiOfficeAdapter extends BaseAdapter {
     private static final int ITEM_LAYOUT = R.layout.adapter_bioffice;
@@ -66,8 +71,8 @@ class BiOfficeAdapter extends BaseAdapter {
     class ViewHolder extends RecyclerView.ViewHolder {
         Context context;
         BiOffice bindedBusTicket;
-
-//        @BindView(R.id.img_checkmark) ImageView img_checkmark;
+        @BindView(R.id.tv_row_title) TextView tv_row_title;
+        @BindView(R.id.exp_layout) ExpandableLayout exp_layout;
         public ViewHolder(View view) {
             super(view);
             context = view.getContext();
@@ -76,6 +81,16 @@ class BiOfficeAdapter extends BaseAdapter {
 
         void bindHolder(BiOffice object) {
             bindedBusTicket = object;
+            tv_row_title.setText(object.title);
+        }
+
+        @OnClick(R.id.ll_expand_collapse)
+        void onExpandCollapseClick() {
+            if (exp_layout.isExpanded()) {
+                exp_layout.collapse();
+            } else {
+                exp_layout.expand();
+            }
         }
     }
 

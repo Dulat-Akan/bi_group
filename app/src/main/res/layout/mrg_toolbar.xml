@@ -49,6 +49,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_5"
+        android:layout_height="@dimen/dp_3_5"
         android:background="@drawable/toolbar_dropshadow"/>
 </LinearLayout>

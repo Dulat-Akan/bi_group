@@ -88,6 +88,16 @@
     <string name="menu_desc_3">Текс</string>
     <string name="menu_title_4">Вопрос ТОП-7</string>
     <string name="menu_desc_4">Последний вопрос</string>
+
+    <!-- BiOfficeFragment -->
+    <string name="zayavki_i_zadachi">Заявки и задачи</string>
+    <string name="kpi_proekty">KPI проекты</string>
+    <string name="sandb">S&amp;B</string>
+    <string name="idp">IDP</string>
+    <string name="row_new">нов.</string>
+    <string name="row_prin">прин.</string>
+    <string name="row_pros">прос.</string>
+
     <!-- FeedFragment -->
     <string name="label_feed">Лента</string>
     <string name="filter_news">Новости</string>

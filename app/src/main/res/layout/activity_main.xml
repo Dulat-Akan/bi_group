@@ -23,12 +23,17 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/MW"
+            style="@style/LL_MW_V"
             android:layout_height="@dimen/dp_55"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:background="@color/tabs_bg"
             android:gravity="center_vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_43"
+                android:background="@color/bottom_divider"/>
 
             <android.support.design.widget.BottomNavigationView
                 android:id="@+id/v_bottom_navigation"

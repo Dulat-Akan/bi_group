@@ -43,6 +43,7 @@
     <color name="toolbar_bg">#fcfcfc</color>
     <color name="main_bg">#f7f7f7</color>
     <color name="tabs_bg">#fdfdfd</color>
+    <color name="bottom_divider">#bcbbc1</color>
     <!-- MenuFragment-->
     <color name="personal">#a5a5a9</color>
     <color name="item_option">#e5e8ef</color>
@@ -71,6 +72,8 @@
 
     <!-- BiOfficeFragment -->
     <color name="bi_header_date">#6d6d72</color>
+    <color name="bi_header_blues">#108aeb</color>
+    <color name="bi_separator">#eef0f4</color>
 
     <!-- EmployeesFragment -->
     <color name="searchview_bg">#1e8e8e93</color>

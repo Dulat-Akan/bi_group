@@ -62,9 +62,10 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
         lv_office.setAdapter(adapter);
 
         List<BiOffice> biOffices = new ArrayList<>();
-        biOffices.add(new BiOffice());
-        biOffices.add(new BiOffice());
-        biOffices.add(new BiOffice());
+        biOffices.add(new BiOffice(getString(R.string.zayavki_i_zadachi)));
+        biOffices.add(new BiOffice(getString(R.string.kpi_proekty)));
+        biOffices.add(new BiOffice(getString(R.string.sandb)));
+        biOffices.add(new BiOffice(getString(R.string.idp)));
         adapter.addList(biOffices);
     }
 
