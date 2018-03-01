@@ -166,6 +166,7 @@
     <string name="fb_buhgalterya">Бухгалтерия</string>
     <string name="fb_hr">HR отдел</string>
     <string name="fb_employee">Сотруднику</string>
+    <string name="service_status">Статус: %s</string>
 
     <!-- AddQuestion -->
     <string name="add_question">Добавить вопрос</string>

@@ -9,16 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.data.models.employees.Employee;
+import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Service;
+import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
 import bi.bigroup.life.ui.base.recycler_view.RecyclerViewBaseAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 class TasksServicesAdapter extends RecyclerViewBaseAdapter {
-    private static final int LAYOUT_ID = R.layout.adapter_tasks_sdesk;
+    private static final int TASKS_LAYOUT_ID = R.layout.adapter_tasks;
+    private static final int SERVICES_LAYOUT_ID = R.layout.adapter_tservices;
 
-    private List<Employee> data;
+    private List<Object> data;
     private Context context;
     private Callback callback;
     private boolean loading;
@@ -42,11 +44,7 @@ class TasksServicesAdapter extends RecyclerViewBaseAdapter {
         }
     }
 
-    boolean getLoading() {
-        return loading;
-    }
-
-    public List<Employee> getData() {
+    public List<Object> getData() {
         return data;
     }
 
@@ -55,7 +53,7 @@ class TasksServicesAdapter extends RecyclerViewBaseAdapter {
         notifyDataSetChanged();
     }
 
-    void addData(List<Employee> newItems) {
+    void addData(List<?> newItems) {
         int positionStart = data.size();
         int itemCount = newItems.size();
         data.addAll(newItems);
@@ -65,8 +63,10 @@ class TasksServicesAdapter extends RecyclerViewBaseAdapter {
     @Override
     public MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
-            case LAYOUT_ID:
-                return new BViewHolder(inflate(parent, LAYOUT_ID));
+            case TASKS_LAYOUT_ID:
+                return new TasksViewHolder(inflate(parent, TASKS_LAYOUT_ID));
+            case SERVICES_LAYOUT_ID:
+                return new ServicesViewHolder(inflate(parent, SERVICES_LAYOUT_ID));
             case PROGRESS_BAR_LAYOUT_ID:
                 return new SimpleViewHolder(inflate(parent, PROGRESS_BAR_LAYOUT_ID));
             default:
@@ -78,8 +78,10 @@ class TasksServicesAdapter extends RecyclerViewBaseAdapter {
     public int getItemViewType(int position) {
         if (loading && position == getItemCount() - 1) {
             return PROGRESS_BAR_LAYOUT_ID;
+        } else if (data.get(position) instanceof Task) {
+            return TASKS_LAYOUT_ID;
         } else {
-            return LAYOUT_ID;
+            return SERVICES_LAYOUT_ID;
         }
     }
 
@@ -95,38 +97,72 @@ class TasksServicesAdapter extends RecyclerViewBaseAdapter {
     @Override
     public void onBindViewHolder(MainViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
-            case LAYOUT_ID:
-                ((BViewHolder) holder).bind(data.get(position), position);
+            case TASKS_LAYOUT_ID:
+                ((TasksViewHolder) holder).bind((Task)data.get(position), position);
+                break;
+            case SERVICES_LAYOUT_ID:
+                ((ServicesViewHolder) holder).bind((Service) data.get(position), position);
                 break;
         }
     }
 
-    class BViewHolder extends MainViewHolder {
+    class TasksViewHolder extends MainViewHolder {
         @BindView(R.id.tv_title) TextView tv_title;
         @BindView(R.id.tv_description) TextView tv_description;
-        Employee bindedObject;
+        Task bindedObject;
         int bindedPosition;
 
-        BViewHolder(View v) {
+        TasksViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
         }
 
-        void bind(Employee object, int position) {
+        void bind(Task object, int position) {
             bindedObject = object;
             bindedPosition = position;
             if (object == null) {
                 return;
             }
+            tv_title.setText(object.getTopic());
+            tv_description.setText(object.getStartDate());
         }
 
-        @OnClick(R.id.ll_row)
+        @OnClick(R.id.ll_content)
         void onRowClick() {
-            callback.onItemClick(bindedObject.getCode());
+            callback.onItemClick(bindedObject.getId(), true);
+        }
+    }
+
+    class ServicesViewHolder extends MainViewHolder {
+        @BindView(R.id.tv_title) TextView tv_title;
+        @BindView(R.id.tv_description) TextView tv_description;
+        @BindView(R.id.tv_status) TextView tv_status;
+        Service bindedObject;
+        int bindedPosition;
+
+        ServicesViewHolder(View v) {
+            super(v);
+            ButterKnife.bind(this, v);
+        }
+
+        void bind(Service object, int position) {
+            bindedObject = object;
+            bindedPosition = position;
+            if (object == null) {
+                return;
+            }
+            tv_title.setText(object.getTopic());
+            tv_description.setText(object.getStartDate());
+            tv_status.setText(context.getString(R.string.service_status, object.getStatus()));
+        }
+
+        @OnClick(R.id.ll_content)
+        void onRowClick() {
+            callback.onItemClick(bindedObject.getTaskNumber(), false);
         }
     }
 
     interface Callback {
-        void onItemClick(String code);
+        void onItemClick(String id, boolean isTask);
     }
 }

@@ -63,7 +63,7 @@ class BiOfficeAdapter extends BaseAdapter {
         }
 
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();
-        viewHolder.bindHolder(getItem(position));
+        viewHolder.bindHolder(getItem(position), position);
 
         return convertView;
     }
@@ -71,6 +71,7 @@ class BiOfficeAdapter extends BaseAdapter {
     class ViewHolder extends RecyclerView.ViewHolder {
         Context context;
         BiOffice bindedBusTicket;
+        int bindedPosition;
         @BindView(R.id.tv_row_title) TextView tv_row_title;
         @BindView(R.id.exp_layout) ExpandableLayout exp_layout;
         public ViewHolder(View view) {
@@ -79,8 +80,9 @@ class BiOfficeAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
 
-        void bindHolder(BiOffice object) {
+        void bindHolder(BiOffice object, int position) {
             bindedBusTicket = object;
+            bindedPosition = position;
             tv_row_title.setText(object.title);
         }
 
@@ -92,9 +94,18 @@ class BiOfficeAdapter extends BaseAdapter {
                 exp_layout.expand();
             }
         }
+
+        @OnClick(R.id.ll_zayavki_zadachi)
+        void onZayavkiZadachi() {
+            if (bindedPosition == 0) {
+                callback.openTasksSdeskActivity();
+            }
+        }
     }
 
     public interface Callback {
-        void onItemClick(BiOffice biOffice);
+        void openTasksSdeskActivity();
+
+        void onItemClick();
     }
 }

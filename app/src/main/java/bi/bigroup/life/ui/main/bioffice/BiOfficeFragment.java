@@ -19,6 +19,7 @@ import bi.bigroup.life.data.models.bioffice.HotOffice;
 import bi.bigroup.life.mvp.main.bioffice.BiOfficePresenter;
 import bi.bigroup.life.mvp.main.bioffice.BiOfficeView;
 import bi.bigroup.life.ui.base.BaseFragment;
+import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.TasksSdeskActivity;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
 import butterknife.BindView;
 
@@ -43,22 +44,23 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
 
     private void configureListView() {
         LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
-//        ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.lv_bustickets_footer, lv_bustickets, false);
-//        btn_buy = footer.findViewById(R.id.btn_buy);
-//        btn_buy.setOnClickListener(v -> {
-//            if (card != null) {
-//                presenter.passActivate(card.cardNumber);
-//            }
-//        });
-//        lv_bustickets.addFooterView(footer, null, false);
-
         // Add header
         ViewGroup header = (ViewGroup) inflater.inflate(R.layout.adapter_bioffice_header, lv_office, false);
         configureViewPager(header);
         lv_office.addHeaderView(header, null, false);
 
         BiOfficeAdapter adapter = new BiOfficeAdapter(getContext());
-//        adapter.setCallback(busTicketItem -> busTicket = busTicketItem);
+        adapter.setCallback(new BiOfficeAdapter.Callback() {
+            @Override
+            public void openTasksSdeskActivity() {
+                startActivity(TasksSdeskActivity.getIntent(getContext()));
+            }
+
+            @Override
+            public void onItemClick() {
+
+            }
+        });
         lv_office.setAdapter(adapter);
 
         List<BiOffice> biOffices = new ArrayList<>();

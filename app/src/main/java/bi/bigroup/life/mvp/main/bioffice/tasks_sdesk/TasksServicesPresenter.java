@@ -4,42 +4,30 @@ import android.content.Context;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import java.util.List;
+
 import bi.bigroup.life.data.DataLayer;
-import bi.bigroup.life.data.models.ListOf;
-import bi.bigroup.life.data.models.employees.Employee;
-import bi.bigroup.life.data.repository.employees.EmployeesRepositoryProvider;
+import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Service;
+import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
+import bi.bigroup.life.data.repository.bioffice.tasks_sdesk.TasksServicesRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
 import rx.Subscriber;
 import rx.Subscription;
 
-import static bi.bigroup.life.utils.Constants.INITIAL_PAGE_NUMBER;
-import static bi.bigroup.life.utils.Constants.REQUEST_COUNT;
-
 @InjectViewState
 public class TasksServicesPresenter extends BaseMvpPresenter<TasksServicesView> {
-    private int current_page;
-    private Subscription listSubscription;
 
     @Override
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
     }
 
-    public void getEmployees(boolean is_load_more, boolean is_refresh, boolean isBirthdayToday) {
-        if (listSubscription != null
-                && !listSubscription.isUnsubscribed()) {
-            listSubscription.unsubscribe();
-        }
-        if (is_load_more) {
-            current_page += REQUEST_COUNT;
-        } else {
-            current_page = INITIAL_PAGE_NUMBER;
-        }
-        listSubscription = EmployeesRepositoryProvider.provideRepository(dataLayer.getApi())
-                .getEmployees(REQUEST_COUNT, current_page, isBirthdayToday)
-                .doOnSubscribe(() -> showLoading(true, is_load_more, is_refresh))
-                .doOnTerminate(() -> showLoading(false, is_load_more, is_refresh))
-                .subscribe(new Subscriber<ListOf<Employee>>() {
+    public void getInboxTasks(boolean is_refresh, boolean isOnlyToday) {
+        Subscription listSubscription = TasksServicesRepositoryProvider.provideRepository(dataLayer.getApi())
+                .getInboxTasks(isOnlyToday)
+                .doOnSubscribe(() -> showLoading(true, is_refresh))
+                .doOnTerminate(() -> showLoading(false, is_refresh))
+                .subscribe(new Subscriber<List<Task>>() {
                     @Override
                     public void onCompleted() {
 
@@ -51,26 +39,99 @@ public class TasksServicesPresenter extends BaseMvpPresenter<TasksServicesView> 
                     }
 
                     @Override
-                    public void onNext(ListOf<Employee> list) {
-                        if (list != null && list.list != null && list.list.size() > 0) {
-                            if (is_refresh) {
-                                getViewState().setEmployeesList(list.list);
-                            } else {
-                                getViewState().showLoadingIndicator(false);
-                                getViewState().addEmployeesList(list.list);
-                            }
-                        } else if (!is_load_more) {
-                            getViewState().showNotFoundPlaceholder();
+                    public void onNext(List<Task> list) {
+                        if (list != null && list.size() > 0) {
+                            getViewState().addList(list);
                         }
                     }
                 });
+        compositeSubscription.add(listSubscription);
     }
 
-    private void showLoading(boolean show, boolean is_load_more, boolean is_refresh) {
-        if (!is_load_more && !is_refresh) {
+    public void getOutboxTasks(boolean is_refresh) {
+        Subscription listSubscription = TasksServicesRepositoryProvider.provideRepository(dataLayer.getApi())
+                .getOutboxTasks()
+                .doOnSubscribe(() -> showLoading(true, is_refresh))
+                .doOnTerminate(() -> showLoading(false, is_refresh))
+                .subscribe(new Subscriber<List<Task>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(List<Task> list) {
+                        if (list != null && list.size() > 0) {
+                            getViewState().addList(list);
+                        }
+                    }
+                });
+        compositeSubscription.add(listSubscription);
+    }
+
+    public void getServiceDeskInbox(boolean is_refresh, boolean isOnlyToday) {
+        Subscription listSubscription = TasksServicesRepositoryProvider.provideRepository(dataLayer.getApi())
+                .getServiceDeskInbox()
+                .doOnSubscribe(() -> showLoading(true, is_refresh))
+                .doOnTerminate(() -> showLoading(false, is_refresh))
+                .subscribe(new Subscriber<List<Service>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(List<Service> list) {
+                        if (list != null && list.size() > 0) {
+                            getViewState().setList(list);
+                        }
+                        getInboxTasks(is_refresh, isOnlyToday);
+                    }
+                });
+        compositeSubscription.add(listSubscription);
+    }
+
+    public void getServiceDeskOutbox(boolean is_refresh) {
+        Subscription listSubscription = TasksServicesRepositoryProvider.provideRepository(dataLayer.getApi())
+                .getServiceDeskOutbox()
+                .doOnSubscribe(() -> showLoading(true, is_refresh))
+                .doOnTerminate(() -> showLoading(false, is_refresh))
+                .subscribe(new Subscriber<List<Service>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(List<Service> list) {
+                        if (list != null && list.size() > 0) {
+                            getViewState().setList(list);
+                        }
+                        getOutboxTasks(is_refresh);
+                    }
+                });
+        compositeSubscription.add(listSubscription);
+    }
+
+
+    private void showLoading(boolean show, boolean is_refresh) {
+        if (!is_refresh) {
             getViewState().showLoadingIndicator(show);
-        } else if (is_load_more) {
-            getViewState().showLoadingItemIndicator(show);
         } else {
             getViewState().showRefreshLoading(show);
         }

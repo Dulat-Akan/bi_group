@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/ll_content"
+              style="@style/LL_MW_V"
+              android:background="?android:selectableItemBackground"
+              android:padding="@dimen/dp_15">
+
+    <LinearLayout
+        android:id="@+id/ll_row"
+        style="@style/LL_MW_H"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            style="@style/LL_MW_V"
+            android:layout_weight="1">
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_title"
+                style="@style/MW"
+                android:maxLines="1"
+                tools:text="Type something notification"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_status"
+                style="@style/MW"
+                tools:text="status"
+                android:textColor="@color/tasks_sdesk_description"
+                android:textSize="@dimen/sp_12"/>
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_description"
+                style="@style/MW"
+                tools:text="Secondary"
+                android:textColor="@color/tasks_sdesk_description"
+                android:textSize="@dimen/sp_12"/>
+        </LinearLayout>
+
+        <ImageView
+            style="@style/WW"
+            android:src="@drawable/arrow_up_right"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginTop="@dimen/dp_11"
+        android:background="@color/divider"/>
+
+</LinearLayout>

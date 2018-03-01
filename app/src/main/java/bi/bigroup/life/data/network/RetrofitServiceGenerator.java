@@ -48,38 +48,40 @@ public class RetrofitServiceGenerator {
     public <S> S createService(Class<S> serviceClass) {
         if (okHttpClient == null) {
             configureOkHttpClientBuilder();
-//            okHttpClient = okHttpClientBuilder.build();
+            // DEV
+            okHttpClient = okHttpClientBuilder.build();
 
-            final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
-                @Override
-                public X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[0];
-                }
-
-                @Override
-                public void checkServerTrusted(final X509Certificate[] chain,
-                                               final String authType) throws CertificateException {
-                }
-
-                @Override
-                public void checkClientTrusted(final X509Certificate[] chain,
-                                               final String authType) throws CertificateException {
-                }
-            }};
-
-            SSLContext sslContext;
-            try {
-                sslContext = SSLContext.getInstance("SSL");
-                sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-                okHttpClientBuilder.sslSocketFactory(sslContext.getSocketFactory());
-
-                HostnameVerifier hostnameVerifier = (hostname, session) -> true;
-                okHttpClientBuilder.hostnameVerifier( hostnameVerifier);
-                okHttpClient = okHttpClientBuilder.build();
-
-            } catch (NoSuchAlgorithmException | KeyManagementException e) {
-                e.printStackTrace();
-            }
+            // PROD
+//            final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+//                @Override
+//                public X509Certificate[] getAcceptedIssuers() {
+//                    return new X509Certificate[0];
+//                }
+//
+//                @Override
+//                public void checkServerTrusted(final X509Certificate[] chain,
+//                                               final String authType) throws CertificateException {
+//                }
+//
+//                @Override
+//                public void checkClientTrusted(final X509Certificate[] chain,
+//                                               final String authType) throws CertificateException {
+//                }
+//            }};
+//
+//            SSLContext sslContext;
+//            try {
+//                sslContext = SSLContext.getInstance("SSL");
+//                sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+//                okHttpClientBuilder.sslSocketFactory(sslContext.getSocketFactory());
+//
+//                HostnameVerifier hostnameVerifier = (hostname, session) -> true;
+//                okHttpClientBuilder.hostnameVerifier( hostnameVerifier);
+//                okHttpClient = okHttpClientBuilder.build();
+//
+//            } catch (NoSuchAlgorithmException | KeyManagementException e) {
+//                e.printStackTrace();
+//            }
         }
 
         if (retrofit == null) {

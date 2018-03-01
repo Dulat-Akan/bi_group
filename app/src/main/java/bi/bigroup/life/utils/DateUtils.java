@@ -15,13 +15,9 @@ import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 
 public class DateUtils {
     public static final DateFormat BIRTHDATE_DISPLAY_FORMAT = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-    public static final SimpleDateFormat DATE_FORMAT_T_Z = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());
     private static final SimpleDateFormat FEED_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-
-
-    public static String getFinishPostnatalDate(Date date) {
-        return DATE_FORMAT_T_Z.format(date);
-    }
+    private static final SimpleDateFormat SERVICES_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
+    public static final DateFormat TASKS_SEVICES_DISPLAY_FORMAT = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
 
     public static String getBirthDateStr(String birthDate) {
         Date origDate = null;
@@ -31,6 +27,26 @@ public class DateUtils {
             e.printStackTrace();
         }
         return BIRTHDATE_DISPLAY_FORMAT.format(origDate).toLowerCase();
+    }
+
+    public static String getTasksDate(String givenDate) {
+        Date origDate = null;
+        try {
+            origDate = FEED_DATE_FORMAT.parse(givenDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return TASKS_SEVICES_DISPLAY_FORMAT.format(origDate).toLowerCase();
+    }
+
+    public static String getServicesDate(String givenDate) {
+        Date origDate = null;
+        try {
+            origDate = SERVICES_DATE_FORMAT.parse(givenDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return SERVICES_DATE_FORMAT.format(origDate).toLowerCase();
     }
 
     public static String dateToString(Date date, SimpleDateFormat format) {

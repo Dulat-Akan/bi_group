@@ -8,11 +8,9 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import java.util.List;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.mvp.main.bioffice.tasks_sdesk.TasksServicesPresenter;
 import bi.bigroup.life.mvp.main.bioffice.tasks_sdesk.TasksServicesView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
-import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 
 import static bi.bigroup.life.utils.Constants.KEY_BOOL;
 
@@ -39,7 +37,12 @@ public class TasksServicesFragment extends BaseSwipeRefreshFragment implements T
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
         handleIntent();
-        mvpPresenter.getEmployees(false, false, isInbox);
+        if (isInbox) {
+            mvpPresenter.getServiceDeskInbox(false, false);
+        } else {
+            mvpPresenter.getServiceDeskOutbox(false);
+        }
+
         configureRecyclerView();
     }
 
@@ -52,21 +55,19 @@ public class TasksServicesFragment extends BaseSwipeRefreshFragment implements T
     protected void configureRecyclerView() {
         super.configureRecyclerView();
         mAdapter = new TasksServicesAdapter(getContext());
-//        mAdapter.setCallback(code -> startActivity(EmployeePageActivity.getIntent(getContext(), code)));
-        recycler_view.setAdapter(mAdapter);
-        recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view, 1) {
-            @Override
-            public void onRequestMoreItems() {
-                if (!mAdapter.getLoading() && mAdapter.getData().size() > 0) {
-                    mvpPresenter.getEmployees(true, false, isInbox);
-                }
-            }
+        mAdapter.setCallback((id, isTask) -> {
+
         });
+        recycler_view.setAdapter(mAdapter);
     }
 
     @Override
     protected void swipeToRefresh() {
-        mvpPresenter.getEmployees(false, true, isInbox);
+        if (isInbox) {
+            mvpPresenter.getServiceDeskInbox(true, false);
+        } else {
+            mvpPresenter.getServiceDeskOutbox(true);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -74,18 +75,18 @@ public class TasksServicesFragment extends BaseSwipeRefreshFragment implements T
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void setEmployeesList(List<Employee> list) {
+    public void showLoadingItemIndicator(boolean show) {
+        recycler_view.post(() -> mAdapter.setLoading(show));
+    }
+
+    @Override
+    public void setList(List<?> list) {
         mAdapter.clearData();
         mAdapter.addData(list);
     }
 
     @Override
-    public void addEmployeesList(List<Employee> list) {
+    public void addList(List<?> list) {
         mAdapter.addData(list);
-    }
-
-    @Override
-    public void showLoadingItemIndicator(boolean show) {
-        recycler_view.post(() -> mAdapter.setLoading(show));
     }
 }

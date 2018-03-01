@@ -4,6 +4,8 @@ import java.util.List;
 
 import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.auth.Auth;
+import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Service;
+import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.models.feed.Feed;
@@ -62,4 +64,17 @@ public interface API {
 
     @GET("employees/{code}")
     Observable<Employee> getEmployee(@Path("code") String code);
+
+    /****** Tasks & Service *******/
+    @GET("tasks/outbox/")
+    Observable<List<Task>> getOutboxTasks();
+
+    @GET("tasks/inbox/")
+    Observable<List<Task>> getInboxTasks(@Query("isOnlyToday") Boolean isOnlyToday);
+
+    @GET("Requests/servicedesk/outbox/")
+    Observable<List<Service>> getServiceDeskOutbox();
+
+    @GET("Requests/servicedesk/inbox/")
+    Observable<List<Service>> getServiceDeskInbox();
 }

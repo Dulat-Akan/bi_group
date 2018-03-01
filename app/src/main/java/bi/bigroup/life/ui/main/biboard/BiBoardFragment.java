@@ -93,11 +93,6 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
 }
 /*
 
-    @OnClick(R.id.btn_tasks_sdesk)
-    void onClick() {
-        startActivity(TasksSdeskActivity.getIntent(getContext()));
-    }
-
     @OnClick(R.id.btn_add_question)
     void onAddClick() {
         startActivity(AddQuestionActivity.getIntent(getContext()));
