@@ -23,4 +23,13 @@ public class GlideUtils {
                 .dontAnimate()
                 .into(view);
     }
+
+    public static void showNewsImage(Context context, ImageView view, String url) {
+        Glide.with(context.getApplicationContext())
+                .load(url)
+                .dontAnimate()
+                .fitCenter()
+                .dontTransform()
+                .into(view);
+    }
 }

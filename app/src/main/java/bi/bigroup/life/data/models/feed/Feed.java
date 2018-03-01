@@ -4,6 +4,7 @@ import android.content.Context;
 
 import static bi.bigroup.life.utils.DateUtils.getDisplayableTime;
 import static bi.bigroup.life.utils.StringUtils.getOkInt;
+import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
 
 public class Feed {
@@ -24,6 +25,23 @@ public class Feed {
     public Boolean isLikedByMe;
     public Boolean isFromSharepoint;
     public FeedEntityType entityType;
+    public ImageSize imageSize;
+
+    public boolean isLiked() {
+        return isOkBoolean(isLikedByMe);
+    }
+
+    public int getLikesQuantity() {
+        return getOkInt(likesQuantity);
+    }
+
+    public void setLikedByMe(Boolean likedByMe) {
+        isLikedByMe = likedByMe;
+    }
+
+    public void setLikesQuantity(int likesQuantity) {
+        this.likesQuantity = likesQuantity;
+    }
 
     public int getLayoutType() {
         if (entityType != null) {
@@ -47,5 +65,18 @@ public class Feed {
 
     public String getDate(Context context) {
         return getDisplayableTime(createDate, context);
+    }
+
+    public class ImageSize {
+        public Integer width;
+        public Integer height;
+
+        public int getWidth() {
+            return getOkInt(width);
+        }
+
+        public int getHeight() {
+            return getOkInt(height);
+        }
     }
 }

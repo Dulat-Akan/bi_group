@@ -51,10 +51,6 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
         return loading;
     }
 
-    public List<Employee> getData() {
-        return data;
-    }
-
     void setSearchResult(List<Employee> searchResult) {
         data.clear();
         data.addAll(searchResult);

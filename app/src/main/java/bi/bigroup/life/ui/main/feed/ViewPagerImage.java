@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.utils.GlideUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,9 +20,14 @@ public class ViewPagerImage extends PagerAdapter {
     private Context context;
 
     private List<String> sliders = new ArrayList<>();
+    private Feed.ImageSize imageSize;
 
     public ViewPagerImage(Context context) {
         this.context = context;
+    }
+
+    public void setImageSize(Feed.ImageSize imageSize) {
+        this.imageSize = imageSize;
     }
 
     public void addImages(List<String> newSliders) {
@@ -68,7 +74,7 @@ public class ViewPagerImage extends PagerAdapter {
         }
 
         void bindNews(String sliderImg) {
-            GlideUtils.showImg(context, img_slider, sliderImg);
+            GlideUtils.showNewsImage(context, img_slider, sliderImg);
         }
     }
 }

@@ -15,4 +15,5 @@ public interface FeedView extends BaseSwipeRefreshMvpView {
 
     void showLoadingItemIndicator(boolean show);
 
+    void showTransparentIndicator(boolean show);
 }

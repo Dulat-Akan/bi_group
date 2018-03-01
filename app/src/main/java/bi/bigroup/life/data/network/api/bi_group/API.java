@@ -38,6 +38,9 @@ public interface API {
     @GET("UserProfile/")
     Observable<User> getUserProfile();
 
+    @PUT("News/{id}/like")
+    Observable<ResponseBody> likeNews(@Path("id") String id);
+
     /****** User *******/
     @GET("News/{id}")
     Observable<News> getNews(@Path("id") String id);

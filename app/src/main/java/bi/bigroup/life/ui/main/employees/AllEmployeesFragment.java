@@ -107,10 +107,10 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
         mAdapter = new EmployeesAdapter(getContext());
         mAdapter.setCallback(code -> startActivity(EmployeePageActivity.getIntent(getContext(), code)));
         recycler_view.setAdapter(mAdapter);
-        recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view, 1) {
+        recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view) {
             @Override
             public void onRequestMoreItems() {
-                if (!mAdapter.getLoading() && mAdapter.getData().size() > 0) {
+                if (!mAdapter.getLoading() && mAdapter.getItemCount() > 1) {
                     mvpPresenter.getEmployees(true, false, isBirthdayToday);
                 }
             }

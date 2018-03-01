@@ -49,12 +49,18 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
             public void onSuggestionItemClick(String suggestionId) {
 
             }
+
+            @Override
+            public void onNewsLike(String id, boolean liked) {
+                mvpPresenter.likeSubscriptionUnsubscribe();
+                mvpPresenter.likeNews(id);
+            }
         });
         recycler_view.setAdapter(mAdapter);
-        recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view, 1) {
+        recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view) {
             @Override
             public void onRequestMoreItems() {
-                if (!mAdapter.getLoading()) {
+                if (!mAdapter.getLoading() && mAdapter.getItemCount() > 1) {
                     mvpPresenter.getFeedList(true, false);
                 }
             }
@@ -88,5 +94,10 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     @Override
     public void showLoadingItemIndicator(boolean show) {
         recycler_view.post(() -> mAdapter.setLoading(show));
+    }
+
+    @Override
+    public void showTransparentIndicator(boolean show) {
+        pb_indicator.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:id="@+id/ll_content"
               style="@style/LL_MW_V">
@@ -14,19 +13,27 @@
             <include
                 layout="@layout/mrg_feed_user_block"/>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_images"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_170"/>
-
-            <bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator
-                android:id="@+id/ci_images"
+            <ImageView
+                android:id="@+id/img_slider"
                 style="@style/MW"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp_6"
-                app:fillColor="@color/pager_indicator_fill"
-                app:pageColor="@color/pager_indicator_unselected"
-                app:radius="@dimen/dp_4"/>
+                android:background="@color/slider_img_bg"
+                android:minHeight="@dimen/dp_170"
+                android:scaleType="fitXY"/>
+
+            <!--<bi.bigroup.life.views.ViewPagerWrapContent-->
+            <!--android:id="@+id/vp_images"-->
+            <!--style="@style/MW"-->
+            <!--android:minHeight="@dimen/dp_170"/>-->
+
+            <!--<bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator-->
+            <!--android:id="@+id/ci_images"-->
+            <!--style="@style/MW"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginTop="@dimen/dp_6"-->
+            <!--app:fillColor="@color/pager_indicator_fill"-->
+            <!--app:pageColor="@color/pager_indicator_unselected"-->
+            <!--app:radius="@dimen/dp_4"/>-->
 
             <LinearLayout
                 style="@style/LL_MW_H"
@@ -34,18 +41,24 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_12">
 
-                <ImageView
-                    android:id="@+id/img_like"
+                <LinearLayout
+                    android:id="@+id/ll_like"
                     style="@style/WW"
-                    android:src="@drawable/like_inactive"/>
+                    android:gravity="center_vertical">
 
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_like_quantity"
-                    style="@style/WW"
-                    android:layout_marginLeft="@dimen/dp_3"
-                    android:textColor="@color/feed_time"
-                    android:textSize="@dimen/sp_12"
-                    tools:text="423"/>
+                    <ImageView
+                        android:id="@+id/img_like"
+                        style="@style/WW"
+                        android:src="@drawable/like_inactive"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_like_quantity"
+                        style="@style/WW"
+                        android:layout_marginLeft="@dimen/dp_3"
+                        android:textColor="@color/feed_time"
+                        android:textSize="@dimen/sp_12"
+                        tools:text="423"/>
+                </LinearLayout>
 
                 <ImageView
                     android:id="@+id/img_comment"
