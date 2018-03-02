@@ -113,7 +113,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
             if (data.get(getPos(position)).getLayoutType() == FEED_TYPE_NEWS) {
                 return NEWS_LAYOUT_ID;
             } else if (data.get(getPos(position)).getLayoutType() == FEED_TYPE_SUGGESTION) {
-                return SUGGESTION_LAYOUT_ID;
+                return SUGGESTION_LAYOUT_ID; // предложение
             } else if (data.get(getPos(position)).getLayoutType() == FEED_TYPE_QUESTIONNAIRE) {
                 return QUESTIONNAIRE_LAYOUT_ID;
             }
