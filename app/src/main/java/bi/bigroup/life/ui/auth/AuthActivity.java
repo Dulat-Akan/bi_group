@@ -47,8 +47,8 @@ public class AuthActivity extends BaseActivity implements AuthView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        if (DebugConfig.DEV_BUILD) {
-            et_username.setText(TEST_USERNAME);
-            et_pwd.setText(TEST_PWD);
+//            et_username.setText(TEST_USERNAME);
+//            et_pwd.setText(TEST_PWD);
 //        }
 
         mvpPresenter.init(this, dataLayer);
