@@ -200,5 +200,7 @@
     <string name="it_service">IT cлужба</string>
     <string name="deadline">Срок исполнения"</string>
 
+    <!-- NewsDetailActivity -->
+    <string name="comments_count">Комментарии %s</string>
     <string name="q"></string>
 </resources>

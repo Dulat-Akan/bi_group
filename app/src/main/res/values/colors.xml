@@ -91,6 +91,9 @@
     <color name="et_border">#bcbbc1</color>
     <color name="et_hint_header">#108aeb</color>
 
+    <!-- NewsDetailActivity -->
+    <color name="news_detail_comments_count">#6d6d72</color>
+
     <!-- AddNewsActivity -->
 
 </resources>

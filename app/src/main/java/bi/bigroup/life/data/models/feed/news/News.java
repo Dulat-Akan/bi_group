@@ -5,6 +5,8 @@ import android.content.Context;
 import java.util.List;
 
 import static bi.bigroup.life.utils.DateUtils.getDisplayableTime;
+import static bi.bigroup.life.utils.StringUtils.getOkInt;
+import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
 import static bi.bigroup.life.utils.StringUtils.replaceNullTrim;
 
@@ -23,9 +25,13 @@ public class News {
     public Boolean isLikedByMe;
     public Boolean isHistoryEvent;
     public Boolean isFromSharepoint;
-    public List<String> comments;
-    public List<String> secondaryImages;
-    public List<String> tags;
+    public List<Comment> comments;
+    public List<SecondaryImage> secondaryImages;
+    public List<Tags> tags;
+
+    public String getId() {
+        return replaceNull(id);
+    }
 
     public String getAuthorCode() {
         return replaceNullTrim(authorCode);
@@ -51,4 +57,27 @@ public class News {
         return getDisplayableTime(createDate, context);
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public int getOkIntQuantity(Integer sum) {
+        return getOkInt(sum);
+    }
+
+    public boolean isLiked() {
+        return isOkBoolean(isLikedByMe);
+    }
+
+    public int getLikesQuantity() {
+        return getOkInt(likesQuantity);
+    }
+
+    public void setLikedByMe(Boolean likedByMe) {
+        isLikedByMe = likedByMe;
+    }
+
+    public void setLikesQuantity(int likesQuantity) {
+        this.likesQuantity = likesQuantity;
+    }
 }

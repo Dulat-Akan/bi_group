@@ -8,11 +8,13 @@ import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.data.repository.feed.news.NewsRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
+import okhttp3.ResponseBody;
 import rx.Subscriber;
 import rx.Subscription;
 
 @InjectViewState
 public class NewsDetailPresenter extends BaseMvpPresenter<NewsDetailView> {
+    private Subscription likeUnlikeSubscription;
 
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
@@ -42,5 +44,33 @@ public class NewsDetailPresenter extends BaseMvpPresenter<NewsDetailView> {
                     }
                 });
         compositeSubscription.add(subscription);
+    }
+
+    public void likeSubscriptionUnsubscribe() {
+        if (likeUnlikeSubscription != null
+                && !likeUnlikeSubscription.isUnsubscribed()) {
+            likeUnlikeSubscription.unsubscribe();
+        }
+    }
+
+    public void likeNews(String newsId) {
+        likeUnlikeSubscription = NewsRepositoryProvider.provideRepository(dataLayer.getApi())
+                .likeNews(newsId)
+                .doOnSubscribe(() -> getViewState().showTransparentIndicator(true))
+                .doOnTerminate(() -> getViewState().showTransparentIndicator(false))
+                .subscribe(new Subscriber<ResponseBody>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody response) {
+                    }
+                });
     }
 }

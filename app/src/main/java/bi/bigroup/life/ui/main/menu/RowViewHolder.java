@@ -10,7 +10,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
 public class RowViewHolder {
     private ViewGroup rowView;
     @BindView(R.id.tv_title) TextView tv_title;

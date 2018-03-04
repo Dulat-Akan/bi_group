@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LL_MM_V"
+    android:gravity="center_horizontal">
+
+    <RelativeLayout
+        style="@style/MW">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_images"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_205"
+            android:background="@color/slider_img_bg"/>
+
+        <bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator
+            android:id="@+id/ci_images"
+            style="@style/MW"
+            android:layout_below="@id/vp_images"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_6"
+            app:fillColor="@color/pager_indicator_fill"
+            app:pageColor="@color/pager_indicator_unselected"
+            app:radius="@dimen/dp_4"/>
+
+        <LinearLayout
+            style="@style/LL_MW_H"
+            android:layout_marginLeft="@dimen/dp_18"
+            android:layout_marginRight="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_15">
+
+            <LinearLayout
+                style="@style/MW"
+                android:layout_weight="1">
+
+                <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                    android:id="@+id/tv_subhead_top"
+                    style="@style/WW"
+                    android:background="@drawable/tv_selector_white_rounded"
+                    android:maxLines="2"
+                    android:paddingBottom="@dimen/dp_4"
+                    android:paddingLeft="@dimen/dp_6"
+                    android:paddingRight="@dimen/dp_6"
+                    android:paddingTop="@dimen/dp_4"
+                    android:textAllCaps="true"
+                    android:textColor="@color/pager_indicator_fill"
+                    android:textSize="@dimen/sp_12"
+                    tools:text="@string/lorem_ipsum_short"/>
+            </LinearLayout>
+
+            <ImageView
+                style="@style/WW"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@drawable/ic_close"
+                android:visibility="invisible"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/LL_MW_H"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_15"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/dp_12">
+
+        <bi.bigroup.life.views.RoundedImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="@dimen/dp_42"
+            android:layout_height="@dimen/dp_42"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_avatar"
+            app:radius_width="@dimen/dp_6"/>
+
+        <LinearLayout
+            style="@style/LL_MM_V"
+            android:layout_marginLeft="@dimen/dp_17"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                android:id="@+id/tv_username"
+                style="@style/MW"
+                android:text="Имя пользователя"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_time"
+                style="@style/MW"
+                android:textColor="@color/feed_time"
+                android:textSize="@dimen/sp_14"
+                tools:text="5 минут назад"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/PARENT_DIVIDER"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"/>
+
+    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+        android:id="@+id/tv_title"
+        style="@style/MW"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16"
+        tools:text="Sudheads text"/>
+
+    <WebView
+        android:id="@+id/wv_content"
+        style="@style/MW"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_12"
+        android:background="@color/main_bg"
+        android:scrollbars="none"/>
+
+    <LinearLayout
+        style="@style/LL_MW_H"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_15"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/dp_12">
+
+        <LinearLayout
+            android:id="@+id/ll_like"
+            style="@style/WW"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/img_like"
+                style="@style/WW"
+                android:src="@drawable/like_inactive"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_like_quantity"
+                style="@style/WW"
+                android:layout_marginLeft="@dimen/dp_3"
+                android:textColor="@color/feed_time"
+                android:textSize="@dimen/sp_12"
+                tools:text="423"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_comment"
+            style="@style/WW"
+            android:layout_marginLeft="@dimen/dp_11"
+            android:src="@drawable/chat_inactive"/>
+
+        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+            android:id="@+id/tv_comment_quantity"
+            style="@style/MW"
+            android:layout_marginLeft="@dimen/dp_3"
+            android:layout_weight="1"
+            android:textColor="@color/feed_time"
+            android:textSize="@dimen/sp_12"
+            tools:text="423"/>
+
+        <ImageView
+            android:id="@+id/img_views"
+            style="@style/WW"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:src="@drawable/view"/>
+
+        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+            android:id="@+id/tv_view_quantity"
+            style="@style/WW"
+            android:layout_marginLeft="@dimen/dp_3"
+            android:textColor="@color/feed_time"
+            android:textSize="@dimen/sp_12"
+            tools:text="423"/>
+    </LinearLayout>
+
+    <View
+        style="@style/PARENT_DIVIDER"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"/>
+
+    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+        android:id="@+id/tv_comments"
+        style="@style/MW"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="@string/comments_count"
+        android:textColor="@color/news_detail_comments_count"
+        android:textSize="@dimen/sp_13"/>
+</LinearLayout>

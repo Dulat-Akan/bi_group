@@ -5,4 +5,6 @@ import bi.bigroup.life.mvp.BaseMvpView;
 
 public interface NewsDetailView extends BaseMvpView {
     void setNews(News object);
+
+    void showTransparentIndicator(boolean show);
 }
