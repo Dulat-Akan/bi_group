@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,12 @@ import java.util.List;
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.bioffice.BiOffice;
 import bi.bigroup.life.data.models.feed.news.Comment;
+import bi.bigroup.life.utils.GlideUtils;
+import bi.bigroup.life.views.RoundedImageView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static bi.bigroup.life.utils.Constants.getProfilePicture;
 
 class CommentsAdapter extends BaseAdapter {
     private static final int ITEM_LAYOUT = R.layout.adapter_news_comment;
@@ -31,6 +38,11 @@ class CommentsAdapter extends BaseAdapter {
     void addList(List<Comment> newList) {
         this.data.clear();
         this.data.addAll(newList);
+        notifyDataSetChanged();
+    }
+
+    void addNewComment(Comment comment) {
+        this.data.add(comment);
         notifyDataSetChanged();
     }
 
@@ -66,7 +78,12 @@ class CommentsAdapter extends BaseAdapter {
     class ViewHolder {
         Context context;
         Comment comment;
-//        @BindView(R.id.tv_row_title) TextView tv_row_title;
+        @BindView(R.id.img_avatar) RoundedImageView img_avatar;
+        @BindView(R.id.tv_user_fullname) TextView tv_user_fullname;
+        @BindView(R.id.tv_time) TextView tv_time;
+        @BindView(R.id.tv_content) TextView tv_content;
+        @BindView(R.id.img_like) ImageView img_like;
+        @BindView(R.id.tv_like_quantity) TextView tv_like_quantity;
 
         public ViewHolder(View view) {
             context = view.getContext();
@@ -75,6 +92,14 @@ class CommentsAdapter extends BaseAdapter {
 
         void bindHolder(Comment object, int position) {
             comment = object;
+            tv_user_fullname.setText(object.getFullName());
+            tv_time.setText(object.getDate(context));
+            tv_content.setText(object.getContent());
+            GlideUtils.showAvatar(context, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_avatar);
+
+            tv_like_quantity.setText(String.valueOf(object.getOkIntQuantity(object.likesQuantity)));
+            img_like.setImageResource(object.isLiked() ? R.drawable.like_active
+                    : R.drawable.like_inactive);
         }
     }
 

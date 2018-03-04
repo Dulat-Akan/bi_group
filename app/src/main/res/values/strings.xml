@@ -202,5 +202,6 @@
 
     <!-- NewsDetailActivity -->
     <string name="comments_count">Комментарии %s</string>
+    <string name="has_answer">Есть ответ</string>
     <string name="q"></string>
 </resources>

@@ -9,6 +9,8 @@ import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.models.feed.Feed;
+import bi.bigroup.life.data.models.feed.news.AddComment;
+import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.models.user.User;
@@ -34,16 +36,20 @@ public interface API {
                                        @Query("offset") int offset,
                                        @Query("withDescription") Boolean withDescription);
 
-    /****** News *******/
+    /****** User *******/
     @GET("UserProfile/")
     Observable<User> getUserProfile();
+
+    /****** News *******/
+    @GET("News/{id}")
+    Observable<News> getNews(@Path("id") String id);
 
     @PUT("News/{id}/like")
     Observable<ResponseBody> likeNews(@Path("id") String id);
 
-    /****** User *******/
-    @GET("News/{id}")
-    Observable<News> getNews(@Path("id") String id);
+    @POST("News/{id}/comments")
+    Observable<Comment> addComment(@Path("id") String id,
+                                   @Body AddComment params);
 
     /****** Notifications *******/
     @GET("Notifications/")

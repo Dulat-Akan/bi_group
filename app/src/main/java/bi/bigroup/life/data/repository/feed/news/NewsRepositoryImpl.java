@@ -1,5 +1,7 @@
 package bi.bigroup.life.data.repository.feed.news;
 
+import bi.bigroup.life.data.models.feed.news.AddComment;
+import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.data.network.api.bi_group.API;
 import okhttp3.ResponseBody;
@@ -27,6 +29,14 @@ class NewsRepositoryImpl implements NewsRepository {
     public Observable<ResponseBody> likeNews(String id) {
         return api
                 .likeNews(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<Comment> addComment(String id, AddComment addComment) {
+        return api
+                .addComment(id, addComment)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

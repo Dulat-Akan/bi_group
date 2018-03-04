@@ -1,18 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fl_parent"
     style="@style/MM"
     android:background="@color/white"
     android:fitsSystemWindows="true">
 
-    <ListView
-        android:id="@+id/lv_news_detail"
-        style="@style/MM"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="@null"
-        android:listSelector="@android:color/transparent"
-        android:orientation="vertical"/>
+    <RelativeLayout
+        style="@style/MM">
+
+        <ListView
+            android:id="@+id/lv_news_detail"
+            style="@style/MM"
+            android:layout_above="@+id/v_divider"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"
+            android:orientation="vertical"/>
+
+        <View
+            android:id="@+id/v_divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_43"
+            android:layout_above="@+id/ll_enter_text"
+            android:background="@color/gray"/>
+
+        <LinearLayout
+            android:id="@+id/ll_enter_text"
+            style="@style/LL_MW_H"
+            android:layout_alignParentBottom="true"
+            android:background="@color/comment_et_bg"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dp_7"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_7">
+
+            <ImageView
+                android:id="@+id/img_send_comment"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:src="@drawable/ic_news_add_comment"/>
+
+            <LinearLayout
+                style="@style/LL_MW_V"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:background="@drawable/et_selector_rounded_add_content_16">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/et_content"
+                    style="@style/MW"
+                    android:inputType="textMultiLine"
+                    android:paddingLeft="@dimen/dp_12"
+                    android:paddingRight="@dimen/dp_12"
+                    android:textSize="@dimen/sp_15"
+                    app:met_hideUnderline="true"
+                    tools:text="content"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/img_close"

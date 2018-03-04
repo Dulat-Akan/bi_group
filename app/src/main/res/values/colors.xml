@@ -93,6 +93,7 @@
 
     <!-- NewsDetailActivity -->
     <color name="news_detail_comments_count">#6d6d72</color>
+    <color name="comment_et_bg">#fefefe</color>
 
     <!-- AddNewsActivity -->
 

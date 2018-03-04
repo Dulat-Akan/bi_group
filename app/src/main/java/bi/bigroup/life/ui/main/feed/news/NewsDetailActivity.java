@@ -15,10 +15,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.Collections;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.mvp.main.feed.news.NewsDetailPresenter;
 import bi.bigroup.life.mvp.main.feed.news.NewsDetailView;
@@ -33,6 +35,8 @@ import butterknife.OnClick;
 
 import static android.support.customtabs.CustomTabsIntent.KEY_ID;
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
+import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
+import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 
 public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
@@ -41,8 +45,10 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
 
     @BindView(R.id.lv_news_detail) ListView lv_news_detail;
     @BindView(R.id.pb_indicator_transparent) ViewGroup pb_indicator_transparent;
+    @BindView(R.id.et_content) MaterialEditText et_content;
     private CommentsAdapter adapter;
     private NewsHeader headerHolder;
+    private String newsId;
 
     public static Intent getIntent(Context context, String id) {
         Intent intent = new Intent(context, NewsDetailActivity.class);
@@ -74,8 +80,8 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
     private void handleIntent() {
         Intent intent = getIntent();
         if (intent != null) {
-            String id = intent.getStringExtra(KEY_ID);
-            mvpPresenter.getNewsDetail(id);
+            newsId = intent.getStringExtra(KEY_ID);
+            mvpPresenter.getNewsDetail(newsId);
         }
     }
 
@@ -88,6 +94,11 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
     @OnClick(R.id.img_close)
     void onCloseClick() {
         finish();
+    }
+
+    @OnClick(R.id.img_send_comment)
+    void onSendComment() {
+        mvpPresenter.addComment(newsId, et_content.getText().toString());
     }
 
     class NewsHeader {
@@ -186,5 +197,13 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
     @Override
     public void showTransparentIndicator(boolean show) {
         pb_indicator_transparent.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void addNewComment(Comment comment) {
+        et_content.setText(EMPTY_STR);
+        clearFocusFromAllViews(fl_parent);
+        hideSoftKeyboard(fl_parent);
+        adapter.addNewComment(comment);
     }
 }
