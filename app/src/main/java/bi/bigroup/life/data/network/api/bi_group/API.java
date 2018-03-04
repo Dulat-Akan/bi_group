@@ -47,6 +47,11 @@ public interface API {
     @PUT("News/{id}/like")
     Observable<ResponseBody> likeNews(@Path("id") String id);
 
+    @PUT("News/{id}/comments/{commentId}/like/{voteType}")
+    Observable<ResponseBody> likeNewsComment(@Path("id") String id,
+                                             @Path("commentId") String commentId,
+                                             @Path("voteType") Integer voteType);
+
     @POST("News/{id}/comments")
     Observable<Comment> addComment(@Path("id") String id,
                                    @Body AddComment params);

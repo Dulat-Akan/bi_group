@@ -19,6 +19,7 @@ import static bi.bigroup.life.utils.StringUtils.isStringOk;
 @InjectViewState
 public class NewsDetailPresenter extends BaseMvpPresenter<NewsDetailView> {
     private Subscription likeUnlikeSubscription;
+    private Subscription likeCommentUnlikeSubscription;
 
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
@@ -78,6 +79,8 @@ public class NewsDetailPresenter extends BaseMvpPresenter<NewsDetailView> {
                 });
     }
 
+    // *********** Comments ***************
+
     public void addComment(String newsId, String content) {
         if (!isStringOk(newsId) || !isStringOk(content)) {
             return;
@@ -105,5 +108,33 @@ public class NewsDetailPresenter extends BaseMvpPresenter<NewsDetailView> {
                 });
 
         compositeSubscription.add(subscription);
+    }
+
+    public void likeCommentSubscriptionUnsubscribe() {
+        if (likeCommentUnlikeSubscription != null
+                && !likeCommentUnlikeSubscription.isUnsubscribed()) {
+            likeCommentUnlikeSubscription.unsubscribe();
+        }
+    }
+
+    public void likeComment(String newsId, String commentId, int vote) {
+        likeCommentUnlikeSubscription = NewsRepositoryProvider.provideRepository(dataLayer.getApi())
+                .likeNewsComment(newsId, commentId, vote)
+                .doOnSubscribe(() -> getViewState().showTransparentIndicator(true))
+                .doOnTerminate(() -> getViewState().showTransparentIndicator(false))
+                .subscribe(new Subscriber<ResponseBody>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody response) {
+                    }
+                });
     }
 }

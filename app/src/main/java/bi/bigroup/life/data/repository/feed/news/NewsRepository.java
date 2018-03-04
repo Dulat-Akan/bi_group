@@ -17,4 +17,5 @@ public interface NewsRepository {
 
     Observable<Comment> addComment(String id, AddComment addComment);
 
+    Observable<ResponseBody> likeNewsComment(String id, String commentId, int vote);
 }

@@ -18,7 +18,10 @@ import bi.bigroup.life.utils.GlideUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
+import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_DISLIKED;
+import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_LIKED;
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
 
 class CommentsAdapter extends BaseAdapter {
@@ -101,9 +104,26 @@ class CommentsAdapter extends BaseAdapter {
             img_like.setImageResource(object.isLiked() ? R.drawable.like_active
                     : R.drawable.like_inactive);
         }
+
+        @OnClick(R.id.ll_like)
+        void onLikeClick() {
+            if (callback != null) {
+                callback.onCommentLike(comment.getId(), comment.isLiked());
+                if (comment.isLiked()) {
+                    comment.setVote(VOTE_DISLIKED);
+                    comment.setLikesQuantity(comment.getLikesQuantity() - 1);
+                } else {
+                    comment.setVote(VOTE_LIKED);
+                    comment.setLikesQuantity(comment.getLikesQuantity() + 1);
+                }
+                notifyDataSetChanged();
+            }
+        }
     }
 
     public interface Callback {
         void onItemClick(BiOffice biOffice);
+
+        void onCommentLike(String id, boolean liked);
     }
 }

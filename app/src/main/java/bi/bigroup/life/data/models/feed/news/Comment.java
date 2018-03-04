@@ -20,6 +20,10 @@ public class Comment {
     public Integer dislikesQuantity;
     public Integer vote;
 
+    public String getId() {
+        return replaceNull(id);
+    }
+
     public int getOkIntQuantity(Integer sum) {
         return getOkInt(sum);
     }

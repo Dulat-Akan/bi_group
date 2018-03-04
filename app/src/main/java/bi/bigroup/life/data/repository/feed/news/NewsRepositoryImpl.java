@@ -40,4 +40,12 @@ class NewsRepositoryImpl implements NewsRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    @Override
+    public Observable<ResponseBody> likeNewsComment(String id, String commentId, int vote) {
+        return api
+                .likeNewsComment(id, commentId, vote)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

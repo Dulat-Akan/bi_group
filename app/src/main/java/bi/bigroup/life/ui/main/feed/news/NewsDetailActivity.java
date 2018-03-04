@@ -20,6 +20,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.Collections;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.models.bioffice.BiOffice;
 import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.mvp.main.feed.news.NewsDetailPresenter;
@@ -34,6 +35,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.support.customtabs.CustomTabsIntent.KEY_ID;
+import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_DISLIKED;
+import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_LIKED;
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
 import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
@@ -74,6 +77,18 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
         lv_news_detail.addHeaderView(header, null, false);
 
         adapter = new CommentsAdapter(this);
+        adapter.setCallback(new CommentsAdapter.Callback() {
+            @Override
+            public void onItemClick(BiOffice biOffice) {
+
+            }
+
+            @Override
+            public void onCommentLike(String commendId, boolean liked) {
+                mvpPresenter.likeCommentSubscriptionUnsubscribe();
+                mvpPresenter.likeComment(newsId, commendId, liked ? VOTE_DISLIKED : VOTE_LIKED);
+            }
+        });
         lv_news_detail.setAdapter(adapter);
     }
 
