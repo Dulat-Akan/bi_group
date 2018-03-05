@@ -1,4 +1,4 @@
-package bi.bigroup.life.ui.main.suggestion;
+package bi.bigroup.life.ui.main.feed.suggestions;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.mvp.main.suggestion.NewSuggestionPresenter;
-import bi.bigroup.life.mvp.main.suggestion.NewSuggestionView;
+import bi.bigroup.life.mvp.main.feed.suggestion.NewSuggestionPresenter;
+import bi.bigroup.life.mvp.main.feed.suggestion.NewSuggestionView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import butterknife.OnClick;
 
@@ -22,7 +22,7 @@ public class NewSuggestionActivity extends BaseActivity implements NewSuggestion
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.activity_new_suggestion;
+        return R.layout.activity_suggestion_add;
     }
 
     @Override

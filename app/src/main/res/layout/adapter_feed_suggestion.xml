@@ -21,47 +21,65 @@
                 android:paddingLeft="@dimen/dp_12"
                 android:paddingRight="@dimen/dp_12">
 
-                <ImageView
-                    android:id="@+id/img_dislike"
-                    style="@style/WW"
-                    android:src="@drawable/dislike_inactive"/>
+                <LinearLayout
+                    android:id="@+id/ll_dislike"
+                    style="@style/LL_WW_H"
+                    android:gravity="center_vertical">
 
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_dislike_quantity"
-                    style="@style/WW"
-                    android:layout_marginLeft="@dimen/dp_3"
-                    android:textColor="@color/feed_time"
-                    android:textSize="@dimen/sp_12"
-                    tools:text="423"/>
+                    <ImageView
+                        android:id="@+id/img_dislike"
+                        style="@style/WW"
+                        android:src="@drawable/dislike_inactive"/>
 
-                <ImageView
-                    android:id="@+id/img_like"
-                    style="@style/WW"
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_dislike_quantity"
+                        style="@style/WW"
+                        android:layout_marginLeft="@dimen/dp_3"
+                        android:textColor="@color/feed_time"
+                        android:textSize="@dimen/sp_12"
+                        tools:text="423"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_like"
+                    style="@style/LL_WW_H"
                     android:layout_marginLeft="@dimen/dp_8"
-                    android:src="@drawable/like_inactive"/>
+                    android:gravity="center_vertical">
 
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_like_quantity"
+                    <ImageView
+                        android:id="@+id/img_like"
+                        style="@style/WW"
+                        android:src="@drawable/like_inactive"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_like_quantity"
+                        style="@style/MW"
+                        android:layout_marginLeft="@dimen/dp_3"
+                        android:textColor="@color/feed_time"
+                        android:textSize="@dimen/sp_12"
+                        tools:text="423"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     style="@style/MW"
-                    android:layout_marginLeft="@dimen/dp_3"
                     android:layout_weight="1"
-                    android:textColor="@color/feed_time"
-                    android:textSize="@dimen/sp_12"
-                    tools:text="423"/>
+                    android:gravity="center_vertical|right">
 
-                <ImageView
-                    android:id="@+id/img_views"
-                    style="@style/WW"
-                    android:layout_marginLeft="@dimen/dp_8"
-                    android:src="@drawable/view"/>
+                    <ImageView
+                        android:id="@+id/img_views"
+                        style="@style/WW"
+                        android:layout_marginLeft="@dimen/dp_8"
+                        android:src="@drawable/view"/>
 
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_view_quantity"
-                    style="@style/WW"
-                    android:layout_marginLeft="@dimen/dp_3"
-                    android:textColor="@color/feed_time"
-                    android:textSize="@dimen/sp_12"
-                    tools:text="423"/>
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_view_quantity"
+                        style="@style/WW"
+                        android:layout_marginLeft="@dimen/dp_3"
+                        android:textColor="@color/feed_time"
+                        android:textSize="@dimen/sp_12"
+                        tools:text="423"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

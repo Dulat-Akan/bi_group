@@ -1,15 +1,15 @@
-package bi.bigroup.life.data.repository.feed.news;
+package bi.bigroup.life.data.repository.feed.suggestions;
 
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
-import bi.bigroup.life.data.models.feed.news.News;
+import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
 import bi.bigroup.life.data.network.api.bi_group.API;
 import okhttp3.ResponseBody;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-class NewsRepositoryImpl implements NewsRepository {
+class SuggestionsRepositoryImpl implements SuggestionsRepository {
     private API api;
 
     @Override
@@ -18,17 +18,17 @@ class NewsRepositoryImpl implements NewsRepository {
     }
 
     @Override
-    public Observable<News> getNews(String id) {
+    public Observable<Suggestion> getSuggestion(String id) {
         return api
-                .getNews(id)
+                .getSuggestion(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
-    public Observable<ResponseBody> likeNews(String id) {
+    public Observable<ResponseBody> likeSuggestion(String id, int voteType) {
         return api
-                .likeNews(id)
+                .likeSuggestion(id, voteType)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -36,13 +36,13 @@ class NewsRepositoryImpl implements NewsRepository {
     @Override
     public Observable<Comment> addComment(String id, AddComment addComment) {
         return api
-                .addNewsComment(id, addComment)
+                .addSuggestionsComment(id, addComment)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
-    public Observable<ResponseBody> likeNewsComment(String id, String commentId, int vote) {
+    public Observable<ResponseBody> likeSuggestionsComment(String id, String commentId, int vote) {
         return api
                 .likeNewsComment(id, commentId, vote)
                 .subscribeOn(Schedulers.io())

@@ -81,7 +81,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.main.suggestion.NewSuggestionActivity"
+            android:name=".ui.main.feed.suggestions.NewSuggestionActivity"
             android:screenOrientation="portrait"/>
 
         <activity
@@ -94,6 +94,10 @@
 
         <activity
             android:name=".ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.main.feed.suggestions.SuggestionDetailActivity"
             android:screenOrientation="portrait"/>
 
     </application>

@@ -1,4 +1,4 @@
-package bi.bigroup.life.mvp.main.suggestion;
+package bi.bigroup.life.mvp.main.feed.suggestion;
 
 import android.content.Context;
 

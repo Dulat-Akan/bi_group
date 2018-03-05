@@ -8,6 +8,7 @@ import static bi.bigroup.life.utils.StringUtils.replaceNull;
 import static bi.bigroup.life.utils.StringUtils.replaceNullTrim;
 
 public class Comment {
+    public static final int VOTE_DEFAULT = 0;
     public static final int VOTE_LIKED = 1;
     public static final int VOTE_DISLIKED = -1;
 
@@ -19,6 +20,8 @@ public class Comment {
     public Integer likesQuantity;
     public Integer dislikesQuantity;
     public Integer vote;
+    public Integer userVote;
+    public Integer type;
 
     public String getId() {
         return replaceNull(id);
@@ -32,6 +35,10 @@ public class Comment {
         return getOkInt(vote) == VOTE_LIKED;
     }
 
+    public boolean isSuggestionCommentLiked() {
+        return getOkInt(userVote) == VOTE_LIKED;
+    }
+
     public int getLikesQuantity() {
         return getOkInt(likesQuantity);
     }
@@ -40,8 +47,16 @@ public class Comment {
         this.vote = vote;
     }
 
+    public void setSuggestionCommentVote(int userVote) {
+        this.userVote = userVote;
+    }
+
     public void setLikesQuantity(int likesQuantity) {
         this.likesQuantity = likesQuantity;
+    }
+
+    public void setDisLikesQuantity(int dislikesQuantity) {
+        this.dislikesQuantity = dislikesQuantity;
     }
 
     public String getDate(Context context) {

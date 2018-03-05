@@ -24,13 +24,13 @@ import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_DISLIKED;
 import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_LIKED;
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
 
-class CommentsAdapter extends BaseAdapter {
+public class CommentsAdapter extends BaseAdapter {
     private static final int ITEM_LAYOUT = R.layout.adapter_news_comment;
     private Context context;
     private List<Comment> data = new ArrayList<>();
     private Callback callback;
 
-    CommentsAdapter(Context context) {
+    public CommentsAdapter(Context context) {
         this.context = context;
     }
 
@@ -38,13 +38,13 @@ class CommentsAdapter extends BaseAdapter {
         this.callback = callback;
     }
 
-    void addList(List<Comment> newList) {
+    public void addList(List<Comment> newList) {
         this.data.clear();
         this.data.addAll(newList);
         notifyDataSetChanged();
     }
 
-    void addNewComment(Comment comment) {
+    public void addNewComment(Comment comment) {
         this.data.add(comment);
         notifyDataSetChanged();
     }

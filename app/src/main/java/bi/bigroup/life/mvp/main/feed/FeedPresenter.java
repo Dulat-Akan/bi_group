@@ -10,6 +10,7 @@ import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.repository.feed.FeedRepositoryProvider;
 import bi.bigroup.life.data.repository.feed.news.NewsRepositoryProvider;
+import bi.bigroup.life.data.repository.feed.suggestions.SuggestionsRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
 import okhttp3.ResponseBody;
 import rx.Subscriber;
@@ -23,6 +24,7 @@ public class FeedPresenter extends BaseMvpPresenter<FeedView> {
     private int current_page;
     private Subscription feedSubscription;
     private Subscription likeUnlikeSubscription;
+    private Subscription suggestionLikeUnlikeSubscription;
 
     @Override
     public void init(Context context, DataLayer dataLayer) {
@@ -80,6 +82,7 @@ public class FeedPresenter extends BaseMvpPresenter<FeedView> {
         }
     }
 
+    // =============== Like News ===============
     public void likeSubscriptionUnsubscribe() {
         if (likeUnlikeSubscription != null
                 && !likeUnlikeSubscription.isUnsubscribed()) {
@@ -90,6 +93,35 @@ public class FeedPresenter extends BaseMvpPresenter<FeedView> {
     public void likeNews(String newsId) {
         likeUnlikeSubscription = NewsRepositoryProvider.provideRepository(dataLayer.getApi())
                 .likeNews(newsId)
+                .doOnSubscribe(() -> getViewState().showTransparentIndicator(true))
+                .doOnTerminate(() -> getViewState().showTransparentIndicator(false))
+                .subscribe(new Subscriber<ResponseBody>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody response) {
+                    }
+                });
+    }
+
+    // =============== Like Suggestions ===============
+    public void suggestionLikeSubscriptionUnsubscribe() {
+        if (suggestionLikeUnlikeSubscription != null
+                && !suggestionLikeUnlikeSubscription.isUnsubscribed()) {
+            suggestionLikeUnlikeSubscription.unsubscribe();
+        }
+    }
+
+    public void likeSuggestion(String suggestionId, int voteType) {
+        suggestionLikeUnlikeSubscription = SuggestionsRepositoryProvider.provideRepository(dataLayer.getApi())
+                .likeSuggestion(suggestionId, voteType)
                 .doOnSubscribe(() -> getViewState().showTransparentIndicator(true))
                 .doOnTerminate(() -> getViewState().showTransparentIndicator(false))
                 .subscribe(new Subscriber<ResponseBody>() {

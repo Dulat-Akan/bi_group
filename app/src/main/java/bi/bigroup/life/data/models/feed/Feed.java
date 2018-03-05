@@ -35,12 +35,28 @@ public class Feed {
         return getOkInt(likesQuantity);
     }
 
+    public int getDisLikesQuantity() {
+        return getOkInt(dislikesQuantity);
+    }
+
     public void setLikedByMe(Boolean likedByMe) {
         isLikedByMe = likedByMe;
     }
 
     public void setLikesQuantity(int likesQuantity) {
         this.likesQuantity = likesQuantity;
+    }
+
+    public void setDisLikesQuantity(int dislikesQuantity) {
+        this.dislikesQuantity = dislikesQuantity;
+    }
+
+    public void setUserVote(int userVote) {
+        this.userVote = userVote;
+    }
+
+    public int getUserVote() {
+        return getOkInt(userVote);
     }
 
     public int getLayoutType() {

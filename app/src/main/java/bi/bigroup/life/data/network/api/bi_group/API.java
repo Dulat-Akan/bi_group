@@ -12,6 +12,7 @@ import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.news.News;
+import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
 import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.data.params.auth.AuthParams;
@@ -53,8 +54,25 @@ public interface API {
                                              @Path("voteType") Integer voteType);
 
     @POST("News/{id}/comments")
-    Observable<Comment> addComment(@Path("id") String id,
-                                   @Body AddComment params);
+    Observable<Comment> addNewsComment(@Path("id") String id,
+                                       @Body AddComment params);
+
+    /****** Suggestions *******/
+    @GET("Suggestions/{id}")
+    Observable<Suggestion> getSuggestion(@Path("id") String id);
+
+    @PUT("Suggestions/{id}/like/{voteType}")
+    Observable<ResponseBody> likeSuggestion(@Path("id") String id,
+                                            @Path("voteType") Integer voteType);
+
+    @PUT("News/{id}/comments/{commentId}/like/{voteType}")
+    Observable<ResponseBody> likeSuggestionComment(@Path("id") String id,
+                                                   @Path("commentId") String commentId,
+                                                   @Path("voteType") Integer voteType);
+
+    @POST("News/{id}/comments")
+    Observable<Comment> addSuggestionsComment(@Path("id") String id,
+                                             @Body AddComment params);
 
     /****** Notifications *******/
     @GET("Notifications/")

@@ -13,6 +13,7 @@ import bi.bigroup.life.mvp.main.feed.FeedPresenter;
 import bi.bigroup.life.mvp.main.feed.FeedView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
+import bi.bigroup.life.ui.main.feed.suggestions.SuggestionDetailActivity;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 
 public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
@@ -47,13 +48,19 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
 
             @Override
             public void onSuggestionItemClick(String suggestionId) {
-
+                startActivity(SuggestionDetailActivity.getIntent(getContext(), suggestionId));
             }
 
             @Override
             public void onNewsLike(String id, boolean liked) {
                 mvpPresenter.likeSubscriptionUnsubscribe();
                 mvpPresenter.likeNews(id);
+            }
+
+            @Override
+            public void onSuggestionLike(String id, int voteType) {
+                mvpPresenter.suggestionLikeSubscriptionUnsubscribe();
+                mvpPresenter.likeSuggestion(id, voteType);
             }
         });
         recycler_view.setAdapter(mAdapter);

@@ -25,6 +25,9 @@ import it.sephiroth.android.library.widget.HListView;
 import static bi.bigroup.life.data.models.feed.FeedEntityType.FEED_TYPE_NEWS;
 import static bi.bigroup.life.data.models.feed.FeedEntityType.FEED_TYPE_QUESTIONNAIRE;
 import static bi.bigroup.life.data.models.feed.FeedEntityType.FEED_TYPE_SUGGESTION;
+import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_DEFAULT;
+import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_DISLIKED;
+import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_LIKED;
 
 class FeedAdapter extends RecyclerViewBaseAdapter {
     private static final int HEADER_LAYOUT_ID = R.layout.adapter_feed_header;
@@ -244,6 +247,8 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
         @BindView(R.id.tv_like_quantity) TextView tv_like_quantity;
         @BindView(R.id.tv_dislike_quantity) TextView tv_dislike_quantity;
         @BindView(R.id.tv_view_quantity) TextView tv_view_quantity;
+        @BindView(R.id.img_like) ImageView img_like;
+        @BindView(R.id.img_dislike) ImageView img_dislike;
 
         Feed bindedObject;
         int bindedPosition;
@@ -266,6 +271,13 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
             tv_like_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.likesQuantity)));
             tv_dislike_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.dislikesQuantity)));
             tv_view_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.viewsQuantity)));
+
+
+            img_like.setImageResource(feed.getUserVote() == VOTE_LIKED ? R.drawable.like_active
+                    : R.drawable.like_inactive);
+
+            img_dislike.setImageResource(feed.getUserVote() == VOTE_DISLIKED ? R.drawable.dislike_active
+                    : R.drawable.dislike_inactive);
         }
 
         @OnClick(R.id.img_more)
@@ -273,6 +285,49 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 //            if (callback != null) {
 //                callback.onItemClick(bindedObject);
 //            }
+        }
+
+        @OnClick(R.id.ll_like)
+        void onLikeClick() {
+            if (callback != null) {
+                callback.onSuggestionLike(bindedObject.getId(),
+                        bindedObject.getUserVote() == VOTE_LIKED ? VOTE_DEFAULT : VOTE_LIKED);
+                if (bindedObject.getUserVote() == VOTE_LIKED) {
+                    bindedObject.setUserVote(VOTE_DEFAULT);
+                    bindedObject.setLikesQuantity(bindedObject.getLikesQuantity() - 1);
+                } else {
+                    if (bindedObject.getUserVote() == VOTE_DISLIKED) {
+                        bindedObject.setDisLikesQuantity(bindedObject.getDisLikesQuantity() - 1);
+                    }
+                    bindedObject.setUserVote(VOTE_LIKED);
+                    bindedObject.setLikesQuantity(bindedObject.getLikesQuantity() + 1);
+                }
+                notifyDataSetChanged();
+            }
+        }
+
+        @OnClick(R.id.ll_dislike)
+        void onDisLikeClick() {
+            if (callback != null) {
+                callback.onSuggestionLike(bindedObject.getId(),
+                        bindedObject.getUserVote() == VOTE_DISLIKED ? VOTE_DEFAULT : VOTE_DISLIKED);
+                if (bindedObject.getUserVote() == VOTE_DISLIKED) {
+                    bindedObject.setUserVote(VOTE_DEFAULT);
+                    bindedObject.setDisLikesQuantity(bindedObject.getDisLikesQuantity() - 1);
+                } else {
+                    if (bindedObject.getUserVote() == VOTE_LIKED) {
+                        bindedObject.setLikesQuantity(bindedObject.getLikesQuantity() - 1);
+                    }
+                    bindedObject.setUserVote(VOTE_DISLIKED);
+                    bindedObject.setDisLikesQuantity(bindedObject.getDisLikesQuantity() + 1);
+                }
+                notifyDataSetChanged();
+            }
+        }
+
+        @OnClick(R.id.ll_content)
+        void onItemClick() {
+            callback.onSuggestionItemClick(bindedObject.getId());
         }
     }
 
@@ -322,5 +377,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
         void onSuggestionItemClick(String suggestionId);
 
         void onNewsLike(String id, boolean liked);
+
+        void onSuggestionLike(String id, int voteType);
     }
 }
