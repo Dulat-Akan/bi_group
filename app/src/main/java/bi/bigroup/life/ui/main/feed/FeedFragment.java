@@ -39,7 +39,7 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
 
     protected void configureRecyclerView() {
         super.configureRecyclerView();
-        mAdapter = new FeedAdapter(getContext());
+        mAdapter = new FeedAdapter(getContext(), dataLayer.getPicasso());
         mAdapter.setCallback(new FeedAdapter.Callback() {
             @Override
             public void onNewsItemClick(String newsId) {

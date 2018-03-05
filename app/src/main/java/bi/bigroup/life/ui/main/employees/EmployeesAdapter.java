@@ -5,13 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.ui.base.recycler_view.RecyclerViewBaseAdapter;
-import bi.bigroup.life.utils.GlideUtils;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,11 +27,13 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
 
     private List<Employee> data;
     private Context context;
+    private Picasso picasso;
     private Callback callback;
     private boolean loading;
 
-    EmployeesAdapter(Context context) {
+    EmployeesAdapter(Context context, Picasso picasso) {
         this.context = context;
+        this.picasso = picasso;
         this.data = new ArrayList<>();
     }
 
@@ -147,7 +151,7 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
             }
             tv_fullname.setText(object.getFullName());
             tv_specialty.setText(object.getJobPosition());
-            GlideUtils.showAvatar(context, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_avatar);
+            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_avatar);
         }
 
         @OnClick(R.id.ll_row)

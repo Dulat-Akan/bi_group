@@ -15,12 +15,12 @@ import bi.bigroup.life.mvp.profile.profile_data.ProfileDataPresenter;
 import bi.bigroup.life.mvp.profile.profile_data.ProfileDataView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.utils.LOTimber;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
-import static bi.bigroup.life.utils.GlideUtils.showAvatar;
 
 public class ProfileDataFragment extends BaseFragment implements ProfileDataView {
     @InjectPresenter
@@ -90,7 +90,7 @@ public class ProfileDataFragment extends BaseFragment implements ProfileDataView
         v2.bindHolder(user.getMobilePhoneNumber(), R.drawable.mobile);
         v3.bindHolder(user.getEmail(), R.drawable.mail);
         v4.bindHolder(user.getWorkPhoneNumber(), R.drawable.phone_inactive);
-        showAvatar(getContext(), img_avatar, getProfilePicture(user.getCode()), R.drawable.ic_avatar);
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(user.getCode()), R.drawable.ic_avatar);
         tv_surname.setText(user.getFullname());
         tv_specialty.setText(user.getJobPosition());
         tv_iin.setText(user.getIin());

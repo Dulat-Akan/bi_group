@@ -14,7 +14,7 @@ import bi.bigroup.life.mvp.main.employees.EmployeePagePresenter;
 import bi.bigroup.life.mvp.main.employees.EmployeePageView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import bi.bigroup.life.utils.EmailUtils;
-import bi.bigroup.life.utils.GlideUtils;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -78,7 +78,7 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     @OnClick({R.id.img_call, R.id.tv_phone})
     void onCallClick() {
         if (employee != null && isStringOk(employee.getMobilePhoneNumber())) {
-            startActivity( new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + employee.getMobilePhoneNumber())));
+            startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + employee.getMobilePhoneNumber())));
         }
     }
 
@@ -101,7 +101,7 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     @Override
     public void setEmployee(Employee employee) {
         this.employee = employee;
-        GlideUtils.showAvatar(this, img_avatar, getProfilePicture(employee.getCode()), R.drawable.ic_avatar);
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(employee.getCode()), R.drawable.ic_avatar);
         tv_surname.setText(employee.getFullName());
         tv_firstname.setText(employee.getFirstName());
         tv_specialty.setText(employee.getJobPosition());

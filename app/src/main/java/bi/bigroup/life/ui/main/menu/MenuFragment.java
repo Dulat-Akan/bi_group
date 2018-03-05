@@ -2,20 +2,30 @@ package bi.bigroup.life.ui.main.menu;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.mvp.main.menu.MenuPresenter;
 import bi.bigroup.life.mvp.main.menu.MenuView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.profile.ProfileActivity;
 import bi.bigroup.life.utils.LOTimber;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
+import butterknife.BindView;
 import butterknife.OnClick;
+
+import static bi.bigroup.life.utils.Constants.getProfilePicture;
 
 public class MenuFragment extends BaseFragment implements MenuView {
     @InjectPresenter
     MenuPresenter mvpPresenter;
+    @BindView(R.id.img_avatar) ImageView img_avatar;
+    @BindView(R.id.tv_name) TextView tv_name;
+    @BindView(R.id.tv_username) TextView tv_username;
 
     public static MenuFragment newInstance() {
         return new MenuFragment();
@@ -28,7 +38,8 @@ public class MenuFragment extends BaseFragment implements MenuView {
 
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
-        handleIntent();
+        mvpPresenter.init(getContext(), dataLayer);
+
         RowViewHolder v1 = new RowViewHolder(view.findViewById(R.id.v1));
         v1.bindHolder(R.string.menu_title_1, R.string.menu_desc_1);
         v1.setCallback(() -> LOTimber.d("asldkasjd clicked 1"));
@@ -46,13 +57,6 @@ public class MenuFragment extends BaseFragment implements MenuView {
         v4.setCallback(() -> LOTimber.d("asldkasjd clicked 4"));
     }
 
-    private void handleIntent() {
-//        if (getArguments() != null && getArguments().containsKey(FORM_KEY)) {
-//            AuthForm form = Parcels.unwrap(getArguments().getParcelable(FORM_KEY));
-//            mvpPresenter.init(dataLayer, form);
-//        }
-    }
-
     @OnClick(R.id.ll_profile)
     void onProfileClick() {
         startActivity(ProfileActivity.getIntent(getContext()));
@@ -64,5 +68,12 @@ public class MenuFragment extends BaseFragment implements MenuView {
 
     @Override
     public void successSent() {
+    }
+
+    @Override
+    public void showUserInfo(User localUser) {
+        tv_name.setText(localUser.getFullname());
+        tv_username.setText(localUser.getAdLogin());
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.drawable.ic_avatar);
     }
 }

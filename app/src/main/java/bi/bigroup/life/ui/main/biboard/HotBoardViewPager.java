@@ -68,7 +68,7 @@ public class HotBoardViewPager extends PagerAdapter {
         }
 
         void bindNews(HotBoard office) {
-//            GlideUtils.showImg(context, img_slider, sliderImg);
+//            PicassoUtils.showImg(context, img_slider, sliderImg);
         }
     }
 }

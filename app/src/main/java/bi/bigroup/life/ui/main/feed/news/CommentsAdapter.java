@@ -8,13 +8,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.bioffice.BiOffice;
 import bi.bigroup.life.data.models.feed.news.Comment;
-import bi.bigroup.life.utils.GlideUtils;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,11 +29,13 @@ import static bi.bigroup.life.utils.Constants.getProfilePicture;
 public class CommentsAdapter extends BaseAdapter {
     private static final int ITEM_LAYOUT = R.layout.adapter_news_comment;
     private Context context;
+    private Picasso picasso;
     private List<Comment> data = new ArrayList<>();
     private Callback callback;
 
-    public CommentsAdapter(Context context) {
+    public CommentsAdapter(Context context, Picasso picasso) {
         this.context = context;
+        this.picasso = picasso;
     }
 
     public void setCallback(Callback callback) {
@@ -98,8 +102,7 @@ public class CommentsAdapter extends BaseAdapter {
             tv_user_fullname.setText(object.getFullName());
             tv_time.setText(object.getDate(context));
             tv_content.setText(object.getContent());
-            GlideUtils.showAvatar(context, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_avatar);
-
+            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_avatar);
             tv_like_quantity.setText(String.valueOf(object.getOkIntQuantity(object.likesQuantity)));
             img_like.setImageResource(object.isLiked() ? R.drawable.like_active
                     : R.drawable.like_inactive);

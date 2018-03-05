@@ -7,23 +7,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.feed.Feed;
-import bi.bigroup.life.utils.GlideUtils;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ViewPagerImage extends PagerAdapter {
     private Context context;
+    private Picasso picasso;
 
     private List<String> sliders = new ArrayList<>();
     private Feed.ImageSize imageSize;
 
-    public ViewPagerImage(Context context) {
+    public ViewPagerImage(Context context, Picasso picasso) {
         this.context = context;
+        this.picasso = picasso;
     }
 
     public void setImageSize(Feed.ImageSize imageSize) {
@@ -74,7 +78,7 @@ public class ViewPagerImage extends PagerAdapter {
         }
 
         void bindNews(String sliderImg) {
-            GlideUtils.showNewsImage(context, img_slider, sliderImg);
+            PicassoUtils.showNewsImage(picasso, img_slider, sliderImg);
         }
     }
 }

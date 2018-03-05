@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
              android:id="@+id/fl_parent"
              style="@style/MM">
 
@@ -35,14 +36,14 @@
                 <bi.bigroup.life.views.fonts.TextViewRobotoBold
                     android:id="@+id/tv_name"
                     style="@style/MW"
-                    android:text="User Name"
+                    tools:text="User Name"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_16"/>
 
                 <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                     android:id="@+id/tv_username"
                     style="@style/MW"
-                    android:text="Personal"
+                    tools:text="Personal"
                     android:textColor="@color/personal"
                     android:textSize="@dimen/sp_12"/>
 

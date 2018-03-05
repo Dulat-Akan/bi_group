@@ -25,7 +25,7 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             def apk = output.outputFile;
-            def newName = variant.baseName.replace("-release", "") + "-" + defaultConfig.versionName + ".apk";
+            def newName = "BiLife_" + variant.baseName.replace("-release", "") + "_" + defaultConfig.versionName + ".apk";
             output.outputFile = new File(apk.parentFile, newName);
         }
     }
@@ -123,8 +123,10 @@ dependencies {
     // CircleImageView
     compile "de.hdodenhof:circleimageview:${circleImgViewVersion}"
 
-    // Glide
-    compile "com.github.bumptech.glide:glide:$glideVersion"
+    // Picasso
+    compile "com.squareup.picasso:picasso:$picassoVersion"
+    compile "com.jakewharton.picasso:picasso2-okhttp3-downloader:${picassoOkhttp3Downloader}"
+
 
     // Logging
     compile "com.jakewharton.timber:timber:$depTimberVersion"

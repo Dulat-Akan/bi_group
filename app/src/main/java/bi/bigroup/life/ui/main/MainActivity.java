@@ -28,7 +28,7 @@ import bi.bigroup.life.ui.main.feed.FeedFragment;
 import bi.bigroup.life.ui.main.menu.MenuFragment;
 import bi.bigroup.life.ui.notifications.NotificationsActivity;
 import bi.bigroup.life.ui.profile.ProfileActivity;
-import bi.bigroup.life.utils.GlideUtils;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -158,6 +158,6 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
 
     @Override
     public void showUserInfo(User localUser) {
-        GlideUtils.showAvatar(this, img_avatar, getProfilePicture(localUser.getCode()), R.drawable.ic_avatar);
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.drawable.ic_avatar);
     }
 }

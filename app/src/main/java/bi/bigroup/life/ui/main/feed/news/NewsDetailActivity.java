@@ -27,7 +27,7 @@ import bi.bigroup.life.mvp.main.feed.news.NewsDetailPresenter;
 import bi.bigroup.life.mvp.main.feed.news.NewsDetailView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import bi.bigroup.life.ui.main.feed.ViewPagerImage;
-import bi.bigroup.life.utils.GlideUtils;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
 import butterknife.BindView;
@@ -76,7 +76,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
         headerHolder = new NewsHeader(this, header);
         lv_news_detail.addHeaderView(header, null, false);
 
-        adapter = new CommentsAdapter(this);
+        adapter = new CommentsAdapter(this, dataLayer.getPicasso());
         adapter.setCallback(new CommentsAdapter.Callback() {
             @Override
             public void onItemClick(BiOffice biOffice) {
@@ -138,12 +138,12 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
         NewsHeader(Context context, View view) {
             ButterKnife.bind(this, view);
             this.context = context;
-            adapter = new ViewPagerImage(context);
+            adapter = new ViewPagerImage(context, dataLayer.getPicasso());
         }
 
         void bindHolder(News object) {
             bindedObject = object;
-            GlideUtils.showAvatar(context, img_avatar, getProfilePicture(object.getAuthorCode()), R.drawable.ic_avatar);
+            PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(object.getAuthorCode()), R.drawable.ic_avatar);
             tv_subhead_top.setText(object.getAuthorName());
             tv_title.setText(object.getTitle());
             tv_time.setText(object.getDate(context));

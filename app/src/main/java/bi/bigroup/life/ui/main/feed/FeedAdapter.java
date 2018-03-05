@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +16,8 @@ import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.models.feed.FilterButton;
 import bi.bigroup.life.ui.base.recycler_view.RecyclerViewBaseAdapter;
-import bi.bigroup.life.utils.GlideUtils;
 import bi.bigroup.life.utils.LOTimber;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,11 +40,13 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
     private List<Feed> data;
     private List<FilterButton> filterButtonList;
     private Context context;
+    private Picasso picasso;
     private Callback callback;
     private boolean loading;
 
-    FeedAdapter(Context context) {
+    FeedAdapter(Context context, Picasso picasso) {
         this.context = context;
+        this.picasso = picasso;
         this.data = new ArrayList<>();
 
         filterButtonList = new ArrayList<>();
@@ -200,7 +204,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 //            adapter.addImages(Collections.singletonList(feed.getImageUrl()));
 //            vp_images.setAdapter(adapter);
 //            ci_images.setViewPager(vp_images);
-            GlideUtils.showNewsImage(context, img_slider, feed.getImageUrl());
+            PicassoUtils.showNewsImage(picasso, img_slider, feed.getImageUrl());
 
             tv_content.setText(feed.title);
             tv_time.setText(feed.getDate(context));

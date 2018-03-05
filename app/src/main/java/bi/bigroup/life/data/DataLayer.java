@@ -2,12 +2,15 @@ package bi.bigroup.life.data;
 
 import android.content.Context;
 
+import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
+
 import bi.bigroup.life.data.cache.preferences.Preferences;
 import bi.bigroup.life.data.cache.preferences.PreferencesProvider;
 import bi.bigroup.life.data.network.RetrofitServiceGenerator;
 import bi.bigroup.life.data.network.api.bi_group.API;
-
-import static bi.bigroup.life.config.BiGroupConfig.API_BASE_URL;
+import bi.bigroup.life.data.network.interceptors.UserTokenInterceptor;
+import okhttp3.OkHttpClient;
 
 public class DataLayer {
     private static volatile DataLayer instance;
@@ -24,11 +27,18 @@ public class DataLayer {
 
     private final PreferencesProvider preferencesProvider;
     private final API api;
+    private final Picasso picasso;
 
     private DataLayer(Context context) {
         preferencesProvider = new PreferencesProvider(context);
-        RetrofitServiceGenerator retrofitServiceGenerator = RetrofitServiceGenerator.getInstance(preferencesProvider);
+        RetrofitServiceGenerator retrofitServiceGenerator =
+                RetrofitServiceGenerator.getInstance(preferencesProvider);
         api = retrofitServiceGenerator.createService(API.class);
+        picasso = new Picasso.Builder(context)
+                .downloader(new OkHttp3Downloader(new OkHttpClient.Builder()
+                                .addInterceptor(new UserTokenInterceptor(preferencesProvider))
+                                .build()))
+                .build();
     }
 
     public Preferences getPreferences() {
@@ -41,5 +51,9 @@ public class DataLayer {
 
     public API getApi() {
         return api;
+    }
+
+    public Picasso getPicasso() {
+        return picasso;
     }
 }
