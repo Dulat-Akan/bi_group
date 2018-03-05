@@ -65,14 +65,14 @@ public interface API {
     Observable<ResponseBody> likeSuggestion(@Path("id") String id,
                                             @Path("voteType") Integer voteType);
 
-    @PUT("News/{id}/comments/{commentId}/like/{voteType}")
+    @PUT("Suggestions/{id}/comments/{commentId}/like/{voteType}")
     Observable<ResponseBody> likeSuggestionComment(@Path("id") String id,
                                                    @Path("commentId") String commentId,
                                                    @Path("voteType") Integer voteType);
 
-    @POST("News/{id}/comments")
+    @POST("Suggestions/{id}/comments")
     Observable<Comment> addSuggestionsComment(@Path("id") String id,
-                                             @Body AddComment params);
+                                              @Body AddComment params);
 
     /****** Notifications *******/
     @GET("Notifications/")

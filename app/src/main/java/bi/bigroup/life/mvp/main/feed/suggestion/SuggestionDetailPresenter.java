@@ -8,7 +8,6 @@ import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
-import bi.bigroup.life.data.repository.feed.news.NewsRepositoryProvider;
 import bi.bigroup.life.data.repository.feed.suggestions.SuggestionsRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
 import okhttp3.ResponseBody;
@@ -82,12 +81,12 @@ public class SuggestionDetailPresenter extends BaseMvpPresenter<SuggestionDetail
 
     // *********** Comments ***************
 
-    public void addComment(String newsId, String content) {
-        if (!isStringOk(newsId) || !isStringOk(content)) {
+    public void addComment(String id, String content) {
+        if (!isStringOk(id) || !isStringOk(content)) {
             return;
         }
-        Subscription subscription = NewsRepositoryProvider.provideRepository(dataLayer.getApi())
-                .addComment(newsId, new AddComment(content))
+        Subscription subscription = SuggestionsRepositoryProvider.provideRepository(dataLayer.getApi())
+                .addComment(id, new AddComment(content, true))
                 .doOnSubscribe(() -> getViewState().showTransparentIndicator(true))
                 .doOnTerminate(() -> getViewState().showTransparentIndicator(false))
                 .subscribe(new Subscriber<Comment>() {
@@ -118,9 +117,9 @@ public class SuggestionDetailPresenter extends BaseMvpPresenter<SuggestionDetail
         }
     }
 
-    public void likeComment(String newsId, String commentId, int vote) {
-        likeCommentUnlikeSubscription = NewsRepositoryProvider.provideRepository(dataLayer.getApi())
-                .likeNewsComment(newsId, commentId, vote)
+    public void likeComment(String id, String commentId, int vote) {
+        likeCommentUnlikeSubscription = SuggestionsRepositoryProvider.provideRepository(dataLayer.getApi())
+                .likeSuggestionsComment(id, commentId, vote)
                 .doOnSubscribe(() -> getViewState().showTransparentIndicator(true))
                 .doOnTerminate(() -> getViewState().showTransparentIndicator(false))
                 .subscribe(new Subscriber<ResponseBody>() {

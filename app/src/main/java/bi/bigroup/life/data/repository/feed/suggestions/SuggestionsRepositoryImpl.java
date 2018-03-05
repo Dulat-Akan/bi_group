@@ -44,7 +44,7 @@ class SuggestionsRepositoryImpl implements SuggestionsRepository {
     @Override
     public Observable<ResponseBody> likeSuggestionsComment(String id, String commentId, int vote) {
         return api
-                .likeNewsComment(id, commentId, vote)
+                .likeSuggestionComment(id, commentId, vote)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
