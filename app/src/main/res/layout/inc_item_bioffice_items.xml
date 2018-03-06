@@ -2,28 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/ll_row"
               style="@style/LL_MW_V"
-              android:layout_marginBottom="@dimen/dp_5"
               android:layout_marginRight="@dimen/dp_14"
-              android:layout_marginTop="@dimen/dp_5"
-              android:background="?android:selectableItemBackground">
+              android:background="?android:selectableItemBackground"
+              android:clickable="true">
 
     <bi.bigroup.life.views.fonts.TextViewRobotoRegular
         android:id="@+id/tv_title"
         style="@style/MW"
         android:layout_marginLeft="@dimen/dp_30"
         android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_9"
+        android:text="Two-line item"
         android:textColor="@color/black"
-        android:textSize="@dimen/sp_14"
-        android:text="Two-line item"/>
+        android:textSize="@dimen/sp_14"/>
 
     <bi.bigroup.life.views.fonts.TextViewRobotoRegular
         android:id="@+id/tv_description"
         style="@style/MW"
         android:layout_marginLeft="@dimen/dp_30"
         android:layout_marginRight="@dimen/dp_10"
+        android:text="Secondary"
         android:textColor="@color/feed_time"
-        android:textSize="@dimen/sp_12"
-        android:text="Secondary"/>
+        android:textSize="@dimen/sp_12"/>
 
     <View
         android:id="@+id/view_divider"
@@ -31,6 +31,5 @@
         android:layout_height="@dimen/dp_1"
         android:layout_marginTop="@dimen/dp_9"
         android:background="@color/divider"/>
-
 
 </LinearLayout>

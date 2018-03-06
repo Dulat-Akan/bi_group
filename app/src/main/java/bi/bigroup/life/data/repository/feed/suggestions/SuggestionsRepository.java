@@ -1,5 +1,7 @@
 package bi.bigroup.life.data.repository.feed.suggestions;
 
+import java.util.List;
+
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
@@ -18,4 +20,8 @@ public interface SuggestionsRepository {
     Observable<Comment> addComment(String id, AddComment addComment);
 
     Observable<ResponseBody> likeSuggestionsComment(String id, String commentId, int vote);
+
+    Observable<List<Suggestion>> getPopularSuggestions();
+
+    Observable<List<Suggestion>> getAllSuggestions();
 }

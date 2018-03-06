@@ -21,5 +21,5 @@ public interface NewsRepository {
 
     Observable<ResponseBody> likeNewsComment(String id, String commentId, int vote);
 
-    Observable<List<News>> getPopularNews();
+    Observable<List<News>> getPopularNews(int top);
 }

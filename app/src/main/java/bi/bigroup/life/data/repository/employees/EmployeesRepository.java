@@ -14,6 +14,8 @@ public interface EmployeesRepository {
 
     Observable<ListOf<Employee>> getEmployees(int rows, int offset, Boolean IsBirthdayToday);
 
+    Observable<List<Employee>> getEmployeesEvents();
+
     Observable<List<Employee>> searchEmployees(String filterText, String top);
 
     Observable<List<Vacancy>> getVacancies();

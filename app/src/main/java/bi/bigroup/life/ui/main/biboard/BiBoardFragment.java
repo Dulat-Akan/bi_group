@@ -1,6 +1,7 @@
 package bi.bigroup.life.ui.main.biboard;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,15 +13,17 @@ import android.widget.ListView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.biboard.BiBoard;
+import bi.bigroup.life.data.models.bioffice.BiOffice;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.mvp.main.biboard.BiBoardPresenter;
 import bi.bigroup.life.mvp.main.biboard.BiBoardView;
 import bi.bigroup.life.ui.base.BaseFragment;
+import bi.bigroup.life.ui.main.PageSwapCallback;
+import bi.bigroup.life.ui.main.employees.EmployeePageActivity;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
 import butterknife.BindView;
 
@@ -29,6 +32,8 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     BiBoardPresenter mvpPresenter;
     @BindView(R.id.lv_board) ListView lv_board;
     private HotBoardViewPager adapter;
+    private BiBoardAdapter biBoardAdapter;
+    private PageSwapCallback callback;
 
     public static BiBoardFragment newInstance() {
         return new BiBoardFragment();
@@ -43,6 +48,16 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
         configureListView();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            callback = (PageSwapCallback) context;
+        } catch (ClassCastException castException) {
+            castException.printStackTrace();
+        }
     }
 
     private void configureListView() {
@@ -61,15 +76,26 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
         configureViewPager(header);
         lv_board.addHeaderView(header, null, false);
 
-        BiBoardAdapter adapter = new BiBoardAdapter(getContext());
-        lv_board.setAdapter(adapter);
+        biBoardAdapter = new BiBoardAdapter(getContext());
+        biBoardAdapter.setCallback(new BiBoardAdapter.Callback() {
+            @Override
+            public void onItemClick(BiOffice biOffice) {
 
-        List<BiBoard> biOffices = new ArrayList<>();
-        biOffices.add(new BiBoard(getString(R.string.predlojeniya), "new", "new", "new"));
-        biOffices.add(new BiBoard(getString(R.string.oprosnik), "new", "new", "new"));
-        biOffices.add(new BiBoard(getString(R.string.employees), getString(R.string.novyh),
-                getString(R.string.dni_rojdenya), getString(R.string.vacancii)));
-        adapter.addList(biOffices);
+            }
+
+            @Override
+            public void openEmployeePage(String code) {
+                startActivity(EmployeePageActivity.getIntent(getContext(), code));
+            }
+
+            @Override
+            public void selectEmployeesTab() {
+                if (callback != null) {
+                    callback.onEmployeesTabsSelect();
+                }
+            }
+        });
+        lv_board.setAdapter(biBoardAdapter);
     }
 
     private void configureViewPager(ViewGroup header) {
@@ -91,6 +117,11 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     @Override
     public void setPopularNews(List<News> list) {
         adapter.addList(list);
+    }
+
+    @Override
+    public void setBiBoardData(BiBoard biBoard, int position) {
+        biBoardAdapter.addItem(biBoard, position);
     }
 }
 /*

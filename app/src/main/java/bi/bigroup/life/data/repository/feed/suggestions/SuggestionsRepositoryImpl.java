@@ -1,5 +1,7 @@
 package bi.bigroup.life.data.repository.feed.suggestions;
 
+import java.util.List;
+
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
@@ -45,6 +47,22 @@ class SuggestionsRepositoryImpl implements SuggestionsRepository {
     public Observable<ResponseBody> likeSuggestionsComment(String id, String commentId, int vote) {
         return api
                 .likeSuggestionComment(id, commentId, vote)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<List<Suggestion>> getPopularSuggestions() {
+        return api
+                .getPopularSuggestions()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<List<Suggestion>> getAllSuggestions() {
+        return api
+                .getAllSuggestions()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

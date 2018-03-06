@@ -36,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
 
 public class MainActivity extends BaseFragmentActivity implements MainView, BottomNavigationView.OnNavigationItemSelectedListener,
-        BottomNavigationView.OnNavigationItemReselectedListener {
+        BottomNavigationView.OnNavigationItemReselectedListener, PageSwapCallback {
 
     public static Intent getIntent(Context context) {
         return new Intent(context, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -159,5 +159,17 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @Override
     public void showUserInfo(User localUser) {
         PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.drawable.ic_avatar);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // PageSwapCallback implementation
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onEmployeesTabsSelect() {
+        if (v_bottom_navigation != null) {
+            v_bottom_navigation.setSelectedItemId(R.id.action_stuff);
+        }
+//        replaceFragment(fragments.get(ACTION_EMPLOYEES), true, null);
     }
 }

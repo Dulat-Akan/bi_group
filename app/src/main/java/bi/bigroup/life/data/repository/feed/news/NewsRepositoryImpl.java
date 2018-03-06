@@ -52,9 +52,9 @@ class NewsRepositoryImpl implements NewsRepository {
     }
 
     @Override
-    public Observable<List<News>> getPopularNews() {
+    public Observable<List<News>> getPopularNews(int top) {
         return api
-                .getPopularNews()
+                .getPopularNews(top)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

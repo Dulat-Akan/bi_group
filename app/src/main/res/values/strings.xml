@@ -105,6 +105,7 @@
     <string name="novyh">новых</string>
     <string name="dni_rojdenya">дни рождения</string>
     <string name="vacancii">вакансии</string>
+    <string name="temp_novyh">нов</string>
 
     <!-- FeedFragment -->
     <string name="label_feed">Лента</string>

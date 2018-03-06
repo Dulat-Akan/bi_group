@@ -12,6 +12,7 @@ import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.news.News;
+import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
 import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
 import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.models.user.User;
@@ -48,6 +49,9 @@ public interface API {
     @GET("News/popular")
     Observable<List<News>> getPopularNews();
 
+    @GET("News/")
+    Observable<List<News>> getPopularNews(@Query("top") int top);
+
     @PUT("News/{id}/like")
     Observable<ResponseBody> likeNews(@Path("id") String id);
 
@@ -64,6 +68,12 @@ public interface API {
     @GET("Suggestions/{id}")
     Observable<Suggestion> getSuggestion(@Path("id") String id);
 
+    @GET("Suggestions/popular")
+    Observable<List<Suggestion>> getPopularSuggestions();
+
+    @GET("Suggestions/")
+    Observable<List<Suggestion>> getAllSuggestions();
+
     @PUT("Suggestions/{id}/like/{voteType}")
     Observable<ResponseBody> likeSuggestion(@Path("id") String id,
                                             @Path("voteType") Integer voteType);
@@ -77,6 +87,13 @@ public interface API {
     Observable<Comment> addSuggestionsComment(@Path("id") String id,
                                               @Body AddComment params);
 
+    /****** Questionnaires *******/
+    @GET("Questionnaires/popular")
+    Observable<List<Questionnaire>> getPopularQuestionnaires();
+
+    @GET("Questionnaires/")
+    Observable<List<Questionnaire>> getAllQuestionnaires();
+
     /****** Notifications *******/
     @GET("Notifications/")
     Observable<List<Notification>> getNotifications();
@@ -89,6 +106,9 @@ public interface API {
     Observable<ListOf<Employee>> getEmployees(@Query("Rows") int Rows,
                                               @Query("Offset") int Offset,
                                               @Query("IsBirthdayToday") Boolean IsBirthdayToday);
+
+    @GET("employeesEvents/")
+    Observable<List<Employee>> getEmployeesEvents();
 
     @GET("employees/search/")
     Observable<List<Employee>> searchEmployees(@Query("filterText") String filterText,
