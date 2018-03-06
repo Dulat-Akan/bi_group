@@ -9,11 +9,13 @@ import java.util.List;
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.models.biboard.BiBoard;
+import bi.bigroup.life.data.models.biboard.top_questions.TopQuestions;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
 import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
+import bi.bigroup.life.data.repository.biboard.top_questions.TopQuestionsRepositoryProvider;
 import bi.bigroup.life.data.repository.employees.EmployeesRepository;
 import bi.bigroup.life.data.repository.employees.EmployeesRepositoryProvider;
 import bi.bigroup.life.data.repository.feed.news.NewsRepositoryProvider;
@@ -44,6 +46,7 @@ public class BiBoardPresenter extends BaseMvpPresenter<BiBoardView> {
         combineSuggestionsRequests();
         combineQuestionnaireRequests();
         combineEmployeeRequests();
+        getTopQuestions();
     }
 
     private void getPopularNews() {
@@ -178,5 +181,32 @@ public class BiBoardPresenter extends BaseMvpPresenter<BiBoardView> {
                         handleResponseError(context, e);
                     }
                 });
+    }
+
+    // Top Questions
+    private void getTopQuestions() {
+        Subscription subscription = TopQuestionsRepositoryProvider.provideRepository(dataLayer.getApi())
+                .getTopQuestions()
+                .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
+                .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
+                .subscribe(new Subscriber<List<TopQuestions>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(List<TopQuestions> list) {
+                        if (list != null && list.size() > 0) {
+                            getViewState().setTopQuestions(list);
+                        }
+                    }
+                });
+        compositeSubscription.add(subscription);
     }
 }

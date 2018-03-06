@@ -4,6 +4,7 @@ import java.util.List;
 
 import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.auth.Auth;
+import bi.bigroup.life.data.models.biboard.top_questions.TopQuestions;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Service;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
 import bi.bigroup.life.data.models.employees.Employee;
@@ -132,4 +133,8 @@ public interface API {
 
     @GET("Requests/servicedesk/inbox/")
     Observable<List<Service>> getServiceDeskInbox();
+
+    /****** Top Questions *******/
+    @GET("topQuestions/")
+    Observable<List<TopQuestions>> getTopQuestions();
 }

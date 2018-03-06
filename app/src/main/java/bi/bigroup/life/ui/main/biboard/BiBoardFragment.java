@@ -17,6 +17,7 @@ import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.biboard.BiBoard;
+import bi.bigroup.life.data.models.biboard.top_questions.TopQuestions;
 import bi.bigroup.life.data.models.bioffice.BiOffice;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.mvp.main.biboard.BiBoardPresenter;
@@ -34,6 +35,7 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     private HotBoardViewPager adapter;
     private BiBoardAdapter biBoardAdapter;
     private PageSwapCallback callback;
+    private BricksTop7Adapter top7Adapter;
 
     public static BiBoardFragment newInstance() {
         return new BiBoardFragment();
@@ -67,7 +69,7 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
         RecyclerView recycler_view = footer.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recycler_view.setLayoutManager(layoutManager);
-        BricksTop7Adapter top7Adapter = new BricksTop7Adapter(getContext());
+        top7Adapter = new BricksTop7Adapter(getContext(), dataLayer.getPicasso());
         recycler_view.setAdapter(top7Adapter);
         lv_board.addFooterView(footer, null, false);
 
@@ -122,6 +124,11 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     @Override
     public void setBiBoardData(BiBoard biBoard, int position) {
         biBoardAdapter.addItem(biBoard, position);
+    }
+
+    @Override
+    public void setTopQuestions(List<TopQuestions> list) {
+        top7Adapter.addList(list);
     }
 }
 /*
