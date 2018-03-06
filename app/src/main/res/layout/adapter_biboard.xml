@@ -15,12 +15,12 @@
         app:cardElevation="@dimen/dp_0">
 
         <LinearLayout
-            style="@style/LL_MW_V">
+            android:id="@+id/ll_area"
+            style="@style/LL_MW_V"
+            android:background="?android:selectableItemBackground">
 
             <LinearLayout
-                android:id="@+id/ll_area"
                 style="@style/LL_MW_V"
-                android:background="?android:selectableItemBackground"
                 android:layout_margin="@dimen/dp_8">
 
                 <LinearLayout
