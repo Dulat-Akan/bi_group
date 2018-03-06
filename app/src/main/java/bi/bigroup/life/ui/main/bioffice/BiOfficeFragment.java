@@ -1,9 +1,7 @@
 package bi.bigroup.life.ui.main.bioffice;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -16,6 +14,7 @@ import java.util.List;
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.bioffice.BiOffice;
 import bi.bigroup.life.data.models.bioffice.HotOffice;
+import bi.bigroup.life.data.models.bioffice.tasks_sdesk.CombineServiceTask;
 import bi.bigroup.life.mvp.main.bioffice.BiOfficePresenter;
 import bi.bigroup.life.mvp.main.bioffice.BiOfficeView;
 import bi.bigroup.life.ui.base.BaseFragment;
@@ -27,6 +26,7 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
     @InjectPresenter
     BiOfficePresenter mvpPresenter;
     @BindView(R.id.lv_office) ListView lv_office;
+    private BiOfficeAdapter adapter;
 
     public static BiOfficeFragment newInstance() {
         return new BiOfficeFragment();
@@ -39,17 +39,18 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
 
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
+        mvpPresenter.init(getContext(), dataLayer);
         configureListView();
     }
 
     private void configureListView() {
-        LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
         // Add header
-        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.adapter_bioffice_header, lv_office, false);
-        configureViewPager(header);
-        lv_office.addHeaderView(header, null, false);
+//        LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+//        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.adapter_bioffice_header, lv_office, false);
+//        configureViewPager(header);
+//        lv_office.addHeaderView(header, null, false);
 
-        BiOfficeAdapter adapter = new BiOfficeAdapter(getContext());
+        adapter = new BiOfficeAdapter(getContext());
         adapter.setCallback(new BiOfficeAdapter.Callback() {
             @Override
             public void openTasksSdeskActivity() {
@@ -62,13 +63,9 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
             }
         });
         lv_office.setAdapter(adapter);
-
-        List<BiOffice> biOffices = new ArrayList<>();
-        biOffices.add(new BiOffice(getString(R.string.zayavki_i_zadachi)));
-        biOffices.add(new BiOffice(getString(R.string.kpi_proekty)));
-        biOffices.add(new BiOffice(getString(R.string.sandb)));
-        biOffices.add(new BiOffice(getString(R.string.idp)));
-        adapter.addList(biOffices);
+//        biOffices.add(new BiOffice(getString(R.string.kpi_proekty)));
+//        biOffices.add(new BiOffice(getString(R.string.sandb)));
+//        biOffices.add(new BiOffice(getString(R.string.idp)));
     }
 
     private void configureViewPager(ViewGroup header) {
@@ -89,6 +86,16 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void successSent() {
+    public void setCombinedServiceTask(CombineServiceTask object) {
+        List<Object> newItems = new ArrayList<>();
+        newItems.addAll(object.services);
+        newItems.addAll(object.tasks);
+
+        adapter.addItem(new BiOffice(
+                R.string.zayavki_i_zadachi,
+                R.string.row_new,
+                R.string.row_prin,
+                R.string.row_pros,
+                newItems));
     }
 }

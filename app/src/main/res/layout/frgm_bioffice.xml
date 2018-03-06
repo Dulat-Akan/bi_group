@@ -6,14 +6,15 @@
     <LinearLayout
         android:id="@+id/ll_content"
         style="@style/LL_MM_V"
-        android:background="@color/main_bg">
+        android:background="@color/main_bg"
+        android:paddingTop="@dimen/dp_15">
 
         <ListView
             android:id="@+id/lv_office"
             style="@style/MM"
+            android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
             android:listSelector="@android:color/transparent"
-            android:cacheColorHint="@android:color/transparent"
             android:orientation="vertical"/>
 
     </LinearLayout>

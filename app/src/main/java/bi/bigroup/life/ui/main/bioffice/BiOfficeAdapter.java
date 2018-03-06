@@ -1,11 +1,13 @@
 package bi.bigroup.life.ui.main.bioffice;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
@@ -15,6 +17,8 @@ import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.bioffice.BiOffice;
+import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Service;
+import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,18 +28,19 @@ class BiOfficeAdapter extends BaseAdapter {
     private Context context;
     private List<BiOffice> data = new ArrayList<>();
     private Callback callback;
+    private LayoutInflater inflater;
 
     BiOfficeAdapter(Context context) {
         this.context = context;
+        inflater = ((Activity) context).getLayoutInflater();
     }
 
     public void setCallback(Callback callback) {
         this.callback = callback;
     }
 
-    void addList(List<BiOffice> newList) {
-        this.data.clear();
-        this.data.addAll(newList);
+    void addItem(BiOffice item) {
+        this.data.add(item);
         notifyDataSetChanged();
     }
 
@@ -73,7 +78,18 @@ class BiOfficeAdapter extends BaseAdapter {
         BiOffice bindedBusTicket;
         int bindedPosition;
         @BindView(R.id.tv_row_title) TextView tv_row_title;
+
+        @BindView(R.id.tv_first_value) TextView tv_first_value;
+        @BindView(R.id.tv_second_value) TextView tv_second_value;
+        @BindView(R.id.tv_third_value) TextView tv_third_value;
+        @BindView(R.id.tv_first_label) TextView tv_first_label;
+        @BindView(R.id.tv_second_label) TextView tv_second_label;
+        @BindView(R.id.tv_third_label) TextView tv_third_label;
+
+        @BindView(R.id.ll_programmatically) LinearLayout ll_programmatically;
+
         @BindView(R.id.exp_layout) ExpandableLayout exp_layout;
+
         public ViewHolder(View view) {
             super(view);
             context = view.getContext();
@@ -83,7 +99,38 @@ class BiOfficeAdapter extends BaseAdapter {
         void bindHolder(BiOffice object, int position) {
             bindedBusTicket = object;
             bindedPosition = position;
-            tv_row_title.setText(object.title);
+            tv_row_title.setText(context.getString(object.title));
+            tv_first_label.setText(context.getString(object.first));
+            tv_second_label.setText(context.getString(object.second));
+            tv_third_label.setText(context.getString(object.third));
+
+            if (object.items != null) {
+//                tv_first_value.setText(String.valueOf(object.allSuggestions.size())); // TODO
+//                tv_second_value.setText(String.valueOf(object.allSuggestions.size()));
+//                tv_third_value.setText(String.valueOf(object.allSuggestions.size()));
+            }
+
+            // Services and Tasks list
+            List<Object> sList = object.items;
+            if (sList != null && sList.size() > 0) {
+                ll_programmatically.removeAllViews();
+                for (int i = 0; i < sList.size(); i++) {
+                    Object item = sList.get(i);
+                    View itemView = inflater.inflate(R.layout.inc_item_bioffice_items, null);
+                    TextView tv_title = itemView.findViewById(R.id.tv_title);
+                    TextView tv_desc = itemView.findViewById(R.id.tv_description);
+
+                    if (item instanceof Service) {
+                        tv_title.setText(((Service) item).getTopic());
+                        tv_desc.setText(((Service) item).getStartDate() + "\n" +
+                                context.getString(R.string.service_status, ((Service) item).getStatus()));
+                    } else if (item instanceof Task) {
+                        tv_title.setText(((Task) item).getTopic());
+                        tv_desc.setText(((Task) item).getStartDate());
+                    }
+                    ll_programmatically.addView(itemView);
+                }
+            }
         }
 
         @OnClick(R.id.ll_expand_collapse)

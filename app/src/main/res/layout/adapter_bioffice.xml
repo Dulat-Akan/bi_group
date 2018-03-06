@@ -16,8 +16,8 @@
 
         <LinearLayout
             android:id="@+id/ll_zayavki_zadachi"
-            android:background="?android:selectableItemBackground"
-            style="@style/LL_MW_V">
+            style="@style/LL_MW_V"
+            android:background="?android:selectableItemBackground">
 
             <LinearLayout
                 style="@style/LL_MW_V"
@@ -60,12 +60,14 @@
                         android:layout_weight="1">
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                            android:id="@+id/tv_first_value"
                             style="@style/WW"
                             android:text="1"
                             android:textColor="@color/bi_header_blues"
                             android:textSize="@dimen/sp_20"/>
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                            android:id="@+id/tv_first_label"
                             style="@style/WW"
                             android:layout_marginLeft="@dimen/dp_5"
                             android:text="@string/row_new"
@@ -82,12 +84,14 @@
                             android:background="@color/bi_separator"/>
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                            android:id="@+id/tv_second_value"
                             style="@style/WW"
                             android:text="19"
                             android:textColor="@color/bi_header_blues"
                             android:textSize="@dimen/sp_20"/>
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                            android:id="@+id/tv_second_label"
                             style="@style/WW"
                             android:layout_marginLeft="@dimen/dp_5"
                             android:text="@string/row_prin"
@@ -104,12 +108,14 @@
                             android:background="@color/bi_separator"/>
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                            android:id="@+id/tv_third_value"
                             style="@style/WW"
                             android:text="0"
                             android:textColor="@color/bi_header_blues"
                             android:textSize="@dimen/sp_20"/>
 
                         <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                            android:id="@+id/tv_third_label"
                             style="@style/WW"
                             android:layout_marginLeft="@dimen/dp_5"
                             android:text="@string/row_pros"
@@ -143,15 +149,11 @@
                         android:layout_marginTop="@dimen/dp_12"
                         android:background="@color/divider"/>
 
-                    <include
-                        layout="@layout/inc_item_bioffice_items"/>
+                    <LinearLayout
+                        android:id="@+id/ll_programmatically"
+                        style="@style/LL_MW_V">
 
-                    <include
-                        layout="@layout/inc_item_bioffice_items"/>
-
-                    <include
-                        layout="@layout/inc_item_bioffice_items"/>
-
+                    </LinearLayout>
                 </LinearLayout>
             </net.cachapa.expandablelayout.ExpandableLayout>
         </LinearLayout>

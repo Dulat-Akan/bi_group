@@ -153,14 +153,6 @@
                         android:id="@+id/ll_programmatically"
                         style="@style/LL_MW_V">
 
-                        <include
-                            layout="@layout/inc_item_bioffice_items"/>
-
-                        <include
-                            layout="@layout/inc_item_bioffice_items"/>
-
-                        <include
-                            layout="@layout/inc_item_bioffice_items"/>
                     </LinearLayout>
 
                 </LinearLayout>
