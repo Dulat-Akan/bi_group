@@ -1,5 +1,7 @@
 package bi.bigroup.life.data.repository.feed.news;
 
+import java.util.List;
+
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.news.News;
@@ -18,4 +20,6 @@ public interface NewsRepository {
     Observable<Comment> addComment(String id, AddComment addComment);
 
     Observable<ResponseBody> likeNewsComment(String id, String commentId, int vote);
+
+    Observable<List<News>> getPopularNews();
 }

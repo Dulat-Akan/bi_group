@@ -45,6 +45,9 @@ public interface API {
     @GET("News/{id}")
     Observable<News> getNews(@Path("id") String id);
 
+    @GET("News/popular")
+    Observable<List<News>> getPopularNews();
+
     @PUT("News/{id}/like")
     Observable<ResponseBody> likeNews(@Path("id") String id);
 

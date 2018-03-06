@@ -17,7 +17,7 @@ import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.biboard.BiBoard;
-import bi.bigroup.life.data.models.biboard.HotBoard;
+import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.mvp.main.biboard.BiBoardPresenter;
 import bi.bigroup.life.mvp.main.biboard.BiBoardView;
 import bi.bigroup.life.ui.base.BaseFragment;
@@ -28,6 +28,7 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     @InjectPresenter
     BiBoardPresenter mvpPresenter;
     @BindView(R.id.lv_board) ListView lv_board;
+    private HotBoardViewPager adapter;
 
     public static BiBoardFragment newInstance() {
         return new BiBoardFragment();
@@ -40,6 +41,7 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
 
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
+        mvpPresenter.init(getContext(), dataLayer);
         configureListView();
     }
 
@@ -73,12 +75,7 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     private void configureViewPager(ViewGroup header) {
         ViewPager vp_images = header.findViewById(R.id.vp_images);
         CirclePageIndicator ci_images = header.findViewById(R.id.ci_images);
-        HotBoardViewPager adapter = new HotBoardViewPager(getContext());
-        List<HotBoard> list = new ArrayList<>();
-        list.add(new HotBoard());
-        list.add(new HotBoard());
-        list.add(new HotBoard());
-        adapter.addList(list);
+        adapter = new HotBoardViewPager(getContext(), dataLayer.getPicasso());
         vp_images.setAdapter(adapter);
         ci_images.setViewPager(vp_images);
     }
@@ -89,6 +86,11 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
 
     @Override
     public void successSent() {
+    }
+
+    @Override
+    public void setPopularNews(List<News> list) {
+        adapter.addList(list);
     }
 }
 /*

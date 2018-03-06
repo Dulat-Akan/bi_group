@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MW">
 
     <ImageView
@@ -32,8 +33,7 @@
         android:layout_marginBottom="@dimen/dp_18"
         android:layout_marginLeft="@dimen/dp_18"
         android:layout_marginRight="@dimen/dp_18"
-        android:text="День открытых дверей
-пройдет в ЖК «Милано"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp_22"/>
+        android:textSize="@dimen/sp_22"
+        tools:text="@string/lorem_ipsum_short"/>
 </RelativeLayout>

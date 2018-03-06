@@ -6,25 +6,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.data.models.biboard.HotBoard;
+import bi.bigroup.life.data.models.feed.news.News;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HotBoardViewPager extends PagerAdapter {
+class HotBoardViewPager extends PagerAdapter {
     private Context context;
 
-    private List<HotBoard> sliders = new ArrayList<>();
+    private List<News> sliders = new ArrayList<>();
+    private Picasso picasso;
 
-    public HotBoardViewPager(Context context) {
+    HotBoardViewPager(Context context, Picasso picasso) {
         this.context = context;
+        this.picasso = picasso;
     }
 
-    public void addList(List<HotBoard> newSliders) {
+    public void addList(List<News> newSliders) {
         if (newSliders == null || newSliders.isEmpty()) {
             sliders = new ArrayList<>();
         } else {
@@ -61,14 +67,19 @@ public class HotBoardViewPager extends PagerAdapter {
     class ViewHolder {
         Context context;
         @BindView(R.id.img_slider) ImageView img_slider;
+        @BindView(R.id.tv_title) TextView tv_title;
 
         ViewHolder(View view) {
             context = view.getContext();
             ButterKnife.bind(this, view);
         }
 
-        void bindNews(HotBoard office) {
-//            PicassoUtils.showImg(context, img_slider, sliderImg);
+        void bindNews(News news) {
+            if (news == null) {
+                return;
+            }
+            tv_title.setText(news.getTitle());
+            PicassoUtils.showNewsImage(picasso, img_slider, news.getImageUrl());
         }
     }
 }
