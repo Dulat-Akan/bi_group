@@ -173,5 +173,8 @@ dependencies {
     // MultiDex
 //    compile "com.android.support:multidex:${multidex}"
 
+    // Selecting multiple images
+    compile "com.github.myinnos:AwesomeImagePicker:${multipleImages}"
+
     testCompile 'junit:junit:4.12'
 }

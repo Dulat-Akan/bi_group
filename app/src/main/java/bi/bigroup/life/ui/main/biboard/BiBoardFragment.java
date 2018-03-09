@@ -132,25 +132,11 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     }
 }
 /*
-
-    @OnClick(R.id.btn_add_question)
-    void onAddClick() {
-        startActivity(AddQuestionActivity.getIntent(getContext()));
-    }
-
-    @OnClick(R.id.btn_new_suggestion)
-    void onNewSuggestionClick() {
-        startActivity(NewSuggestionActivity.getIntent(getContext()));
-    }
+startActivity(AddQuestionActivity.getIntent(getContext()));
 
     @OnClick(R.id.btn_new_publication)
     void onNewPublication() {
         startActivity(PublicationActivity.getIntent(getContext()));
-    }
-
-    @OnClick(R.id.btn_add_news)
-    void onAddNews() {
-        startActivity(AddNewsActivity.getIntent(getContext()));
     }
 
     @OnClick(R.id.btn_new_sdesk)

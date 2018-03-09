@@ -7,6 +7,7 @@ import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.models.biboard.top_questions.TopQuestions;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Service;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
+import bi.bigroup.life.data.models.bioffice.top_questions.AddQuestionParams;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.models.feed.Feed;
@@ -137,4 +138,8 @@ public interface API {
     /****** Top Questions *******/
     @GET("topQuestions/")
     Observable<List<TopQuestions>> getTopQuestions();
+
+    @POST("topQuestions/")
+    Observable<ResponseBody> addQuestion(@Body AddQuestionParams params);
+
 }

@@ -28,6 +28,7 @@
     <string name="success_response">Запрос успешно отправлен</string>
     <string name="info_empty_data">Отсутствуют данные</string>
     <string name="field_error">Данное поле требует заполнения</string>
+    <string name="rationale_storage">Необходимо разрешить приложению доступ к файлам</string>
 
     <!-- Network strings -->
     <string name="loading">Загрузка&#8230;</string>

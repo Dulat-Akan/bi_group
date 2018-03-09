@@ -44,6 +44,7 @@
                     style="@style/LL_MW_H">
 
                     <LinearLayout
+                        android:id="@+id/img_single"
                         style="@style/LL_MW_H"
                         android:layout_weight="1"
                         android:background="@drawable/btn_selector_attachment"
@@ -64,6 +65,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/img_multiple"
                         style="@style/LL_MW_H"
                         android:layout_marginLeft="@dimen/dp_6"
                         android:layout_weight="3"

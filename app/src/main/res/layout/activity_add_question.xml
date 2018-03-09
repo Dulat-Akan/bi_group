@@ -40,14 +40,6 @@
             <LinearLayout
                 style="@style/LL_MW_V">
 
-                <bi.bigroup.life.views.edittext.SettingsEditText
-                    android:id="@+id/et_title"
-                    style="@style/MW"
-                    android:hint="@string/subject"
-                    android:inputType="text"
-                    android:textColorHint="@color/et_hint_subject"
-                    android:textSize="@dimen/sp_16"/>
-
                 <LinearLayout
                     style="@style/LL_MW_V"
                     android:layout_marginTop="@dimen/dp_15"
@@ -68,6 +60,15 @@
                         android:textSize="@dimen/sp_16"
                         app:met_hideUnderline="true"/>
                 </LinearLayout>
+
+                <bi.bigroup.life.views.edittext.SettingsEditText
+                    android:id="@+id/et_tags"
+                    style="@style/MW"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:hint="@string/tags"
+                    android:inputType="text"
+                    android:textColorHint="@color/et_hint_subject"
+                    android:textSize="@dimen/sp_16"/>
 
                 <bi.bigroup.life.views.fonts.ButtonRobotoRegular
                     android:id="@+id/btn_ask_question"

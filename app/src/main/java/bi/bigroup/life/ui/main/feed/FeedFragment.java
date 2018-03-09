@@ -2,8 +2,10 @@ package bi.bigroup.life.ui.main.feed;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.util.List;
 
@@ -12,14 +14,21 @@ import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.mvp.main.feed.FeedPresenter;
 import bi.bigroup.life.mvp.main.feed.FeedView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
+import bi.bigroup.life.ui.main.feed.news.AddNewsActivity;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
+import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.SuggestionDetailActivity;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
+import butterknife.BindView;
+import butterknife.OnClick;
 
 public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     @InjectPresenter
     FeedPresenter mvpPresenter;
     private FeedAdapter mAdapter;
+
+    @BindView(R.id.floating_menu) FloatingActionsMenu floating_menu;
+    @BindView(R.id.ll_float_menu) LinearLayout ll_float_menu;
 
     public static FeedFragment newInstance() {
         return new FeedFragment();
@@ -35,6 +44,18 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
         mvpPresenter.init(getContext(), dataLayer);
         mvpPresenter.getFeedList(false, false);
         configureRecyclerView();
+
+        floating_menu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                ll_float_menu.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                ll_float_menu.setVisibility(View.GONE);
+            }
+        });
     }
 
     protected void configureRecyclerView() {
@@ -72,6 +93,16 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
                 }
             }
         });
+    }
+
+    @OnClick(R.id.fbn_add_news)
+    void onAddNewsClick() {
+        startActivity(AddNewsActivity.getIntent(getContext()));
+    }
+
+    @OnClick(R.id.fbn_add_suggestion)
+    void onAddSuggestionClick() {
+        startActivity(NewSuggestionActivity.getIntent(getContext()));
     }
 
     @Override

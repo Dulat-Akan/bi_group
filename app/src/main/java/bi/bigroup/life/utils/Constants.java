@@ -30,6 +30,8 @@ public class Constants {
     // Employees profile picture
     public static final String PROFILE_PICTURE = API_BASE_URL + "employees/%s/avatar/";
 
+    public static final int LIMIT_FILES = 5;
+
     public static String getProfilePicture(String employeeCode) {
         return String.format(PROFILE_PICTURE, employeeCode);
     }

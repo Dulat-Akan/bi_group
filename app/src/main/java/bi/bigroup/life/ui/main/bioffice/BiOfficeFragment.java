@@ -49,7 +49,6 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
 //        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.adapter_bioffice_header, lv_office, false);
 //        configureViewPager(header);
 //        lv_office.addHeaderView(header, null, false);
-
         adapter = new BiOfficeAdapter(getContext());
         adapter.setCallback(new BiOfficeAdapter.Callback() {
             @Override
@@ -90,7 +89,6 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
         List<Object> newItems = new ArrayList<>();
         newItems.addAll(object.services);
         newItems.addAll(object.tasks);
-
         adapter.addItem(new BiOffice(
                 R.string.zayavki_i_zadachi,
                 R.string.row_new,
