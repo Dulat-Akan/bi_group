@@ -1,15 +1,6 @@
 package bi.bigroup.life.data.network;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import bi.bigroup.life.config.DebugConfig;
 import bi.bigroup.life.data.cache.preferences.Preferences;
@@ -19,6 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static bi.bigroup.life.config.BiGroupConfig.API_BASE_URL;
 
@@ -111,6 +103,7 @@ public class RetrofitServiceGenerator {
         return new Retrofit.Builder()
                 .baseUrl(API_BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(GsonProvider.gson));
     }
 }

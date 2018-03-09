@@ -8,8 +8,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -21,7 +23,6 @@ import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,7 @@ import static bi.bigroup.life.utils.permission.PermissionUtils.verifyPermissions
 public class AddNewsActivity extends BaseActivity implements AddNewsView {
     @InjectPresenter
     AddNewsPresenter mvpPresenter;
+    @BindView(R.id.pb_indicator_transparent) protected ViewGroup pb_indicator_transparent;
     @BindView(R.id.et_title) MaterialEditText et_title;
     @BindView(R.id.et_content) MaterialEditText et_content;
     @BindView(R.id.et_tags) AutoCompleteTextView et_tags;
@@ -72,7 +74,6 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
     private ArrayList<Image> imagesMultiple;
 
     // Tags
-    private List<Tags> tagsList;
     private TagsAdapter tagsAdapter;
 
     public static Intent getIntent(Context context) {
@@ -90,11 +91,8 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
         mvpPresenter.init(this, dataLayer);
         commonDialog = new CommonDialog(this);
 
-        tagsList = new ArrayList<>();
         tagsAdapter = new TagsAdapter(this, R.layout.adapter_tags_list);
-        tagsAdapter.setCallback(tag -> {
-            addTag(tag);
-        });
+        tagsAdapter.setCallback(this::addTag);
         et_tags.setThreshold(1);
         et_tags.setAdapter(tagsAdapter);
 
@@ -134,6 +132,15 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
         finish();
     }
 
+    @OnClick(R.id.btn_add)
+    void onAddClick() {
+        mvpPresenter.addNews(imageSingle, imagesMultiple,
+                et_title.getText().toString(),
+                et_content.getText().toString(),
+                selectedTagsList,
+                cb_popular_event.isChecked());
+    }
+
     @OnClick(R.id.btn_add_new_tag)
     void onAddNewTag() {
         String tagStr = et_tags.getText().toString();
@@ -148,12 +155,12 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
             }
 
             if (isAlreadyExist) {
-                ToastUtils.showCenteredToast(this, R.string.tag_already_exist, 1000);
+                ToastUtils.showCenteredToast(this, R.string.tag_already_exist);
             } else {
                 addTag(new Tags(null, tagStr));
             }
         } else {
-            ToastUtils.showCenteredToast(this, R.string.field_error, 1000);
+            ToastUtils.showCenteredToast(this, R.string.field_error);
         }
     }
 
@@ -180,9 +187,6 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
                 }
             } else {
                 imagesMultiple = new ArrayList<>(images);
-                for (int i = 0; i < images.size(); i++) {
-                    Uri uri = Uri.fromFile(new File(images.get(i).path));
-                }
             }
         }
     }
@@ -199,6 +203,10 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+    }
+
+    private void showInputFieldError(MaterialEditText inputField, @StringRes int errorRes) {
+        inputField.setError(getString(errorRes));
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -239,5 +247,25 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
     @Override
     public void setNewsTags(List<Tags> object) {
         tagsAdapter.addData(object);
+    }
+
+    @Override
+    public void showTitleError(@StringRes int error) {
+        showInputFieldError(et_title, error);
+    }
+
+    @Override
+    public void showContentError(int error) {
+        showInputFieldError(et_content, error);
+    }
+
+    @Override
+    public void showTransparentIndicator(boolean show) {
+        pb_indicator_transparent.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void showToastError(@StringRes int please_select_tag) {
+        ToastUtils.showCenteredToast(this, please_select_tag);
     }
 }

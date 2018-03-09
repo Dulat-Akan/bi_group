@@ -11,4 +11,12 @@ public interface AddNewsView extends BaseMvpView {
     void selectMultipleImages();
 
     void setNewsTags(List<Tags> object);
+
+    void showTitleError(int error);
+
+    void showContentError(int error);
+
+    void showTransparentIndicator(boolean show);
+
+    void showToastError(int please_select_tag);
 }

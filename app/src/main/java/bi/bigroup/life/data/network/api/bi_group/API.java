@@ -1,5 +1,6 @@
 package bi.bigroup.life.data.network.api.bi_group;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.data.models.ListOf;
@@ -20,11 +21,15 @@ import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
 import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.data.params.auth.AuthParams;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -67,8 +72,22 @@ public interface API {
     Observable<Comment> addNewsComment(@Path("id") String id,
                                        @Body AddComment params);
 
+
     @GET("News/tags")
     Observable<List<Tags>> getNewsTags();
+
+    @Multipart
+    @POST("News/")
+    Observable<ResponseBody> addNews(
+            @Part MultipartBody.Part mainImage,
+            @Part List<MultipartBody.Part> secondaryImages,
+            @Part("title") RequestBody title,
+            @Part("text") RequestBody text,
+            @Part("rawText") RequestBody rawText,
+            @Part("isHistoryEvent") Boolean isHistoryEvent,
+            @Query("tags[]") List<String> tags,
+            @Query("nsiTagIds[]") List<String> nsiTagIds,
+            @Query("NewTagNames[]") List<String> NewTagNames);
 
     /****** Suggestions *******/
     @GET("Suggestions/{id}")

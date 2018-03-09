@@ -196,6 +196,7 @@
     <string name="create_tag">Создать тег</string>
     <string name="popular_event">Знаменательное событие (в историю)</string>
     <string name="tag_already_exist">Такой тег уже существует</string>
+    <string name="please_select_tag">Пожалуйста выберите тег</string>
 
     <!-- AddSdeskActivity -->
     <string name="new_sdesk">Новая заявка</string>

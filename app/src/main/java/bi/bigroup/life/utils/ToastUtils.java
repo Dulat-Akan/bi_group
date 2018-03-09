@@ -8,8 +8,8 @@ import android.widget.Toast;
 
 @SuppressLint("ShowToast")
 public class ToastUtils {
-    public static void showCenteredToast(Context context, @StringRes int resId, int duration) {
-        Toast toast = Toast.makeText(context, resId, duration);
+    public static void showCenteredToast(Context context, @StringRes int resId) {
+        Toast toast = Toast.makeText(context, resId, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
