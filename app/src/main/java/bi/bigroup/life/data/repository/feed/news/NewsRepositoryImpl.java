@@ -11,7 +11,6 @@ import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.data.models.feed.news.Tags;
 import bi.bigroup.life.data.network.api.bi_group.API;
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -81,13 +80,8 @@ class NewsRepositoryImpl implements NewsRepository {
                                             List<String> tags, List<String> nsiTagIds, List<String> newTagNames) {
         return api
                 .addNews(mainImage, secondaryImages,
-                        RequestBody.create(MediaType.parse("multipart/form-data"), title),
-                        RequestBody.create(MediaType.parse("multipart/form-data"), text),
-                        RequestBody.create(MediaType.parse("multipart/form-data"), rawText),
-                        isHistoryEvent,
-                        tags,
-                        nsiTagIds,
-                        newTagNames)
+                        title, text, rawText, isHistoryEvent,
+                        tags, nsiTagIds, newTagNames)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

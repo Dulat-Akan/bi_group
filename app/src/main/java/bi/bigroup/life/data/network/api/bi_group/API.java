@@ -81,9 +81,9 @@ public interface API {
     Observable<ResponseBody> addNews(
             @Part MultipartBody.Part mainImage,
             @Part List<MultipartBody.Part> secondaryImages,
-            @Part("title") RequestBody title,
-            @Part("text") RequestBody text,
-            @Part("rawText") RequestBody rawText,
+            @Part("title") String title,
+            @Part("text") String text,
+            @Part("rawText") String rawText,
             @Part("isHistoryEvent") Boolean isHistoryEvent,
             @Query("tags[]") List<String> tags,
             @Query("nsiTagIds[]") List<String> nsiTagIds,
