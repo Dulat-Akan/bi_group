@@ -111,22 +111,43 @@
                         app:met_hideUnderline="true"/>
                 </LinearLayout>
 
-                <AutoCompleteTextView
-                    android:id="@+id/et_tags"
-                    style="@style/AutoComplete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp_10"
-                    android:layout_marginTop="@dimen/dp_12"
-                    android:background="@null"
-                    android:hint="@string/tags"
-                    android:inputType="text"
-                    android:textColorHint="@color/et_hint_subject"
-                    android:textSize="@dimen/sp_16"/>
+                <LinearLayout
+                    style="@style/LL_MW_H"
+                    android:gravity="center_vertical">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/et_tags"
+                        style="@style/AutoComplete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/tags"
+                        android:inputType="text"
+                        android:textColorHint="@color/et_hint_subject"
+                        android:textSize="@dimen/sp_16"/>
+
+                    <bi.bigroup.life.views.fonts.ButtonRobotoRegular
+                        android:id="@+id/btn_add_new_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_22"
+                        android:background="@drawable/tags_selector_blue_rounded"
+                        android:text="@string/create_tag"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_11"/>
+                </LinearLayout>
 
                 <View
                     style="@style/PARENT_DIVIDER"
                     android:layout_margin="@dimen/dp_0"/>
+
+                <com.zhy.view.flowlayout.TagFlowLayout
+                    android:id="@+id/tags_layout"
+                    style="@style/MW"
+                    android:layout_marginTop="@dimen/dp_12"/>
 
                 <CheckBox
                     android:id="@+id/cb_popular_event"

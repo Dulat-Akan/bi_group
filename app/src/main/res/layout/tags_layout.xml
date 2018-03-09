@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bi.bigroup.life.views.fonts.TextViewRobotoRegular
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_name"
+    style="@style/WW"
+    android:layout_margin="@dimen/dp_4"
+    android:background="@drawable/tags_selector_blue_rounded"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/dp_6"
+    android:textColor="@color/white"
+    android:textSize="@dimen/sp_14"
+    tools:text="@string/lorem_ipsum_short_2"/>

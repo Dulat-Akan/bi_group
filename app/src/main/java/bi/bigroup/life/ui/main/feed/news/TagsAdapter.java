@@ -20,6 +20,12 @@ class TagsAdapter extends ArrayAdapter<Tags> {
     private LayoutInflater layoutInflater;
     private List<Tags> data;
 
+    private Callback callback;
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
+
     TagsAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
         data = new ArrayList<>();
@@ -31,6 +37,9 @@ class TagsAdapter extends ArrayAdapter<Tags> {
         notifyDataSetChanged();
     }
 
+    List<Tags> getData() {
+        return data;
+    }
 
     private Filter mFilter = new Filter() {
         @Override
@@ -76,13 +85,18 @@ class TagsAdapter extends ArrayAdapter<Tags> {
         if (view == null) {
             view = layoutInflater.inflate(R.layout.adapter_tags_list, null);
         }
-        Tags customer = getItem(position);
+        Tags tag = getItem(position);
 
         TextView name = view.findViewById(R.id.tv_title);
         LinearLayout ll_content = view.findViewById(R.id.ll_content);
-
-        name.setText(customer != null ? customer.getName() : null);
-
+        if (tag != null) {
+            name.setText(tag.getName());
+            ll_content.setOnClickListener(view1 -> {
+                if (callback != null) {
+                    callback.onTabSelected(tag);
+                }
+            });
+        }
         return view;
     }
 
@@ -90,5 +104,9 @@ class TagsAdapter extends ArrayAdapter<Tags> {
     @Override
     public Filter getFilter() {
         return mFilter;
+    }
+
+    interface Callback {
+        void onTabSelected(Tags tag);
     }
 }

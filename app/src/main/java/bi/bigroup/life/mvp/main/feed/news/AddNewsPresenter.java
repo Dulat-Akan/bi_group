@@ -12,7 +12,6 @@ import bi.bigroup.life.data.models.feed.news.Tags;
 import bi.bigroup.life.data.repository.biboard.top_questions.TopQuestionsRepositoryProvider;
 import bi.bigroup.life.data.repository.feed.news.NewsRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
-import bi.bigroup.life.utils.LOTimber;
 import okhttp3.ResponseBody;
 import rx.Subscriber;
 import rx.Subscription;
@@ -43,7 +42,6 @@ public class AddNewsPresenter extends BaseMvpPresenter<AddNewsView> {
 
                     @Override
                     public void onNext(List<Tags> object) {
-                        LOTimber.d("sakldjaskld object=" + object.size());
                         if (object != null && object.size() > 0) {
                             getViewState().setNewsTags(object);
                         }

@@ -8,12 +8,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.zhy.view.flowlayout.FlowLayout;
+import com.zhy.view.flowlayout.TagAdapter;
+import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,6 +30,7 @@ import bi.bigroup.life.data.models.feed.news.Tags;
 import bi.bigroup.life.mvp.main.feed.news.AddNewsPresenter;
 import bi.bigroup.life.mvp.main.feed.news.AddNewsView;
 import bi.bigroup.life.ui.base.BaseActivity;
+import bi.bigroup.life.utils.ToastUtils;
 import bi.bigroup.life.views.dialogs.CommonDialog;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,6 +40,10 @@ import in.myinnos.awesomeimagepicker.models.Image;
 
 import static bi.bigroup.life.utils.Constants.LIMIT_FILES;
 import static bi.bigroup.life.utils.Constants.LIMIT_SINGLE_FILE;
+import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
+import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
+import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 import static bi.bigroup.life.utils.permission.PermissionRequestCodes.PERMISSIONS_STORAGE;
 import static bi.bigroup.life.utils.permission.PermissionRequestCodes.PERM_WRITE_EXTERNAL_STORAGE;
 import static bi.bigroup.life.utils.permission.PermissionRequestCodes.STORAGE_PERMISSION_CODE;
@@ -48,6 +59,10 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
     @BindView(R.id.et_content) MaterialEditText et_content;
     @BindView(R.id.et_tags) AutoCompleteTextView et_tags;
     @BindView(R.id.cb_popular_event) CheckBox cb_popular_event;
+
+    @BindView(R.id.tags_layout) TagFlowLayout tags_layout;
+    private TagAdapter<Tags> selectedTagsAdapter;
+    private List<Tags> selectedTagsList;
 
     private CommonDialog commonDialog;
     private boolean isSingleImage;
@@ -77,13 +92,69 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
 
         tagsList = new ArrayList<>();
         tagsAdapter = new TagsAdapter(this, R.layout.adapter_tags_list);
+        tagsAdapter.setCallback(tag -> {
+            addTag(tag);
+        });
         et_tags.setThreshold(1);
         et_tags.setAdapter(tagsAdapter);
+
+        configureTagsLayout();
+    }
+
+    private void configureTagsLayout() {
+        selectedTagsList = new ArrayList<>();
+        final LayoutInflater mInflater = LayoutInflater.from(this);
+        tags_layout.setMaxSelectCount(5);
+        tags_layout.setAdapter(selectedTagsAdapter = new TagAdapter<Tags>(selectedTagsList) {
+            @Override
+            public View getView(FlowLayout parent, int position, Tags tags) {
+                View tagsLayout = mInflater.inflate(R.layout.tags_layout, tags_layout, false);
+                TextView tv_name = tagsLayout.findViewById(R.id.tv_name);
+                tv_name.setText(tags.getName());
+                return tagsLayout;
+            }
+        });
+        tags_layout.setOnTagClickListener((view, position, parent) -> {
+            selectedTagsList.remove(position);
+            selectedTagsAdapter.notifyDataChanged();
+            return true;
+        });
+    }
+
+    void addTag(Tags tag) {
+        selectedTagsList.add(tag);
+        selectedTagsAdapter.notifyDataChanged();
+        et_tags.setText(EMPTY_STR);
+        clearFocusFromAllViews(fl_parent);
+        hideSoftKeyboard(fl_parent);
     }
 
     @OnClick(R.id.img_close)
     void onCloseClick() {
         finish();
+    }
+
+    @OnClick(R.id.btn_add_new_tag)
+    void onAddNewTag() {
+        String tagStr = et_tags.getText().toString();
+        if (isStringOk(tagStr)) {
+            List<Tags> tagsDuplicates = tagsAdapter.getData();
+            boolean isAlreadyExist = false;
+            for (int i = 0; i < tagsDuplicates.size(); i++) {
+                if (tagStr.equals(tagsDuplicates.get(i).getName())) {
+                    isAlreadyExist = true;
+                    break;
+                }
+            }
+
+            if (isAlreadyExist) {
+                ToastUtils.showCenteredToast(this, R.string.tag_already_exist, 1000);
+            } else {
+                addTag(new Tags(null, tagStr));
+            }
+        } else {
+            ToastUtils.showCenteredToast(this, R.string.field_error, 1000);
+        }
     }
 
     @OnClick({R.id.img_single, R.id.img_multiple})

@@ -193,7 +193,9 @@
     <string name="news_head">Заголовок</string>
     <string name="enter_text">Введите текст</string>
     <string name="tags">Теги</string>
+    <string name="create_tag">Создать тег</string>
     <string name="popular_event">Знаменательное событие (в историю)</string>
+    <string name="tag_already_exist">Такой тег уже существует</string>
 
     <!-- AddSdeskActivity -->
     <string name="new_sdesk">Новая заявка</string>

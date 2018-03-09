@@ -176,5 +176,8 @@ dependencies {
     // Selecting multiple images
     compile "com.github.myinnos:AwesomeImagePicker:${multipleImages}"
 
+    // Tags layout
+    compile "com.hyman:flowlayout-lib:${tagsLayout}"
+
     testCompile 'junit:junit:4.12'
 }
