@@ -14,6 +14,7 @@ import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.news.News;
+import bi.bigroup.life.data.models.feed.news.Tags;
 import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
 import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
 import bi.bigroup.life.data.models.notifications.Notification;
@@ -65,6 +66,9 @@ public interface API {
     @POST("News/{id}/comments")
     Observable<Comment> addNewsComment(@Path("id") String id,
                                        @Body AddComment params);
+
+    @GET("News/tags")
+    Observable<List<Tags>> getNewsTags();
 
     /****** Suggestions *******/
     @GET("Suggestions/{id}")

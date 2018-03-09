@@ -4,18 +4,52 @@ import android.content.Context;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import java.util.List;
+
 import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.models.bioffice.top_questions.AddQuestionParams;
+import bi.bigroup.life.data.models.feed.news.Tags;
 import bi.bigroup.life.data.repository.biboard.top_questions.TopQuestionsRepositoryProvider;
+import bi.bigroup.life.data.repository.feed.news.NewsRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
+import bi.bigroup.life.utils.LOTimber;
 import okhttp3.ResponseBody;
 import rx.Subscriber;
+import rx.Subscription;
 
 @InjectViewState
 public class AddNewsPresenter extends BaseMvpPresenter<AddNewsView> {
 
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
+        getNewsTags();
+    }
+
+    private void getNewsTags() {
+        Subscription subscription = NewsRepositoryProvider.provideRepository(dataLayer.getApi())
+                .getNewsTags()
+                .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
+                .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
+                .subscribe(new Subscriber<List<Tags>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(List<Tags> object) {
+                        LOTimber.d("sakldjaskld object=" + object.size());
+                        if (object != null && object.size() > 0) {
+                            getViewState().setNewsTags(object);
+                        }
+                    }
+                });
+        compositeSubscription.add(subscription);
     }
 
     private void addNews(AddQuestionParams params) {

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/ll_content"
+              style="@style/LL_MW_V"
+              android:padding="@dimen/dp_15">
+
+    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+        android:id="@+id/tv_title"
+        style="@style/MW"
+        android:lineSpacingExtra="6sp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_14"
+        tools:text="Type something notification"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginTop="@dimen/dp_11"
+        android:background="@color/divider"/>
+
+</LinearLayout>

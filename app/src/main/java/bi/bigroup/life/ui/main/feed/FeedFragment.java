@@ -97,11 +97,13 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
 
     @OnClick(R.id.fbn_add_news)
     void onAddNewsClick() {
+        floating_menu.collapse();
         startActivity(AddNewsActivity.getIntent(getContext()));
     }
 
     @OnClick(R.id.fbn_add_suggestion)
     void onAddSuggestionClick() {
+        floating_menu.collapse();
         startActivity(NewSuggestionActivity.getIntent(getContext()));
     }
 

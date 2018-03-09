@@ -8,24 +8,31 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.models.feed.news.Tags;
 import bi.bigroup.life.mvp.main.feed.news.AddNewsPresenter;
 import bi.bigroup.life.mvp.main.feed.news.AddNewsView;
 import bi.bigroup.life.ui.base.BaseActivity;
-import bi.bigroup.life.utils.LOTimber;
 import bi.bigroup.life.views.dialogs.CommonDialog;
+import butterknife.BindView;
 import butterknife.OnClick;
 import in.myinnos.awesomeimagepicker.activities.AlbumSelectActivity;
 import in.myinnos.awesomeimagepicker.helpers.ConstantsCustomGallery;
 import in.myinnos.awesomeimagepicker.models.Image;
 
 import static bi.bigroup.life.utils.Constants.LIMIT_FILES;
+import static bi.bigroup.life.utils.Constants.LIMIT_SINGLE_FILE;
 import static bi.bigroup.life.utils.permission.PermissionRequestCodes.PERMISSIONS_STORAGE;
 import static bi.bigroup.life.utils.permission.PermissionRequestCodes.PERM_WRITE_EXTERNAL_STORAGE;
 import static bi.bigroup.life.utils.permission.PermissionRequestCodes.STORAGE_PERMISSION_CODE;
@@ -37,8 +44,21 @@ import static bi.bigroup.life.utils.permission.PermissionUtils.verifyPermissions
 public class AddNewsActivity extends BaseActivity implements AddNewsView {
     @InjectPresenter
     AddNewsPresenter mvpPresenter;
+    @BindView(R.id.et_title) MaterialEditText et_title;
+    @BindView(R.id.et_content) MaterialEditText et_content;
+    @BindView(R.id.et_tags) AutoCompleteTextView et_tags;
+    @BindView(R.id.cb_popular_event) CheckBox cb_popular_event;
 
     private CommonDialog commonDialog;
+    private boolean isSingleImage;
+
+    // Images
+    private Image imageSingle;
+    private ArrayList<Image> imagesMultiple;
+
+    // Tags
+    private List<Tags> tagsList;
+    private TagsAdapter tagsAdapter;
 
     public static Intent getIntent(Context context) {
         return new Intent(context, AddNewsActivity.class);
@@ -54,6 +74,11 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
         super.onCreate(savedInstanceState);
         mvpPresenter.init(this, dataLayer);
         commonDialog = new CommonDialog(this);
+
+        tagsList = new ArrayList<>();
+        tagsAdapter = new TagsAdapter(this, R.layout.adapter_tags_list);
+        et_tags.setThreshold(1);
+        et_tags.setAdapter(tagsAdapter);
     }
 
     @OnClick(R.id.img_close)
@@ -61,12 +86,9 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
         finish();
     }
 
-    @OnClick(R.id.img_single)
-    void onSingleImage() {
-    }
-
-    @OnClick(R.id.img_multiple)
-    void onMultipleImagesClick() {
+    @OnClick({R.id.img_single, R.id.img_multiple})
+    void onImageSelect(LinearLayout layout) {
+        isSingleImage = layout.getId() == R.id.img_single;
         if (Build.VERSION.SDK_INT >= 23) {
             mvpPresenter.onSelectMultipleImages(
                     isPermissionGranted(AddNewsActivity.this, PERM_WRITE_EXTERNAL_STORAGE),
@@ -81,10 +103,15 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ConstantsCustomGallery.REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             ArrayList<Image> images = data.getParcelableArrayListExtra(ConstantsCustomGallery.INTENT_EXTRA_IMAGES);
-
-            for (int i = 0; i < images.size(); i++) {
-                Uri uri = Uri.fromFile(new File(images.get(i).path));
-                LOTimber.d("sakldjaslkda uriPATH=" + uri.getPath());
+            if (isSingleImage) {
+                if (images.size() > 0) {
+                    imageSingle = images.get(0);
+                }
+            } else {
+                imagesMultiple = new ArrayList<>(images);
+                for (int i = 0; i < images.size(); i++) {
+                    Uri uri = Uri.fromFile(new File(images.get(i).path));
+                }
             }
         }
     }
@@ -133,7 +160,13 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
     @Override
     public void selectMultipleImages() {
         Intent intent = new Intent(this, AlbumSelectActivity.class);
-        intent.putExtra(ConstantsCustomGallery.INTENT_EXTRA_LIMIT, LIMIT_FILES);
+        intent.putExtra(ConstantsCustomGallery.INTENT_EXTRA_LIMIT,
+                isSingleImage ? LIMIT_SINGLE_FILE : LIMIT_FILES);
         startActivityForResult(intent, ConstantsCustomGallery.REQUEST_CODE);
+    }
+
+    @Override
+    public void setNewsTags(List<Tags> object) {
+        tagsAdapter.addData(object);
     }
 }

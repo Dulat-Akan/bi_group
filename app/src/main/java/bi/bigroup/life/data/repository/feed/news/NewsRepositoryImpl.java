@@ -5,6 +5,7 @@ import java.util.List;
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
 import bi.bigroup.life.data.models.feed.news.News;
+import bi.bigroup.life.data.models.feed.news.Tags;
 import bi.bigroup.life.data.network.api.bi_group.API;
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -55,6 +56,14 @@ class NewsRepositoryImpl implements NewsRepository {
     public Observable<List<News>> getPopularNews(int top) {
         return api
                 .getPopularNews(top)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<List<Tags>> getNewsTags() {
+        return api
+                .getNewsTags()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
