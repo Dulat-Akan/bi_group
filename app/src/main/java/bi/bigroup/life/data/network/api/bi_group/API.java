@@ -108,6 +108,19 @@ public interface API {
     Observable<Comment> addSuggestionsComment(@Path("id") String id,
                                               @Body AddComment params);
 
+    @GET("Suggestions/tags")
+    Observable<List<Tags>> getSuggestionTags();
+
+    @Multipart
+    @POST("Suggestions/")
+    Observable<ResponseBody> addSuggestion(
+            @Part MultipartBody.Part mainImage,
+            @Part List<MultipartBody.Part> secondaryImages,
+            @Part("title") String title,
+            @Part("text") String text,
+            @Part("rawText") String rawText,
+            @Part("tags[]") List<String> tags);
+
     /****** Questionnaires *******/
     @GET("Questionnaires/popular")
     Observable<List<Questionnaire>> getPopularQuestionnaires();

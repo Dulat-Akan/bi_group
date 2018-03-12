@@ -23,6 +23,8 @@ import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static bi.bigroup.life.utils.Constants.KEY_CODE;
+
 public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     public static final int UPDATE_NEWS_FEED = 12;
     @InjectPresenter
@@ -106,13 +108,14 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     @OnClick(R.id.fbn_add_suggestion)
     void onAddSuggestionClick() {
         floating_menu.collapse();
-        startActivity(NewSuggestionActivity.getIntent(getContext()));
+        startActivityForResult(NewSuggestionActivity.getIntent(getContext()), UPDATE_NEWS_FEED);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == UPDATE_NEWS_FEED) {
+        if (data == null) {return;}
+        if (data.getIntExtra(KEY_CODE, 0) == UPDATE_NEWS_FEED) {
             mvpPresenter.getFeedList(false, true);
         }
     }

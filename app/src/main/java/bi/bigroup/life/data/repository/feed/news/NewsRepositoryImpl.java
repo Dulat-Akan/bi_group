@@ -1,10 +1,6 @@
 package bi.bigroup.life.data.repository.feed.news;
 
-import android.support.annotation.NonNull;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
@@ -12,7 +8,6 @@ import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.data.models.feed.news.Tags;
 import bi.bigroup.life.data.network.api.bi_group.API;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -84,16 +79,5 @@ class NewsRepositoryImpl implements NewsRepository {
                         tags)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-    }
-
-    @NonNull
-    private Map<String, RequestBody> createPartFromArray(List<String> list, String keyword) {
-        Map<String, RequestBody> skill = new HashMap<>();
-        RequestBody requestFile;
-        for (int i = 0; i < list.size(); i++) {
-            requestFile = RequestBody.create(MultipartBody.FORM, list.get(i));
-            skill.put(keyword + "[" + i + "]", requestFile);
-        }
-        return skill;
     }
 }

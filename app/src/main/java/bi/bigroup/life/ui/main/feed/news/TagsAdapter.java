@@ -16,7 +16,7 @@ import java.util.List;
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.feed.news.Tags;
 
-class TagsAdapter extends ArrayAdapter<Tags> {
+public class TagsAdapter extends ArrayAdapter<Tags> {
     private LayoutInflater layoutInflater;
     private List<Tags> data;
 
@@ -26,18 +26,18 @@ class TagsAdapter extends ArrayAdapter<Tags> {
         this.callback = callback;
     }
 
-    TagsAdapter(Context context, int textViewResourceId) {
+    public TagsAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
         data = new ArrayList<>();
         layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    void addData(List<Tags> newItems) {
+    public void addData(List<Tags> newItems) {
         data.addAll(newItems);
         notifyDataSetChanged();
     }
 
-    List<Tags> getData() {
+    public List<Tags> getData() {
         return data;
     }
 
@@ -106,7 +106,7 @@ class TagsAdapter extends ArrayAdapter<Tags> {
         return mFilter;
     }
 
-    interface Callback {
+    public interface Callback {
         void onTabSelected(Tags tag);
     }
 }

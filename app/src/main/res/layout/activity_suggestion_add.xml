@@ -40,9 +40,51 @@
             <LinearLayout
                 style="@style/LL_MW_V">
 
+                <LinearLayout
+                    style="@style/LL_MW_H">
+
+                    <LinearLayout
+                        android:id="@+id/img_single"
+                        style="@style/LL_MW_H"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_selector_attachment"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:padding="@dimen/dp_20">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_22"
+                            android:layout_height="@dimen/dp_22"
+                            android:src="@drawable/ic_img_attachment"/>
+
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                            style="@style/WW"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/add_cover"
+                            android:textColor="@color/tasks_sdesk_description"
+                            android:textSize="@dimen/sp_12"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/img_multiple"
+                        style="@style/LL_MW_H"
+                        android:layout_marginLeft="@dimen/dp_6"
+                        android:layout_weight="3"
+                        android:background="@drawable/btn_selector_attachment"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:padding="@dimen/dp_20">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_22"
+                            android:layout_height="@dimen/dp_22"
+                            android:src="@drawable/ic_attach"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
                 <bi.bigroup.life.views.edittext.SettingsEditText
                     android:id="@+id/et_title"
                     style="@style/MW"
+                    android:layout_marginTop="@dimen/dp_20"
                     android:hint="@string/subject"
                     android:inputType="text"
                     android:textColorHint="@color/et_hint_subject"
@@ -71,24 +113,44 @@
 
                 <LinearLayout
                     style="@style/LL_MW_H"
-                    android:layout_marginTop="@dimen/dp_12"
                     android:gravity="center_vertical">
 
-                    <ImageView
-                        android:layout_width="@dimen/dp_26"
-                        android:layout_height="@dimen/dp_26"
-                        android:src="@drawable/ic_attach"/>
-
-                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
-                        style="@style/MW"
-                        android:lineSpacingExtra="8sp"
-                        android:text="@string/attach"
-                        android:textColor="@color/black"
+                    <AutoCompleteTextView
+                        android:id="@+id/et_tags"
+                        style="@style/AutoComplete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/tags"
+                        android:inputType="text"
+                        android:textColorHint="@color/et_hint_subject"
                         android:textSize="@dimen/sp_16"/>
+
+                    <bi.bigroup.life.views.fonts.ButtonRobotoRegular
+                        android:id="@+id/btn_add_new_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_22"
+                        android:background="@drawable/tags_selector_blue_rounded"
+                        android:text="@string/create_tag"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_11"/>
                 </LinearLayout>
 
+                <View
+                    style="@style/PARENT_DIVIDER"
+                    android:layout_margin="@dimen/dp_0"/>
+
+                <com.zhy.view.flowlayout.TagFlowLayout
+                    android:id="@+id/tags_layout"
+                    style="@style/MW"
+                    android:layout_marginTop="@dimen/dp_12"/>
+
                 <bi.bigroup.life.views.fonts.ButtonRobotoRegular
-                    android:id="@+id/btn_ask_question"
+                    android:id="@+id/btn_add"
                     style="@style/auth_rounded_btn"
                     android:layout_marginLeft="@dimen/dp_0"
                     android:layout_marginRight="@dimen/dp_0"
@@ -101,5 +163,9 @@
     <include
         android:id="@+id/pb_indicator"
         layout="@layout/inc_pb_opaque"/>
+
+    <include
+        android:id="@+id/pb_indicator_transparent"
+        layout="@layout/inc_pb_transparent"/>
 
 </FrameLayout>

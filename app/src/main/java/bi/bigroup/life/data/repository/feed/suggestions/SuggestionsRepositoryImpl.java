@@ -4,8 +4,10 @@ import java.util.List;
 
 import bi.bigroup.life.data.models.feed.news.AddComment;
 import bi.bigroup.life.data.models.feed.news.Comment;
+import bi.bigroup.life.data.models.feed.news.Tags;
 import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
 import bi.bigroup.life.data.network.api.bi_group.API;
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -63,6 +65,25 @@ class SuggestionsRepositoryImpl implements SuggestionsRepository {
     public Observable<List<Suggestion>> getAllSuggestions() {
         return api
                 .getAllSuggestions()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<List<Tags>> getSuggestionTags() {
+        return api
+                .getSuggestionTags()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<ResponseBody> addSuggestion(MultipartBody.Part mainImage, List<MultipartBody.Part> secondaryImages,
+                                            String title, String text, String rawText,
+                                            List<String> tags) {
+        return api
+                .addSuggestion(mainImage, secondaryImages,
+                        title, text, rawText, tags)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

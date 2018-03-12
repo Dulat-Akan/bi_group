@@ -178,7 +178,7 @@
 
     <!-- NewSuggestionActivity -->
     <string name="new_suggestion">Новое предложение</string>
-    <string name="content_description">Описание текст</string>
+    <string name="content_description">Написать текст</string>
     <string name="attach">Прикрепить</string>
 
     <!-- PublicationActivity -->

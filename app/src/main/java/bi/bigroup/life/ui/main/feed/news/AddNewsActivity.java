@@ -39,6 +39,8 @@ import in.myinnos.awesomeimagepicker.activities.AlbumSelectActivity;
 import in.myinnos.awesomeimagepicker.helpers.ConstantsCustomGallery;
 import in.myinnos.awesomeimagepicker.models.Image;
 
+import static bi.bigroup.life.ui.main.feed.FeedFragment.UPDATE_NEWS_FEED;
+import static bi.bigroup.life.utils.Constants.KEY_CODE;
 import static bi.bigroup.life.utils.Constants.LIMIT_FILES;
 import static bi.bigroup.life.utils.Constants.LIMIT_SINGLE_FILE;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
@@ -271,7 +273,9 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
 
     @Override
     public void newsAddedSuccessfully() {
-        setResult(RESULT_OK, new Intent());
+        Intent intent = new Intent();
+        intent.putExtra(KEY_CODE, UPDATE_NEWS_FEED);
+        setResult(RESULT_OK, intent);
         finish();
     }
 }
