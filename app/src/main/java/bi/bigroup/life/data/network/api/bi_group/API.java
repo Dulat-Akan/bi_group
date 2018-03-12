@@ -5,6 +5,7 @@ import java.util.List;
 import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.models.biboard.top_questions.TopQuestions;
+import bi.bigroup.life.data.models.biboard.top_questions.TopVideoAnswers;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Service;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
 import bi.bigroup.life.data.models.bioffice.top_questions.AddQuestionParams;
@@ -171,9 +172,16 @@ public interface API {
     @GET("topQuestions/")
     Observable<List<TopQuestions>> getTopQuestions();
 
+    @GET("topQuestions/videoAnswers")
+    Observable<List<TopVideoAnswers>> getTopVideoAnswers();
+
     @POST("topQuestions/")
     Observable<ResponseBody> addQuestion(@Body AddQuestionParams params);
 
     @GET("tags")
     Observable<List<Tags>> getTags();
+
+    @PUT("topQuestions/{id}/like")
+    Observable<ResponseBody> likeTopQuestion(@Path("id") String id);
+
 }

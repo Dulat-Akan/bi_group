@@ -24,6 +24,7 @@ import bi.bigroup.life.mvp.main.biboard.BiBoardPresenter;
 import bi.bigroup.life.mvp.main.biboard.BiBoardView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.main.PageSwapCallback;
+import bi.bigroup.life.ui.main.biboard.top_questions.TopQuestionsActivity;
 import bi.bigroup.life.ui.main.employees.EmployeePageActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
@@ -72,6 +73,9 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
         recycler_view.setLayoutManager(layoutManager);
         top7Adapter = new BricksTop7Adapter(getContext(), dataLayer.getPicasso());
         recycler_view.setAdapter(top7Adapter);
+
+        footer.findViewById(R.id.ll_open_top_question)
+                .setOnClickListener(view -> startActivity(TopQuestionsActivity.getIntent(getContext())));
         lv_board.addFooterView(footer, null, false);
 
         // ========== Add header ==============

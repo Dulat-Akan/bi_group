@@ -5,6 +5,7 @@ import java.util.List;
 import bi.bigroup.life.data.models.feed.news.Tags;
 
 import static bi.bigroup.life.utils.StringUtils.getOkInt;
+import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
 import static bi.bigroup.life.utils.StringUtils.replaceNullTrim;
 
@@ -35,4 +36,17 @@ public class TopQuestions {
     public Integer getLikesQuantity() {
         return getOkInt(likesQuantity);
     }
+
+    public boolean isLiked() {
+        return isOkBoolean(isLikedByMe);
+    }
+
+    public void setLikedByMe(Boolean likedByMe) {
+        isLikedByMe = likedByMe;
+    }
+
+    public void setLikesQuantity(int likesQuantity) {
+        this.likesQuantity = likesQuantity;
+    }
+
 }

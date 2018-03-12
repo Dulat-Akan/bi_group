@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,12 +21,15 @@ import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.biboard.top_questions.TopQuestions;
+import bi.bigroup.life.data.models.biboard.top_questions.TopVideoAnswers;
 import bi.bigroup.life.mvp.main.biboard.top_questions.TopQuestionsPresenter;
 import bi.bigroup.life.mvp.main.biboard.top_questions.TopQuestionsView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import bi.bigroup.life.ui.main.biboard.BricksTop7Adapter;
 import bi.bigroup.life.ui.main.feed.news.CommentsAdapter;
 import butterknife.BindView;
+
+import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 
 public class TopQuestionsActivity extends BaseActivity implements TopQuestionsView {
     @InjectPresenter
@@ -39,8 +44,10 @@ public class TopQuestionsActivity extends BaseActivity implements TopQuestionsVi
     private TextView tv_author_name;
     private TextView tv_specialty;
     private TextView tv_like_quantity;
-    private Picasso picasso;
+    private LinearLayout ll_like;
+    private ImageView img_like;
 
+    private Picasso picasso;
     public static Intent getIntent(Context context) {
         return new Intent(context, TopQuestionsActivity.class);
     }
@@ -54,6 +61,7 @@ public class TopQuestionsActivity extends BaseActivity implements TopQuestionsVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
+        toolbar.setTitle(EMPTY_STR);
         mvpPresenter.init(this, dataLayer);
         picasso = dataLayer.getPicasso();
         configureListView();
@@ -80,7 +88,11 @@ public class TopQuestionsActivity extends BaseActivity implements TopQuestionsVi
         recycler_view.setLayoutManager(layoutManager);
         tv_author_name = header.findViewById(R.id.tv_author_name);
         tv_specialty = header.findViewById(R.id.tv_specialty);
+
         tv_like_quantity = header.findViewById(R.id.tv_like_quantity);
+        ll_like = header.findViewById(R.id.ll_like);
+        img_like = header.findViewById(R.id.img_like);
+
         top7Adapter = new BricksTop7Adapter(this, picasso);
         top7Adapter.setCallback(this::setAuthorData);
         recycler_view.setAdapter(top7Adapter);
@@ -100,6 +112,22 @@ public class TopQuestionsActivity extends BaseActivity implements TopQuestionsVi
     void setAuthorData(TopQuestions question) {
         tv_author_name.setText(question.getAuthorName());
         tv_like_quantity.setText(String.valueOf(question.getLikesQuantity()));
+        img_like.setImageResource(question.isLiked() ? R.drawable.like_active
+                : R.drawable.like_inactive);
+        ll_like.setOnClickListener(view -> {
+            mvpPresenter.likeSubscriptionUnsubscribe();
+            mvpPresenter.likeTopQuestion(question.getId());
+            if (question.isLiked()) {
+                question.setLikedByMe(false);
+                question.setLikesQuantity(question.getLikesQuantity() - 1);
+            } else {
+                question.setLikedByMe(true);
+                question.setLikesQuantity(question.getLikesQuantity() + 1);
+            }
+            tv_like_quantity.setText(String.valueOf(question.getLikesQuantity()));
+            img_like.setImageResource(question.isLiked() ? R.drawable.like_active
+                    : R.drawable.like_inactive);
+        });
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -112,5 +140,10 @@ public class TopQuestionsActivity extends BaseActivity implements TopQuestionsVi
         if (list.size() > 0) {
             setAuthorData(list.get(0));
         }
+    }
+
+    @Override
+    public void setTopVideoAnswers(List<TopVideoAnswers> list) {
+        topAnswersAdapter.addList(list);
     }
 }

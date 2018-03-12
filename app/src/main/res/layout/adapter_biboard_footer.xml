@@ -15,7 +15,10 @@
         app:cardElevation="@dimen/dp_0">
 
         <LinearLayout
-            style="@style/LL_MW_V">
+            android:id="@+id/ll_open_top_question"
+            style="@style/LL_MW_V"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true">
 
             <LinearLayout
                 style="@style/LL_WW_H"

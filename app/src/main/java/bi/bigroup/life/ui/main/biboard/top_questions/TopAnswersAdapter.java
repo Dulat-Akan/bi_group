@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.models.biboard.top_questions.TopVideoAnswers;
 import bi.bigroup.life.data.models.user.advantages.BricksGallery;
 import bi.bigroup.life.ui.base.recycler_view.RecyclerViewBaseAdapter;
 import butterknife.ButterKnife;
@@ -18,7 +19,7 @@ class TopAnswersAdapter extends RecyclerViewBaseAdapter {
     private static final int LAYOUT_ID = R.layout.adapter_topq_answers;
 
     private Context context;
-    private List<BricksGallery> data;
+    private List<TopVideoAnswers> data;
     private Callback callback;
 
     TopAnswersAdapter(Context context) {
@@ -35,7 +36,7 @@ class TopAnswersAdapter extends RecyclerViewBaseAdapter {
         notifyDataSetChanged();
     }
 
-    void addList(List<BricksGallery> newItems) {
+    void addList(List<TopVideoAnswers> newItems) {
         int positionStart = data.size();
         int itemCount = newItems.size();
         data.addAll(newItems);
@@ -65,7 +66,7 @@ class TopAnswersAdapter extends RecyclerViewBaseAdapter {
 
     @Override
     public int getItemCount() {
-        return data.size() + 10;
+        return data.size();
     }
 
     @Override
