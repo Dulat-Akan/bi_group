@@ -1,5 +1,6 @@
 package bi.bigroup.life.ui.main.feed;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -23,6 +24,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
+    public static final int UPDATE_NEWS_FEED = 12;
     @InjectPresenter
     FeedPresenter mvpPresenter;
     private FeedAdapter mAdapter;
@@ -98,13 +100,21 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     @OnClick(R.id.fbn_add_news)
     void onAddNewsClick() {
         floating_menu.collapse();
-        startActivity(AddNewsActivity.getIntent(getContext()));
+        startActivityForResult(AddNewsActivity.getIntent(getContext()), UPDATE_NEWS_FEED);
     }
 
     @OnClick(R.id.fbn_add_suggestion)
     void onAddSuggestionClick() {
         floating_menu.collapse();
         startActivity(NewSuggestionActivity.getIntent(getContext()));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == UPDATE_NEWS_FEED) {
+            mvpPresenter.getFeedList(false, true);
+        }
     }
 
     @Override

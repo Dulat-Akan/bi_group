@@ -116,28 +116,24 @@ public class AddNewsPresenter extends BaseMvpPresenter<AddNewsView> {
 
         // Tags list
         List<String> tagsList = new ArrayList<>();
-        List<String> tagsListIds = new ArrayList<>();
-        List<String> newTags = new ArrayList<>();
         for (int i = 0; i < selectedTagsList.size(); i++) {
             Tags tag = selectedTagsList.get(i);
             if (tag.getNsiTagId() == null) {
                 // New tags
-                newTags.add(tag.getName());
+                tagsList.add(tag.getName());
             } else {
                 // Existing tags
-                tagsList.add(tag.getName());
-                tagsListIds.add(tag.getNsiTagId());
+                tagsList.add(tag.getNsiTagId());
             }
         }
-        addNews(mainImage, secondaryImages, title, content, title, isHistoryEvent,
-                tagsList, tagsListIds, newTags);
+        addNews(mainImage, secondaryImages, title, content, title, isHistoryEvent, tagsList);
     }
 
     private void addNews(MultipartBody.Part mainImage, List<MultipartBody.Part> secondaryImages,
                          String title, String text, String rawText, Boolean isHistoryEvent,
-                         List<String> tags, List<String> nsiTagIds, List<String> newTagNames) {
+                         List<String> tags) {
         Subscription subscription = NewsRepositoryProvider.provideRepository(dataLayer.getApi())
-                .addNews(mainImage, secondaryImages, title, text, rawText, isHistoryEvent, tags, nsiTagIds, newTagNames)
+                .addNews(mainImage, secondaryImages, title, text, rawText, isHistoryEvent, tags)
                 .doOnSubscribe(() -> getViewState().showTransparentIndicator(true))
                 .doOnTerminate(() -> getViewState().showTransparentIndicator(false))
                 .subscribe(new Subscriber<ResponseBody>() {
@@ -152,7 +148,9 @@ public class AddNewsPresenter extends BaseMvpPresenter<AddNewsView> {
 
                     @Override
                     public void onNext(ResponseBody responseBody) {
-
+                        if (responseBody != null) {
+                            getViewState().newsAddedSuccessfully();
+                        }
                     }
                 });
 

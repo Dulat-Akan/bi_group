@@ -268,4 +268,10 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
     public void showToastError(@StringRes int please_select_tag) {
         ToastUtils.showCenteredToast(this, please_select_tag);
     }
+
+    @Override
+    public void newsAddedSuccessfully() {
+        setResult(RESULT_OK, new Intent());
+        finish();
+    }
 }

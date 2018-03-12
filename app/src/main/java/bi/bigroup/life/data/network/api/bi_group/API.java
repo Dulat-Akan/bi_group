@@ -1,6 +1,5 @@
 package bi.bigroup.life.data.network.api.bi_group;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.data.models.ListOf;
@@ -22,7 +21,6 @@ import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -85,9 +83,7 @@ public interface API {
             @Part("text") String text,
             @Part("rawText") String rawText,
             @Part("isHistoryEvent") Boolean isHistoryEvent,
-            @Query("tags[]") List<String> tags,
-            @Query("nsiTagIds[]") List<String> nsiTagIds,
-            @Query("NewTagNames[]") List<String> NewTagNames);
+            @Part("tags[]") List<String> tags);
 
     /****** Suggestions *******/
     @GET("Suggestions/{id}")

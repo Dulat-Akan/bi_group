@@ -19,4 +19,6 @@ public interface AddNewsView extends BaseMvpView {
     void showTransparentIndicator(boolean show);
 
     void showToastError(int please_select_tag);
+
+    void newsAddedSuccessfully();
 }

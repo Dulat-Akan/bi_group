@@ -76,6 +76,11 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     @OnClick(R.id.img_notification)
     void onNotificationClick() {
         startActivity(NotificationsActivity.getIntent(this));

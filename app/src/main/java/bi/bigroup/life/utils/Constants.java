@@ -26,7 +26,7 @@ public class Constants {
     public static final int HELPER_ZERO = 0;
     public static final int HELPER_FIRST = 1;
 
-    public static final int INITIAL_PAGE_NUMBER = 1;
+    public static final int INITIAL_PAGE_NUMBER = 0;
     public static final int REQUEST_COUNT = 20;
 
     // Employees profile picture

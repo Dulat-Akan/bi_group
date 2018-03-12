@@ -30,5 +30,5 @@ public interface NewsRepository {
 
     Observable<ResponseBody> addNews(MultipartBody.Part mainImage, List<MultipartBody.Part> secondaryImages,
                                      String title, String text, String rawText, Boolean isHistoryEvent,
-                                     List<String> tags, List<String> nsiTagIds, List<String> newTagNames);
+                                     List<String> tags);
 }
