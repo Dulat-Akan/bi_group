@@ -155,7 +155,7 @@ public interface API {
     @GET("employees/{code}")
     Observable<Employee> getEmployee(@Path("code") String code);
 
-    /****** Tasks & Service *******/
+    /****** Tasks & Service (Request) *******/
     @GET("tasks/outbox/")
     Observable<List<Task>> getOutboxTasks();
 
@@ -167,6 +167,13 @@ public interface API {
 
     @GET("Requests/servicedesk/inbox/")
     Observable<List<Service>> getServiceDeskInbox();
+
+    @Multipart
+    @POST("Requests/")
+    Observable<ResponseBody> addRequest(
+            @Part List<MultipartBody.Part> Attachments,
+            @Part("Description") String Description,
+            @Part("DueDate") String DueDate);
 
     /****** Top Questions *******/
     @GET("topQuestions/")

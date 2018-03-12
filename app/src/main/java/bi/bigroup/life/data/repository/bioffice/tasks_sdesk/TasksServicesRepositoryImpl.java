@@ -5,6 +5,8 @@ import java.util.List;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Service;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
 import bi.bigroup.life.data.network.api.bi_group.API;
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -45,6 +47,14 @@ class TasksServicesRepositoryImpl implements TasksServicesRepository {
     public Observable<List<Service>> getServiceDeskInbox() {
         return api
                 .getServiceDeskInbox()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<ResponseBody> addRequest(List<MultipartBody.Part> attachments, String content, String dateTime) {
+        return api
+                .addRequest(attachments, content, dateTime)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

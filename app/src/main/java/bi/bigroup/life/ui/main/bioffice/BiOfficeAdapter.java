@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -88,8 +89,8 @@ class BiOfficeAdapter extends BaseAdapter {
         @BindView(R.id.tv_first_label) TextView tv_first_label;
         @BindView(R.id.tv_second_label) TextView tv_second_label;
         @BindView(R.id.tv_third_label) TextView tv_third_label;
-
         @BindView(R.id.ll_programmatically) LinearLayout ll_programmatically;
+        @BindView(R.id.img_add) ImageView img_add;
 
         @BindView(R.id.exp_layout) ExpandableLayout exp_layout;
 
@@ -106,6 +107,7 @@ class BiOfficeAdapter extends BaseAdapter {
             tv_first_label.setText(context.getString(object.first));
             tv_second_label.setText(context.getString(object.second));
             tv_third_label.setText(context.getString(object.third));
+            img_add.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
 
             if (object.combined != null) {
                 int allCount = 0;
@@ -171,10 +173,19 @@ class BiOfficeAdapter extends BaseAdapter {
                 callback.openTasksSdeskActivity();
             }
         }
+
+        @OnClick(R.id.img_add)
+        void onImgAdd() {
+            if (bindedPosition == 0) {
+                callback.onAddServicesTasks();
+            }
+        }
     }
 
     public interface Callback {
         void openTasksSdeskActivity();
+
+        void onAddServicesTasks();
 
         void onItemClick();
     }

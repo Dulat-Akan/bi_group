@@ -109,6 +109,10 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name=".ui.main.bioffice.tasks_sdesk.add_task.AddTaskActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".ui.main.feed.suggestions.SuggestionDetailActivity"
             android:screenOrientation="portrait"/>
 

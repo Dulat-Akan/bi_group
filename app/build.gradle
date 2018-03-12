@@ -180,5 +180,11 @@ dependencies {
     // Tags layout
     compile "com.hyman:flowlayout-lib:${tagsLayout}"
 
+    // Selecting multi files
+    compile "com.github.angads25:filepicker:${multiFile}"
+
+    // Date & time picker
+    compile "com.github.pwiniars:SlideDateTimePicker:${dateTimePicker}"
+
     testCompile 'junit:junit:4.12'
 }

@@ -211,10 +211,18 @@
 
     <!-- AddSdeskActivity -->
     <string name="new_sdesk">Новая заявка</string>
+    <string name="new_task">Новая задача</string>
     <string name="performer">Исполнитель</string>
     <string name="category">Категория</string>
-    <string name="it_service">IT cлужба</string>
-    <string name="deadline">Срок исполнения"</string>
+    <string name="deadline">Срок исполнения</string>
+    <string name="choose_file">Выберите файл</string>
+    <string-array name="categories">
+        <item>IT cлужба</item>
+        <item>HR отдел</item>
+        <item>Юридический отдел</item>
+        <item>Бухгалтерия</item>
+        <item>Корпоративный университет</item>
+    </string-array>
 
     <!-- NewsDetailActivity -->
     <string name="comments_count">Комментарии %s</string>

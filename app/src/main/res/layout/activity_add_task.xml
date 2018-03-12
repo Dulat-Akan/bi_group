@@ -2,7 +2,6 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fl_parent"
     style="@style/MM"
     android:background="@color/white"
@@ -50,11 +49,7 @@
                 <bi.bigroup.life.views.edittext.SettingsEditText
                     android:id="@+id/et_title"
                     style="@style/MW"
-                    android:clickable="false"
-                    android:cursorVisible="false"
                     android:drawableRight="@drawable/arrow_down"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:hint="@string/performer"
                     android:inputType="text"
                     android:textColorHint="@color/et_hint_subject"
@@ -70,11 +65,7 @@
                 <bi.bigroup.life.views.edittext.SettingsEditText
                     android:id="@+id/et_category"
                     style="@style/MW"
-                    android:clickable="false"
-                    android:cursorVisible="false"
                     android:drawableRight="@drawable/arrow_down"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:inputType="text"
                     android:textColorHint="@color/et_hint_subject"
                     android:textSize="@dimen/sp_16"/>
@@ -89,15 +80,11 @@
                 <bi.bigroup.life.views.edittext.SettingsEditText
                     android:id="@+id/et_deadline"
                     style="@style/MW"
-                    android:clickable="false"
-                    android:cursorVisible="false"
                     android:drawableRight="@drawable/arrow_down"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:inputType="text"
+                    android:text="14 мая"
                     android:textColorHint="@color/et_hint_subject"
-                    android:textSize="@dimen/sp_16"
-                    tools:text="14 мая"/>
+                    android:textSize="@dimen/sp_16"/>
 
                 <LinearLayout
                     style="@style/LL_MW_V"
@@ -121,7 +108,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_attach_file"
                     style="@style/LL_MW_H"
                     android:layout_marginTop="@dimen/dp_12"
                     android:gravity="center_vertical">
@@ -140,7 +126,7 @@
                 </LinearLayout>
 
                 <bi.bigroup.life.views.fonts.ButtonRobotoRegular
-                    android:id="@+id/btn_add"
+                    android:id="@+id/btn_ask_question"
                     style="@style/auth_rounded_btn"
                     android:layout_marginLeft="@dimen/dp_0"
                     android:layout_marginRight="@dimen/dp_0"
@@ -152,6 +138,6 @@
 
     <include
         android:id="@+id/pb_indicator"
-        layout="@layout/inc_pb_transparent"/>
+        layout="@layout/inc_pb_opaque"/>
 
 </FrameLayout>

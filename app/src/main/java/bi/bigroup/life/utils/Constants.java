@@ -16,6 +16,7 @@ public class Constants {
     public static final String KEY_CODE = "code";
     public static final String KEY_MAIN_IMAGE = "MainImage";
     public static final String KEY_SECONDARY_IMAGES = "SecondaryImages";
+    public static final String KEY_ATTACHMENTS= "Attachments";
 
     // Mask, length, statics
     public static final String PHONE_MASK = "+7 ([000]) [000]-[00]-[00]";

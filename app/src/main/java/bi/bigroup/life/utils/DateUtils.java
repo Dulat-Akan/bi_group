@@ -15,11 +15,11 @@ import bi.bigroup.life.R;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 
 public class DateUtils {
-
     public static final DateFormat BIRTHDATE_DISPLAY_FORMAT = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
     private static final SimpleDateFormat FEED_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    private static final SimpleDateFormat REQUEST_CREATING_DATE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     private static final SimpleDateFormat SERVICES_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
-    public static final DateFormat TASKS_SEVICES_DISPLAY_FORMAT = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+    public static final DateFormat TASKS_SERVICES_DISPLAY_FORMAT = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
 
     public static String getBirthDateStr(String birthDate) {
         Date origDate = null;
@@ -44,6 +44,14 @@ public class DateUtils {
         return dayOfWeek + " " + dateFormat.format(date);
     }
 
+    public static String getTaskSdeskCreationDate() {
+        Date date = new Date();
+        return TASKS_SERVICES_DISPLAY_FORMAT.format(date);
+    }
+
+    public static String getCreatingDate(Date date) {
+        return REQUEST_CREATING_DATE.format(date);
+    }
 
     public static String getTasksDate(String givenDate) {
         Date origDate = null;
@@ -52,7 +60,7 @@ public class DateUtils {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return TASKS_SEVICES_DISPLAY_FORMAT.format(origDate).toLowerCase();
+        return TASKS_SERVICES_DISPLAY_FORMAT.format(origDate).toLowerCase();
     }
 
     public static String getServicesDate(String givenDate) {
