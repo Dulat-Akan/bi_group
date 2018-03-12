@@ -124,22 +124,22 @@ public class BiBoardAdapter extends BaseAdapter {
             tv_third_label.setText(context.getString(object.third));
 
             if (object.allSuggestions != null) {
-                tv_first_value.setText(String.valueOf(object.allSuggestions.size())); // TODO
+                tv_first_value.setText(String.valueOf(object.allSuggestions.size()));
                 tv_second_value.setText(String.valueOf(object.allSuggestions.size()));
-                tv_third_value.setText(String.valueOf(object.allSuggestions.size()));
+                tv_third_value.setText(String.valueOf(object.popularSuggestions.size()));
                 ll_area.setClickable(false);
             } else if (object.allQuestionnaires != null) {
-                tv_first_value.setText(String.valueOf(object.allQuestionnaires.size())); // TODO
+                tv_first_value.setText(String.valueOf(object.allQuestionnaires.size()));
                 tv_second_value.setText(String.valueOf(object.allQuestionnaires.size()));
-                tv_third_value.setText(String.valueOf(object.allQuestionnaires.size()));
+                tv_third_value.setText(String.valueOf(object.popularQuestionnaires.size()));
                 ll_area.setClickable(false);
             } else if (object.employees != null && object.vacancies != null) {
-                tv_first_value.setText(String.valueOf(object.employees.size())); // TODO ask from Shyngys
+                tv_first_value.setText(String.valueOf(object.allEmployeesCount));
                 tv_second_value.setText(String.valueOf(object.employees.size()));
                 tv_third_value.setText(String.valueOf(object.vacancies.size()));
                 ll_area.setClickable(true);
             }
-            img_add.setVisibility(position == 2 ? View.GONE : View.VISIBLE);
+            img_add.setVisibility(position == TYPE_SUGGESTIONS ? View.VISIBLE : View.GONE);
 
             // Suggestions list
             List<Suggestion> sList = object.popularSuggestions;
@@ -210,6 +210,13 @@ public class BiBoardAdapter extends BaseAdapter {
                 callback.selectEmployeesTab();
             }
         }
+
+        @OnClick(R.id.img_add)
+        void onAddClick() {
+            if (bindedPosition == TYPE_SUGGESTIONS) {
+                callback.openNewSuggestionActivity();
+            }
+        }
     }
 
     public interface Callback {
@@ -218,5 +225,7 @@ public class BiBoardAdapter extends BaseAdapter {
         void openEmployeePage(String code);
 
         void selectEmployeesTab();
+
+        void openNewSuggestionActivity();
     }
 }

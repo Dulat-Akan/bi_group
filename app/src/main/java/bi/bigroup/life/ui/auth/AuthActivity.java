@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.util.Calendar;
+
 import bi.bigroup.life.R;
-import bi.bigroup.life.config.DebugConfig;
 import bi.bigroup.life.mvp.auth.AuthPresenter;
 import bi.bigroup.life.mvp.auth.AuthView;
 import bi.bigroup.life.ui.base.BaseActivity;
@@ -29,6 +31,7 @@ public class AuthActivity extends BaseActivity implements AuthView {
     AuthPresenter mvpPresenter;
     @BindView(R.id.et_username) MaterialEditText et_username;
     @BindView(R.id.et_pwd) MaterialEditText et_pwd;
+    @BindView(R.id.tv_bi_group_year) TextView tv_bi_group_year;
 
     public static Intent newLogoutIntent(Context context) {
         return new Intent(context, AuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -47,11 +50,13 @@ public class AuthActivity extends BaseActivity implements AuthView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        if (DebugConfig.DEV_BUILD) {
-            et_username.setText(TEST_USERNAME);
-            et_pwd.setText(TEST_PWD);
+        et_username.setText(TEST_USERNAME);
+        et_pwd.setText(TEST_PWD);
 //        }
 
         mvpPresenter.init(this, dataLayer);
+        tv_bi_group_year.setText(getString(R.string.copyright, String.valueOf(Calendar.getInstance().get(Calendar.YEAR))));
+
 //        final MaskedTextChangedListener listener = new MaskedTextChangedListener(
 //                PHONE_MASK,
 //                true,

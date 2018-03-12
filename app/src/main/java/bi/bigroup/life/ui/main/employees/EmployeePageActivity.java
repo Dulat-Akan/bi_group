@@ -30,8 +30,8 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     @BindView(R.id.tv_surname) TextView tv_surname;
     @BindView(R.id.tv_firstname) TextView tv_firstname;
     @BindView(R.id.tv_specialty) TextView tv_specialty;
-    @BindView(R.id.tv_login) TextView tv_login;
-    @BindView(R.id.tv_manager) TextView tv_manager;
+    @BindView(R.id.tv_administrative_manager) TextView tv_administrative_manager;
+    @BindView(R.id.tv_functional_manager) TextView tv_functional_manager;
     @BindView(R.id.tv_phone) TextView tv_phone;
     @BindView(R.id.tv_email) TextView tv_email;
 
@@ -105,9 +105,9 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
         tv_surname.setText(employee.getFullName());
         tv_firstname.setText(employee.getFirstName());
         tv_specialty.setText(employee.getJobPosition());
-        tv_login.setText(employee.getLogin());
-        tv_manager.setText(employee.getLogin()); // TODO: add manager's fullname
-        tv_phone.setText(employee.getMobilePhoneNumber());
+        tv_administrative_manager.setText(employee.getAdministrativeChiefName());
+        tv_functional_manager.setText(employee.getFunctionalChiefName());
+        tv_phone.setText(employee.getWorkPhoneNumber());
         tv_email.setText(employee.getEmail());
     }
 }

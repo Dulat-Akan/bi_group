@@ -28,12 +28,14 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
     private List<Employee> data;
     private Context context;
     private Picasso picasso;
+    private boolean isBirthdayToday;
     private Callback callback;
     private boolean loading;
 
-    EmployeesAdapter(Context context, Picasso picasso) {
+    EmployeesAdapter(Context context, Picasso picasso, boolean isBirthdayToday) {
         this.context = context;
         this.picasso = picasso;
+        this.isBirthdayToday = isBirthdayToday;
         this.data = new ArrayList<>();
     }
 
@@ -134,6 +136,7 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
     class BViewHolder extends MainViewHolder {
         @BindView(R.id.tv_fullname) TextView tv_fullname;
         @BindView(R.id.tv_specialty) TextView tv_specialty;
+        @BindView(R.id.tv_birthday) TextView tv_birthday;
         @BindView(R.id.img_avatar) RoundedImageView img_avatar;
         Employee bindedObject;
         int bindedPosition;
@@ -149,6 +152,8 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
             if (object == null) {
                 return;
             }
+            tv_birthday.setVisibility(isBirthdayToday ? View.VISIBLE : View.GONE);
+            tv_birthday.setText(object.getBirthDate());
             tv_fullname.setText(object.getFullName());
             tv_specialty.setText(object.getJobPosition());
             PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_avatar);

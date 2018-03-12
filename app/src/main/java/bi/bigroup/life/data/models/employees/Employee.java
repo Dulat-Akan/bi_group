@@ -1,5 +1,6 @@
 package bi.bigroup.life.data.models.employees;
 
+import static bi.bigroup.life.utils.DateUtils.getBirthDateStr;
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
 import static bi.bigroup.life.utils.StringUtils.replaceNullTrim;
@@ -18,6 +19,8 @@ public class Employee {
     public String workPhoneNumber;
     public String mobilePhoneNumber;
     public String address;
+    public String administrativeChiefName;
+    public String functionalChiefName;
     public Boolean isBirthdayToday;
     public Boolean hasAvatar;
 
@@ -27,6 +30,14 @@ public class Employee {
 
     public String getFullName() {
         return replaceNull(fullname);
+    }
+
+    public String getFunctionalChiefName() {
+        return replaceNull(functionalChiefName);
+    }
+
+    public String getAdministrativeChiefName() {
+        return replaceNull(administrativeChiefName);
     }
 
     public String getFirstName() {
@@ -45,12 +56,20 @@ public class Employee {
         return replaceNull(mobilePhoneNumber);
     }
 
+    public String getWorkPhoneNumber() {
+        return replaceNull(workPhoneNumber);
+    }
+
     public String getEmail() {
         return replaceNull(email);
     }
 
     public boolean getBirthdayToday() {
         return isOkBoolean(isBirthdayToday);
+    }
+
+    public String getBirthDate() {
+        return getBirthDateStr(replaceNull(birthDate));
     }
 
     public boolean getHasAvatar() {

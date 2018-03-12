@@ -25,6 +25,7 @@ import bi.bigroup.life.mvp.main.biboard.BiBoardView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.main.PageSwapCallback;
 import bi.bigroup.life.ui.main.employees.EmployeePageActivity;
+import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
 import butterknife.BindView;
 
@@ -95,6 +96,11 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
                 if (callback != null) {
                     callback.onEmployeesTabsSelect();
                 }
+            }
+
+            @Override
+            public void openNewSuggestionActivity() {
+                startActivity(NewSuggestionActivity.getIntent(getContext()));
             }
         });
         lv_board.setAdapter(biBoardAdapter);

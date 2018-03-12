@@ -61,11 +61,11 @@ public class AllEmployeesPresenter extends BaseMvpPresenter<AllEmployeesView> {
 
                     @Override
                     public void onNext(ListOf<Employee> list) {
+                        getViewState().showLoadingIndicator(false);
                         if (list != null && list.list != null && list.list.size() > 0) {
                             if (is_refresh) {
                                 getViewState().setEmployeesList(list.list);
                             } else {
-                                getViewState().showLoadingIndicator(false);
                                 getViewState().addEmployeesList(list.list);
                             }
                         } else if (!is_load_more) {

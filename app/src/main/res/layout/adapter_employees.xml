@@ -28,16 +28,24 @@
                 android:id="@+id/tv_fullname"
                 style="@style/MW"
                 android:maxLines="1"
-                tools:text="Фамилия Имя"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp_14"/>
+                android:textSize="@dimen/sp_14"
+                tools:text="Фамилия Имя"/>
 
             <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                 android:id="@+id/tv_specialty"
                 style="@style/MW"
-                tools:text="Должность"
                 android:textColor="@color/feed_time"
-                android:textSize="@dimen/sp_12"/>
+                android:textSize="@dimen/sp_12"
+                tools:text="Должность"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_birthday"
+                style="@style/MW"
+                android:layout_marginTop="@dimen/dp_2"
+                android:textColor="@color/feed_time"
+                android:textSize="@dimen/sp_12"
+                tools:text="birthday"/>
         </LinearLayout>
 
         <bi.bigroup.life.views.RoundedImageView

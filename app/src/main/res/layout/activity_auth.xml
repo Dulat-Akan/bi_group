@@ -61,7 +61,8 @@
             <LinearLayout
                 style="@style/LL_MW_H"
                 android:layout_marginTop="@dimen/dp_28"
-                android:gravity="center_horizontal|center_vertical">
+                android:gravity="center_horizontal|center_vertical"
+                android:visibility="gone">
 
                 <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                     style="@style/WW"
@@ -82,6 +83,7 @@
         </LinearLayout>
 
         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+            android:id="@+id/tv_bi_group_year"
             style="@style/MW"
             android:layout_marginBottom="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"

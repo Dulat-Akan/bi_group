@@ -63,7 +63,7 @@
     <string name="label_login">Войти</string>
     <string name="forgot_your_data">Забыли свои данные для входа?</string>
     <string name="help">Помощь</string>
-    <string name="copyright">BI Group 2017</string>
+    <string name="copyright">BI Group %s</string>
 
     <!-- ForgotPwdActivity -->
     <string name="can_not_join">Не можете войти?</string>
@@ -106,7 +106,8 @@
     <string name="novyh">новых</string>
     <string name="dni_rojdenya">дни рождения</string>
     <string name="vacancii">вакансии</string>
-    <string name="temp_novyh">нов</string>
+    <string name="label_all">все</string>
+    <string name="label_popular">попул.</string>
 
     <!-- FeedFragment -->
     <string name="label_feed">Лента</string>
@@ -159,6 +160,8 @@
     <string name="login">Логин</string>
     <string name="manager">Руководитель</string>
     <string name="email">Почта</string>
+    <string name="administrative_manager">Административный руководитель</string>
+    <string name="functional_manager">Функциональный руководитель</string>
 
     <!-- TasksSdeskActivity -->
     <string name="title_task_sdesk">Заявки и задачи</string>

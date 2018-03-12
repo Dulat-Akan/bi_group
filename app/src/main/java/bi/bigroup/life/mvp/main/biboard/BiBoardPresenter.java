@@ -8,6 +8,7 @@ import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.DataLayer;
+import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.biboard.BiBoard;
 import bi.bigroup.life.data.models.biboard.top_questions.TopQuestions;
 import bi.bigroup.life.data.models.employees.Employee;
@@ -29,11 +30,14 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func2;
+import rx.functions.Func3;
 import rx.schedulers.Schedulers;
 
 import static bi.bigroup.life.ui.main.biboard.BiBoardAdapter.TYPE_EMPLOYEES;
 import static bi.bigroup.life.ui.main.biboard.BiBoardAdapter.TYPE_QUESTIONNAIRE;
 import static bi.bigroup.life.ui.main.biboard.BiBoardAdapter.TYPE_SUGGESTIONS;
+import static bi.bigroup.life.utils.Constants.INITIAL_PAGE_NUMBER;
+import static bi.bigroup.life.utils.Constants.REQUEST_COUNT;
 
 @InjectViewState
 public class BiBoardPresenter extends BaseMvpPresenter<BiBoardView> {
@@ -84,8 +88,8 @@ public class BiBoardPresenter extends BaseMvpPresenter<BiBoardView> {
                 new Func2<List<Suggestion>, List<Suggestion>, BiBoard>() {
                     @Override
                     public BiBoard call(List<Suggestion> popularSuggestions, List<Suggestion> allSuggestions) {
-                        return new BiBoard(R.string.predlojeniya, R.string.temp_novyh, R.string.temp_novyh, R.string.temp_novyh,
-                                popularSuggestions, allSuggestions, null, null, null, null);
+                        return new BiBoard(R.string.predlojeniya, R.string.label_all, R.string.label_all, R.string.label_popular,
+                                popularSuggestions, allSuggestions, null, null, null, null, -1);
                     }
                 })
                 .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
@@ -120,8 +124,8 @@ public class BiBoardPresenter extends BaseMvpPresenter<BiBoardView> {
                 new Func2<List<Questionnaire>, List<Questionnaire>, BiBoard>() {
                     @Override
                     public BiBoard call(List<Questionnaire> popularQuestionnaires, List<Questionnaire> allQuestionnaires) {
-                        return new BiBoard(R.string.oprosnik, R.string.temp_novyh, R.string.temp_novyh, R.string.temp_novyh,
-                                null, null, popularQuestionnaires, allQuestionnaires, null, null);
+                        return new BiBoard(R.string.oprosnik, R.string.label_all, R.string.label_all, R.string.label_popular,
+                                null, null, popularQuestionnaires, allQuestionnaires, null, null, -1);
                     }
                 })
                 .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
@@ -151,13 +155,14 @@ public class BiBoardPresenter extends BaseMvpPresenter<BiBoardView> {
     private void combineEmployeeRequests() {
         EmployeesRepository repository = EmployeesRepositoryProvider.provideRepository(dataLayer.getApi());
         Observable.zip(
+                repository.getEmployees(REQUEST_COUNT, INITIAL_PAGE_NUMBER, false),
                 repository.getEmployeesEvents(),
                 repository.getVacancies(),
-                new Func2<List<Employee>, List<Vacancy>, BiBoard>() {
+                new Func3<ListOf<Employee>, List<Employee>, List<Vacancy>, BiBoard>() {
                     @Override
-                    public BiBoard call(List<Employee> employees, List<Vacancy> vacancies) {
-                        return new BiBoard(R.string.employees, R.string.novyh, R.string.dni_rojdenya, R.string.vacancii,
-                                null, null, null, null, employees, vacancies);
+                    public BiBoard call(ListOf<Employee> allEmployees, List<Employee> employees, List<Vacancy> vacancies) {
+                        return new BiBoard(R.string.employees, R.string.label_all, R.string.dni_rojdenya, R.string.vacancii,
+                                null, null, null, null, employees, vacancies, allEmployees.getCount());
                     }
                 })
                 .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
