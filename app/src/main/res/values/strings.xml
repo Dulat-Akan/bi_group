@@ -91,6 +91,7 @@
     <string name="menu_desc_4">Последний вопрос</string>
 
     <!-- BiOfficeFragment -->
+    <string name="label_today">Сегодня</string>
     <string name="zayavki_i_zadachi">Заявки и задачи</string>
     <string name="kpi_proekty">KPI проекты</string>
     <string name="sandb">S&amp;B</string>

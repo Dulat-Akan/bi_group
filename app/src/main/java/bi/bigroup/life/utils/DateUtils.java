@@ -3,6 +3,7 @@ package bi.bigroup.life.utils;
 import android.content.Context;
 
 import java.text.DateFormat;
+import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,6 +15,7 @@ import bi.bigroup.life.R;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 
 public class DateUtils {
+
     public static final DateFormat BIRTHDATE_DISPLAY_FORMAT = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
     private static final SimpleDateFormat FEED_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     private static final SimpleDateFormat SERVICES_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
@@ -28,6 +30,20 @@ public class DateUtils {
         }
         return BIRTHDATE_DISPLAY_FORMAT.format(origDate).toLowerCase();
     }
+
+    public static String getTodaysDate(String[] monthArray) {
+        Date date = new Date();
+        SimpleDateFormat dayOfWeekFormat = new SimpleDateFormat("EEEE");
+        String dayOfWeek = dayOfWeekFormat.format(date);
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM", new DateFormatSymbols() {
+            @Override
+            public String[] getMonths() {
+                return monthArray;
+            }
+        });
+        return dayOfWeek + " " + dateFormat.format(date);
+    }
+
 
     public static String getTasksDate(String givenDate) {
         Date origDate = null;

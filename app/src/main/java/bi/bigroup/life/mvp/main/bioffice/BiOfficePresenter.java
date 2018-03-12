@@ -24,7 +24,7 @@ public class BiOfficePresenter extends BaseMvpPresenter<BiOfficeView> {
     @Override
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
-        combineServiceTask();
+//        combineServiceTask();
     }
 
     private void combineServiceTask() {
