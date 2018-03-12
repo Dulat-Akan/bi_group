@@ -20,7 +20,7 @@ import butterknife.OnClick;
 
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
 
-class BricksTop7Adapter extends RecyclerViewBaseAdapter {
+public class BricksTop7Adapter extends RecyclerViewBaseAdapter {
     private static final int LAYOUT_ID = R.layout.adapter_biboard_bricks_top7;
 
     private Context context;
@@ -28,17 +28,17 @@ class BricksTop7Adapter extends RecyclerViewBaseAdapter {
     private List<TopQuestions> data;
     private Callback callback;
 
-    BricksTop7Adapter(Context context, Picasso picasso) {
+    public BricksTop7Adapter(Context context, Picasso picasso) {
         this.context = context;
         this.picasso = picasso;
         this.data = new ArrayList<>();
     }
 
-    void setCallback(Callback callback) {
+    public void setCallback(Callback callback) {
         this.callback = callback;
     }
 
-    void addList(List<TopQuestions> newItems) {
+    public void addList(List<TopQuestions> newItems) {
         data.clear();
         data.addAll(newItems);
         notifyDataSetChanged();
@@ -101,7 +101,7 @@ class BricksTop7Adapter extends RecyclerViewBaseAdapter {
         }
     }
 
-    interface Callback {
-        void onItemClick(TopQuestions notification);
+    public interface Callback {
+        void onItemClick(TopQuestions question);
     }
 }

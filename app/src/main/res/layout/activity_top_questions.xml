@@ -13,6 +13,11 @@
             android:id="@+id/toolbar"
             style="@style/back_toolbar"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_3_5"
+            android:background="@drawable/toolbar_dropshadow"/>
+
         <ListView
             android:id="@+id/lv_top_questions"
             style="@style/MM"

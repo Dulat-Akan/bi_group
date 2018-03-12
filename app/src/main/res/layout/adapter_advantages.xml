@@ -47,7 +47,7 @@
         android:layout_marginTop="@dimen/dp_12"
         android:orientation="horizontal"
         android:scrollbarSize="@dimen/dp_2"
-        android:scrollbars="vertical"
+        android:scrollbars="horizontal"
         android:visibility="gone"/>
 
 </LinearLayout>

@@ -213,5 +213,11 @@
     <!-- NewsDetailActivity -->
     <string name="comments_count">Комментарии %s</string>
     <string name="has_answer">Есть ответ</string>
+
+    <!-- TopQuestionsActivity -->
+    <string name="question_top_7_uppercase">Вопрос TOP-7</string>
+    <string name="popular_questions_answers">Ответы на популярные вопросы</string>
+    <string name="questions_and_answers">Вопросы и ответы</string>
+
     <string name="q"></string>
 </resources>

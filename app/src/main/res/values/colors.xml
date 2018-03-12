@@ -96,6 +96,11 @@
     <color name="news_detail_comments_count">#6d6d72</color>
     <color name="comment_et_bg">#fefefe</color>
 
+    <!-- TopQuestionsActivity -->
+    <color name="topq_specialty">#8e8e93</color>
+    <color name="topq_divider">#bcbbc1</color>
+    <color name="topq_answered_results">#6d6d72</color>
+
     <!-- AddNewsActivity -->
 
 </resources>

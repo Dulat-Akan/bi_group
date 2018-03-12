@@ -1,6 +1,15 @@
 package bi.bigroup.life.data.network;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import bi.bigroup.life.config.DebugConfig;
 import bi.bigroup.life.data.cache.preferences.Preferences;
