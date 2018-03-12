@@ -58,7 +58,7 @@ import static bi.bigroup.life.utils.permission.PermissionUtils.verifyPermissions
 public class AddNewsActivity extends BaseActivity implements AddNewsView {
     @InjectPresenter
     AddNewsPresenter mvpPresenter;
-    @BindView(R.id.pb_indicator_transparent) protected ViewGroup pb_indicator_transparent;
+    @BindView(R.id.pb_indicator_transparent)  ViewGroup pb_indicator_transparent;
     @BindView(R.id.et_title) MaterialEditText et_title;
     @BindView(R.id.et_content) MaterialEditText et_content;
     @BindView(R.id.et_tags) AutoCompleteTextView et_tags;
@@ -273,6 +273,7 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
 
     @Override
     public void newsAddedSuccessfully() {
+        ToastUtils.showCenteredToast(this, R.string.success_response);
         Intent intent = new Intent();
         intent.putExtra(KEY_CODE, UPDATE_NEWS_FEED);
         setResult(RESULT_OK, intent);

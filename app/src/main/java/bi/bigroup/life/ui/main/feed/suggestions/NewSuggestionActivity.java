@@ -272,6 +272,7 @@ public class NewSuggestionActivity extends BaseActivity implements NewSuggestion
 
     @Override
     public void suggestionAddedSuccessfully() {
+        ToastUtils.showCenteredToast(this, R.string.success_response);
         Intent intent = new Intent();
         intent.putExtra(KEY_CODE, UPDATE_NEWS_FEED);
         setResult(RESULT_OK, intent);

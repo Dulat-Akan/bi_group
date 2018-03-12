@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:id="@+id/fl_parent"
              style="@style/MM">
 
@@ -21,6 +22,19 @@
             android:orientation="vertical"/>
 
     </LinearLayout>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/floating_menu"
+        style="@style/WW"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        app:fab_addButtonColorNormal="@color/float_menu_default"
+        app:fab_addButtonColorPressed="@color/float_menu_click"
+        app:fab_addButtonPlusIconColor="@color/white"
+        app:fab_addButtonSize="normal"
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:fab_labelsPosition="left"/>
 
     <include
         android:id="@+id/pb_indicator"

@@ -174,4 +174,6 @@ public interface API {
     @POST("topQuestions/")
     Observable<ResponseBody> addQuestion(@Body AddQuestionParams params);
 
+    @GET("tags")
+    Observable<List<Tags>> getTags();
 }

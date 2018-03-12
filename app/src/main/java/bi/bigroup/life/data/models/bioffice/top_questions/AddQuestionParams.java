@@ -6,8 +6,10 @@ public class AddQuestionParams {
     public String questionText;
     public Boolean isAnonymous;
     public List<String> tags;
-    public List<String> nsiTagIds;
-    public List<String> newTagNames;
 
-
+    public AddQuestionParams(String questionText, Boolean isAnonymous, List<String> tags) {
+        this.questionText = questionText;
+        this.isAnonymous = isAnonymous;
+        this.tags = tags;
+    }
 }

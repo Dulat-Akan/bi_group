@@ -4,6 +4,7 @@ import java.util.List;
 
 import bi.bigroup.life.data.models.biboard.top_questions.TopQuestions;
 import bi.bigroup.life.data.models.bioffice.top_questions.AddQuestionParams;
+import bi.bigroup.life.data.models.feed.news.Tags;
 import bi.bigroup.life.data.network.api.bi_group.API;
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -30,6 +31,14 @@ class TopQuestionsRepositoryImpl implements TopQuestionsRepository {
     public Observable<ResponseBody> addQuestion(AddQuestionParams params) {
         return api
                 .addQuestion(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<List<Tags>> getTags() {
+        return api
+                .getNewsTags()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

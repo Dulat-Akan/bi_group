@@ -138,8 +138,6 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     }
 }
 /*
-startActivity(AddQuestionActivity.getIntent(getContext()));
-
     @OnClick(R.id.btn_new_publication)
     void onNewPublication() {
         startActivity(PublicationActivity.getIntent(getContext()));

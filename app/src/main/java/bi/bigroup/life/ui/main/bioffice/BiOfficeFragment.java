@@ -53,7 +53,7 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
         LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
         ViewGroup header = (ViewGroup) inflater.inflate(R.layout.adapter_bioffice_header, lv_office, false);
         TextView tv_date = header.findViewById(R.id.tv_date);
-        tv_date.setText(getTodaysDate(getResources().getStringArray(R.array.months_array_long)).toLowerCase());
+        tv_date.setText((getTodaysDate(getResources().getStringArray(R.array.months_array_long))).toLowerCase());
 //        configureViewPager(header);
         lv_office.addHeaderView(header, null, false);
         adapter = new BiOfficeAdapter(getContext());

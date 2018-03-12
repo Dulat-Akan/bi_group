@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.mvp.main.biboard.top_questions.TopQuestionsPresenter;
@@ -18,6 +19,7 @@ public class TopQuestionsActivity extends BaseActivity implements TopQuestionsVi
     TopQuestionsPresenter mvpPresenter;
 
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.floating_menu) FloatingActionsMenu floating_menu;
 
     public static Intent getIntent(Context context) {
         return new Intent(context, TopQuestionsActivity.class);
@@ -33,6 +35,18 @@ public class TopQuestionsActivity extends BaseActivity implements TopQuestionsVi
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
         mvpPresenter.init(this, dataLayer);
+        floating_menu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                startActivity(AddQuestionActivity.getIntent(TopQuestionsActivity.this));
+                floating_menu.collapse();
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+
+            }
+        });
     }
 
     ///////////////////////////////////////////////////////////////////////////

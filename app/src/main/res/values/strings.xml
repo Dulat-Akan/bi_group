@@ -177,6 +177,7 @@
     <!-- AddQuestion -->
     <string name="add_question">Добавить вопрос</string>
     <string name="subject">Тема</string>
+    <string name="anonymous">Анонимный</string>
     <string name="content_of_question">Текст вопроса</string>
     <string name="ask_question">Задать вопрос</string>
 
