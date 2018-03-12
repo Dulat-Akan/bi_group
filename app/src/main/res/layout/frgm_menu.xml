@@ -8,13 +8,14 @@
     <LinearLayout
         android:id="@+id/ll_content"
         style="@style/LL_MM_V"
-        android:background="@color/main_bg"
-        android:paddingLeft="@dimen/dp_16">
+        android:background="@color/main_bg">
 
         <LinearLayout
             android:id="@+id/ll_profile"
             style="@style/LL_MW_H"
+            android:background="?android:selectableItemBackground"
             android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp_16"
             android:paddingRight="@dimen/dp_12">
 
             <bi.bigroup.life.views.RoundedImageView
@@ -36,16 +37,16 @@
                 <bi.bigroup.life.views.fonts.TextViewRobotoBold
                     android:id="@+id/tv_name"
                     style="@style/MW"
-                    tools:text="User Name"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/sp_16"/>
+                    android:textSize="@dimen/sp_16"
+                    tools:text="User Name"/>
 
                 <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                     android:id="@+id/tv_username"
                     style="@style/MW"
-                    tools:text="Personal"
                     android:textColor="@color/personal"
-                    android:textSize="@dimen/sp_12"/>
+                    android:textSize="@dimen/sp_12"
+                    tools:text="Personal"/>
 
             </LinearLayout>
 
@@ -54,23 +55,26 @@
                 android:src="@drawable/arrow_up_right"/>
         </LinearLayout>
 
-        <include
-            android:id="@+id/v1"
-            layout="@layout/inc_item_menu"/>
+        <LinearLayout
+            style="@style/LL_MM_V"
+            android:background="@color/main_bg">
 
-        <include
-            android:id="@+id/v2"
-            layout="@layout/inc_item_menu"/>
+            <include
+                android:id="@+id/v1"
+                layout="@layout/inc_item_menu"/>
 
-        <include
-            android:id="@+id/v3"
-            layout="@layout/inc_item_menu"/>
+            <include
+                android:id="@+id/v2"
+                layout="@layout/inc_item_menu"/>
 
-        <include
-            android:id="@+id/v4"
-            layout="@layout/inc_item_menu"/>
+            <include
+                android:id="@+id/v3"
+                layout="@layout/inc_item_menu"/>
 
-
+            <include
+                android:id="@+id/v4"
+                layout="@layout/inc_item_menu"/>
+        </LinearLayout>
     </LinearLayout>
 
     <include

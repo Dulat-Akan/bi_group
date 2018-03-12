@@ -112,6 +112,10 @@
             android:name=".ui.main.feed.suggestions.SuggestionDetailActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".ui.main.biboard.top_questions.TopQuestionsActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

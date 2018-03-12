@@ -12,6 +12,7 @@ import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.mvp.main.menu.MenuPresenter;
 import bi.bigroup.life.mvp.main.menu.MenuView;
 import bi.bigroup.life.ui.base.BaseFragment;
+import bi.bigroup.life.ui.main.biboard.top_questions.TopQuestionsActivity;
 import bi.bigroup.life.ui.profile.ProfileActivity;
 import bi.bigroup.life.utils.LOTimber;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
@@ -54,7 +55,7 @@ public class MenuFragment extends BaseFragment implements MenuView {
 
         RowViewHolder v4 = new RowViewHolder(view.findViewById(R.id.v4));
         v4.bindHolder(R.string.menu_title_4, R.string.menu_desc_4);
-        v4.setCallback(() -> LOTimber.d("asldkasjd clicked 4"));
+        v4.setCallback(() -> startActivity(TopQuestionsActivity.getIntent(getContext())));
     }
 
     @OnClick(R.id.ll_profile)

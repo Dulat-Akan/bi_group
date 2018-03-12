@@ -82,7 +82,7 @@
     <!-- ****************** MainActivity ****************** -->
     <!-- MenuFragment -->
     <string name="menu_title_1">Обучение</string>
-    <string name="menu_desc_1">%s новых видео</string>
+    <string name="menu_desc_1">2 новых видео</string>
     <string name="menu_title_2">Развитие</string>
     <string name="menu_desc_2">Просмотрено</string>
     <string name="menu_title_3">BI Wiki</string>
