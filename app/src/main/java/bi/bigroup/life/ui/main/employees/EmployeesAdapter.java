@@ -152,11 +152,12 @@ class EmployeesAdapter extends RecyclerViewBaseAdapter {
             if (object == null) {
                 return;
             }
-            tv_birthday.setVisibility(isBirthdayToday ? View.VISIBLE : View.GONE);
+//            tv_birthday.setVisibility(isBirthdayToday ? View.VISIBLE : View.GONE);
+            tv_birthday.setVisibility(View.GONE);
             tv_birthday.setText(object.getBirthDate());
             tv_fullname.setText(object.getFullName());
             tv_specialty.setText(object.getJobPosition());
-            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_avatar);
+            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(object.getCode()), R.color.user_avatar);
         }
 
         @OnClick(R.id.ll_row)

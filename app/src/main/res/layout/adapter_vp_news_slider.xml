@@ -7,6 +7,7 @@
         android:id="@+id/img_slider"
         style="@style/MW"
         android:background="@color/slider_img_bg"
-        android:minHeight="@dimen/dp_170"
+        android:minHeight="@dimen/dp_150"
+        android:adjustViewBounds="true"
         android:scaleType="centerCrop"/>
 </LinearLayout>

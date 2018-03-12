@@ -25,6 +25,7 @@ import static bi.bigroup.life.utils.Constants.TEST_PWD;
 import static bi.bigroup.life.utils.Constants.TEST_USERNAME;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
 import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
+import static bi.bigroup.life.utils.ViewUtils.setStatusBarGradient;
 
 public class AuthActivity extends BaseActivity implements AuthView {
     @InjectPresenter
@@ -49,6 +50,7 @@ public class AuthActivity extends BaseActivity implements AuthView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStatusBarGradient(this, R.drawable.gradient_blue_bg);
 //        if (DebugConfig.DEV_BUILD) {
         et_username.setText(TEST_USERNAME);
         et_pwd.setText(TEST_PWD);

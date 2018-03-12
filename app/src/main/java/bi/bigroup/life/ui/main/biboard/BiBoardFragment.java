@@ -114,6 +114,11 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
         ViewPager vp_images = header.findViewById(R.id.vp_images);
         CirclePageIndicator ci_images = header.findViewById(R.id.ci_images);
         adapter = new HotBoardViewPager(getContext(), dataLayer.getPicasso());
+        adapter.setCallback(() -> {
+            if (callback != null) {
+                callback.onFeedTabsSelect();
+            }
+        });
         vp_images.setAdapter(adapter);
         ci_images.setViewPager(vp_images);
     }

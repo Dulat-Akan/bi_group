@@ -36,7 +36,8 @@
     <color name="gr_1">#1d56b4</color>
     <color name="gr_2">#1e88e4</color>
     <color name="et_divider">#e9e9ea</color>
-    <color name="et_hint">#b7b7b7</color>
+    <color name="et_hint">#108aeb</color>
+    <color name="bi_group">#6d6d72</color>
     <color name="forgot_your_data">#808084</color>
     <color name="help">#3499ea</color>
 
@@ -52,9 +53,7 @@
     <color name="divider">#dedde0</color>
     <color name="divider2">#bcbbc1</color>
     <!-- FeedFragment -->
-    <color name="filter_news">#50e3c2</color>
-    <color name="filter_poll">#4a90e2</color>
-    <color name="filter_offer">#f5a623</color>
+    <color name="filter_bg">#d1d1d6</color>
 
     <!-- NotificationsActivity -->
     <color name="notification_option">#d8d8d8</color>
@@ -78,6 +77,7 @@
 
     <!-- EmployeesFragment -->
     <color name="searchview_bg">#1e8e8e93</color>
+    <color name="user_avatar">#d8d8d8</color>
 
     <!-- TasksSdeskActivity -->
     <color name="tasks_sdesk_description">#8e8e93</color>

@@ -75,6 +75,6 @@ public class MenuFragment extends BaseFragment implements MenuView {
     public void showUserInfo(User localUser) {
         tv_name.setText(localUser.getFullname());
         tv_username.setText(localUser.getAdLogin());
-        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.drawable.ic_avatar);
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.color.user_avatar);
     }
 }

@@ -19,8 +19,7 @@ public class PicassoUtils {
 
     public static void showNewsImage(Picasso picasso, ImageView view, String url) {
         if (isStringOk(url)) {
-            picasso
-                    .load(url)
+            picasso.load(url)
                     .into(view);
         }
     }

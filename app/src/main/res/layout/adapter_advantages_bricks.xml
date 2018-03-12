@@ -10,7 +10,7 @@
         android:layout_width="@dimen/dp_110"
         android:layout_height="@dimen/dp_72"
         android:src="@color/bricks_gallery"
-        app:radius_width="@dimen/dp_10"/>
+        app:radius_width="@dimen/dp_13"/>
 
     <bi.bigroup.life.views.RoundedImageView
         android:id="@+id/riv_bricks_2"
@@ -18,5 +18,5 @@
         android:layout_height="@dimen/dp_72"
         android:layout_marginTop="@dimen/dp_8"
         android:src="@color/bricks_gallery"
-        app:radius_width="@dimen/dp_10"/>
+        app:radius_width="@dimen/dp_13"/>
 </LinearLayout>

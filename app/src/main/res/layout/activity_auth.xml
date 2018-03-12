@@ -29,25 +29,39 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <bi.bigroup.life.views.edittext.SettingsEditText
-                android:id="@+id/et_username"
-                style="@style/et_auth"
-                android:layout_marginTop="@dimen/dp_40"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_password"
+                style="@style/MW"
+                android:layout_marginTop="@dimen/dp_13"
                 android:hint="@string/enter_username"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColorHint="@color/et_hint"/>
+                android:textColorHint="@color/et_hint">
+
+                <bi.bigroup.life.views.edittext.SettingsEditText
+                    android:id="@+id/et_username"
+                    style="@style/et_auth"
+                    android:layout_marginTop="@dimen/dp_40"
+                    android:inputType="text"
+                    android:maxLength="12"
+                    android:textColorHint="@color/et_hint"/>
+            </android.support.design.widget.TextInputLayout>
 
             <View
                 style="@style/auth_divider"/>
 
-            <bi.bigroup.life.views.edittext.SettingsEditText
-                android:id="@+id/et_pwd"
-                style="@style/et_auth"
-                android:layout_marginTop="@dimen/dp_12"
+            <android.support.design.widget.TextInputLayout
+                style="@style/MW"
+                android:layout_marginTop="@dimen/dp_7"
                 android:hint="@string/enter_pwd"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"/>
+                android:textColorHint="@color/et_hint">
+
+                <bi.bigroup.life.views.edittext.SettingsEditText
+                    android:id="@+id/et_pwd"
+                    style="@style/et_auth"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/et_hint"/>
+            </android.support.design.widget.TextInputLayout>
 
             <View
                 style="@style/auth_divider"/>
@@ -82,14 +96,14 @@
 
         </LinearLayout>
 
-        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
             android:id="@+id/tv_bi_group_year"
             style="@style/MW"
             android:layout_marginBottom="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:gravity="center"
             android:text="@string/copyright"
-            android:textColor="@color/forgot_your_data"
+            android:textColor="@color/bi_group"
             android:textSize="@dimen/sp_13"/>
 
     </LinearLayout>

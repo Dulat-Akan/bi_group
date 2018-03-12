@@ -124,7 +124,7 @@ class VacanciesAdapter extends RecyclerViewBaseAdapter {
         }
 
         void bindHeader() {
-            tv_title.setText(context.getString(R.string.employees_vacancies));
+//            tv_title.setText(context.getString(R.string.employees_vacancies));
         }
     }
 

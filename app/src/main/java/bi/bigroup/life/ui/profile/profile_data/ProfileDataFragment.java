@@ -90,7 +90,7 @@ public class ProfileDataFragment extends BaseFragment implements ProfileDataView
         v2.bindHolder(user.getMobilePhoneNumber(), R.drawable.mobile);
         v3.bindHolder(user.getEmail(), R.drawable.mail);
         v4.bindHolder(user.getWorkPhoneNumber(), R.drawable.phone_inactive);
-        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(user.getCode()), R.drawable.ic_avatar);
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(user.getCode()), R.color.user_avatar);
         tv_surname.setText(user.getFullname());
         tv_specialty.setText(user.getJobPosition());
         tv_iin.setText(user.getIin());

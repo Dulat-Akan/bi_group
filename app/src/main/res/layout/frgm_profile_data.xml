@@ -27,7 +27,7 @@
                     android:layout_width="@dimen/dp_80"
                     android:layout_height="@dimen/dp_80"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_avatar"
+                    android:src="@color/user_avatar"
                     app:radius_width="@dimen/dp_15"/>
 
                 <LinearLayout
@@ -58,17 +58,40 @@
                 android:id="@+id/v1"
                 layout="@layout/inc_item_prof_data"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_43"
+                android:layout_marginLeft="@dimen/dp_43"
+                android:background="@color/divider2"/>
+
             <include
                 android:id="@+id/v2"
                 layout="@layout/inc_item_prof_data"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_43"
+                android:layout_marginLeft="@dimen/dp_43"
+                android:background="@color/divider2"/>
 
             <include
                 android:id="@+id/v3"
                 layout="@layout/inc_item_prof_data"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_43"
+                android:layout_marginLeft="@dimen/dp_43"
+                android:background="@color/divider2"/>
+
             <include
                 android:id="@+id/v4"
                 layout="@layout/inc_item_prof_data"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_43"
+                android:background="@color/divider2"/>
 
             <LinearLayout
                 android:id="@+id/ll_extra_info"

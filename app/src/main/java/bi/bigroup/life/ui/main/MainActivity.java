@@ -71,8 +71,8 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         initBottomNavigationView();
         initFragments();
         if (v_bottom_navigation != null) {
-            v_bottom_navigation.setSelectedItemId(R.id.action_main);
-            replaceFragment(fragments.get(ACTION_MAIN), false, null);
+            v_bottom_navigation.setSelectedItemId(R.id.action_feed);
+            replaceFragment(fragments.get(ACTION_FEED), false, null);
         }
     }
 
@@ -94,6 +94,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     private void initBottomNavigationView() {
         v_bottom_navigation.setOnNavigationItemSelectedListener(this);
         v_bottom_navigation.setOnNavigationItemReselectedListener(this);
+        v_bottom_navigation.setItemIconTintList(null);
         disableShiftMode(v_bottom_navigation);
     }
 
@@ -163,7 +164,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
 
     @Override
     public void showUserInfo(User localUser) {
-        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.drawable.ic_avatar);
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.color.user_avatar);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -175,6 +176,12 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         if (v_bottom_navigation != null) {
             v_bottom_navigation.setSelectedItemId(R.id.action_stuff);
         }
-//        replaceFragment(fragments.get(ACTION_EMPLOYEES), true, null);
+    }
+
+    @Override
+    public void onFeedTabsSelect() {
+        if (v_bottom_navigation != null) {
+            v_bottom_navigation.setSelectedItemId(R.id.action_feed);
+        }
     }
 }

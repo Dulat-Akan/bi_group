@@ -24,7 +24,7 @@
             android:id="@+id/img_avatar"
             android:layout_width="@dimen/dp_40"
             android:layout_height="@dimen/dp_40"
-            android:src="@drawable/ic_avatar"
+            android:src="@color/user_avatar"
             app:radius_width="@dimen/dp_8"/>
 
         <LinearLayout

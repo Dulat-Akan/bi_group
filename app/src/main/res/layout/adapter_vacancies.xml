@@ -35,6 +35,7 @@
             <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                 android:id="@+id/tv_salary"
                 style="@style/WM"
+                android:visibility="gone"
                 android:gravity="bottom"
                 android:textColor="@color/tasks_sdesk_description"
                 android:textSize="@dimen/sp_12"

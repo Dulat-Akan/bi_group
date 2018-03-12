@@ -2,15 +2,21 @@ package bi.bigroup.life.utils;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.ScrollView;
@@ -150,5 +156,18 @@ public class ViewUtils {
         final TypedValue typedValue = new TypedValue();
         activity.getTheme().resolveAttribute(attr, typedValue, true);
         return typedValue.resourceId;
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void setStatusBarGradient(Activity activity, int gradient) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            Drawable background = ContextCompat.getDrawable(activity, gradient);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            int transparent = ContextCompat.getColor(activity, R.color.transparent);
+            window.setStatusBarColor(transparent);
+            window.setNavigationBarColor(transparent);
+            window.setBackgroundDrawable(background);
+        }
     }
 }

@@ -18,16 +18,22 @@ import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 class HotBoardViewPager extends PagerAdapter {
     private Context context;
 
     private List<News> sliders = new ArrayList<>();
     private Picasso picasso;
+    private Callback callback;
 
     HotBoardViewPager(Context context, Picasso picasso) {
         this.context = context;
         this.picasso = picasso;
+    }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
     }
 
     public void addList(List<News> newSliders) {
@@ -81,6 +87,18 @@ class HotBoardViewPager extends PagerAdapter {
             tv_title.setText(news.getTitle());
             PicassoUtils.showNewsImage(picasso, img_slider, news.getImageUrl());
         }
+
+        @OnClick(R.id.img_slider)
+        void onImgSliderClick() {
+            if (callback != null) {
+                callback.onNewsClick();
+            }
+        }
+    }
+
+
+    public interface Callback {
+        void onNewsClick();
     }
 }
 

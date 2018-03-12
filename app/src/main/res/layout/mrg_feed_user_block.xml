@@ -15,7 +15,7 @@
             android:layout_width="@dimen/dp_38"
             android:layout_height="@dimen/dp_38"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_avatar"
+            android:src="@color/user_avatar"
             app:radius_width="@dimen/dp_7"/>
 
         <LinearLayout

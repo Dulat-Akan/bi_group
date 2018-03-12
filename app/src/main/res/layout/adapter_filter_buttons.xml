@@ -14,7 +14,7 @@
         android:layout_marginLeft="@dimen/dp_5"
         android:layout_marginRight="@dimen/dp_5"
         android:layout_marginTop="@dimen/dp_10"
-        app:cardBackgroundColor="@color/filter_news"
+        app:cardBackgroundColor="@color/filter_bg"
         app:cardCornerRadius="@dimen/dp_12"
         app:cardElevation="@dimen/dp_2">
 

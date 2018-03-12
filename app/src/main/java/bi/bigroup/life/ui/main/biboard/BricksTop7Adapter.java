@@ -90,7 +90,7 @@ public class BricksTop7Adapter extends RecyclerViewBaseAdapter {
             if (topQuestion == null) {
                 return;
             }
-            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(topQuestion.getCode()), R.drawable.ic_avatar);
+            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(topQuestion.getCode()), R.color.user_avatar);
         }
 
         @OnClick(R.id.ll_content)

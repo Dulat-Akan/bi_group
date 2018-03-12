@@ -51,11 +51,11 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 
         filterButtonList = new ArrayList<>();
         filterButtonList.add(new FilterButton(context.getString(R.string.filter_news), 30,
-                ContextCompat.getColor(context, R.color.filter_news)));
+                ContextCompat.getColor(context, R.color.filter_bg)));
         filterButtonList.add(new FilterButton(context.getString(R.string.filter_poll), 43,
-                ContextCompat.getColor(context, R.color.filter_poll)));
+                ContextCompat.getColor(context, R.color.filter_bg)));
         filterButtonList.add(new FilterButton(context.getString(R.string.filter_offer), 223,
-                ContextCompat.getColor(context, R.color.filter_offer)));
+                ContextCompat.getColor(context, R.color.filter_bg)));
     }
 
     void setCallback(Callback callback) {
@@ -204,6 +204,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 //            adapter.addImages(Collections.singletonList(feed.getImageUrl()));
 //            vp_images.setAdapter(adapter);
 //            ci_images.setViewPager(vp_images);
+            LOTimber.d("sadlkajsdlkasd =" + feed.getImageUrl());
             PicassoUtils.showNewsImage(picasso, img_slider, feed.getImageUrl());
 
             tv_content.setText(feed.title);

@@ -143,7 +143,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
 
         void bindHolder(News object) {
             bindedObject = object;
-            PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(object.getAuthorCode()), R.drawable.ic_avatar);
+            PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(object.getAuthorCode()), R.color.user_avatar);
             tv_subhead_top.setText(object.getAuthorName());
             tv_title.setText(object.getTitle());
             tv_time.setText(object.getDate(context));

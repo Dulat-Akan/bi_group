@@ -5,12 +5,15 @@ import android.content.Context;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
+import java.util.Collections;
+
 import bi.bigroup.life.data.cache.preferences.Preferences;
 import bi.bigroup.life.data.cache.preferences.PreferencesProvider;
 import bi.bigroup.life.data.network.RetrofitServiceGenerator;
 import bi.bigroup.life.data.network.api.bi_group.API;
 import bi.bigroup.life.data.network.interceptors.UserTokenInterceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 
 public class DataLayer {
     private static volatile DataLayer instance;
@@ -34,10 +37,14 @@ public class DataLayer {
         RetrofitServiceGenerator retrofitServiceGenerator =
                 RetrofitServiceGenerator.getInstance(preferencesProvider);
         api = retrofitServiceGenerator.createService(API.class);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new UserTokenInterceptor(preferencesProvider))
+                .build();
+
+//        .protocols(Collections.singletonList(Protocol.HTTP_1_1))
         picasso = new Picasso.Builder(context)
-                .downloader(new OkHttp3Downloader(new OkHttpClient.Builder()
-                                .addInterceptor(new UserTokenInterceptor(preferencesProvider))
-                                .build()))
+                .downloader(new OkHttp3Downloader(client))
                 .build();
     }
 

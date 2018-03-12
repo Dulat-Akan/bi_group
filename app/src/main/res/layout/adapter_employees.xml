@@ -7,6 +7,7 @@
     <LinearLayout
         android:id="@+id/ll_row"
         style="@style/LL_MW_H"
+        android:background="?android:selectableItemBackground"
         android:gravity="center_vertical"
         android:paddingBottom="@dimen/dp_12"
         android:paddingRight="@dimen/dp_12"
@@ -16,7 +17,7 @@
             android:id="@+id/img_avatar"
             android:layout_width="@dimen/dp_40"
             android:layout_height="@dimen/dp_40"
-            android:src="@drawable/ic_avatar"
+            android:src="@color/user_avatar"
             app:radius_width="@dimen/dp_8"/>
 
         <LinearLayout
@@ -51,8 +52,8 @@
         <bi.bigroup.life.views.RoundedImageView
             android:layout_width="@dimen/dp_23"
             android:layout_height="@dimen/dp_23"
-            android:background="@color/slider_img_bg"
-            app:radius_width="@dimen/dp_5"/>
+            android:src="@color/slider_img_bg"
+            app:radius_width="@dimen/dp_6"/>
 
         <ImageView
             style="@style/WW"
@@ -62,9 +63,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:layout_marginLeft="@dimen/dp_43"
-        android:layout_marginTop="@dimen/dp_2"
-        android:background="@color/divider"/>
+        android:layout_height="@dimen/dp_0_13"
+        android:layout_marginLeft="@dimen/dp_58"
+        android:background="@color/divider2"/>
 
 </LinearLayout>
