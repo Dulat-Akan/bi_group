@@ -98,7 +98,7 @@
     <string name="idp">IDP</string>
     <string name="row_new">нов.</string>
     <string name="row_prin">прин.</string>
-    <string name="row_pros">прос.</string>
+    <string name="row_pros">исход.</string>
 
     <!-- BiBoardFragment -->
     <string name="predlojeniya">Предложения</string>
@@ -173,6 +173,12 @@
     <string name="fb_hr">HR отдел</string>
     <string name="fb_employee">Сотруднику</string>
     <string name="service_status">Статус: %s</string>
+    <string name="task_code_0">Новое</string>
+    <string name="task_code_10">В работе</string>
+    <string name="task_code_20">Выполнено</string>
+    <string name="task_code_50">Подтверждено</string>
+    <string name="task_code_55">Согласовано</string>
+    <string name="task_code_60">Отклонено</string>
 
     <!-- AddQuestion -->
     <string name="add_question">Добавить вопрос</string>

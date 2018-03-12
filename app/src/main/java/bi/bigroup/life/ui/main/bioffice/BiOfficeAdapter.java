@@ -17,7 +17,6 @@ import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.bioffice.BiOffice;
-import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Service;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +36,10 @@ class BiOfficeAdapter extends BaseAdapter {
 
     public void setCallback(Callback callback) {
         this.callback = callback;
+    }
+
+    void clearData() {
+        this.data.clear();
     }
 
     void addItem(BiOffice item) {
@@ -104,31 +107,51 @@ class BiOfficeAdapter extends BaseAdapter {
             tv_second_label.setText(context.getString(object.second));
             tv_third_label.setText(context.getString(object.third));
 
-            if (object.items != null) {
-//                tv_first_value.setText(String.valueOf(object.allSuggestions.size())); // TODO
-//                tv_second_value.setText(String.valueOf(object.allSuggestions.size()));
-//                tv_third_value.setText(String.valueOf(object.allSuggestions.size()));
+            if (object.combined != null) {
+                int allCount = 0;
+                int inboxCount = 0;
+                int outboxCount = 0;
+                if (object.combined.inboxTasks != null && object.combined.inboxTasks.size() > 0) {
+                    inboxCount = object.combined.inboxTasks.size();
+                    allCount = inboxCount;
+                }
+
+                if (object.combined.outboxServices != null && object.combined.outboxServices.size() > 0) {
+                    outboxCount = object.combined.outboxServices.size();
+                    allCount += outboxCount;
+                }
+
+                if (object.combined.outboxTasks != null && object.combined.outboxTasks.size() > 0) {
+                    outboxCount += object.combined.outboxTasks.size();
+                    allCount += outboxCount;
+                }
+                tv_first_value.setText(String.valueOf(allCount));
+                tv_second_value.setText(String.valueOf(inboxCount));
+                tv_third_value.setText(String.valueOf(outboxCount));
             }
 
-            // Services and Tasks list
-            List<Object> sList = object.items;
-            if (sList != null && sList.size() > 0) {
-                ll_programmatically.removeAllViews();
-                for (int i = 0; i < sList.size(); i++) {
-                    Object item = sList.get(i);
-                    View itemView = inflater.inflate(R.layout.inc_item_bioffice_items, null);
-                    TextView tv_title = itemView.findViewById(R.id.tv_title);
-                    TextView tv_desc = itemView.findViewById(R.id.tv_description);
+            // Inbox services and tasks list
+            if (object.combined != null && object.combined.inboxTasks != null) {
+                List<Task> sList = object.combined.inboxTasks;
+                if (sList != null && sList.size() > 0) {
+                    ll_programmatically.removeAllViews();
+                    for (int i = 0; i < sList.size(); i++) {
+                        Object item = sList.get(i);
+                        View itemView = inflater.inflate(R.layout.inc_item_bioffice_items, null);
+                        TextView tv_title = itemView.findViewById(R.id.tv_title);
+                        TextView tv_desc = itemView.findViewById(R.id.tv_description);
 
-                    if (item instanceof Service) {
-                        tv_title.setText(((Service) item).getTopic());
-                        tv_desc.setText(((Service) item).getStartDate() + "\n" +
-                                context.getString(R.string.service_status, ((Service) item).getStatus()));
-                    } else if (item instanceof Task) {
+//                        if (item instanceof Service) {
+//                            tv_title.setText(((Service) item).getTopic());
+//                            tv_desc.setText(((Service) item).getStartDate() + "\n" +
+//                                    context.getString(R.string.service_status, ((Service) item).getStatus()));
+//                        } else if (item instanceof Task) {
                         tv_title.setText(((Task) item).getTopic());
-                        tv_desc.setText(((Task) item).getStartDate());
+                        tv_desc.setText(((Task) item).getStartDate() + "\n" +
+                                context.getString(((Task) item).getStatusCode()));
+//                        }
+                        ll_programmatically.addView(itemView);
                     }
-                    ll_programmatically.addView(itemView);
                 }
             }
         }

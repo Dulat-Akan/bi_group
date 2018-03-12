@@ -16,7 +16,7 @@ import bi.bigroup.life.mvp.BaseMvpPresenter;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func2;
+import rx.functions.Func3;
 import rx.schedulers.Schedulers;
 
 @InjectViewState
@@ -24,18 +24,20 @@ public class BiOfficePresenter extends BaseMvpPresenter<BiOfficeView> {
     @Override
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
-        combineServiceTask();
+        combineServicesTasks();
     }
 
-    private void combineServiceTask() {
+    private void combineServicesTasks() {
         TasksServicesRepository repository = TasksServicesRepositoryProvider.provideRepository(dataLayer.getApi());
         Observable.zip(
-                repository.getServiceDeskInbox(),
+                repository.getServiceDeskOutbox(),
                 repository.getInboxTasks(false),
-                new Func2<List<Service>, List<Task>, CombineServiceTask>() {
+                repository.getOutboxTasks(),
+                new Func3<List<Service>, List<Task>, List<Task>, CombineServiceTask>() {
                     @Override
-                    public CombineServiceTask call(List<Service> services, List<Task> tasks) {
-                        return new CombineServiceTask(services, tasks);
+                    public CombineServiceTask call(
+                            List<Service> outboxServices, List<Task> inboxTasks, List<Task> outboxTasks) {
+                        return new CombineServiceTask(outboxServices, inboxTasks, outboxTasks);
                     }
                 })
                 .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))

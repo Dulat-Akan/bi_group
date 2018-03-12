@@ -74,32 +74,32 @@ public class TasksServicesPresenter extends BaseMvpPresenter<TasksServicesView> 
         compositeSubscription.add(listSubscription);
     }
 
-    public void getServiceDeskInbox(boolean is_refresh, boolean isOnlyToday) {
-        Subscription listSubscription = TasksServicesRepositoryProvider.provideRepository(dataLayer.getApi())
-                .getServiceDeskInbox()
-                .doOnSubscribe(() -> showLoading(true, is_refresh))
-                .doOnTerminate(() -> showLoading(false, is_refresh))
-                .subscribe(new Subscriber<List<Service>>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        handleResponseError(context, e);
-                    }
-
-                    @Override
-                    public void onNext(List<Service> list) {
-                        if (list != null && list.size() > 0) {
-                            getViewState().setList(list);
-                        }
-                        getInboxTasks(is_refresh, isOnlyToday);
-                    }
-                });
-        compositeSubscription.add(listSubscription);
-    }
+//    public void getServiceDeskInbox(boolean is_refresh, boolean isOnlyToday) {
+//        Subscription listSubscription = TasksServicesRepositoryProvider.provideRepository(dataLayer.getApi())
+//                .getServiceDeskInbox()
+//                .doOnSubscribe(() -> showLoading(true, is_refresh))
+//                .doOnTerminate(() -> showLoading(false, is_refresh))
+//                .subscribe(new Subscriber<List<Service>>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        handleResponseError(context, e);
+//                    }
+//
+//                    @Override
+//                    public void onNext(List<Service> list) {
+//                        if (list != null && list.size() > 0) {
+//                            getViewState().setList(list);
+//                        }
+//                        getInboxTasks(is_refresh, isOnlyToday);
+//                    }
+//                });
+//        compositeSubscription.add(listSubscription);
+//    }
 
     public void getServiceDeskOutbox(boolean is_refresh) {
         Subscription listSubscription = TasksServicesRepositoryProvider.provideRepository(dataLayer.getApi())

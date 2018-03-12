@@ -38,7 +38,7 @@ public class TasksServicesFragment extends BaseSwipeRefreshFragment implements T
         mvpPresenter.init(getContext(), dataLayer);
         handleIntent();
         if (isInbox) {
-            mvpPresenter.getServiceDeskInbox(false, false);
+            mvpPresenter.getInboxTasks(false, false);
         } else {
             mvpPresenter.getServiceDeskOutbox(false);
         }
@@ -64,7 +64,7 @@ public class TasksServicesFragment extends BaseSwipeRefreshFragment implements T
     @Override
     protected void swipeToRefresh() {
         if (isInbox) {
-            mvpPresenter.getServiceDeskInbox(true, false);
+            mvpPresenter.getInboxTasks(true, false);
         } else {
             mvpPresenter.getServiceDeskOutbox(true);
         }

@@ -62,7 +62,7 @@
                         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                             android:id="@+id/tv_first_value"
                             style="@style/WW"
-                            android:text="1"
+                            android:text="0"
                             android:textColor="@color/bi_header_blues"
                             android:textSize="@dimen/sp_20"/>
 
@@ -86,7 +86,7 @@
                         <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                             android:id="@+id/tv_second_value"
                             style="@style/WW"
-                            android:text="19"
+                            android:text="0"
                             android:textColor="@color/bi_header_blues"
                             android:textSize="@dimen/sp_20"/>
 
