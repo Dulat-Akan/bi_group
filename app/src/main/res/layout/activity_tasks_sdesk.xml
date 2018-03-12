@@ -67,24 +67,14 @@
             app:fab_labelsPosition="left">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fbn_it"
+                android:id="@+id/fbn_new_task"
                 style="@style/fb_sub_menu"
-                app:fab_title="@string/fb_it"/>
+                app:fab_title="@string/new_task"/>
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fbn_buhgalterya"
+                android:id="@+id/fbn_new_request"
                 style="@style/fb_sub_menu"
-                app:fab_title="@string/fb_buhgalterya"/>
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fbn_hr"
-                style="@style/fb_sub_menu"
-                app:fab_title="@string/fb_hr"/>
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fbn_employee"
-                style="@style/fb_sub_menu"
-                app:fab_title="@string/fb_employee"/>
+                app:fab_title="@string/new_sdesk"/>
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
