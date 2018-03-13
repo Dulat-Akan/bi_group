@@ -2,6 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fl_parent"
     style="@style/MM"
     android:background="@color/white"
@@ -20,7 +21,7 @@
                 style="@style/PARENT_TITLE"
                 android:layout_marginTop="@dimen/dp_0"
                 android:layout_weight="1"
-                android:text="@string/new_sdesk"/>
+                android:text="@string/new_task"/>
 
             <ImageView
                 android:id="@+id/img_close"
@@ -40,55 +41,136 @@
             <LinearLayout
                 style="@style/LL_MW_V">
 
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    style="@style/MW"
-                    android:text="@string/performer"
-                    android:textColor="@color/et_hint_header"
-                    android:textSize="@dimen/sp_12"/>
-
                 <bi.bigroup.life.views.edittext.SettingsEditText
                     android:id="@+id/et_title"
                     style="@style/MW"
-                    android:drawableRight="@drawable/arrow_down"
-                    android:hint="@string/performer"
+                    android:hint="@string/label_title"
                     android:inputType="text"
-                    android:textColorHint="@color/et_hint_subject"
-                    android:textSize="@dimen/sp_16"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    style="@style/MW"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:text="@string/category"
-                    android:textColor="@color/et_hint_header"
-                    android:textSize="@dimen/sp_12"/>
-
-                <bi.bigroup.life.views.edittext.SettingsEditText
-                    android:id="@+id/et_category"
-                    style="@style/MW"
-                    android:drawableRight="@drawable/arrow_down"
-                    android:inputType="text"
-                    android:textColorHint="@color/et_hint_subject"
-                    android:textSize="@dimen/sp_16"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    style="@style/MW"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:text="@string/deadline"
-                    android:textColor="@color/et_hint_header"
-                    android:textSize="@dimen/sp_12"/>
-
-                <bi.bigroup.life.views.edittext.SettingsEditText
-                    android:id="@+id/et_deadline"
-                    style="@style/MW"
-                    android:drawableRight="@drawable/arrow_down"
-                    android:inputType="text"
-                    android:text="14 мая"
                     android:textColorHint="@color/et_hint_subject"
                     android:textSize="@dimen/sp_16"/>
 
                 <LinearLayout
+                    style="@style/LL_MW_H"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:gravity="center_vertical">
+
+                    <CheckBox
+                        android:id="@+id/cb_all_day"
+                        style="@style/checkBoxStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/label_notifications"/>
+
+                    <bi.bigroup.life.views.edittext.SettingsEditText
+                        android:id="@+id/et_notification"
+                        style="@style/WW"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:drawableRight="@drawable/arrow_down"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/label_notifications"
+                        android:inputType="text"
+                        android:textColorHint="@color/et_hint_subject"
+                        android:textSize="@dimen/sp_16"/>
+
+                </LinearLayout>
+
+                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                    style="@style/MW"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="@string/start_date"
+                    android:textColor="@color/et_hint_subject"
+                    android:textSize="@dimen/sp_12"/>
+
+                <bi.bigroup.life.views.edittext.SettingsEditText
+                    android:id="@+id/et_start_date"
+                    style="@style/MW"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:drawableRight="@drawable/arrow_down"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/start_date"
+                    android:inputType="text"
+                    android:textColorHint="@color/et_hint_subject"
+                    android:textSize="@dimen/sp_16"
+                    tools:text="13.03.2018 02:53"/>
+
+                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                    style="@style/MW"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="@string/end_date"
+                    android:textColor="@color/et_hint_subject"
+                    android:textSize="@dimen/sp_12"/>
+
+                <bi.bigroup.life.views.edittext.SettingsEditText
+                    android:id="@+id/et_end_date"
+                    style="@style/MW"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:drawableRight="@drawable/arrow_down"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/end_date"
+                    android:inputType="text"
+                    android:textColorHint="@color/et_hint_subject"
+                    android:textSize="@dimen/sp_16"
+                    tools:text="13.03.2018 02:53"/>
+
+                <bi.bigroup.life.views.edittext.SettingsEditText
+                    android:id="@+id/et_performer"
+                    style="@style/MW"
+                    android:layout_marginTop="@dimen/dp_7"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:drawableRight="@drawable/arrow_down"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/choose_performer"
+                    android:inputType="text"
+                    android:textColorHint="@color/et_hint_subject"
+                    android:textSize="@dimen/sp_16"/>
+
+                <bi.bigroup.life.views.edittext.SettingsEditText
+                    android:id="@+id/et_add_participants"
+                    style="@style/MW"
+                    android:layout_marginTop="@dimen/dp_7"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:drawableRight="@drawable/arrow_down"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/add_participants"
+                    android:inputType="text"
+                    android:textColorHint="@color/et_hint_subject"
+                    android:textSize="@dimen/sp_16"/>
+
+                <com.zhy.view.flowlayout.TagFlowLayout
+                    android:id="@+id/participants_layout"
+                    style="@style/MW"
+                    android:layout_marginTop="@dimen/dp_7"/>
+
+                <bi.bigroup.life.views.edittext.SettingsEditText
+                    android:id="@+id/et_task_type"
+                    style="@style/MW"
+                    android:layout_marginTop="@dimen/dp_7"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:drawableRight="@drawable/arrow_down"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/task_type"
+                    android:inputType="text"
+                    android:textColorHint="@color/et_hint_subject"
+                    android:textSize="@dimen/sp_16"/>
+
+
+                <LinearLayout
                     style="@style/LL_MW_V"
-                    android:layout_marginTop="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_12"
                     android:background="@drawable/et_selector_rounded_add_content">
 
                     <com.rengwuxian.materialedittext.MaterialEditText
@@ -97,7 +179,7 @@
                         android:gravity="top|left"
                         android:hint="@string/write_content"
                         android:inputType="textMultiLine"
-                        android:minLines="5"
+                        android:minLines="3"
                         android:paddingBottom="@dimen/dp_7"
                         android:paddingLeft="@dimen/dp_13"
                         android:paddingRight="@dimen/dp_13"
@@ -108,6 +190,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_attach_file"
                     style="@style/LL_MW_H"
                     android:layout_marginTop="@dimen/dp_12"
                     android:gravity="center_vertical">
@@ -126,7 +209,7 @@
                 </LinearLayout>
 
                 <bi.bigroup.life.views.fonts.ButtonRobotoRegular
-                    android:id="@+id/btn_ask_question"
+                    android:id="@+id/btn_send"
                     style="@style/auth_rounded_btn"
                     android:layout_marginLeft="@dimen/dp_0"
                     android:layout_marginRight="@dimen/dp_0"

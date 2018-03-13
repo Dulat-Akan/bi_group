@@ -233,5 +233,26 @@
     <string name="popular_questions_answers">Ответы на популярные вопросы</string>
     <string name="questions_and_answers">Вопросы и ответы</string>
 
+    <!-- AddTaskActvity -->
+    <string name="label_title">Тема</string>
+    <string name="all_day">Весь день</string>
+    <string name="label_notifications">Напоминание</string>
+    <string name="start_date">Начало</string>
+    <string name="end_date">Конец</string>
+    <string name="choose_performer">Выбрать исполнителя</string>
+    <string name="add_participants">Добавить участников</string>
+    <string name="task_type">Тип задачи</string>
+    <string-array name="notify_minutes">
+        <item>5 минут</item>
+        <item>10 минут</item>
+        <item>15 минут</item>
+        <item>30 минут</item>
+        <item>1 час</item>
+    </string-array>
+    <string-array name="task_types">
+        <item>На исполнение</item>
+        <item>На согласование</item>
+    </string-array>
+
     <string name="q"></string>
 </resources>

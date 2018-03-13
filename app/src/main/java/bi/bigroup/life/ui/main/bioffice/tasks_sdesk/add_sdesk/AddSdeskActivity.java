@@ -194,6 +194,7 @@ public class AddSdeskActivity extends BaseActivity implements AddSdeskView {
     ///////////////////////////////////////////////////////////////////////////
     // AddSdeskView implementation
     ///////////////////////////////////////////////////////////////////////////
+
     @Override
     public void showRequestPermissionDialog(boolean isRequestPermission) {
         commonDialog.showDialogYesNo(getString(R.string.rationale_storage));
