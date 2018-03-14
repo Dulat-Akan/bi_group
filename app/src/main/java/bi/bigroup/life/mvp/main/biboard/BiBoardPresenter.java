@@ -33,7 +33,6 @@ import rx.functions.Func2;
 import rx.functions.Func3;
 import rx.schedulers.Schedulers;
 
-import static bi.bigroup.life.ui.main.biboard.BiBoardAdapter.TYPE_EMPLOYEES;
 import static bi.bigroup.life.ui.main.biboard.BiBoardAdapter.TYPE_QUESTIONNAIRE;
 import static bi.bigroup.life.ui.main.biboard.BiBoardAdapter.TYPE_SUGGESTIONS;
 import static bi.bigroup.life.utils.Constants.INITIAL_PAGE_NUMBER;
@@ -49,7 +48,7 @@ public class BiBoardPresenter extends BaseMvpPresenter<BiBoardView> {
         getPopularNews();
         combineSuggestionsRequests();
         combineQuestionnaireRequests();
-        combineEmployeeRequests();
+//        combineEmployeeRequests();
         getTopQuestions();
     }
 
@@ -173,7 +172,7 @@ public class BiBoardPresenter extends BaseMvpPresenter<BiBoardView> {
                     @Override
                     public void onNext(BiBoard biBoard) {
                         if (biBoard != null) {
-                            getViewState().setBiBoardData(biBoard, TYPE_EMPLOYEES);
+//                            getViewState().setBiBoardData(biBoard, TYPE_EMPLOYEES);
                         }
                     }
 

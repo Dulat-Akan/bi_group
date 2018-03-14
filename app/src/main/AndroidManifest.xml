@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="bi.bigroup.life">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -37,10 +38,13 @@
                 android:resource="@xml/file_paths"/>
         </provider>
 
-        <!-- Selecting multiple images -->
+        <!-- Image gallery -->
         <activity
-            android:name="com.gun0912.tedpicker.ImagePickerActivity"
-            android:screenOrientation="portrait"/>
+            android:name="com.etiennelawlor.imagegallery.library.activities.FullScreenImageGalleryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label=""
+            android:theme="@style/CustomImageGallery"
+            tools:replace="android:theme"/>
 
         <!-- Bi Group application settings -->
         <activity

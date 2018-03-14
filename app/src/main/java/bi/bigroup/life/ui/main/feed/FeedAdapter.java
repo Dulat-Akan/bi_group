@@ -204,7 +204,6 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 //            adapter.addImages(Collections.singletonList(feed.getImageUrl()));
 //            vp_images.setAdapter(adapter);
 //            ci_images.setViewPager(vp_images);
-            LOTimber.d("sadlkajsdlkasd =" + feed.getImageUrl());
             PicassoUtils.showNewsImage(picasso, img_slider, feed.getImageUrl());
 
             tv_content.setText(feed.title);

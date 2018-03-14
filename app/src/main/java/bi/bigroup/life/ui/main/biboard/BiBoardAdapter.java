@@ -30,7 +30,7 @@ import butterknife.OnClick;
 public class BiBoardAdapter extends BaseAdapter {
     public static final int TYPE_SUGGESTIONS = 0;
     public static final int TYPE_QUESTIONNAIRE = 1;
-    public static final int TYPE_EMPLOYEES = 2;
+//    public static final int TYPE_EMPLOYEES = 2;
 
     private static final int ITEM_LAYOUT = R.layout.adapter_biboard;
     private Context context;
@@ -42,7 +42,7 @@ public class BiBoardAdapter extends BaseAdapter {
         this.context = context;
         data.add(null);
         data.add(null);
-        data.add(null);
+//        data.add(null);
         inflater = ((Activity) context).getLayoutInflater();
     }
 
@@ -133,12 +133,13 @@ public class BiBoardAdapter extends BaseAdapter {
                 tv_second_value.setText(String.valueOf(object.allQuestionnaires.size()));
                 tv_third_value.setText(String.valueOf(object.popularQuestionnaires.size()));
                 ll_area.setClickable(false);
-            } else if (object.employees != null && object.vacancies != null) {
-                tv_first_value.setText(String.valueOf(object.allEmployeesCount));
-                tv_second_value.setText(String.valueOf(object.employees.size()));
-                tv_third_value.setText(String.valueOf(object.vacancies.size()));
-                ll_area.setClickable(true);
             }
+//            else if (object.employees != null && object.vacancies != null) {
+//                tv_first_value.setText(String.valueOf(object.allEmployeesCount));
+//                tv_second_value.setText(String.valueOf(object.employees.size()));
+//                tv_third_value.setText(String.valueOf(object.vacancies.size()));
+//                ll_area.setClickable(true);
+//            }
             img_add.setVisibility(position == TYPE_SUGGESTIONS ? View.VISIBLE : View.GONE);
 
             // Suggestions list
@@ -177,22 +178,22 @@ public class BiBoardAdapter extends BaseAdapter {
                 }
             }
 
-            // Employees list
-            List<Employee> eList = object.employees;
-            if (eList != null && eList.size() > 0) {
-                ll_programmatically.removeAllViews();
-                for (int i = 0; i < eList.size(); i++) {
-                    Employee item = eList.get(i);
-                    View itemView = inflater.inflate(R.layout.inc_item_bioffice_items, null);
-                    TextView tv_title = itemView.findViewById(R.id.tv_title);
-                    TextView tv_desc = itemView.findViewById(R.id.tv_description);
-                    tv_title.setText(item.getFullName());
-                    tv_desc.setText(item.getJobPosition());
-                    LinearLayout ll_row = itemView.findViewById(R.id.ll_row);
-                    ll_row.setOnClickListener(view -> callback.openEmployeePage(item.getCode()));
-                    ll_programmatically.addView(itemView);
-                }
-            }
+//            // Employees list
+//            List<Employee> eList = object.employees;
+//            if (eList != null && eList.size() > 0) {
+//                ll_programmatically.removeAllViews();
+//                for (int i = 0; i < eList.size(); i++) {
+//                    Employee item = eList.get(i);
+//                    View itemView = inflater.inflate(R.layout.inc_item_bioffice_items, null);
+//                    TextView tv_title = itemView.findViewById(R.id.tv_title);
+//                    TextView tv_desc = itemView.findViewById(R.id.tv_description);
+//                    tv_title.setText(item.getFullName());
+//                    tv_desc.setText(item.getJobPosition());
+//                    LinearLayout ll_row = itemView.findViewById(R.id.ll_row);
+//                    ll_row.setOnClickListener(view -> callback.openEmployeePage(item.getCode()));
+//                    ll_programmatically.addView(itemView);
+//                }
+//            }
         }
 
         @OnClick(R.id.ll_expand_collapse)
@@ -206,9 +207,9 @@ public class BiBoardAdapter extends BaseAdapter {
 
         @OnClick(R.id.ll_area)
         void onAreaClick() {
-            if (bindedPosition == TYPE_EMPLOYEES) {
-                callback.selectEmployeesTab();
-            }
+//            if (bindedPosition == TYPE_EMPLOYEES) {
+//                callback.selectEmployeesTab();
+//            }
         }
 
         @OnClick(R.id.img_add)

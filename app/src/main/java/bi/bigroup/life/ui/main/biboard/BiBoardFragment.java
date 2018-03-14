@@ -82,7 +82,6 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
         ViewGroup header = (ViewGroup) inflater.inflate(R.layout.adapter_biboard_header, lv_board, false);
         configureViewPager(header);
         lv_board.addHeaderView(header, null, false);
-
         biBoardAdapter = new BiBoardAdapter(getContext());
         biBoardAdapter.setCallback(new BiBoardAdapter.Callback() {
             @Override

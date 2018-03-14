@@ -94,7 +94,7 @@
     <string name="label_today">Сегодня</string>
     <string name="zayavki_i_zadachi">Заявки и задачи</string>
     <string name="kpi_proekty">KPI проекты</string>
-    <string name="sandb">S&amp;B</string>
+    <string name="sandb">HR</string>
     <string name="idp">IDP</string>
     <string name="row_new">нов.</string>
     <string name="row_prin">прин.</string>
@@ -103,7 +103,7 @@
     <!-- BiBoardFragment -->
     <string name="predlojeniya">Предложения</string>
     <string name="oprosnik">Опросник</string>
-    <string name="question_top_7">вопрос тор-7</string>
+    <string name="question_top_7">Questions</string>
     <string name="novyh">новых</string>
     <string name="dni_rojdenya">дни рождения</string>
     <string name="vacancii">вакансии</string>
@@ -229,7 +229,7 @@
     <string name="has_answer">Есть ответ</string>
 
     <!-- TopQuestionsActivity -->
-    <string name="question_top_7_uppercase">Вопрос TOP-7</string>
+    <string name="question_top_7_uppercase">Questions</string>
     <string name="popular_questions_answers">Ответы на популярные вопросы</string>
     <string name="questions_and_answers">Вопросы и ответы</string>
 

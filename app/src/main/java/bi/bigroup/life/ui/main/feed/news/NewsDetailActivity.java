@@ -4,19 +4,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.etiennelawlor.imagegallery.library.activities.FullScreenImageGalleryActivity;
+import com.etiennelawlor.imagegallery.library.adapters.FullScreenImageGalleryAdapter;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import bi.bigroup.life.R;
@@ -30,6 +38,7 @@ import bi.bigroup.life.ui.main.feed.ViewPagerImage;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
+import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -42,16 +51,18 @@ import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
 import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 
-public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
+public class NewsDetailActivity extends BaseActivity implements NewsDetailView, FullScreenImageGalleryAdapter.FullScreenImageLoader {
     @InjectPresenter
     NewsDetailPresenter mvpPresenter;
 
     @BindView(R.id.lv_news_detail) ListView lv_news_detail;
     @BindView(R.id.pb_indicator_transparent) ViewGroup pb_indicator_transparent;
     @BindView(R.id.et_content) MaterialEditText et_content;
+    @BindColor(R.color.black_transparent) int black_transparent;
     private CommentsAdapter adapter;
     private NewsHeader headerHolder;
     private String newsId;
+    private boolean isOnNewsDetailActivity;
 
     public static Intent getIntent(Context context, String id) {
         Intent intent = new Intent(context, NewsDetailActivity.class);
@@ -69,6 +80,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
         super.onCreate(savedInstanceState);
         mvpPresenter.init(this, dataLayer);
         handleIntent();
+        FullScreenImageGalleryActivity.setFullScreenImageLoader(this);
 
         // Header view
         LayoutInflater inflater = getLayoutInflater();
@@ -106,6 +118,18 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
         mvpPresenter.onDestroyView();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isOnNewsDetailActivity = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isOnNewsDetailActivity = false;
+    }
+
     @OnClick(R.id.img_close)
     void onCloseClick() {
         finish();
@@ -134,6 +158,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
         @BindView(R.id.tv_comments) TextView tv_comments;
         @BindView(R.id.tv_view_quantity) TextView tv_view_quantity;
         private ViewPagerImage adapter;
+        private String currentImageUrl;
 
         NewsHeader(Context context, View view) {
             ButterKnife.bind(this, view);
@@ -153,12 +178,64 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
             vp_images.setAdapter(adapter);
             ci_images.setViewPager(vp_images);
 
-            wv_content.clearCache(true);
-            wv_content.clearHistory();
             wv_content.getSettings().setJavaScriptEnabled(true);
             wv_content.setWebChromeClient(new WebChromeClientHelper());
             wv_content.setWebViewClient(new WebViewClientQ());
-            wv_content.loadDataWithBaseURL(null, EMPTY_STR + object.getText(), "text/html", "UTF-8", null);
+            wv_content.setOnTouchListener((v, event) -> {
+                if (isOnNewsDetailActivity) {
+                    WebView.HitTestResult result = ((WebView) v).getHitTestResult();
+                    if (result != null) {
+                        int type = result.getType();
+                        if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
+                            currentImageUrl = result.getExtra();
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                                wv_content.evaluateJavascript("getAllLinks();", null);
+                            } else {
+                                wv_content.loadUrl("javascript:getAllLinks();");
+                            }
+                        }
+                    }
+                }
+                return false;
+            });
+            wv_content.loadDataWithBaseURL(null,
+                    "<html>" +
+                            "<head>" +
+                            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">" +
+                            "<style>" +
+                            "            @font-face {\n" +
+                            "                font-family: 'Roboto Regular';\n" +
+                            "                src: url(\"file:///android_asset/fonts/Roboto-Regular.ttf\")" +
+                            "            }\n" +
+                            "\n" +
+                            "            body {\n" +
+                            "                font-family: 'Roboto Regular';\n" +
+                            "                font-size: 14px;\n" +
+                            "                color: black;\n" +
+                            "            }\n" +
+                            "\n" +
+                            "            img {\n" +
+                            "                width: 100%;\n" +
+                            "                height: auto;\n" +
+                            "            }\n" +
+                            "</style>" +
+                            "<script type=\"text/javascript\">\n" +
+                            "   function getAllLinks(){\n" +
+                            "       var imgs = document.getElementsByTagName(\"img\");\n" +
+                            "       var imgURLs = [];\n" +
+                            "       for (var i = 0; i < imgs.length; i++) {\n" +
+                            "           imgURLs.push(imgs[i].src);\n" +
+                            "       }" +
+                            "       window.JSInterface.imageLinks(imgURLs);" +
+                            "   }\n" +
+                            "</script>" +
+                            "</head>" +
+                            "<body>" +
+                            EMPTY_STR + object.getText() +
+                            "</body>" +
+                            "</html>", "text/html", "UTF-8", null);
+            wv_content.addJavascriptInterface(new JavaScriptInterface(), "JSInterface");
+
             tv_comment_quantity.setText(String.valueOf(object.getOkIntQuantity(object.commentsQuantity)));
             tv_comments.setText(getString(R.string.comments_count, String.valueOf(object.getOkIntQuantity(object.commentsQuantity))));
             tv_view_quantity.setText(String.valueOf(object.getOkIntQuantity(object.viewsQuantity)));
@@ -184,6 +261,25 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
             }
         }
 
+        class JavaScriptInterface {
+            @JavascriptInterface
+            public void imageLinks(String[] imageLinks) {
+                int imgPosition = 0;
+                for (int i = 0; i < imageLinks.length; i++) {
+                    if (imageLinks[i].equals(currentImageUrl)) {
+                        imgPosition = i;
+                        break;
+                    }
+                }
+                Intent intent = new Intent(NewsDetailActivity.this, FullScreenImageGalleryActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList(FullScreenImageGalleryActivity.KEY_IMAGES, new ArrayList<>(Arrays.asList(imageLinks)));
+                bundle.putInt(FullScreenImageGalleryActivity.KEY_POSITION, imgPosition);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        }
+
         @OnClick(R.id.ll_like)
         void onLikeClick() {
             mvpPresenter.likeSubscriptionUnsubscribe();
@@ -196,6 +292,22 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView {
                 bindedObject.setLikesQuantity(bindedObject.getLikesQuantity() + 1);
             }
             refreshLikeQuantity();
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // FullScreenImageGalleryAdapter.FullScreenImageLoader implementation
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void loadFullScreenImage(ImageView iv, String imageUrl, int width, LinearLayout bgLinearLayout) {
+        if (!TextUtils.isEmpty(imageUrl)) {
+            Picasso.with(iv.getContext())
+                    .load(imageUrl)
+                    .resize(width, 0)
+                    .into(iv);
+        } else {
+            iv.setImageDrawable(null);
         }
     }
 
