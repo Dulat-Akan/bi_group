@@ -12,10 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.data.models.feed.FilterButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static bi.bigroup.life.data.models.feed.FeedEntityType.FEED_TYPE_NEWS;
+import static bi.bigroup.life.data.models.feed.FeedEntityType.FEED_TYPE_QUESTIONNAIRE;
+import static bi.bigroup.life.data.models.feed.FeedEntityType.FEED_TYPE_SUGGESTION;
 
 class FilterButtonsAdapter extends BaseAdapter {
     private final static int LAYOUT_ID = R.layout.adapter_filter_buttons;
@@ -23,9 +28,18 @@ class FilterButtonsAdapter extends BaseAdapter {
 
     private List<FilterButton> filterButtonList = new ArrayList<>();
     private Callback callback;
-
-    FilterButtonsAdapter(Context context) {
+    private int newsCount = 0, suggestionCount = 0, questionnaireCount = 0;
+    FilterButtonsAdapter(Context context, List<Feed> data) {
         this.context = context;
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).getLayoutType() == FEED_TYPE_NEWS) {
+                newsCount++;
+            } else if (data.get(i).getLayoutType() == FEED_TYPE_SUGGESTION) {
+                suggestionCount++;
+            } else if (data.get(i).getLayoutType() == FEED_TYPE_QUESTIONNAIRE) {
+                questionnaireCount++;
+            }
+        }
     }
 
     public void setCallback(Callback callback) {
@@ -38,9 +52,11 @@ class FilterButtonsAdapter extends BaseAdapter {
         } else {
             filterButtonList = new ArrayList<>(filterButtons);
         }
+        filterButtonList.get(0).setCount(newsCount);
+        filterButtonList.get(1).setCount(questionnaireCount);
+        filterButtonList.get(2).setCount(suggestionCount);
         notifyDataSetChanged();
     }
-
 
     @Override
     public int getCount() {

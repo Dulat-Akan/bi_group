@@ -50,11 +50,11 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
         this.data = new ArrayList<>();
 
         filterButtonList = new ArrayList<>();
-        filterButtonList.add(new FilterButton(context.getString(R.string.filter_news), 30,
+        filterButtonList.add(new FilterButton(context.getString(R.string.filter_news), 0,
                 ContextCompat.getColor(context, R.color.filter_bg)));
-        filterButtonList.add(new FilterButton(context.getString(R.string.filter_poll), 43,
+        filterButtonList.add(new FilterButton(context.getString(R.string.filter_poll), 0,
                 ContextCompat.getColor(context, R.color.filter_bg)));
-        filterButtonList.add(new FilterButton(context.getString(R.string.filter_offer), 223,
+        filterButtonList.add(new FilterButton(context.getString(R.string.filter_offer), 0,
                 ContextCompat.getColor(context, R.color.filter_bg)));
     }
 
@@ -82,10 +82,8 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
     }
 
     void addData(List<Feed> newItems) {
-        int positionStart = data.size();
-        int itemCount = newItems.size();
         data.addAll(newItems);
-        notifyItemRangeChanged(positionStart, itemCount);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -165,7 +163,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
         }
 
         void bindHeader() {
-            horizontalAdapter = new FilterButtonsAdapter(context);
+            horizontalAdapter = new FilterButtonsAdapter(context, data);
             horizontalAdapter.setCallback((position) -> LOTimber.d("salkdasjd"));
             hlv_filters.setAdapter(horizontalAdapter);
             horizontalAdapter.setData(filterButtonList);

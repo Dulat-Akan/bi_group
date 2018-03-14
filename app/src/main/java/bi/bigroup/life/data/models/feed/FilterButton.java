@@ -10,4 +10,8 @@ public class FilterButton {
         this.count = count;
         this.color = color;
     }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 }

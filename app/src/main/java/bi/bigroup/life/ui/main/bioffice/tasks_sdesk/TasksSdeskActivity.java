@@ -16,8 +16,8 @@ import bi.bigroup.life.mvp.main.bioffice.tasks_sdesk.TasksSdeskPresenter;
 import bi.bigroup.life.mvp.main.bioffice.tasks_sdesk.TasksSdeskView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
 import bi.bigroup.life.ui.base.view_pager.ViewPagerAdapter;
+import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_task.AddTaskActivity;
-import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -72,7 +72,7 @@ public class TasksSdeskActivity extends BaseFragmentActivity implements TasksSde
     @OnClick(R.id.fbn_new_request)
     void onAddSdesk() {
         floating_menu.collapse();
-        startActivity(NewSuggestionActivity.getIntent(this));
+        startActivity(AddSdeskActivity.getIntent(this));
     }
 
     private void configureViewPager() {
