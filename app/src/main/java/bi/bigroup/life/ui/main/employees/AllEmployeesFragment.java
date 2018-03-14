@@ -2,6 +2,7 @@ package bi.bigroup.life.ui.main.employees;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.mvp.main.employees.AllEmployeesPresenter;
 import bi.bigroup.life.mvp.main.employees.AllEmployeesView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
+import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 import butterknife.BindView;
 
@@ -24,7 +26,7 @@ import static bi.bigroup.life.utils.Constants.KEY_BOOL;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 import static bi.bigroup.life.views.edittext.EditTextUtils.setCursorColor;
 
-public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements AllEmployeesView {
+public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements AllEmployeesView, BottomNavigationTabFragment {
     @InjectPresenter
     AllEmployeesPresenter mvpPresenter;
     @BindView(R.id.search_view) SearchView search_view;
@@ -165,5 +167,15 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
     @Override
     public void showLoadingIndicator(boolean show) {
         pb_indicator.post(() -> pb_indicator.setVisibility(show ? View.VISIBLE : View.GONE));
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // BottomNavigationTabFragment implementation
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onBottomNavigationTabReselected() {
+        if (mAdapter.getItemCount() > 0)
+            ((LinearLayoutManager) recycler_view.getLayoutManager()).scrollToPositionWithOffset(0, 0);
     }
 }

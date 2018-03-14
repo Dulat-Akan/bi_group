@@ -132,7 +132,11 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
 
     @Override
     public void onNavigationItemReselected(@NonNull MenuItem item) {
-
+        Fragment fragment = findFragmentById();
+        if (fragment != null
+                && fragment instanceof BottomNavigationTabFragment) {
+            ((BottomNavigationTabFragment) fragment).onBottomNavigationTabReselected();
+        }
     }
 
     @Override

@@ -2,6 +2,7 @@ package bi.bigroup.life.ui.main.feed;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -15,6 +16,7 @@ import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.mvp.main.feed.FeedPresenter;
 import bi.bigroup.life.mvp.main.feed.FeedView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
+import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
 import bi.bigroup.life.ui.main.feed.news.AddNewsActivity;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
@@ -25,7 +27,7 @@ import butterknife.OnClick;
 
 import static bi.bigroup.life.utils.Constants.KEY_CODE;
 
-public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
+public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, BottomNavigationTabFragment {
     public static final int UPDATE_NEWS_FEED = 12;
     @InjectPresenter
     FeedPresenter mvpPresenter;
@@ -114,7 +116,9 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data == null) {return;}
+        if (data == null) {
+            return;
+        }
         if (data.getIntExtra(KEY_CODE, 0) == UPDATE_NEWS_FEED) {
             mvpPresenter.getFeedList(false, true);
         }
@@ -152,5 +156,15 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     @Override
     public void showTransparentIndicator(boolean show) {
         pb_indicator.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // BottomNavigationTabFragment implementation
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onBottomNavigationTabReselected() {
+        if (mAdapter.getItemCount() > 0)
+            ((LinearLayoutManager) recycler_view.getLayoutManager()).scrollToPositionWithOffset(0, 0);
     }
 }

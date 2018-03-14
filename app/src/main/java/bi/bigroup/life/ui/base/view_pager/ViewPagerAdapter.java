@@ -40,6 +40,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         fragmentTitles.clear();
     }
 
+    public List<Fragment> getFragments() {
+        return fragments;
+    }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return fragmentTitles.get(position);

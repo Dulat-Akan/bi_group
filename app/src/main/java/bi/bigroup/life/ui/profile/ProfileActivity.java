@@ -15,10 +15,7 @@ import bi.bigroup.life.mvp.profile.ProfilePresenter;
 import bi.bigroup.life.mvp.profile.ProfileView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
 import bi.bigroup.life.ui.base.view_pager.ViewPagerAdapter;
-import bi.bigroup.life.ui.profile.advantages.AdvantagesFragment;
-import bi.bigroup.life.ui.profile.plans.PlansFragment;
 import bi.bigroup.life.ui.profile.profile_data.ProfileDataFragment;
-import bi.bigroup.life.ui.profile.results.ResultsFragment;
 import butterknife.BindView;
 
 public class ProfileActivity extends BaseFragmentActivity implements ProfileView {
@@ -59,9 +56,9 @@ public class ProfileActivity extends BaseFragmentActivity implements ProfileView
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         tabs.setupWithViewPager(viewPager);
         adapter.addFrag(ProfileDataFragment.newInstance(), getString(R.string.tabs_data));
-        adapter.addFrag(ResultsFragment.newInstance(), getString(R.string.tabs_results));
-        adapter.addFrag(PlansFragment.newInstance(), getString(R.string.tabs_plans));
-        adapter.addFrag(AdvantagesFragment.newInstance(), getString(R.string.tabs_advantages));
+//        adapter.addFrag(ResultsFragment.newInstance(), getString(R.string.tabs_results));
+//        adapter.addFrag(PlansFragment.newInstance(), getString(R.string.tabs_plans));
+//        adapter.addFrag(AdvantagesFragment.newInstance(), getString(R.string.tabs_advantages));
         viewPager.setAdapter(adapter);
     }
 

@@ -2,6 +2,7 @@ package bi.bigroup.life.ui.main.employees;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.EditText;
@@ -17,12 +18,13 @@ import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.mvp.main.employees.VacanciesPresenter;
 import bi.bigroup.life.mvp.main.employees.VacanciesView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
+import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
 import butterknife.BindView;
 
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 import static bi.bigroup.life.views.edittext.EditTextUtils.setCursorColor;
 
-public class VacanciesFragment extends BaseSwipeRefreshFragment implements VacanciesView {
+public class VacanciesFragment extends BaseSwipeRefreshFragment implements VacanciesView, BottomNavigationTabFragment {
     @InjectPresenter
     VacanciesPresenter mvpPresenter;
     @BindView(R.id.search_view) SearchView search_view;
@@ -116,5 +118,15 @@ public class VacanciesFragment extends BaseSwipeRefreshFragment implements Vacan
     @Override
     public void showLoadingItemIndicator(boolean show) {
         recycler_view.post(() -> mAdapter.setLoading(show));
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // BottomNavigationTabFragment implementation
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onBottomNavigationTabReselected() {
+        if (mAdapter.getItemCount() > 0)
+            ((LinearLayoutManager) recycler_view.getLayoutManager()).scrollToPositionWithOffset(0, 0);
     }
 }
