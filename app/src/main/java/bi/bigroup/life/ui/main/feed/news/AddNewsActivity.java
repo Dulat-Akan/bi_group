@@ -75,7 +75,7 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
     private Image imageSingle;
     private ArrayList<Image> imagesMultiple;
 
-    // Tags
+//    // Tags
     private TagsAdapter tagsAdapter;
 
     public static Intent getIntent(Context context) {

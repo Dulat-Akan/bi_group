@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/fl_parent"
+
+             style="@style/MM">
+
+    <LinearLayout
+        style="@style/LL_MM_V"
+        android:padding="@dimen/dp_17">
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search_view"
+            style="@style/MW"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/et_selector_searchview"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="@string/search_hint"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            style="@style/MW"
+            android:layout_height="@dimen/dp_340"
+            android:layout_marginTop="@dimen/dp_15"
+            android:scrollbarSize="@dimen/dp_2"
+            android:scrollbars="vertical"/>
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/MW"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/btn_selector_blue_rounded"
+            android:text="@string/cancel"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/pb_indicator"
+        layout="@layout/inc_pb_transparent"/>
+</FrameLayout>

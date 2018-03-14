@@ -311,6 +311,7 @@
     <dimen name="dp_299">299dp</dimen>
     <dimen name="dp_300">300dp</dimen>
     <dimen name="dp_320">320dp</dimen>
+    <dimen name="dp_340">340dp</dimen>
 
     <dimen name="sp_0">0sp</dimen>
     <dimen name="sp_1">1sp</dimen>

@@ -23,4 +23,8 @@ public interface TasksServicesRepository {
 
     Observable<ResponseBody> addRequest(List<MultipartBody.Part> attachments, String content, String dateTime);
 
+    Observable<ResponseBody> addTask(
+            String Topic, String ExecutorCode, Boolean IsAllDay, String Description,
+            String StartDateTime, String EndDateTime, Integer Reminder, List<String> Participants,
+            Integer Type, List<MultipartBody.Part> attachments);
 }

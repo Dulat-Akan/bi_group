@@ -1,7 +1,9 @@
 package bi.bigroup.life.data.models.employees;
 
 import static bi.bigroup.life.utils.DateUtils.getBirthDateStr;
+import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
 import static bi.bigroup.life.utils.StringUtils.replaceNullTrim;
 
@@ -69,7 +71,7 @@ public class Employee {
     }
 
     public String getBirthDate() {
-        return getBirthDateStr(replaceNull(birthDate));
+        return isStringOk(birthDate) ? getBirthDateStr(replaceNull(birthDate)) : EMPTY_STR;
     }
 
     public boolean getHasAvatar() {

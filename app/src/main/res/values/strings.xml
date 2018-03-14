@@ -253,6 +253,7 @@
         <item>На исполнение</item>
         <item>На согласование</item>
     </string-array>
+    <string name="employee_already_exist">Сотрудник уже существует</string>
 
     <string name="q"></string>
 </resources>

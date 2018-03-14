@@ -162,6 +162,20 @@ public interface API {
     @GET("tasks/inbox/")
     Observable<List<Task>> getInboxTasks(@Query("isOnlyToday") Boolean isOnlyToday);
 
+    @Multipart
+    @POST("Tasks/")
+    Observable<ResponseBody> addTask(
+            @Part("Topic") String Topic,
+            @Part("ExecutorCode") String ExecutorCode,
+            @Part("IsAllDay") Boolean IsAllDay,
+            @Part("Description") String Description,
+            @Part("StartDateTime") String StartDateTime,
+            @Part("EndDateTime") String EndDateTime,
+            @Part("Reminder") Integer Reminder,
+            @Part("Participants[]") List<String> Participants,
+            @Part("Type") Integer Type,
+            @Part List<MultipartBody.Part> Attachments);
+
     @GET("Requests/servicedesk/outbox/")
     Observable<List<Service>> getServiceDeskOutbox();
 

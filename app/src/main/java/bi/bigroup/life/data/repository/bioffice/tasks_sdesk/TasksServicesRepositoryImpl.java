@@ -58,4 +58,16 @@ class TasksServicesRepositoryImpl implements TasksServicesRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    @Override
+    public Observable<ResponseBody> addTask(String Topic, String ExecutorCode, Boolean IsAllDay,
+                                            String Description, String StartDateTime, String EndDateTime,
+                                            Integer Reminder, List<String> Participants,
+                                            Integer Type, List<MultipartBody.Part> attachments) {
+        return api
+                .addTask(Topic, ExecutorCode, IsAllDay, Description, StartDateTime, EndDateTime,
+                        Reminder,  Participants, Type, attachments)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

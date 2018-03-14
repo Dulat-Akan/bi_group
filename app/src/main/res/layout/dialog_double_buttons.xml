@@ -21,4 +21,13 @@
         android:background="@drawable/btn_selector_blue_rounded"
         android:text="@string/yes"
         android:textColor="@color/white"/>
+
+    <bi.bigroup.life.views.fonts.ButtonRobotoRegular
+        android:id="@+id/btn_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_7"
+        android:background="@drawable/btn_selector_blue_rounded"
+        android:text="@string/cancellation"
+        android:textColor="@color/white"/>
 </LinearLayout>

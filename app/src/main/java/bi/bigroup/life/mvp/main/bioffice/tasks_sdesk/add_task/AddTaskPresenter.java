@@ -10,6 +10,7 @@ import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.DataLayer;
+import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.repository.bioffice.tasks_sdesk.TasksServicesRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
 import okhttp3.MediaType;
@@ -52,14 +53,14 @@ public class AddTaskPresenter extends BaseMvpPresenter<AddTaskView> {
         }
     }
 
-    public void addTask(String title, boolean isAllDay, int notify_value, String startDate, String endDate,
-                        String performer, String participants, int taskType, String content, String[] files) {
+    public void addTask(String title, boolean isAllDay, int reminder, String startDate, String endDate,
+                        String performerCode, List<Employee> participants, int taskType, String content, String[] files) {
         if (!isStringOk(title)) {
             getViewState().showTitleError(R.string.field_error);
             return;
         }
 
-        if (notify_value == 0) {
+        if (reminder == 0) {
             getViewState().showNotificationError(R.string.field_error);
             return;
         }
@@ -74,7 +75,7 @@ public class AddTaskPresenter extends BaseMvpPresenter<AddTaskView> {
             return;
         }
 
-        if (!isStringOk(performer)) {
+        if (!isStringOk(performerCode)) {
             getViewState().showPerformerError(R.string.field_error);
             return;
         }
@@ -89,6 +90,12 @@ public class AddTaskPresenter extends BaseMvpPresenter<AddTaskView> {
             return;
         }
 
+        // Participants
+        List<String> participantsList = new ArrayList<>();
+        for (int i = 0; i < participants.size(); i++) {
+            participantsList.add(participants.get(i).getCode());
+        }
+
         // Secondary images, multiple images
         List<MultipartBody.Part> attachments = null;
         if (files != null && files.length > 0) {
@@ -97,11 +104,10 @@ public class AddTaskPresenter extends BaseMvpPresenter<AddTaskView> {
                 attachments.add(getMultipartParams(new File(file), KEY_ATTACHMENTS));
             }
         }
-    }
 
-    private void addTask(List<MultipartBody.Part> attachments, String content, String dateTime) {
         Subscription subscription = TasksServicesRepositoryProvider.provideRepository(dataLayer.getApi())
-                .addRequest(attachments, content, dateTime)
+                .addTask(title, performerCode, isAllDay, content, startDate, endDate, reminder, participantsList,
+                        taskType, attachments)
                 .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
                 .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
                 .subscribe(new Subscriber<ResponseBody>() {

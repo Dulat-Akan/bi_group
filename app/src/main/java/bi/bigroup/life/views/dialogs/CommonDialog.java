@@ -62,6 +62,7 @@ public class CommonDialog {
         final Button btn_first = dialog.findViewById(R.id.btn_first);
         btn_first.setText(first);
         final Button btn_second = dialog.findViewById(R.id.btn_second);
+        final Button btn_cancel = dialog.findViewById(R.id.btn_cancel);
         btn_second.setText(second);
         View.OnClickListener clickListener = v -> {
             if (callDoubleButtons != null) {
@@ -75,6 +76,7 @@ public class CommonDialog {
         };
         btn_first.setOnClickListener(clickListener);
         btn_second.setOnClickListener(clickListener);
+        btn_cancel.setOnClickListener(clickListener);
         dialog.show();
     }
 

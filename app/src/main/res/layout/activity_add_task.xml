@@ -39,7 +39,8 @@
             android:paddingRight="@dimen/dp_15">
 
             <LinearLayout
-                style="@style/LL_MW_V">
+                style="@style/LL_MW_V"
+                android:paddingBottom="@dimen/dp_20">
 
                 <bi.bigroup.life.views.edittext.SettingsEditText
                     android:id="@+id/et_title"
@@ -221,6 +222,6 @@
 
     <include
         android:id="@+id/pb_indicator"
-        layout="@layout/inc_pb_opaque"/>
+        layout="@layout/inc_pb_transparent"/>
 
 </FrameLayout>
