@@ -21,7 +21,7 @@
         android:paddingLeft="@dimen/dp_6"
         android:paddingRight="@dimen/dp_6"
         android:paddingTop="@dimen/dp_4"
-        android:text="новости"
+        android:text="@string/news"
         android:textAllCaps="true"
         android:textColor="@color/pager_indicator_fill"
         android:textSize="@dimen/sp_12"/>

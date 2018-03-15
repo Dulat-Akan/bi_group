@@ -128,6 +128,14 @@ public class AddTaskActivity extends BaseActivity implements AddTaskView, Dialog
         et_start_date.setText(getTaskSdeskCreationDate());
         et_end_date.setText(getTaskSdeskCreationDate());
 
+        // Reminder by default
+        reminder = notify_minute_values[3];
+        et_notification.setText(notifications_minutes[3]);
+
+        // Task type by default
+        task_value = task_type_values[0];
+        et_task_type.setText(task_types[0]);
+
         fragmentManager = getSupportFragmentManager();
         searchDialog = new SearchUserDialogFragment();
         EmployeesLayoutAdapter employeesAdapter = new EmployeesLayoutAdapter(this, R.layout.adapter_tags_list);

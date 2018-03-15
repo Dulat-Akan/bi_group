@@ -146,7 +146,7 @@ class VacanciesAdapter extends RecyclerViewBaseAdapter {
             if (object == null) {
                 return;
             }
-            tv_title.setText(context.getString(R.string.specialty_value, object.getJobPosition()));
+            tv_title.setText(object.getJobPosition());
             tv_description.setText(object.getCompanyName() + ", " + object.getDepartmentName());
             tv_salary.setText(context.getString(R.string.salary, object.getSalary()));
         }

@@ -109,6 +109,7 @@
     <string name="vacancii">вакансии</string>
     <string name="label_all">все</string>
     <string name="label_popular">попул.</string>
+    <string name="news">новости</string>
 
     <!-- FeedFragment -->
     <string name="label_feed">Лента</string>

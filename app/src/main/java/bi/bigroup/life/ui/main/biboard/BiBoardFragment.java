@@ -26,7 +26,9 @@ import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.main.PageSwapCallback;
 import bi.bigroup.life.ui.main.biboard.top_questions.TopQuestionsActivity;
 import bi.bigroup.life.ui.main.employees.EmployeePageActivity;
+import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
+import bi.bigroup.life.utils.view_pager.ParallaxPageTransformer;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
 import butterknife.BindView;
 
@@ -113,12 +115,10 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
         ViewPager vp_images = header.findViewById(R.id.vp_images);
         CirclePageIndicator ci_images = header.findViewById(R.id.ci_images);
         adapter = new HotBoardViewPager(getContext(), dataLayer.getPicasso());
-        adapter.setCallback(() -> {
-            if (callback != null) {
-                callback.onFeedTabsSelect();
-            }
-        });
+        adapter.setCallback(newsId -> startActivity(NewsDetailActivity.getIntent(getContext(), newsId)));
+
         vp_images.setAdapter(adapter);
+        vp_images.setPageTransformer(true, new ParallaxPageTransformer());
         ci_images.setViewPager(vp_images);
     }
 

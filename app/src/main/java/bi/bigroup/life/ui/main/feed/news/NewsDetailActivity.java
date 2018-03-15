@@ -187,6 +187,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
                     if (result != null) {
                         int type = result.getType();
                         if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
+                            isOnNewsDetailActivity = false;
                             currentImageUrl = result.getExtra();
                             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
                                 wv_content.evaluateJavascript("getAllLinks();", null);

@@ -72,6 +72,7 @@ class HotBoardViewPager extends PagerAdapter {
 
     class ViewHolder {
         Context context;
+        News bindedObject;
         @BindView(R.id.img_slider) ImageView img_slider;
         @BindView(R.id.tv_title) TextView tv_title;
 
@@ -84,6 +85,7 @@ class HotBoardViewPager extends PagerAdapter {
             if (news == null) {
                 return;
             }
+            bindedObject = news;
             tv_title.setText(news.getTitle());
             PicassoUtils.showNewsImage(picasso, img_slider, news.getImageUrl());
         }
@@ -91,14 +93,14 @@ class HotBoardViewPager extends PagerAdapter {
         @OnClick(R.id.img_slider)
         void onImgSliderClick() {
             if (callback != null) {
-                callback.onNewsClick();
+                callback.onNewsClick(bindedObject.getId());
             }
         }
     }
 
 
     public interface Callback {
-        void onNewsClick();
+        void onNewsClick(String id);
     }
 }
 
