@@ -36,6 +36,10 @@ public class Constants {
     public static final int LIMIT_SINGLE_FILE = 1;
     public static final int LIMIT_FILES = 5;
 
+    // Databases
+    public static final String DB_NAME = "bi_group_db";
+
+
     public static String getProfilePicture(String employeeCode) {
         return String.format(PROFILE_PICTURE, employeeCode);
     }

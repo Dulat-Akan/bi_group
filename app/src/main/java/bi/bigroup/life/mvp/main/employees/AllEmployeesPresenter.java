@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import bi.bigroup.life.data.DataLayer;
+import bi.bigroup.life.data.cache.db.EmployeeDao;
 import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.repository.employees.EmployeesRepositoryProvider;
@@ -28,51 +29,73 @@ public class AllEmployeesPresenter extends BaseMvpPresenter<AllEmployeesView> {
     private int current_page;
     private Subscription listSubscription;
     private Subscription searchSubscription;
+    private EmployeeDao employeeDao;
 
     @Override
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
+        employeeDao = dataLayer.getDatabase().employeeDao();
     }
 
-    public void getEmployees(boolean is_load_more, boolean is_refresh, boolean isBirthdayToday) {
+    public void getEmployees(boolean is_load_more, boolean is_refresh, boolean isBirthdayToday,
+                             boolean isInternetOn) {
         if (listSubscription != null
                 && !listSubscription.isUnsubscribed()) {
             listSubscription.unsubscribe();
         }
-        if (is_load_more) {
-            current_page += REQUEST_COUNT;
-        } else {
-            current_page = INITIAL_PAGE_NUMBER;
-        }
-        listSubscription = EmployeesRepositoryProvider.provideRepository(dataLayer.getApi())
-                .getEmployees(REQUEST_COUNT, current_page, isBirthdayToday)
-                .doOnSubscribe(() -> showLoading(true, is_load_more, is_refresh))
-                .doOnTerminate(() -> showLoading(false, is_load_more, is_refresh))
-                .subscribe(new Subscriber<ListOf<Employee>>() {
-                    @Override
-                    public void onCompleted() {
+        if (isInternetOn) {
+            if (is_load_more) {
+                current_page += REQUEST_COUNT;
+            } else {
+                current_page = INITIAL_PAGE_NUMBER;
+            }
+            listSubscription = EmployeesRepositoryProvider.provideRepository(dataLayer.getApi())
+                    .getEmployees(REQUEST_COUNT, current_page, isBirthdayToday)
+                    .doOnSubscribe(() -> showLoading(true, is_load_more, is_refresh))
+                    .doOnTerminate(() -> showLoading(false, is_load_more, is_refresh))
+                    .subscribe(new Subscriber<ListOf<Employee>>() {
+                        @Override
+                        public void onCompleted() {
 
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        handleResponseError(context, e);
-                    }
-
-                    @Override
-                    public void onNext(ListOf<Employee> list) {
-                        getViewState().showLoadingIndicator(false);
-                        if (list != null && list.list != null && list.list.size() > 0) {
-                            if (is_refresh) {
-                                getViewState().setEmployeesList(list.list);
-                            } else {
-                                getViewState().addEmployeesList(list.list);
-                            }
-                        } else if (!is_load_more) {
-                            getViewState().showNotFoundPlaceholder();
                         }
-                    }
-                });
+
+                        @Override
+                        public void onError(Throwable e) {
+                            handleResponseError(context, e);
+                        }
+
+                        @Override
+                        public void onNext(ListOf<Employee> list) {
+                            getViewState().showLoadingIndicator(false);
+                            if (list != null && list.list != null && list.list.size() > 0) {
+                                if (is_refresh) {
+                                    getViewState().setEmployeesList(list.list);
+                                } else {
+                                    getViewState().addEmployeesList(list.list);
+                                }
+
+                                if (!is_load_more) {
+                                    new Thread(() -> {
+                                        employeeDao.deleteAllEmployees();
+                                        try {
+                                            employeeDao.insertMultipleEmployees(list.list);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }).start();
+                                }
+                            } else if (!is_load_more) {
+                                getViewState().showNotFoundPlaceholder();
+                            }
+                        }
+                    });
+        } else {
+            List<Employee> employees = employeeDao.loadAllEmployees();
+            if (employees.size() > 0) {
+                getViewState().setEmployeesList(employees);
+            }
+            showLoading(false, is_load_more, is_refresh);
+        }
     }
 
     private void showLoading(boolean show, boolean is_load_more, boolean is_refresh) {

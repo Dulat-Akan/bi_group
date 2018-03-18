@@ -118,8 +118,8 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
                 R.string.row_prin,
                 R.string.row_pros,
                 object));
-        adapter.addItem(new BiOffice(R.string.kpi_proekty, R.string.empty_str, R.string.empty_str, R.string.empty_str, null));
-        adapter.addItem(new BiOffice(R.string.sandb, R.string.empty_str, R.string.empty_str, R.string.empty_str, null));
-        adapter.addItem(new BiOffice(R.string.idp, R.string.empty_str, R.string.empty_str, R.string.empty_str, null));
+//        adapter.addItem(new BiOffice(R.string.kpi_proekty, R.string.empty_str, R.string.empty_str, R.string.empty_str, null));
+//        adapter.addItem(new BiOffice(R.string.sandb, R.string.empty_str, R.string.empty_str, R.string.empty_str, null));
+//        adapter.addItem(new BiOffice(R.string.idp, R.string.empty_str, R.string.empty_str, R.string.empty_str, null));
     }
 }

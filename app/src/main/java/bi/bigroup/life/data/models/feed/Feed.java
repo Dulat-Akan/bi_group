@@ -1,14 +1,20 @@
 package bi.bigroup.life.data.models.feed;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import static bi.bigroup.life.utils.DateUtils.getDisplayableTime;
 import static bi.bigroup.life.utils.StringUtils.getOkInt;
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
-
+@Entity
 public class Feed {
+    @PrimaryKey
+    @NonNull
     public String id;
+
     public String authorCode;
     public String authorName;
     public String title;

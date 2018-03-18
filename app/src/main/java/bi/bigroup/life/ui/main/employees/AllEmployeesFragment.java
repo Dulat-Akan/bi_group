@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.cache.db.AppDatabase;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.mvp.main.employees.AllEmployeesPresenter;
 import bi.bigroup.life.mvp.main.employees.AllEmployeesView;
@@ -22,6 +23,7 @@ import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 import butterknife.BindView;
 
+import static bi.bigroup.life.utils.ConnectionDetector.isInternetOn;
 import static bi.bigroup.life.utils.Constants.KEY_BOOL;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 import static bi.bigroup.life.views.edittext.EditTextUtils.setCursorColor;
@@ -55,9 +57,15 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
         handleIntent();
         originalEmployeesList = new ArrayList<>();
 
-        mvpPresenter.getEmployees(false, false, isBirthdayToday);
         configureSearchView();
         configureRecyclerView();
+        mvpPresenter.getEmployees(false, false, isBirthdayToday, isInternetOn(getContext()));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        AppDatabase.destroyInstance();
     }
 
     private void handleIntent() {
@@ -123,7 +131,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
             @Override
             public void onRequestMoreItems() {
                 if (!mAdapter.getLoading() && mAdapter.getItemCount() > 1) {
-                    mvpPresenter.getEmployees(true, false, isBirthdayToday);
+                    mvpPresenter.getEmployees(true, false, isBirthdayToday, true);
                 }
             }
         });
@@ -131,7 +139,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
 
     @Override
     protected void swipeToRefresh() {
-        mvpPresenter.getEmployees(false, true, isBirthdayToday);
+        mvpPresenter.getEmployees(false, true, isBirthdayToday, isInternetOn(getContext()));
     }
 
     ///////////////////////////////////////////////////////////////////////////

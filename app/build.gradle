@@ -190,5 +190,11 @@ dependencies {
     // Image gallery
     compile "com.github.lawloretienne:imagegallery:${imageGallery}"
 
+    // Room DB
+    compile "android.arch.lifecycle:extensions:${archLifecycleVersion}"
+    annotationProcessor "android.arch.lifecycle:compiler:${archLifecycleVersion}"
+    compile "android.arch.persistence.room:runtime:${archRoomVersion}"
+    annotationProcessor "android.arch.persistence.room:compiler:${archRoomVersion}"
+
     testCompile 'junit:junit:4.12'
 }

@@ -19,6 +19,7 @@ import bi.bigroup.life.views.RoundedImageView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static bi.bigroup.life.utils.ConnectionDetector.isInternetOn;
 import static bi.bigroup.life.utils.Constants.KEY_CODE;
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
 import static bi.bigroup.life.utils.StringUtils.isStringOk;
@@ -54,7 +55,7 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
         super.onCreate(savedInstanceState);
         mvpPresenter.init(this, dataLayer);
         handleIntent();
-        mvpPresenter.getEmployee(code);
+        mvpPresenter.getEmployee(code, isInternetOn(this));
     }
 
     private void handleIntent() {

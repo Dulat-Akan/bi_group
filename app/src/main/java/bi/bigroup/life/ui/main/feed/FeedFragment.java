@@ -25,6 +25,7 @@ import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static bi.bigroup.life.utils.ConnectionDetector.isInternetOn;
 import static bi.bigroup.life.utils.Constants.KEY_CODE;
 
 public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, BottomNavigationTabFragment {
@@ -48,7 +49,7 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
-        mvpPresenter.getFeedList(false, false);
+        mvpPresenter.getFeedList(false, false, isInternetOn(getContext()));
         configureRecyclerView();
 
         floating_menu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
@@ -95,7 +96,7 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
             @Override
             public void onRequestMoreItems() {
                 if (!mAdapter.getLoading() && mAdapter.getItemCount() > 1) {
-                    mvpPresenter.getFeedList(true, false);
+                    mvpPresenter.getFeedList(true, false, true);
                 }
             }
         });
@@ -120,13 +121,13 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
             return;
         }
         if (data.getIntExtra(KEY_CODE, 0) == UPDATE_NEWS_FEED) {
-            mvpPresenter.getFeedList(false, true);
+            mvpPresenter.getFeedList(false, true, true);
         }
     }
 
     @Override
     protected void swipeToRefresh() {
-        mvpPresenter.getFeedList(false, true);
+        mvpPresenter.getFeedList(false, true, isInternetOn(getContext()));
     }
 
     ///////////////////////////////////////////////////////////////////////////

@@ -1,5 +1,8 @@
 package bi.bigroup.life.data.models.employees;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import static bi.bigroup.life.utils.DateUtils.getBirthDateStr;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
@@ -7,7 +10,11 @@ import static bi.bigroup.life.utils.StringUtils.isStringOk;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
 import static bi.bigroup.life.utils.StringUtils.replaceNullTrim;
 
+@Entity
 public class Employee {
+    @PrimaryKey(autoGenerate = true)
+    public Integer id;
+
     public String code;
     public String fullname;
     public String firstname;

@@ -23,7 +23,7 @@
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
-            style="@style/WW"
+            style="@style/MM"
             android:layout_marginLeft="@dimen/dp_15"
             android:layout_marginRight="@dimen/dp_15">
 
