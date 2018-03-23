@@ -22,7 +22,6 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func3;
 import rx.schedulers.Schedulers;
 
-import static bi.bigroup.life.mvp.main.biboard.BiBoardPresenter.TOP_3;
 import static bi.bigroup.life.utils.Constants.TOP_3;
 
 @InjectViewState

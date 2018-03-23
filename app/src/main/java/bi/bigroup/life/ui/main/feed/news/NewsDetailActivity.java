@@ -1,11 +1,13 @@
 package bi.bigroup.life.ui.main.feed.news;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
@@ -62,7 +64,6 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
     private CommentsAdapter adapter;
     private NewsHeader headerHolder;
     private String newsId;
-    private boolean isOnNewsDetailActivity;
 
     public static Intent getIntent(Context context, String id) {
         Intent intent = new Intent(context, NewsDetailActivity.class);
@@ -118,18 +119,6 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
         mvpPresenter.onDestroyView();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        isOnNewsDetailActivity = true;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        isOnNewsDetailActivity = false;
-    }
-
     @OnClick(R.id.img_close)
     void onCloseClick() {
         finish();
@@ -166,6 +155,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
             adapter = new ViewPagerImage(context, dataLayer.getPicasso());
         }
 
+        @SuppressLint("ClickableViewAccessibility")
         void bindHolder(News object) {
             bindedObject = object;
             PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(object.getAuthorCode()), R.drawable.ic_user);
@@ -182,12 +172,12 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
             wv_content.setWebChromeClient(new WebChromeClientHelper());
             wv_content.setWebViewClient(new WebViewClientQ());
             wv_content.setOnTouchListener((v, event) -> {
-                if (isOnNewsDetailActivity) {
+                long eventDuration = event.getEventTime() - event.getDownTime();
+                if(event.getAction() == MotionEvent.ACTION_UP && eventDuration > 100) {
                     WebView.HitTestResult result = ((WebView) v).getHitTestResult();
                     if (result != null) {
                         int type = result.getType();
                         if (type == WebView.HitTestResult.IMAGE_TYPE || type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
-                            isOnNewsDetailActivity = false;
                             currentImageUrl = result.getExtra();
                             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
                                 wv_content.evaluateJavascript("getAllLinks();", null);

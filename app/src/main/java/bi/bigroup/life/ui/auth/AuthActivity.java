@@ -13,6 +13,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.Calendar;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.config.DebugConfig;
 import bi.bigroup.life.mvp.auth.AuthPresenter;
 import bi.bigroup.life.mvp.auth.AuthView;
 import bi.bigroup.life.ui.base.BaseActivity;
@@ -52,8 +53,8 @@ public class AuthActivity extends BaseActivity implements AuthView {
         super.onCreate(savedInstanceState);
         setStatusBarGradient(this, R.drawable.gradient_blue_bg);
 //        if (DebugConfig.DEV_BUILD) {
-//        et_username.setText(TEST_USERNAME);
-//        et_pwd.setText(TEST_PWD);
+            et_username.setText(TEST_USERNAME);
+            et_pwd.setText(TEST_PWD);
 //        }
 
         mvpPresenter.init(this, dataLayer);

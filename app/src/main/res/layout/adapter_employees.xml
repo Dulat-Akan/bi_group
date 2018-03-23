@@ -41,12 +41,12 @@
                 tools:text="Должность"/>
 
             <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                android:id="@+id/tv_birthday"
+                android:id="@+id/tv_work_phone"
                 style="@style/MW"
                 android:layout_marginTop="@dimen/dp_2"
                 android:textColor="@color/feed_time"
                 android:textSize="@dimen/sp_12"
-                tools:text="birthday"/>
+                tools:text="work phone"/>
         </LinearLayout>
 
         <ImageView

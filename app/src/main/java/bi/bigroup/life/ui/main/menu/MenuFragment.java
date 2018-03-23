@@ -45,19 +45,19 @@ public class MenuFragment extends BaseFragment implements MenuView {
         mvpPresenter.init(getContext(), dataLayer);
         commonDialog = new CommonDialog(getContext());
 
-        RowViewHolder v1 = new RowViewHolder(view.findViewById(R.id.v1));
+        RowViewHolder v1 = new RowViewHolder(view.findViewById(R.id.v1), false);
         v1.bindHolder(R.string.menu_title_1, R.string.menu_desc_1);
         v1.setCallback(() -> LOTimber.d("asldkasjd clicked 1"));
 
-        RowViewHolder v2 = new RowViewHolder(view.findViewById(R.id.v2));
+        RowViewHolder v2 = new RowViewHolder(view.findViewById(R.id.v2), false);
         v2.bindHolder(R.string.menu_title_2, R.string.menu_desc_2);
         v2.setCallback(() -> LOTimber.d("asldkasjd clicked 2"));
 
-        RowViewHolder v3 = new RowViewHolder(view.findViewById(R.id.v3));
+        RowViewHolder v3 = new RowViewHolder(view.findViewById(R.id.v3), false);
         v3.bindHolder(R.string.menu_title_3, R.string.menu_desc_3);
         v3.setCallback(() -> LOTimber.d("asldkasjd clicked 3"));
 
-        RowViewHolder v4 = new RowViewHolder(view.findViewById(R.id.v4));
+        RowViewHolder v4 = new RowViewHolder(view.findViewById(R.id.v4), true);
         v4.bindHolder(R.string.menu_title_4, R.string.menu_desc_4);
         v4.setCallback(() -> startActivity(TopQuestionsActivity.getIntent(getContext())));
     }

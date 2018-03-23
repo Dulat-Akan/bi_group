@@ -6,10 +6,10 @@
     <LinearLayout
         android:id="@+id/ll_row"
         style="@style/LL_MW_H"
-        android:paddingLeft="@dimen/dp_16"
         android:background="?android:selectableItemBackground"
         android:gravity="center_vertical"
         android:paddingBottom="@dimen/dp_12"
+        android:paddingLeft="@dimen/dp_16"
         android:paddingRight="@dimen/dp_12"
         android:paddingTop="@dimen/dp_12">
 
@@ -46,6 +46,7 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
         android:layout_marginLeft="@dimen/dp_43"

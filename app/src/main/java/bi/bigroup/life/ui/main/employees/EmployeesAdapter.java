@@ -139,9 +139,9 @@ public class EmployeesAdapter extends RecyclerViewBaseAdapter {
     class BViewHolder extends MainViewHolder {
         @BindView(R.id.tv_fullname) TextView tv_fullname;
         @BindView(R.id.tv_specialty) TextView tv_specialty;
-        @BindView(R.id.tv_birthday) TextView tv_birthday;
+        @BindView(R.id.tv_work_phone) TextView tv_work_phone;
         @BindView(R.id.img_avatar) RoundedImageView img_avatar;
-        @BindView(R.id.img_rounded) RoundedImageView img_rounded;
+        @BindView(R.id.img_rounded) ImageView img_rounded;
         @BindView(R.id.img_arrow) ImageView img_arrow;
         Employee bindedObject;
         int bindedPosition;
@@ -165,9 +165,10 @@ public class EmployeesAdapter extends RecyclerViewBaseAdapter {
                 img_rounded.setVisibility(View.VISIBLE);
                 img_arrow.setVisibility(View.VISIBLE);
             }
-//            tv_birthday.setVisibility(isBirthdayToday ? View.VISIBLE : View.GONE);
-            tv_birthday.setVisibility(View.GONE);
-            tv_birthday.setText(object.getBirthDate());
+
+            img_rounded.setVisibility(isBirthdayToday ? View.VISIBLE : View.GONE);
+            tv_work_phone.setVisibility(isBirthdayToday ? View.GONE : View.VISIBLE);
+            tv_work_phone.setText(object.getWorkPhoneNumber());
             tv_fullname.setText(object.getFullName());
             tv_specialty.setText(object.getJobPosition());
             PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_user);

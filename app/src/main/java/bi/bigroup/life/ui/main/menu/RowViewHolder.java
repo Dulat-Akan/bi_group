@@ -14,12 +14,16 @@ public class RowViewHolder {
     private ViewGroup rowView;
     @BindView(R.id.tv_title) TextView tv_title;
     @BindView(R.id.tv_description) TextView tv_description;
+    @BindView(R.id.separator) View separator;
     private Callback callback;
+    private boolean hideLastSeparator;
 
-    RowViewHolder(View view) {
+    RowViewHolder(View view, boolean hideLastSeparator) {
         ButterKnife.bind(this, view);
+        this.hideLastSeparator = hideLastSeparator;
         rowView = (ViewGroup) view;
     }
+
 
     public void setCallback(Callback callback) {
         this.callback = callback;
@@ -35,6 +39,7 @@ public class RowViewHolder {
             tv_title.setText(titleRes);
             tv_description.setText(descriptionRes);
         }
+        separator.setVisibility(hideLastSeparator ? View.GONE : View.VISIBLE);
     }
 
     @OnClick(R.id.ll_row)
