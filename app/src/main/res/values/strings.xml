@@ -89,6 +89,8 @@
     <string name="menu_desc_3">Текст</string>
     <string name="menu_title_4">Вопрос ТОП-7</string>
     <string name="menu_desc_4">Последний вопрос</string>
+    <string name="logout">Выход</string>
+    <string name="logout_confirm">Вы действительно хотите выйти?</string>
 
     <!-- BiOfficeFragment -->
     <string name="label_today">Сегодня</string>

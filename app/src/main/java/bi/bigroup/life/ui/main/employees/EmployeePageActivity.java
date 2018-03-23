@@ -102,7 +102,7 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     @Override
     public void setEmployee(Employee employee) {
         this.employee = employee;
-        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(employee.getCode()), R.color.user_avatar);
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(employee.getCode()), R.drawable.ic_user);
         tv_surname.setText(employee.getFullName());
         tv_firstname.setText(employee.getFirstName());
         tv_specialty.setText(employee.getJobPosition());

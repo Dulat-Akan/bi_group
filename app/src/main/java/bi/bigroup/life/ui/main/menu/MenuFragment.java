@@ -11,11 +11,13 @@ import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.mvp.main.menu.MenuPresenter;
 import bi.bigroup.life.mvp.main.menu.MenuView;
+import bi.bigroup.life.ui.auth.AuthActivity;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.main.biboard.top_questions.TopQuestionsActivity;
 import bi.bigroup.life.ui.profile.ProfileActivity;
 import bi.bigroup.life.utils.LOTimber;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
+import bi.bigroup.life.views.dialogs.CommonDialog;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -27,6 +29,7 @@ public class MenuFragment extends BaseFragment implements MenuView {
     @BindView(R.id.img_avatar) ImageView img_avatar;
     @BindView(R.id.tv_name) TextView tv_name;
     @BindView(R.id.tv_username) TextView tv_username;
+    private CommonDialog commonDialog;
 
     public static MenuFragment newInstance() {
         return new MenuFragment();
@@ -40,6 +43,7 @@ public class MenuFragment extends BaseFragment implements MenuView {
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
+        commonDialog = new CommonDialog(getContext());
 
         RowViewHolder v1 = new RowViewHolder(view.findViewById(R.id.v1));
         v1.bindHolder(R.string.menu_title_1, R.string.menu_desc_1);
@@ -63,6 +67,23 @@ public class MenuFragment extends BaseFragment implements MenuView {
         startActivity(ProfileActivity.getIntent(getContext()));
     }
 
+    @OnClick(R.id.tv_logout)
+    void onLogoutClick() {
+        commonDialog.showDialogYesNo(getString(R.string.logout_confirm));
+        commonDialog.setCallback(new CommonDialog.CallbackYesNo() {
+            @Override
+            public void onClickYes() {
+                dataLayer.wipeOut();
+                startActivity(AuthActivity.newLogoutIntent(getContext()));
+            }
+
+            @Override
+            public void onClickNo() {
+            }
+        });
+
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // MenuView implementation
     ///////////////////////////////////////////////////////////////////////////
@@ -75,6 +96,6 @@ public class MenuFragment extends BaseFragment implements MenuView {
     public void showUserInfo(User localUser) {
         tv_name.setText(localUser.getFullname());
         tv_username.setText(localUser.getAdLogin());
-        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.color.user_avatar);
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.drawable.ic_user);
     }
 }

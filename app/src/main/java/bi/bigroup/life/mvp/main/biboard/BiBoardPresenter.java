@@ -37,11 +37,10 @@ import static bi.bigroup.life.ui.main.biboard.BiBoardAdapter.TYPE_QUESTIONNAIRE;
 import static bi.bigroup.life.ui.main.biboard.BiBoardAdapter.TYPE_SUGGESTIONS;
 import static bi.bigroup.life.utils.Constants.INITIAL_PAGE_NUMBER;
 import static bi.bigroup.life.utils.Constants.REQUEST_COUNT;
+import static bi.bigroup.life.utils.Constants.TOP_3;
 
 @InjectViewState
 public class BiBoardPresenter extends BaseMvpPresenter<BiBoardView> {
-    private final static int TOP_3 = 3;
-
     @Override
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);

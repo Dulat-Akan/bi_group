@@ -170,7 +170,7 @@ public class EmployeesAdapter extends RecyclerViewBaseAdapter {
             tv_birthday.setText(object.getBirthDate());
             tv_fullname.setText(object.getFullName());
             tv_specialty.setText(object.getJobPosition());
-            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(object.getCode()), R.color.user_avatar);
+            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_user);
         }
 
         @OnClick(R.id.ll_row)

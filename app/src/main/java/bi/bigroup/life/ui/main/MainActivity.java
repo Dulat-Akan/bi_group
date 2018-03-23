@@ -168,7 +168,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
 
     @Override
     public void showUserInfo(User localUser) {
-        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.color.user_avatar);
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.drawable.ic_user);
     }
 
     ///////////////////////////////////////////////////////////////////////////

@@ -135,7 +135,7 @@
                 android:id="@+id/exp_layout"
                 style="@style/MW"
                 app:el_duration="50"
-                app:el_expanded="false">
+                app:el_expanded="true">
 
                 <LinearLayout
                     style="@style/LL_MW_V"

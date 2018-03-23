@@ -102,7 +102,7 @@ public class CommentsAdapter extends BaseAdapter {
             tv_user_fullname.setText(object.getFullName());
             tv_time.setText(object.getDate(context));
             tv_content.setText(object.getContent());
-            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(object.getCode()), R.color.user_avatar);
+            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(object.getCode()), R.drawable.ic_user);
             tv_like_quantity.setText(String.valueOf(object.getOkIntQuantity(object.likesQuantity)));
             img_like.setImageResource(object.isLiked() ? R.drawable.like_active
                     : R.drawable.like_inactive);

@@ -30,6 +30,8 @@ public class Constants {
     public static final int INITIAL_PAGE_NUMBER = 0;
     public static final int REQUEST_COUNT = 20;
 
+    public final static int TOP_3 = 3;
+
     // Employees profile picture
     public static final String PROFILE_PICTURE = API_BASE_URL + "employees/%s/avatar/";
 

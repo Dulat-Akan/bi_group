@@ -49,12 +49,11 @@
                 tools:text="birthday"/>
         </LinearLayout>
 
-        <bi.bigroup.life.views.RoundedImageView
+        <ImageView
             android:id="@+id/img_rounded"
             android:layout_width="@dimen/dp_23"
             android:layout_height="@dimen/dp_23"
-            android:src="@color/slider_img_bg"
-            app:radius_width="@dimen/dp_6"/>
+            android:src="@drawable/ic_bd_active"/>
 
         <ImageView
             android:id="@+id/img_arrow"

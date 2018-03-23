@@ -20,14 +20,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-class HotBoardViewPager extends PagerAdapter {
+public class HotBoardViewPager extends PagerAdapter {
     private Context context;
 
     private List<News> sliders = new ArrayList<>();
     private Picasso picasso;
     private Callback callback;
 
-    HotBoardViewPager(Context context, Picasso picasso) {
+    public HotBoardViewPager(Context context, Picasso picasso) {
         this.context = context;
         this.picasso = picasso;
     }

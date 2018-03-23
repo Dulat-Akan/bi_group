@@ -74,6 +74,19 @@
             <include
                 android:id="@+id/v4"
                 layout="@layout/inc_item_menu"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/divider"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_logout"
+                style="@style/MW"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                android:text="@string/logout"/>
+
         </LinearLayout>
     </LinearLayout>
 
