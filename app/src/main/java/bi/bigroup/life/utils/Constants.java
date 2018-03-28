@@ -6,7 +6,6 @@ public class Constants {
     // TEST users
     public static final String TEST_USERNAME = "test_bi_life";
     public static final String TEST_PWD = "opimr-BL2";
-
     // Constant keys
     public static final String OS_ANDROID = "android";
     public static final String KEY_USER = "user";
