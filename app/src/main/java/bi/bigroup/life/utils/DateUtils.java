@@ -117,7 +117,7 @@ public class DateUtils {
 
 
                 long difference = 0;
-                long mDate = java.lang.System.currentTimeMillis();
+                long mDate = System.currentTimeMillis();
                 Date currDate = new Date();
                 Calendar currCalendar = Calendar.getInstance();
                 currCalendar.setTime(currDate);
@@ -169,7 +169,7 @@ public class DateUtils {
                         return getDateStr(origDay, origMonth, origYear, origHours, origMinutes, false, context);
 
                 }
-            } catch (java.text.ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
         }

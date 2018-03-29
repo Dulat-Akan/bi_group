@@ -3,6 +3,7 @@
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_0_13">0.13dp</dimen>
     <dimen name="dp_0_43">0.43dp</dimen>
+    <dimen name="dp_0_5_divider">0.5dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_1_5">1.5dp</dimen>
     <dimen name="dp_2">2dp</dimen>

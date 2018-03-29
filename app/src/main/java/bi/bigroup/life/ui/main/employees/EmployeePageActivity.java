@@ -87,9 +87,9 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     void onEmailClick() {
         if (employee != null && isStringOk(employee.getEmail())) {
             if (EmailUtils.isEmailValid(employee.getEmail())) {
-                final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                final Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setType("plain/text");
-                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{employee.getEmail()});
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{employee.getEmail()});
                 startActivity(Intent.createChooser(emailIntent, getString(R.string.send)));
             }
         }
