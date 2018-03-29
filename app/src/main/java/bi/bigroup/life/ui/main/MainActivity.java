@@ -1,7 +1,9 @@
 package bi.bigroup.life.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -9,8 +11,11 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -32,8 +37,11 @@ import bi.bigroup.life.utils.picasso.PicassoUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import eightbitlab.com.blurview.BlurView;
+import eightbitlab.com.blurview.RenderScriptBlur;
 
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
+import static bi.bigroup.life.utils.DeviceUtils.isJellyBeanMR1OrAbove;
 
 public class MainActivity extends BaseFragmentActivity implements MainView, BottomNavigationView.OnNavigationItemSelectedListener,
         BottomNavigationView.OnNavigationItemReselectedListener, PageSwapCallback {
@@ -55,8 +63,11 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     private static final int ACTION_EMPLOYEES = 3;
     private static final int ACTION_MENU = 4;
     private List<Fragment> fragments = new ArrayList<>();
+    private Drawable windowBackground;
     @BindView(R.id.v_bottom_navigation) BottomNavigationView v_bottom_navigation;
     @BindView(R.id.img_avatar) CircleImageView img_avatar;
+    @BindView(R.id.blurView) BlurView blurView;
+    @BindView(R.id.floating_menu) FloatingActionsMenu floating_menu;
 
     @Override
     protected int getLayoutResourceId() {
@@ -72,13 +83,47 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         initFragments();
         if (v_bottom_navigation != null) {
             v_bottom_navigation.setSelectedItemId(R.id.action_feed);
-            replaceFragment(fragments.get(ACTION_FEED), false, null);
+            replaceFragment(fragments.get(ACTION_FEED), false, null, true);
         }
+
+        floating_menu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                onFeedFloatActions(true);
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                onFeedFloatActions(false);
+            }
+        });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void replaceFragment(Fragment fragment, boolean addToBackStack, String tag, boolean showFabMenu) {
+        floating_menu.setVisibility(showFabMenu ? View.VISIBLE : View.GONE);
+        super.replaceFragment(fragment, addToBackStack, tag, showFabMenu);
+    }
+
+    @OnClick(R.id.fbn_add_news)
+    void onAddNewsClick() {
+        floating_menu.collapse();
+        if (fragments.get(ACTION_FEED) != null) {
+            ((FeedFragment) fragments.get(ACTION_FEED)).onAddNewsClick();
+        }
+    }
+
+    @OnClick(R.id.fbn_add_suggestion)
+    void onAddSuggestionClick() {
+        floating_menu.collapse();
+        if (fragments.get(ACTION_FEED) != null) {
+            ((FeedFragment) fragments.get(ACTION_FEED)).onAddSuggestionClick();
+        }
     }
 
     @OnClick(R.id.img_notification)
@@ -106,6 +151,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         fragments.add(ACTION_MENU, MenuFragment.newInstance());
     }
 
+    @SuppressLint("RestrictedApi")
     private void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {
@@ -143,19 +189,19 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_main:
-                replaceFragment(fragments.get(ACTION_MAIN), false, null);
+                replaceFragment(fragments.get(ACTION_MAIN), false, null, false);
                 return true;
             case R.id.action_board:
-                replaceFragment(fragments.get(ACTION_BOARD), false, null);
+                replaceFragment(fragments.get(ACTION_BOARD), false, null, false);
                 return true;
             case R.id.action_feed:
-                replaceFragment(fragments.get(ACTION_FEED), false, null);
+                replaceFragment(fragments.get(ACTION_FEED), false, null, true);
                 return true;
             case R.id.action_stuff:
-                replaceFragment(fragments.get(ACTION_EMPLOYEES), true, null);
+                replaceFragment(fragments.get(ACTION_EMPLOYEES), true, null, false);
                 return true;
             case R.id.action_menu:
-                replaceFragment(fragments.get(ACTION_MENU), false, null);
+                replaceFragment(fragments.get(ACTION_MENU), false, null, false);
                 return true;
             default:
                 return false;
@@ -187,5 +233,21 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         if (v_bottom_navigation != null) {
             v_bottom_navigation.setSelectedItemId(R.id.action_feed);
         }
+    }
+
+    public void onFeedFloatActions(boolean expanded) {
+        if (windowBackground == null) {
+            float radius = 1.3f;
+            View decorView = getWindow().getDecorView();
+            windowBackground = decorView.getBackground();
+            blurView.setupWith(fl_parent)
+                    .windowBackground(windowBackground)
+                    .blurAlgorithm(
+                            isJellyBeanMR1OrAbove() ? new RenderScriptBlur(this)
+                                    : new SupportRenderScriptBlur(this))
+                    .blurRadius(radius)
+                    .setHasFixedTransformationMatrix(true);
+        }
+        blurView.setVisibility(expanded ? View.VISIBLE : View.GONE);
     }
 }

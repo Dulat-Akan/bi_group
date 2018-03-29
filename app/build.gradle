@@ -11,6 +11,8 @@ android {
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "bi.bigroup.life"
+        renderscriptTargetApi 27
+        renderscriptSupportModeEnabled true
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 3
@@ -196,8 +198,9 @@ dependencies {
     compile "android.arch.persistence.room:runtime:${archRoomVersion}"
     annotationProcessor "android.arch.persistence.room:compiler:${archRoomVersion}"
 
-    // Shadow layout
-    compile "com.github.dmytrodanylyk.shadow-layout:library:${shadowLayout}"
+    // Blur effect
+    compile "com.eightbitlab:supportrenderscriptblur:${blurEffect_under17}"
+    compile "com.eightbitlab:blurview:${blurEffect}"
 
     testCompile 'junit:junit:4.12'
 }

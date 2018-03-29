@@ -4,4 +4,5 @@ public interface PageSwapCallback {
     void onEmployeesTabsSelect();
 
     void onFeedTabsSelect();
+
 }

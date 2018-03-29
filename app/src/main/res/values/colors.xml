@@ -30,6 +30,7 @@
     <color name="black_transparent">#40000000</color>
     <color name="dialog_negative">#9e9e9e</color>
     <color name="shadow_bg">#1e000000</color>
+    <color name="blur_effect">#b2ffffff</color>
 
     <!-- AuthActivity -->
     <color name="main_color">#1f8ce8</color>
@@ -85,7 +86,7 @@
     <color name="tasks_sdesk_description">#8e8e93</color>
     <color name="float_menu_active">#e5e8ef</color>
     <color name="float_menu_default">#108aeb</color>
-    <color name="float_menu_click">#117fd6</color>
+    <color name="float_menu_click">#e5e8ef</color>
     <color name="float_ripple">#99FFFFFF</color>
 
     <!-- AddQuestionActivity -->

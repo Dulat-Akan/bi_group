@@ -10,12 +10,10 @@
         android:id="@+id/cv_container"
         style="@style/WW"
         android:layout_height="@dimen/dp_75"
-        android:layout_marginBottom="@dimen/dp_10"
-        android:layout_marginLeft="@dimen/dp_5"
-        android:layout_marginRight="@dimen/dp_5"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_8"
         app:cardBackgroundColor="@color/filter_bg"
-        app:cardCornerRadius="@dimen/dp_12"
+        app:cardCornerRadius="@dimen/dp_14"
         app:cardElevation="@dimen/dp_2">
 
         <LinearLayout

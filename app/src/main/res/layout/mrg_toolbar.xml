@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/LL_MW_V">
+    style="@style/MW"
+    app:cardCornerRadius="@dimen/dp_0"
+    app:cardElevation="@dimen/dp_5">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -15,7 +17,7 @@
         app:title="@null">
 
         <LinearLayout
-            style="@style/LL_MW_H"
+            style="@style/LL_MM_H"
             android:gravity="center_vertical">
 
             <LinearLayout
@@ -39,16 +41,11 @@
                 android:id="@+id/img_avatar"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginRight="@dimen/dp_8"
+                android:layout_marginLeft="@dimen/dp_14"
+                android:layout_marginRight="@dimen/dp_12"
                 android:src="@color/user_avatar"/>
 
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_5"
-        android:background="@drawable/toolbar_dropshadow"/>
-</LinearLayout>
+</android.support.v7.widget.CardView>

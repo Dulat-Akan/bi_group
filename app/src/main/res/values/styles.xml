@@ -185,11 +185,11 @@
     <!-- FeedFragment -->
     <style name="feed_cardview" parent="MW">
         <item name="cardBackgroundColor">@color/white</item>
-        <item name="cardCornerRadius">@dimen/dp_10</item>
-        <item name="cardElevation">@dimen/dp_3</item>
-        <item name="android:layout_marginLeft">@dimen/dp_18</item>
-        <item name="android:layout_marginRight">@dimen/dp_18</item>
-        <item name="android:layout_marginTop">@dimen/dp_6</item>
+        <item name="cardCornerRadius">@dimen/dp_14</item>
+        <item name="cardElevation">@dimen/dp_8</item>
+        <item name="android:layout_marginLeft">@dimen/dp_16</item>
+        <item name="android:layout_marginRight">@dimen/dp_16</item>
+        <item name="android:layout_marginTop">@dimen/dp_8</item>
         <item name="android:layout_marginBottom">@dimen/dp_6</item>
     </style>
 

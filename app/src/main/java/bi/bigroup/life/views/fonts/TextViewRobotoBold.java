@@ -27,10 +27,10 @@ public class TextViewRobotoBold extends AppCompatTextView {
     private void init() {
         Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "Roboto-Bold.ttf");
         setTypeface(tf, Typeface.NORMAL);
-        setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3.0f, getResources().getDisplayMetrics()), 1.0f);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setLetterSpacing(.03f);
-        }
+//        setLineSpacing(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3.0f, getResources().getDisplayMetrics()), 1.0f);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            setLetterSpacing(.03f);
+//        }
     }
 
 }

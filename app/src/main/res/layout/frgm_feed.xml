@@ -9,11 +9,6 @@
         style="@style/LL_MM_V"
         android:background="@color/main_bg">
 
-        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
-            style="@style/PARENT_TITLE"
-            android:layout_marginBottom="@dimen/dp_4"
-            android:text="@string/label_feed"/>
-
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
             style="@style/WW">
@@ -25,37 +20,6 @@
                 android:scrollbars="vertical"/>
         </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_float_menu"
-        style="@style/LL_MM_H"
-        android:background="@color/white_85"
-        android:visibility="gone"/>
-
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/floating_menu"
-        style="@style/WW"
-        android:layout_gravity="right|bottom"
-        android:layout_marginBottom="@dimen/dp_20"
-        android:layout_marginRight="@dimen/dp_20"
-        app:fab_addButtonColorNormal="@color/float_menu_default"
-        app:fab_addButtonColorPressed="@color/float_menu_click"
-        app:fab_addButtonPlusIconColor="@color/white"
-        app:fab_addButtonSize="normal"
-        app:fab_labelStyle="@style/menu_labels_style"
-        app:fab_labelsPosition="left">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fbn_add_news"
-            style="@style/fb_sub_menu"
-            app:fab_title="@string/add_news"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fbn_add_suggestion"
-            style="@style/fb_sub_menu"
-            app:fab_title="@string/new_suggestion"/>
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
     <include
         android:id="@+id/pb_indicator"

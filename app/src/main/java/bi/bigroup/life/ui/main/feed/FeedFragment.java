@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.util.List;
 
@@ -22,8 +20,6 @@ import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.SuggestionDetailActivity;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
-import butterknife.BindView;
-import butterknife.OnClick;
 
 import static bi.bigroup.life.utils.ConnectionDetector.isInternetOn;
 import static bi.bigroup.life.utils.Constants.KEY_CODE;
@@ -33,9 +29,6 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
     @InjectPresenter
     FeedPresenter mvpPresenter;
     private FeedAdapter mAdapter;
-
-    @BindView(R.id.floating_menu) FloatingActionsMenu floating_menu;
-    @BindView(R.id.ll_float_menu) LinearLayout ll_float_menu;
 
     public static FeedFragment newInstance() {
         return new FeedFragment();
@@ -51,18 +44,6 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
         mvpPresenter.init(getContext(), dataLayer);
         mvpPresenter.getFeedList(false, false, isInternetOn(getContext()));
         configureRecyclerView();
-
-        floating_menu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
-            @Override
-            public void onMenuExpanded() {
-                ll_float_menu.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onMenuCollapsed() {
-                ll_float_menu.setVisibility(View.GONE);
-            }
-        });
     }
 
     protected void configureRecyclerView() {
@@ -100,18 +81,6 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
                 }
             }
         });
-    }
-
-    @OnClick(R.id.fbn_add_news)
-    void onAddNewsClick() {
-        floating_menu.collapse();
-        startActivityForResult(AddNewsActivity.getIntent(getContext()), UPDATE_NEWS_FEED);
-    }
-
-    @OnClick(R.id.fbn_add_suggestion)
-    void onAddSuggestionClick() {
-        floating_menu.collapse();
-        startActivityForResult(NewSuggestionActivity.getIntent(getContext()), UPDATE_NEWS_FEED);
     }
 
     @Override
@@ -167,5 +136,14 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
     public void onBottomNavigationTabReselected() {
         if (mAdapter.getItemCount() > 0)
             ((LinearLayoutManager) recycler_view.getLayoutManager()).scrollToPositionWithOffset(0, 0);
+    }
+
+
+    public void onAddSuggestionClick() {
+        startActivityForResult(NewSuggestionActivity.getIntent(getContext()), UPDATE_NEWS_FEED);
+    }
+
+    public void onAddNewsClick() {
+        startActivityForResult(AddNewsActivity.getIntent(getContext()), UPDATE_NEWS_FEED);
     }
 }
