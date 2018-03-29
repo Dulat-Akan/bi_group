@@ -22,12 +22,9 @@ import bi.bigroup.life.mvp.main.bioffice.BiOfficeView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.main.biboard.HotBoardViewPager;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.TasksSdeskActivity;
-import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity;
-import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_task.AddTaskActivity;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
 import bi.bigroup.life.utils.view_pager.ParallaxPageTransformer;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
-import bi.bigroup.life.views.dialogs.CommonDialog;
 import butterknife.BindView;
 
 import static bi.bigroup.life.utils.DateUtils.getTodaysDate;
@@ -38,7 +35,6 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
     @BindView(R.id.lv_office) ListView lv_office;
     private BiOfficeAdapter adapter;
     private HotBoardViewPager sliderAdapter;
-    private CommonDialog commonDialog;
 
     public static BiOfficeFragment newInstance() {
         return new BiOfficeFragment();
@@ -52,7 +48,6 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
-        commonDialog = new CommonDialog(getContext());
         configureListView();
     }
 
@@ -69,22 +64,6 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
             @Override
             public void openTasksSdeskActivity() {
                 startActivity(TasksSdeskActivity.getIntent(getContext()));
-            }
-
-            @Override
-            public void onAddServicesTasks() {
-                commonDialog.setCallDoubleButtons(new CommonDialog.CallbackDouble() {
-                    @Override
-                    public void onClickFirst() {
-                        startActivity(AddSdeskActivity.getIntent(getContext()));
-                    }
-
-                    @Override
-                    public void onClickSecond() {
-                        startActivity(AddTaskActivity.getIntent(getContext()));
-                    }
-                });
-                commonDialog.showDoubleDialog(getString(R.string.new_sdesk), getString(R.string.new_task));
             }
 
             @Override

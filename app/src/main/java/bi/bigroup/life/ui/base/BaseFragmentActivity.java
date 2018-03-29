@@ -12,7 +12,8 @@ public abstract class BaseFragmentActivity extends BaseActivity {
         return false;
     }
 
-    protected void replaceFragment(Fragment fragment, boolean addToBackStack, String tag, boolean showFabMenu) {
+    protected void replaceFragment(Fragment fragment, boolean addToBackStack, String tag, boolean showFeedFab,
+                                   boolean showBiOfficeFab, boolean showBiBoard) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (addToBackStack) {
             ft.addToBackStack(null);

@@ -8,7 +8,6 @@ import java.util.List;
 
 import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.CombineServiceTask;
-import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Service;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.data.repository.bioffice.tasks_sdesk.TasksServicesRepository;
@@ -19,7 +18,7 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func3;
+import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 
 import static bi.bigroup.life.utils.Constants.TOP_3;
@@ -62,14 +61,14 @@ public class BiOfficePresenter extends BaseMvpPresenter<BiOfficeView> {
     private void combineServicesTasks() {
         TasksServicesRepository repository = TasksServicesRepositoryProvider.provideRepository(dataLayer.getApi());
         Observable.zip(
-                repository.getServiceDeskOutbox(),
+//                repository.getServiceDeskOutbox(),
                 repository.getInboxTasks(false),
                 repository.getOutboxTasks(),
-                new Func3<List<Service>, List<Task>, List<Task>, CombineServiceTask>() {
+                new Func2<List<Task>, List<Task>, CombineServiceTask>() {//List<Service>,
                     @Override
                     public CombineServiceTask call(
-                            List<Service> outboxServices, List<Task> inboxTasks, List<Task> outboxTasks) {
-                        return new CombineServiceTask(outboxServices, inboxTasks, outboxTasks);
+                            List<Task> inboxTasks, List<Task> outboxTasks) {//List<Service> outboxServices,
+                        return new CombineServiceTask(null, inboxTasks, outboxTasks);
                     }
                 })
                 .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))

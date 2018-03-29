@@ -54,7 +54,7 @@
         app:blurOverlayColor="@color/white_85"/>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/floating_menu"
+        android:id="@+id/fam_feed"
         style="@style/WW"
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="@dimen/dp_72"
@@ -73,6 +73,51 @@
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbn_add_suggestion"
+            style="@style/fb_sub_menu"
+            app:fab_title="@string/new_suggestion"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fam_bi_office"
+        style="@style/WW"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/dp_72"
+        android:layout_marginRight="@dimen/dp_24"
+        app:fab_addButtonColorNormal="@color/float_menu_default"
+        app:fab_addButtonColorPressed="@color/float_menu_click"
+        app:fab_addButtonPlusIconColor="@color/white"
+        app:fab_addButtonSize="normal"
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:fab_labelsPosition="left">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbn_new_sdesk"
+            style="@style/fb_sub_menu"
+            app:fab_title="@string/new_sdesk"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbn_new_task"
+            style="@style/fb_sub_menu"
+            app:fab_title="@string/new_task"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fam_bi_board"
+        style="@style/WW"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/dp_72"
+        android:layout_marginRight="@dimen/dp_24"
+        app:fab_addButtonColorNormal="@color/float_menu_default"
+        app:fab_addButtonColorPressed="@color/float_menu_click"
+        app:fab_addButtonPlusIconColor="@color/white"
+        app:fab_addButtonSize="normal"
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:fab_labelsPosition="left">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbn_new_suggestion"
             style="@style/fb_sub_menu"
             app:fab_title="@string/new_suggestion"/>
 

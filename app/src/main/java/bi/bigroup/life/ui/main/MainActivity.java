@@ -28,8 +28,11 @@ import bi.bigroup.life.mvp.main.MainView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
 import bi.bigroup.life.ui.main.biboard.BiBoardFragment;
 import bi.bigroup.life.ui.main.bioffice.BiOfficeFragment;
+import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity;
+import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_task.AddTaskActivity;
 import bi.bigroup.life.ui.main.employees.EmployeesFragment;
 import bi.bigroup.life.ui.main.feed.FeedFragment;
+import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
 import bi.bigroup.life.ui.main.menu.MenuFragment;
 import bi.bigroup.life.ui.notifications.NotificationsActivity;
 import bi.bigroup.life.ui.profile.ProfileActivity;
@@ -67,7 +70,9 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @BindView(R.id.v_bottom_navigation) BottomNavigationView v_bottom_navigation;
     @BindView(R.id.img_avatar) CircleImageView img_avatar;
     @BindView(R.id.blurView) BlurView blurView;
-    @BindView(R.id.floating_menu) FloatingActionsMenu floating_menu;
+    @BindView(R.id.fam_feed) FloatingActionsMenu fam_feed;
+    @BindView(R.id.fam_bi_office) FloatingActionsMenu fam_bi_office;
+    @BindView(R.id.fam_bi_board) FloatingActionsMenu fam_bi_board;
 
     @Override
     protected int getLayoutResourceId() {
@@ -83,20 +88,37 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         initFragments();
         if (v_bottom_navigation != null) {
             v_bottom_navigation.setSelectedItemId(R.id.action_feed);
-            replaceFragment(fragments.get(ACTION_FEED), false, null, true);
+            replaceFragment(fragments.get(ACTION_FEED), false, null,
+                    true, false, false);
         }
 
-        floating_menu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+        FloatingActionsMenu.OnFloatingActionsMenuUpdateListener listener = new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
             @Override
             public void onMenuExpanded() {
-                onFeedFloatActions(true);
+                blurView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onMenuCollapsed() {
-                onFeedFloatActions(false);
+                blurView.setVisibility(View.GONE);
             }
-        });
+        };
+        fam_feed.setOnFloatingActionsMenuUpdateListener(listener);
+        fam_bi_office.setOnFloatingActionsMenuUpdateListener(listener);
+        fam_bi_board.setOnFloatingActionsMenuUpdateListener(listener);
+
+        if (windowBackground == null) {
+            float radius = 1.3f;
+            View decorView = getWindow().getDecorView();
+            windowBackground = decorView.getBackground();
+            blurView.setupWith(fl_parent)
+                    .windowBackground(windowBackground)
+                    .blurAlgorithm(
+                            isJellyBeanMR1OrAbove() ? new RenderScriptBlur(this)
+                                    : new SupportRenderScriptBlur(this))
+                    .blurRadius(radius)
+                    .setHasFixedTransformationMatrix(true);
+        }
     }
 
     @Override
@@ -105,14 +127,18 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     }
 
     @Override
-    protected void replaceFragment(Fragment fragment, boolean addToBackStack, String tag, boolean showFabMenu) {
-        floating_menu.setVisibility(showFabMenu ? View.VISIBLE : View.GONE);
-        super.replaceFragment(fragment, addToBackStack, tag, showFabMenu);
+    protected void replaceFragment(Fragment fragment, boolean addToBackStack, String tag,
+                                   boolean showFeedFab, boolean showBiOfficeFab, boolean showBiBoard) {
+        fam_feed.setVisibility(showFeedFab ? View.VISIBLE : View.GONE);
+        fam_bi_office.setVisibility(showBiOfficeFab ? View.VISIBLE : View.GONE);
+        fam_bi_office.setVisibility(showBiBoard ? View.VISIBLE : View.GONE);
+        super.replaceFragment(fragment, addToBackStack, tag, showFeedFab, showBiOfficeFab, showBiBoard);
     }
 
+    // ========== Feed float buttons actions =======
     @OnClick(R.id.fbn_add_news)
     void onAddNewsClick() {
-        floating_menu.collapse();
+        fam_feed.collapse();
         if (fragments.get(ACTION_FEED) != null) {
             ((FeedFragment) fragments.get(ACTION_FEED)).onAddNewsClick();
         }
@@ -120,10 +146,30 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
 
     @OnClick(R.id.fbn_add_suggestion)
     void onAddSuggestionClick() {
-        floating_menu.collapse();
+        fam_feed.collapse();
         if (fragments.get(ACTION_FEED) != null) {
             ((FeedFragment) fragments.get(ACTION_FEED)).onAddSuggestionClick();
         }
+    }
+
+    // ========== Bi Office float buttons actions =======
+    @OnClick(R.id.fbn_new_sdesk)
+    void onNewSdeskClick() {
+        fam_bi_office.collapse();
+        startActivity(AddSdeskActivity.getIntent(this));
+    }
+
+    @OnClick(R.id.fbn_new_task)
+    void onNewTaskClick() {
+        fam_bi_office.collapse();
+        startActivity(AddTaskActivity.getIntent(this));
+    }
+
+    // ========== Bi Office float buttons actions =======
+    @OnClick(R.id.fbn_new_suggestion)
+    void onNewSuggestion() {
+        fam_bi_board.collapse();
+        startActivity(NewSuggestionActivity.getIntent(this));
     }
 
     @OnClick(R.id.img_notification)
@@ -189,19 +235,24 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_main:
-                replaceFragment(fragments.get(ACTION_MAIN), false, null, false);
+                replaceFragment(fragments.get(ACTION_MAIN), false, null,
+                        false, true, false);
                 return true;
             case R.id.action_board:
-                replaceFragment(fragments.get(ACTION_BOARD), false, null, false);
+                replaceFragment(fragments.get(ACTION_BOARD), false, null,
+                        false, false, true);
                 return true;
             case R.id.action_feed:
-                replaceFragment(fragments.get(ACTION_FEED), false, null, true);
+                replaceFragment(fragments.get(ACTION_FEED), false, null,
+                        true, false, false);
                 return true;
             case R.id.action_stuff:
-                replaceFragment(fragments.get(ACTION_EMPLOYEES), true, null, false);
+                replaceFragment(fragments.get(ACTION_EMPLOYEES), true, null,
+                        false, false, false);
                 return true;
             case R.id.action_menu:
-                replaceFragment(fragments.get(ACTION_MENU), false, null, false);
+                replaceFragment(fragments.get(ACTION_MENU), false, null,
+                        false, false, false);
                 return true;
             default:
                 return false;
@@ -233,21 +284,5 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         if (v_bottom_navigation != null) {
             v_bottom_navigation.setSelectedItemId(R.id.action_feed);
         }
-    }
-
-    public void onFeedFloatActions(boolean expanded) {
-        if (windowBackground == null) {
-            float radius = 1.3f;
-            View decorView = getWindow().getDecorView();
-            windowBackground = decorView.getBackground();
-            blurView.setupWith(fl_parent)
-                    .windowBackground(windowBackground)
-                    .blurAlgorithm(
-                            isJellyBeanMR1OrAbove() ? new RenderScriptBlur(this)
-                                    : new SupportRenderScriptBlur(this))
-                    .blurRadius(radius)
-                    .setHasFixedTransformationMatrix(true);
-        }
-        blurView.setVisibility(expanded ? View.VISIBLE : View.GONE);
     }
 }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,7 +18,6 @@ import java.util.List;
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.biboard.BiBoard;
 import bi.bigroup.life.data.models.bioffice.BiOffice;
-import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
 import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
 import bi.bigroup.life.utils.LOTimber;
@@ -93,6 +91,8 @@ public class BiBoardAdapter extends BaseAdapter {
         Context context;
         BiBoard bindedBusTicket;
         int bindedPosition;
+        int bindedSuggestionsCount;
+        int bindedQuestionnaireCount;
 
         @BindView(R.id.tv_row_title) TextView tv_row_title;
         @BindView(R.id.tv_first_value) TextView tv_first_value;
@@ -102,7 +102,6 @@ public class BiBoardAdapter extends BaseAdapter {
         @BindView(R.id.tv_second_label) TextView tv_second_label;
         @BindView(R.id.tv_third_label) TextView tv_third_label;
 
-        @BindView(R.id.img_add) ImageView img_add;
         @BindView(R.id.exp_layout) ExpandableLayout exp_layout;
         @BindView(R.id.ll_programmatically) LinearLayout ll_programmatically;
         @BindView(R.id.ll_area) LinearLayout ll_area;
@@ -140,11 +139,11 @@ public class BiBoardAdapter extends BaseAdapter {
 //                tv_third_value.setText(String.valueOf(object.vacancies.size()));
 //                ll_area.setClickable(true);
 //            }
-            img_add.setVisibility(position == TYPE_SUGGESTIONS ? View.VISIBLE : View.GONE);
 
             // Suggestions list
             List<Suggestion> sList = object.popularSuggestions;
             if (sList != null && sList.size() > 0) {
+                bindedSuggestionsCount = sList.size();
                 ll_programmatically.removeAllViews();
                 for (int i = 0; i < sList.size(); i++) {
                     Suggestion item = sList.get(i);
@@ -163,6 +162,7 @@ public class BiBoardAdapter extends BaseAdapter {
             // Questionnaires list
             List<Questionnaire> qList = object.popularQuestionnaires;
             if (qList != null && qList.size() > 0) {
+                bindedQuestionnaireCount = qList.size();
                 ll_programmatically.removeAllViews();
                 for (int i = 0; i < qList.size(); i++) {
                     Questionnaire item = qList.get(i);
@@ -201,7 +201,11 @@ public class BiBoardAdapter extends BaseAdapter {
             if (exp_layout.isExpanded()) {
                 exp_layout.collapse();
             } else {
-                exp_layout.expand();
+                if (bindedPosition == TYPE_SUGGESTIONS && bindedSuggestionsCount > 0) {
+                    exp_layout.expand();
+                } else if (bindedPosition == TYPE_QUESTIONNAIRE && bindedQuestionnaireCount > 0) {
+                    exp_layout.expand();
+                }
             }
         }
 
@@ -211,13 +215,6 @@ public class BiBoardAdapter extends BaseAdapter {
 //                callback.selectEmployeesTab();
 //            }
         }
-
-        @OnClick(R.id.img_add)
-        void onAddClick() {
-            if (bindedPosition == TYPE_SUGGESTIONS) {
-                callback.openNewSuggestionActivity();
-            }
-        }
     }
 
     public interface Callback {
@@ -226,7 +223,5 @@ public class BiBoardAdapter extends BaseAdapter {
         void openEmployeePage(String code);
 
         void selectEmployeesTab();
-
-        void openNewSuggestionActivity();
     }
 }

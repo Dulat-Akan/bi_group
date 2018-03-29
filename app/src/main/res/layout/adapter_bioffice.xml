@@ -11,8 +11,8 @@
         android:layout_marginRight="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_5"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/dp_10"
-        app:cardElevation="@dimen/dp_0">
+        app:cardCornerRadius="@dimen/dp_14"
+        app:cardElevation="@dimen/dp_3">
 
         <LinearLayout
             android:id="@+id/ll_zayavki_zadachi"
@@ -55,79 +55,69 @@
                     android:layout_marginTop="@dimen/dp_15"
                     android:gravity="bottom">
 
-                    <LinearLayout
-                        style="@style/LL_MW_H"
-                        android:layout_weight="1">
-
-                        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
-                            android:id="@+id/tv_first_value"
-                            style="@style/WW"
-                            android:text="0"
-                            android:textColor="@color/bi_header_blues"
-                            android:textSize="@dimen/sp_20"/>
-
-                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                            android:id="@+id/tv_first_label"
-                            style="@style/WW"
-                            android:layout_marginLeft="@dimen/dp_5"
-                            android:text="@string/row_new"
-                            android:textColor="@color/bi_header_date"
-                            android:textSize="@dimen/sp_12"/>
-
-                        <View
-                            android:layout_width="@dimen/dp_0_43"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="@dimen/dp_4"
-                            android:layout_marginLeft="@dimen/dp_13"
-                            android:layout_marginRight="@dimen/dp_13"
-                            android:layout_marginTop="@dimen/dp_4"
-                            android:background="@color/bi_separator"/>
-
-                        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
-                            android:id="@+id/tv_second_value"
-                            style="@style/WW"
-                            android:text="0"
-                            android:textColor="@color/bi_header_blues"
-                            android:textSize="@dimen/sp_20"/>
-
-                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                            android:id="@+id/tv_second_label"
-                            style="@style/WW"
-                            android:layout_marginLeft="@dimen/dp_5"
-                            android:text="@string/row_prin"
-                            android:textColor="@color/bi_header_date"
-                            android:textSize="@dimen/sp_12"/>
-
-                        <View
-                            android:layout_width="@dimen/dp_0_43"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="@dimen/dp_4"
-                            android:layout_marginLeft="@dimen/dp_13"
-                            android:layout_marginRight="@dimen/dp_13"
-                            android:layout_marginTop="@dimen/dp_4"
-                            android:background="@color/bi_separator"/>
-
-                        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
-                            android:id="@+id/tv_third_value"
-                            style="@style/WW"
-                            android:text="0"
-                            android:textColor="@color/bi_header_blues"
-                            android:textSize="@dimen/sp_20"/>
-
-                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                            android:id="@+id/tv_third_label"
-                            style="@style/WW"
-                            android:layout_marginLeft="@dimen/dp_5"
-                            android:text="@string/row_pros"
-                            android:textColor="@color/bi_header_date"
-                            android:textSize="@dimen/sp_12"/>
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/img_add"
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                        android:id="@+id/tv_first_value"
                         style="@style/WW"
-                        android:src="@drawable/ic_btn_add"/>
+                        android:text="0"
+                        android:textColor="@color/bi_header_blues"
+                        android:textSize="@dimen/sp_20"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_first_label"
+                        style="@style/WW"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:text="@string/row_new"
+                        android:textColor="@color/bi_header_date"
+                        android:textSize="@dimen/sp_12"/>
+
+                    <View
+                        android:layout_width="@dimen/dp_0_43"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/dp_4"
+                        android:layout_marginLeft="@dimen/dp_13"
+                        android:layout_marginRight="@dimen/dp_13"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:background="@color/bi_separator"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                        android:id="@+id/tv_second_value"
+                        style="@style/WW"
+                        android:text="0"
+                        android:textColor="@color/bi_header_blues"
+                        android:textSize="@dimen/sp_20"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_second_label"
+                        style="@style/WW"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:text="@string/row_prin"
+                        android:textColor="@color/bi_header_date"
+                        android:textSize="@dimen/sp_12"/>
+
+                    <View
+                        android:layout_width="@dimen/dp_0_43"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/dp_4"
+                        android:layout_marginLeft="@dimen/dp_13"
+                        android:layout_marginRight="@dimen/dp_13"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:background="@color/bi_separator"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                        android:id="@+id/tv_third_value"
+                        style="@style/WW"
+                        android:text="0"
+                        android:textColor="@color/bi_header_blues"
+                        android:textSize="@dimen/sp_20"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_third_label"
+                        style="@style/WW"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:text="@string/row_pros"
+                        android:textColor="@color/bi_header_date"
+                        android:textSize="@dimen/sp_12"/>
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -135,7 +125,7 @@
                 android:id="@+id/exp_layout"
                 style="@style/MW"
                 app:el_duration="50"
-                app:el_expanded="true">
+                app:el_expanded="false">
 
                 <LinearLayout
                     style="@style/LL_MW_V"
@@ -159,6 +149,4 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
-
 </LinearLayout>
