@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fl_parent"
     style="@style/MM"
     android:background="@color/white"
@@ -10,17 +11,24 @@
         style="@style/LL_MM_V"
         android:gravity="center_horizontal">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             style="@style/MW"
-            android:background="@drawable/gradient_blue_bg"
-            android:gravity="center_horizontal|center_vertical"
-            android:paddingBottom="@dimen/dp_30"
-            android:paddingTop="@dimen/dp_30">
+            android:elevation="@dimen/dp_7"
+            app:cardCornerRadius="@dimen/dp_0"
+            app:cardElevation="@dimen/dp_7">
 
-            <ImageView
-                style="@style/ic_auth_logo"/>
+            <LinearLayout
+                style="@style/MW"
+                android:layout_height="@dimen/dp_144"
+                android:background="@drawable/gradient_blue_bg"
+                android:gravity="center_horizontal|center_vertical">
 
-        </LinearLayout>
+                <ImageView
+                    style="@style/ic_auth_logo"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,11 +38,10 @@
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_password"
                 style="@style/MW"
                 android:layout_marginTop="@dimen/dp_13"
                 android:hint="@string/enter_username"
-                android:textColorHint="@color/et_hint">
+                android:theme="@style/TextInputLayout">
 
                 <bi.bigroup.life.views.edittext.SettingsEditText
                     android:id="@+id/et_username"
@@ -42,7 +49,7 @@
                     android:layout_marginTop="@dimen/dp_40"
                     android:inputType="text"
                     android:maxLength="12"
-                    android:textColorHint="@color/et_hint"/>
+                    android:textColorHint="@color/et_hint_secondary"/>
             </android.support.design.widget.TextInputLayout>
 
             <View
@@ -52,7 +59,7 @@
                 style="@style/MW"
                 android:layout_marginTop="@dimen/dp_7"
                 android:hint="@string/enter_pwd"
-                android:textColorHint="@color/et_hint">
+                android:theme="@style/TextInputLayout">
 
                 <bi.bigroup.life.views.edittext.SettingsEditText
                     android:id="@+id/et_pwd"
@@ -60,17 +67,27 @@
                     android:layout_marginTop="@dimen/dp_12"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
-                    android:textColorHint="@color/et_hint"/>
+                    android:textColorHint="@color/et_hint_secondary"/>
             </android.support.design.widget.TextInputLayout>
 
             <View
                 style="@style/auth_divider"/>
 
-            <bi.bigroup.life.views.fonts.ButtonRobotoRegular
-                android:id="@+id/btn_login"
-                style="@style/auth_rounded_btn"
+            <android.support.v7.widget.CardView
+                style="@style/MW"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_22"
-                android:text="@string/label_login"/>
+                android:elevation="@dimen/dp_5"
+                app:cardCornerRadius="@dimen/dp_12"
+                app:cardElevation="@dimen/dp_5">
+
+                <bi.bigroup.life.views.fonts.ButtonRobotoRegular
+                    android:id="@+id/btn_login"
+                    style="@style/auth_rounded_btn"
+                    android:text="@string/label_login"/>
+            </android.support.v7.widget.CardView>
 
             <LinearLayout
                 style="@style/LL_MW_H"

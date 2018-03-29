@@ -196,5 +196,8 @@ dependencies {
     compile "android.arch.persistence.room:runtime:${archRoomVersion}"
     annotationProcessor "android.arch.persistence.room:compiler:${archRoomVersion}"
 
+    // Shadow layout
+    compile "com.github.dmytrodanylyk.shadow-layout:library:${shadowLayout}"
+
     testCompile 'junit:junit:4.12'
 }

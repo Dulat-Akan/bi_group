@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:shadowRadius="0" android:state_pressed="true">
+    <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/dp_14"/>
-            <stroke android:width="0.6dp" android:color="@color/main_color_clicked"/>
             <solid android:color="@color/main_color_clicked"/>
         </shape>
     </item>
-    <item android:shadowRadius="0">
+    <item>
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/dp_14"/>
-            <stroke android:width="0.6dp" android:color="@color/main_color"/>
             <solid android:color="@color/main_color"/>
         </shape>
     </item>

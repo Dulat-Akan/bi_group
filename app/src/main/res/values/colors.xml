@@ -29,6 +29,7 @@
     <color name="gray_transparent">#BF7D7173</color>
     <color name="black_transparent">#40000000</color>
     <color name="dialog_negative">#9e9e9e</color>
+    <color name="shadow_bg">#1e000000</color>
 
     <!-- AuthActivity -->
     <color name="main_color">#1f8ce8</color>
@@ -37,6 +38,7 @@
     <color name="gr_2">#1e88e4</color>
     <color name="et_divider">#e9e9ea</color>
     <color name="et_hint">#108aeb</color>
+    <color name="et_hint_secondary">#66333333</color>
     <color name="bi_group">#6d6d72</color>
     <color name="forgot_your_data">#808084</color>
     <color name="help">#3499ea</color>
