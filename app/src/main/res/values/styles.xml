@@ -177,7 +177,7 @@
 
     <style name="PARENT_DIVIDER" parent="MW">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/dp_0_43</item>
+        <item name="android:layout_height">@dimen/dp_0_5_divider</item>
         <item name="android:layout_margin">@dimen/dp_15</item>
         <item name="android:background">@color/divider</item>
     </style>

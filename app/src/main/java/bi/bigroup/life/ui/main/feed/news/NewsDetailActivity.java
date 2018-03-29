@@ -41,6 +41,7 @@ import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
 import butterknife.BindColor;
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -146,6 +147,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
         @BindView(R.id.tv_comment_quantity) TextView tv_comment_quantity;
         @BindView(R.id.tv_comments) TextView tv_comments;
         @BindView(R.id.tv_view_quantity) TextView tv_view_quantity;
+        @BindString(R.string.filter_news) String filter_news;
         private ViewPagerImage adapter;
         private String currentImageUrl;
 
@@ -159,7 +161,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
         void bindHolder(News object) {
             bindedObject = object;
             PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(object.getAuthorCode()), R.drawable.ic_user);
-            tv_subhead_top.setText(object.getAuthorName());
+            tv_subhead_top.setText(filter_news);
             tv_title.setText(object.getTitle());
             tv_time.setText(object.getDate(context));
             tv_username.setText(object.getAuthorName());
