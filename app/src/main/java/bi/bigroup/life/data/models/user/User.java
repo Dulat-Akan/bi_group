@@ -3,6 +3,7 @@ package bi.bigroup.life.data.models.user;
 import java.util.List;
 
 import static bi.bigroup.life.utils.DateUtils.getBirthDateStr;
+import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
 import static bi.bigroup.life.utils.StringUtils.replaceNullTrim;
 
@@ -37,6 +38,20 @@ public class User {
 
     public String getCode() {
         return replaceNullTrim(employeeCode);
+    }
+
+    public String getMedicalLast() {
+        if (medicalExamination != null) {
+            return getBirthDateStr(replaceNull(medicalExamination.last));
+        }
+        return EMPTY_STR;
+    }
+
+    public String getMedicalNext() {
+        if (medicalExamination != null) {
+            return getBirthDateStr(replaceNull(medicalExamination.next));
+        }
+        return EMPTY_STR;
     }
 
     public String getFullname() {

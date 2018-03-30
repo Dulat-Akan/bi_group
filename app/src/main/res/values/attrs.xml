@@ -10,4 +10,9 @@
         <attr name="cornerRadius" format="dimension"/>
     </declare-styleable>
 
+    <!-- SquareImageView -->
+    <declare-styleable name="SquareImageView">
+        <attr name="siv_maxSize" format="dimension"/>
+    </declare-styleable>
+
 </resources>

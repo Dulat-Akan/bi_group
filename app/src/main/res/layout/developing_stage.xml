@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LL_MM_V"
+    android:background="@color/main_bg"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        android:src="@drawable/ic_config"/>
+
+    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+        style="@style/MW"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:gravity="center_horizontal"
+        android:text="@string/developing_stage"
+        android:textSize="@dimen/sp_22"/>
+</LinearLayout>

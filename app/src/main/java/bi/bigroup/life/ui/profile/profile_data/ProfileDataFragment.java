@@ -1,5 +1,6 @@
 package bi.bigroup.life.ui.profile.profile_data;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -14,6 +15,7 @@ import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.mvp.profile.profile_data.ProfileDataPresenter;
 import bi.bigroup.life.mvp.profile.profile_data.ProfileDataView;
 import bi.bigroup.life.ui.base.BaseFragment;
+import bi.bigroup.life.ui.profile.ProfileFragmentCallbacks;
 import bi.bigroup.life.utils.LOTimber;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
@@ -21,6 +23,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 
 public class ProfileDataFragment extends BaseFragment implements ProfileDataView {
     @InjectPresenter
@@ -40,7 +43,10 @@ public class ProfileDataFragment extends BaseFragment implements ProfileDataView
     @BindView(R.id.tv_clothes_size) TextView tv_clothes_size;
     @BindView(R.id.tv_experience) TextView tv_experience;
     @BindView(R.id.tv_coorp_experience) TextView tv_coorp_experience;
+    @BindView(R.id.tv_last_medical) TextView tv_last_medical;
+    @BindView(R.id.tv_closest_medical) TextView tv_closest_medical;
 
+    private ProfileFragmentCallbacks callback;
     private RowViewHolder v1, v2, v3, v4;
 
     public static ProfileDataFragment newInstance() {
@@ -66,7 +72,6 @@ public class ProfileDataFragment extends BaseFragment implements ProfileDataView
 
         v4 = new RowViewHolder(view.findViewById(R.id.v4));
         v4.setCallback(() -> LOTimber.d("asldkasjd clicked 4"));
-
     }
 
     @OnClick(R.id.ll_extra_info)
@@ -80,6 +85,21 @@ public class ProfileDataFragment extends BaseFragment implements ProfileDataView
         }
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            callback = (ProfileFragmentCallbacks) context;
+        } catch (ClassCastException castException) {
+            castException.printStackTrace();
+        }
+    }
+
+    @OnClick(R.id.img_avatar)
+    void onOpenUserPhoto() {
+        callback.onFullImageView(img_avatar);
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // ProfileDataView implementation
     ///////////////////////////////////////////////////////////////////////////
@@ -91,6 +111,8 @@ public class ProfileDataFragment extends BaseFragment implements ProfileDataView
         v3.bindHolder(user.getEmail(), R.drawable.mail);
         v4.bindHolder(user.getWorkPhoneNumber(), R.drawable.phone_inactive);
         PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(user.getCode()), R.drawable.ic_user);
+        callback.showFullAvatar(getProfilePicture(user.getCode()));
+
         tv_surname.setText(user.getFullname());
         tv_specialty.setText(user.getJobPosition());
         tv_iin.setText(user.getIin());
@@ -101,5 +123,7 @@ public class ProfileDataFragment extends BaseFragment implements ProfileDataView
         tv_clothes_size.setText(user.getClothingSize());
         tv_experience.setText(user.getTotalExperience());
         tv_coorp_experience.setText(user.getCorporateExperience());
+        tv_last_medical.setText(isStringOk(user.getMedicalLast()) ? user.getMedicalLast() : getString(R.string.no_data));
+        tv_closest_medical.setText(isStringOk(user.getMedicalNext()) ? user.getMedicalNext() : getString(R.string.no_data));
     }
 }

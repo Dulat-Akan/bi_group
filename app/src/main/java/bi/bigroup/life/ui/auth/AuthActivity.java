@@ -1,9 +1,12 @@
 package bi.bigroup.life.ui.auth;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
+import android.support.v7.app.AlertDialog;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
@@ -13,7 +16,6 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.Calendar;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.config.DebugConfig;
 import bi.bigroup.life.mvp.auth.AuthPresenter;
 import bi.bigroup.life.mvp.auth.AuthView;
 import bi.bigroup.life.ui.base.BaseActivity;
@@ -22,6 +24,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 
+import static bi.bigroup.life.utils.Constants.HELP_PHONE;
 import static bi.bigroup.life.utils.Constants.TEST_PWD;
 import static bi.bigroup.life.utils.Constants.TEST_USERNAME;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
@@ -53,8 +56,8 @@ public class AuthActivity extends BaseActivity implements AuthView {
         super.onCreate(savedInstanceState);
         setStatusBarGradient(this, R.drawable.gradient_blue_bg);
 //        if (DebugConfig.DEV_BUILD) {
-            et_username.setText(TEST_USERNAME);
-            et_pwd.setText(TEST_PWD);
+        et_username.setText(TEST_USERNAME);
+        et_pwd.setText(TEST_PWD);
 //        }
 
         mvpPresenter.init(this, dataLayer);
@@ -88,6 +91,25 @@ public class AuthActivity extends BaseActivity implements AuthView {
         mvpPresenter.checkGeneralInfo();
     }
 
+    @OnClick(R.id.tv_help)
+    void onHelpClick() {
+        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + HELP_PHONE)));
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.help))
+                .setMessage(getString(R.string.help_description)).setPositiveButton(getString(R.string.call), dialogClickListener)
+                .setNegativeButton(getString(R.string.cancellation), dialogClickListener).show();
+    }
+
 //    private String getPhone() {
 //        Mask mask = new Mask(PHONE_MASK);
 //        final String input = et_phone.getText().toString();
@@ -112,11 +134,6 @@ public class AuthActivity extends BaseActivity implements AuthView {
 
     private void showInputFieldError(MaterialEditText inputField, @StringRes int errorRes) {
         inputField.setError(getString(errorRes));
-    }
-
-    @OnClick(R.id.tv_help)
-    void onForgotPwdClick() {
-        mvpPresenter.onForgotPwdClick();
     }
 
     ///////////////////////////////////////////////////////////////////////////

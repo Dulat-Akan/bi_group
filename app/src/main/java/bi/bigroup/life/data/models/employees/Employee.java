@@ -2,8 +2,9 @@ package bi.bigroup.life.data.models.employees;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.content.Context;
 
-import static bi.bigroup.life.utils.DateUtils.getBirthDateStr;
+import static bi.bigroup.life.utils.DateUtils.getEmployeeBirthday;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
 import static bi.bigroup.life.utils.StringUtils.isStringOk;
@@ -77,8 +78,8 @@ public class Employee {
         return isOkBoolean(isBirthdayToday);
     }
 
-    public String getBirthDate() {
-        return isStringOk(birthDate) ? getBirthDateStr(replaceNull(birthDate)) : EMPTY_STR;
+    public String getBirthDate(Context context) {
+        return isStringOk(birthDate) ? getEmployeeBirthday(context, replaceNull(birthDate)) : EMPTY_STR;
     }
 
     public boolean getHasAvatar() {

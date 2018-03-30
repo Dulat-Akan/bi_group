@@ -13,4 +13,8 @@
     <include
         android:id="@+id/pb_indicator"
         layout="@layout/inc_pb_transparent"/>
+
+    <include
+        layout="@layout/developing_stage"/>
+
 </FrameLayout>

@@ -13,6 +13,7 @@ import java.util.Locale;
 import bi.bigroup.life.R;
 
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 
 public class DateUtils {
     public static final DateFormat BIRTHDATE_DISPLAY_FORMAT = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
@@ -22,13 +23,36 @@ public class DateUtils {
     public static final DateFormat TASKS_SERVICES_DISPLAY_FORMAT = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
 
     public static String getBirthDateStr(String birthDate) {
-        Date origDate = null;
-        try {
-            origDate = FEED_DATE_FORMAT.parse(birthDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (isStringOk(birthDate)) {
+            Date origDate = null;
+            try {
+                origDate = FEED_DATE_FORMAT.parse(birthDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return BIRTHDATE_DISPLAY_FORMAT.format(origDate).toLowerCase();
+        } else {
+            return EMPTY_STR;
         }
-        return BIRTHDATE_DISPLAY_FORMAT.format(origDate).toLowerCase();
+    }
+
+    public static String getEmployeeBirthday(Context context, String birthDay) {
+        String result = EMPTY_STR;
+        if (isStringOk(birthDay)) {
+            String arrMonth[] = context.getResources().getStringArray(R.array.months_array_long);
+            Date origDate = null;
+            try {
+                origDate = FEED_DATE_FORMAT.parse(birthDay);
+                Calendar origCalendar = Calendar.getInstance();
+                origCalendar.setTime(origDate);
+                int origDay = origCalendar.get(Calendar.DAY_OF_MONTH);
+                int origMonth = origCalendar.get(Calendar.MONTH);
+                result = origDay + " " + arrMonth[origMonth];
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 
     public static String getTodaysDate(String[] monthArray) {

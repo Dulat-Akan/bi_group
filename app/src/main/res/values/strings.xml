@@ -7,6 +7,7 @@
     <string name="open">Открыть</string>
     <string name="cancel">Отменить</string>
     <string name="cancellation">Отмена</string>
+    <string name="call">Позвонить</string>
     <string name="apply">Применить</string>
     <string name="choose">Выбрать</string>
     <string name="continue_label">Далее</string>
@@ -21,6 +22,7 @@
     <string name="allow">Разрешить</string>
     <string name="reject">Отклонить</string>
     <string name="finish">Завершить</string>
+    <string name="no_data">Нет данных</string>
     <string name="not_found">не найдено</string>
     <string name="invalid_token_title">Ошибка</string>
     <string name="invalid_token">Ошибка аутентификации</string>
@@ -63,12 +65,14 @@
     <string name="label_login">Войти</string>
     <string name="forgot_your_data">Забыли свои данные для входа?</string>
     <string name="help">Помощь</string>
+    <string name="help_description">Для смены пароля позвонить в Service desk: 8 (7172) 918989</string>
     <string name="copyright">BI Group %s</string>
 
     <!-- ForgotPwdActivity -->
     <string name="can_not_join">Не можете войти?</string>
     <string name="enter_phone_number">Введите имя пользователя или e-mail,\nи мы отправим Вам ссылку для\nвосстановления доступа к учетной записи.</string>
     <string name="label_phone">Телефон</string>
+    <string name="date_of_birthday">Дата рождения</string>
 
     <!-- NewPwdActivity -->
     <string name="enter_phone">Введите номер телефона</string>
@@ -155,6 +159,10 @@
     <string name="label_working">Трудовая деятельность</string>
     <string name="label_experience">Общий стаж</string>
     <string name="label_coorporative_experience">Корпоративный стаж</string>
+    <string name="developing_stage">Все еще находятся на стадии разработки</string>
+    <string name="label_medical">Медосмотр</string>
+    <string name="last_medical">Последнее прохождение</string>
+    <string name="closest_medical">Ближайшие</string>
 
     <!-- EmployeePageActivity -->
     <string name="label_employee">Сотрудник</string>

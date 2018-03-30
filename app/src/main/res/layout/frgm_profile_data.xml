@@ -7,28 +7,28 @@
 
     <ScrollView
         style="@style/MM"
-        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_22"
         android:fitsSystemWindows="true">
 
         <LinearLayout
             android:id="@+id/ll_content"
             style="@style/LL_MM_V"
             android:background="@color/main_bg"
-            android:paddingLeft="@dimen/dp_18"
-            android:paddingRight="@dimen/dp_15">
+            android:paddingLeft="@dimen/dp_24"
+            android:paddingRight="@dimen/dp_24">
 
             <LinearLayout
                 style="@style/LL_MW_H"
-                android:layout_marginBottom="@dimen/dp_6"
+                android:layout_marginBottom="@dimen/dp_17"
                 android:gravity="center_vertical">
 
                 <bi.bigroup.life.views.RoundedImageView
                     android:id="@+id/img_avatar"
-                    android:layout_width="@dimen/dp_80"
-                    android:layout_height="@dimen/dp_80"
+                    android:layout_width="@dimen/dp_96"
+                    android:layout_height="@dimen/dp_96"
                     android:scaleType="centerCrop"
                     android:src="@color/user_avatar"
-                    app:radius_width="@dimen/dp_15"/>
+                    app:radius_width="@dimen/dp_14"/>
 
                 <LinearLayout
                     style="@style/LL_MW_V"
@@ -45,11 +45,11 @@
                     <TextView
                         android:id="@+id/tv_specialty"
                         style="@style/MW"
-                        android:layout_marginTop="@dimen/dp_6"
+                        android:layout_marginTop="@dimen/dp_8"
                         android:fontFamily="sans-serif"
                         android:textColor="@color/specialty"
                         android:textSize="@dimen/sp_14"
-                        tools:text="@string/lorem_ipsum_short_2"/>
+                        tools:text="Specialty"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -60,7 +60,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_0_43"
+                android:layout_height="@dimen/dp_0_5_divider"
                 android:layout_marginLeft="@dimen/dp_43"
                 android:background="@color/divider2"/>
 
@@ -70,7 +70,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_0_43"
+                android:layout_height="@dimen/dp_0_5_divider"
                 android:layout_marginLeft="@dimen/dp_43"
                 android:background="@color/divider2"/>
 
@@ -80,7 +80,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_0_43"
+                android:layout_height="@dimen/dp_0_5_divider"
                 android:layout_marginLeft="@dimen/dp_43"
                 android:background="@color/divider2"/>
 
@@ -90,13 +90,13 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_0_43"
+                android:layout_height="@dimen/dp_0_5_divider"
                 android:background="@color/divider2"/>
 
             <LinearLayout
                 android:id="@+id/ll_extra_info"
                 style="@style/LL_MW_H"
-                android:layout_marginTop="@dimen/dp_13"
+                android:layout_marginTop="@dimen/dp_17"
                 android:background="?android:attr/selectableItemBackground"
                 android:gravity="center_vertical">
 
@@ -104,22 +104,19 @@
                     style="@style/WW"
                     android:src="@drawable/more_goriz"/>
 
-                <TextView
+                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                     android:id="@+id/tv_hide_show"
                     style="@style/WW"
                     android:layout_marginLeft="@dimen/dp_15"
-                    android:fontFamily="sans-serif"
-                    android:lineSpacingExtra="10sp"
                     android:text="@string/prof_data_extra_info"
                     android:textColor="@color/tab_indicator"
-                    android:textSize="@dimen/sp_14"
-                    android:textStyle="normal"/>
+                    android:textSize="@dimen/sp_14"/>
             </LinearLayout>
 
             <net.cachapa.expandablelayout.ExpandableLayout
                 android:id="@+id/exp_layout"
                 style="@style/MW"
-                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_30"
                 app:el_duration="40"
                 app:el_expanded="false">
 
@@ -127,53 +124,59 @@
                     android:id="@+id/ll_hidden_block"
                     style="@style/LL_MW_V">
 
-                    <TextView
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                         style="@style/subject_label"
                         android:text="@string/own_and_family"/>
 
                     <LinearLayout
                         style="@style/LL_MW_H"
-                        android:layout_marginTop="@dimen/dp_12">
+                        android:layout_marginTop="@dimen/dp_8">
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             style="@style/extra_info_label"
+                            android:layout_marginRight="@dimen/dp_7"
                             android:layout_weight="1"
                             android:text="@string/label_iin"/>
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             style="@style/extra_info_label"
+                            android:layout_marginLeft="@dimen/dp_7"
                             android:layout_weight="1"
                             android:text="@string/label_date_of_birth"/>
                     </LinearLayout>
 
                     <LinearLayout
                         style="@style/LL_MW_H"
-                        android:layout_marginTop="@dimen/dp_4">
+                        android:layout_marginTop="@dimen/dp_5">
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             android:id="@+id/tv_iin"
                             style="@style/extra_info_value"
+                            android:layout_marginRight="@dimen/dp_7"
                             android:layout_weight="1"
                             tools:text="000900800666"/>
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             android:id="@+id/tv_date_of_birth"
                             style="@style/extra_info_value"
+                            android:layout_marginLeft="@dimen/dp_7"
                             android:layout_weight="1"
                             tools:text="13 декабря 1989"/>
                     </LinearLayout>
 
                     <LinearLayout
                         style="@style/LL_MW_H"
-                        android:layout_marginTop="@dimen/dp_15">
+                        android:layout_marginTop="@dimen/dp_16">
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             style="@style/extra_info_label"
+                            android:layout_marginRight="@dimen/dp_7"
                             android:layout_weight="1"
                             android:text="@string/label_family_status"/>
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             style="@style/extra_info_label"
+                            android:layout_marginLeft="@dimen/dp_7"
                             android:layout_weight="1"
                             android:text="@string/label_gender"/>
                     </LinearLayout>
@@ -182,30 +185,34 @@
                         style="@style/LL_MW_H"
                         android:layout_marginTop="@dimen/dp_5">
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             android:id="@+id/tv_family_status"
                             style="@style/extra_info_value"
+                            android:layout_marginRight="@dimen/dp_7"
                             android:layout_weight="1"
                             tools:text="В брак"/>
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             android:id="@+id/tv_gender"
                             style="@style/extra_info_value"
+                            android:layout_marginLeft="@dimen/dp_7"
                             android:layout_weight="1"
                             tools:text="@string/label_gender_male"/>
                     </LinearLayout>
 
                     <LinearLayout
                         style="@style/LL_MW_H"
-                        android:layout_marginTop="@dimen/dp_15">
+                        android:layout_marginTop="@dimen/dp_16">
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             style="@style/extra_info_label"
+                            android:layout_marginRight="@dimen/dp_7"
                             android:layout_weight="1"
                             android:text="@string/label_childs"/>
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             style="@style/extra_info_label"
+                            android:layout_marginLeft="@dimen/dp_7"
                             android:layout_weight="1"
                             android:text="@string/label_clothes_size"/>
                     </LinearLayout>
@@ -214,55 +221,96 @@
                         style="@style/LL_MW_H"
                         android:layout_marginTop="@dimen/dp_5">
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             android:id="@+id/tv_childs"
                             style="@style/extra_info_value"
+                            android:layout_marginRight="@dimen/dp_7"
                             android:layout_weight="1"
                             tools:text="@string/label_childs_second"/>
 
-                        <TextView
+                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                             android:id="@+id/tv_clothes_size"
                             style="@style/extra_info_value"
+                            android:layout_marginLeft="@dimen/dp_7"
                             android:layout_weight="1"
                             tools:text="42 - 48"/>
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_0_43"
-                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_0_5_divider"
+                        android:layout_marginTop="@dimen/dp_35"
                         android:background="@color/divider2"/>
 
-                    <TextView
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                         style="@style/subject_label"
-                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_8"
                         android:text="@string/label_working"/>
 
-                    <TextView
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                         style="@style/extra_info_label"
-                        android:layout_marginTop="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_8"
                         android:layout_weight="1"
                         android:text="@string/label_experience"/>
 
-                    <TextView
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                         android:id="@+id/tv_experience"
                         style="@style/extra_info_value"
+                        android:layout_marginTop="@dimen/dp_4"
                         android:layout_weight="1"
                         tools:text="5 лет"/>
 
-                    <TextView
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                         style="@style/extra_info_label"
-                        android:layout_marginTop="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_16"
                         android:layout_weight="1"
                         android:text="@string/label_coorporative_experience"/>
 
-                    <TextView
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                         android:id="@+id/tv_coorp_experience"
                         style="@style/extra_info_value"
                         android:layout_marginBottom="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_4"
                         android:layout_weight="1"
                         tools:text="2 года"/>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_0_5_divider"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:background="@color/divider2"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                        style="@style/subject_label"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="@string/label_medical"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        style="@style/extra_info_label"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:layout_weight="1"
+                        android:text="@string/last_medical"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_last_medical"
+                        style="@style/extra_info_value"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:layout_weight="1"
+                        tools:text="5 лет"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        style="@style/extra_info_label"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:layout_weight="1"
+                        android:text="@string/closest_medical"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_closest_medical"
+                        style="@style/extra_info_value"
+                        android:layout_marginBottom="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:layout_weight="1"
+                        tools:text="2 года"/>
                 </LinearLayout>
 
             </net.cachapa.expandablelayout.ExpandableLayout>
@@ -273,4 +321,5 @@
     <include
         android:id="@+id/pb_indicator"
         layout="@layout/inc_pb_transparent"/>
+
 </FrameLayout>

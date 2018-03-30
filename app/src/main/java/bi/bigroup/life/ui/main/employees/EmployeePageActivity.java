@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -14,6 +17,7 @@ import bi.bigroup.life.mvp.main.employees.EmployeePagePresenter;
 import bi.bigroup.life.mvp.main.employees.EmployeePageView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import bi.bigroup.life.utils.EmailUtils;
+import bi.bigroup.life.utils.animation.AvatarAnimation;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import butterknife.BindView;
@@ -34,8 +38,12 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     @BindView(R.id.tv_administrative_manager) TextView tv_administrative_manager;
     @BindView(R.id.tv_functional_manager) TextView tv_functional_manager;
     @BindView(R.id.tv_phone) TextView tv_phone;
+    @BindView(R.id.tv_dob) TextView tv_dob;
     @BindView(R.id.tv_email) TextView tv_email;
+    @BindView(R.id.img_expanded) ImageView img_expanded;
+    @BindView(R.id.user_photo_container) RelativeLayout user_photo_container;
 
+    private AvatarAnimation avatarAnimation;
     private String code;
     private Employee employee;
 
@@ -55,6 +63,8 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
         super.onCreate(savedInstanceState);
         mvpPresenter.init(this, dataLayer);
         handleIntent();
+        avatarAnimation = new AvatarAnimation(this, user_photo_container,
+                img_expanded, img_avatar);
         mvpPresenter.getEmployee(code, isInternetOn(this));
     }
 
@@ -66,9 +76,25 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     }
 
     @Override
+    public void onBackPressed() {
+        if (img_expanded.getVisibility() == View.VISIBLE) {
+            avatarAnimation.closeImage();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mvpPresenter.onDestroyView();
+    }
+
+    @OnClick(R.id.img_full_close)
+    void onCloseImage() {
+        if (img_expanded.getVisibility() == View.VISIBLE) {
+            avatarAnimation.closeImage();
+        }
     }
 
     @OnClick(R.id.img_close)
@@ -95,6 +121,11 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
         }
     }
 
+    @OnClick(R.id.ll_avatar_container)
+    void onOpenUserPhoto() {
+        avatarAnimation.onOpenUserPhoto();
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // EmployeePageView implementation
     ///////////////////////////////////////////////////////////////////////////
@@ -103,12 +134,14 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     public void setEmployee(Employee employee) {
         this.employee = employee;
         PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(code), R.drawable.ic_user);
+        PicassoUtils.showAvatar(dataLayer.getPicasso(), img_expanded, getProfilePicture(code), R.color.transparent);
         tv_surname.setText(employee.getFullName());
         tv_firstname.setText(employee.getFirstName());
         tv_specialty.setText(employee.getJobPosition());
         tv_administrative_manager.setText(employee.getAdministrativeChiefName());
         tv_functional_manager.setText(employee.getFunctionalChiefName());
         tv_phone.setText(employee.getWorkPhoneNumber());
+        tv_dob.setText(employee.getBirthDate(this));
         tv_email.setText(employee.getEmail());
     }
 }

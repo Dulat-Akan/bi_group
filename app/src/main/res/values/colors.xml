@@ -81,6 +81,7 @@
     <!-- EmployeesFragment -->
     <color name="searchview_bg">#1e8e8e93</color>
     <color name="user_avatar">#d8d8d8</color>
+    <color name="photo_pager_window_bg">#99000000</color>
 
     <!-- TasksSdeskActivity -->
     <color name="tasks_sdesk_description">#8e8e93</color>

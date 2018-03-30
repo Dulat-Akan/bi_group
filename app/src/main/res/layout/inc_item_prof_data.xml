@@ -8,20 +8,17 @@
         style="@style/LL_MW_H"
         android:gravity="center_vertical"
         android:paddingBottom="@dimen/dp_10"
-        android:paddingTop="@dimen/dp_12">
+        android:paddingTop="@dimen/dp_10">
 
         <ImageView
             android:id="@+id/img_icon"
             style="@style/WW"
             android:src="@drawable/domain"/>
 
-        <TextView
+        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
             android:id="@+id/tv_title"
             style="@style/MW"
-            android:layout_marginLeft="@dimen/dp_18"
-            android:fontFamily="sans-serif"
-            android:lineSpacingExtra="@dimen/sp_10"
-            android:maxLines="1"
+            android:layout_marginLeft="@dimen/dp_16"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_14"
             tools:text="Yeapta"/>

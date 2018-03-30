@@ -94,8 +94,7 @@
             <LinearLayout
                 style="@style/LL_MW_H"
                 android:layout_marginTop="@dimen/dp_28"
-                android:gravity="center_horizontal|center_vertical"
-                android:visibility="gone">
+                android:gravity="center_horizontal|center_vertical">
 
                 <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                     style="@style/WW"
@@ -106,7 +105,8 @@
                 <bi.bigroup.life.views.fonts.TextViewRobotoMedium
                     android:id="@+id/tv_help"
                     style="@style/WW"
-                    android:layout_marginLeft="@dimen/dp_8"
+                    android:paddingLeft="@dimen/dp_10"
+                    android:paddingRight="@dimen/dp_15"
                     android:text="@string/help"
                     android:textColor="@color/help"
                     android:textSize="@dimen/sp_13"/>

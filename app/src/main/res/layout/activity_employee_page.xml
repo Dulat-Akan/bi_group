@@ -53,6 +53,7 @@
                     android:gravity="center_vertical">
 
                     <LinearLayout
+                        android:id="@+id/ll_avatar_container"
                         style="@style/WW"
                         android:background="@drawable/ll_avatar_rounded_border_14dp">
 
@@ -150,6 +151,19 @@
                 <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                     style="@style/extra_info_label"
                     android:layout_marginTop="@dimen/dp_16"
+                    android:text="@string/date_of_birthday"/>
+
+                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                    android:id="@+id/tv_dob"
+                    style="@style/extra_info_value"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    tools:text="13 february"/>
+
+                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                    style="@style/extra_info_label"
+                    android:layout_marginTop="@dimen/dp_16"
                     android:text="@string/email"/>
 
                 <bi.bigroup.life.views.fonts.TextViewRobotoRegular
@@ -168,5 +182,8 @@
     <include
         android:id="@+id/pb_indicator"
         layout="@layout/inc_pb_opaque"/>
+
+    <include
+        layout="@layout/merge_view_photo"/>
 
 </FrameLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/user_photo_container"
+        style="@style/MM"
+        android:background="@color/photo_pager_window_bg"
+        android:visibility="invisible">
+
+        <LinearLayout
+            style="@style/MM">
+
+            <bi.bigroup.life.views.SquareImageView
+                android:id="@+id/img_expanded"
+                style="@style/MM"
+                android:layout_gravity="center"
+                android:background="@color/photo_pager_window_bg"
+                android:scaleType="centerCrop"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_full_close"
+            style="@style/WW"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_26"
+            android:layout_marginTop="@dimen/dp_20"
+            android:src="@drawable/ic_close"/>
+    </RelativeLayout>
+</merge>
