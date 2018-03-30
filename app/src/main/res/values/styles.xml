@@ -155,15 +155,11 @@
 
     <style name="extra_info_label" parent="MW">
         <item name="android:textSize">@dimen/sp_12</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/specialty</item>
     </style>
 
     <style name="extra_info_value" parent="MW">
         <item name="android:textSize">@dimen/sp_14</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

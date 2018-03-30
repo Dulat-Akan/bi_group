@@ -15,7 +15,7 @@
 
         <LinearLayout
             style="@style/WW"
-            android:background="@drawable/ll_avatar_rounded_border">
+            android:background="@drawable/ll_avatar_rounded_border_8dp">
 
             <bi.bigroup.life.views.RoundedImageView
                 android:id="@+id/img_avatar"
