@@ -51,7 +51,24 @@ public class Employee {
     }
 
     public String getFirstName() {
-        return replaceNull(firstname);
+        String fullName = replaceNull(fullname);
+        String[] fullNameArr = fullName.split(" ");
+        if (fullNameArr.length > 1) {
+            return fullNameArr[1];
+        } else {
+            return EMPTY_STR;
+        }
+    }
+
+    public String getLastName() {
+        String fullName = replaceNull(fullname);
+        String[] fullNameArr = fullName.split(" ");
+        if (fullNameArr.length > 0) {
+            return fullNameArr[0];
+        } else {
+            return EMPTY_STR;
+        }
+
     }
 
     public String getJobPosition() {

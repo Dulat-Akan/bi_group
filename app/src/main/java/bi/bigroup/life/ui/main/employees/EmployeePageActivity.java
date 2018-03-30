@@ -139,7 +139,7 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
         this.employee = employee;
         PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(code), R.drawable.ic_user);
         PicassoUtils.showAvatar(dataLayer.getPicasso(), img_expanded, getProfilePicture(code), R.color.transparent);
-        tv_surname.setText(employee.getFullName());
+        tv_surname.setText(employee.getLastName());
         tv_firstname.setText(employee.getFirstName());
         tv_specialty.setText(isStringOk(employee.getJobPosition()) ? employee.getJobPosition() : noData);
         tv_administrative_manager.setText(isStringOk(employee.getAdministrativeChiefName())
