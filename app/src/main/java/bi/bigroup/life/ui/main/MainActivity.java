@@ -12,6 +12,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur;
@@ -68,6 +69,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     private List<Fragment> fragments = new ArrayList<>();
     private Drawable windowBackground;
     @BindView(R.id.v_bottom_navigation) BottomNavigationView v_bottom_navigation;
+    @BindView(R.id.ll_toolbar_container) LinearLayout ll_toolbar_container;
     @BindView(R.id.img_avatar) CircleImageView img_avatar;
     @BindView(R.id.blurView) BlurView blurView;
     @BindView(R.id.fam_feed) FloatingActionsMenu fam_feed;
@@ -89,7 +91,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         if (v_bottom_navigation != null) {
             v_bottom_navigation.setSelectedItemId(R.id.action_feed);
             replaceFragment(fragments.get(ACTION_FEED), false, null,
-                    true, false, false);
+                    true, false, false, false);
         }
 
         FloatingActionsMenu.OnFloatingActionsMenuUpdateListener listener = new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
@@ -128,11 +130,14 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
 
     @Override
     protected void replaceFragment(Fragment fragment, boolean addToBackStack, String tag,
-                                   boolean showFeedFab, boolean showBiOfficeFab, boolean showBiBoard) {
+                                   boolean showFeedFab, boolean showBiOfficeFab,
+                                   boolean showBiBoard, boolean hideToolbar) {
         fam_feed.setVisibility(showFeedFab ? View.VISIBLE : View.GONE);
         fam_bi_office.setVisibility(showBiOfficeFab ? View.VISIBLE : View.GONE);
         fam_bi_office.setVisibility(showBiBoard ? View.VISIBLE : View.GONE);
-        super.replaceFragment(fragment, addToBackStack, tag, showFeedFab, showBiOfficeFab, showBiBoard);
+        ll_toolbar_container.setVisibility(hideToolbar ? View.GONE : View.VISIBLE);
+        super.replaceFragment(fragment, addToBackStack, tag, showFeedFab, showBiOfficeFab,
+                showBiBoard, hideToolbar);
     }
 
     // ========== Feed float buttons actions =======
@@ -236,23 +241,23 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         switch (item.getItemId()) {
             case R.id.action_main:
                 replaceFragment(fragments.get(ACTION_MAIN), false, null,
-                        false, true, false);
+                        false, true, false, false);
                 return true;
             case R.id.action_board:
                 replaceFragment(fragments.get(ACTION_BOARD), false, null,
-                        false, false, true);
+                        false, false, true, false);
                 return true;
             case R.id.action_feed:
                 replaceFragment(fragments.get(ACTION_FEED), false, null,
-                        true, false, false);
+                        true, false, false, false);
                 return true;
             case R.id.action_stuff:
                 replaceFragment(fragments.get(ACTION_EMPLOYEES), true, null,
-                        false, false, false);
+                        false, false, false, true);
                 return true;
             case R.id.action_menu:
                 replaceFragment(fragments.get(ACTION_MENU), false, null,
-                        false, false, false);
+                        false, false, false, false);
                 return true;
             default:
                 return false;

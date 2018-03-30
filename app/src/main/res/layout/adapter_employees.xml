@@ -13,12 +13,17 @@
         android:paddingRight="@dimen/dp_12"
         android:paddingTop="@dimen/dp_12">
 
-        <bi.bigroup.life.views.RoundedImageView
-            android:id="@+id/img_avatar"
-            android:layout_width="@dimen/dp_40"
-            android:layout_height="@dimen/dp_40"
-            android:src="@color/user_avatar"
-            app:radius_width="@dimen/dp_8"/>
+        <LinearLayout
+            style="@style/WW"
+            android:background="@drawable/ll_avatar_rounded_border">
+
+            <bi.bigroup.life.views.RoundedImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:src="@drawable/ic_user"
+                app:radius_width="@dimen/dp_8"/>
+        </LinearLayout>
 
         <LinearLayout
             style="@style/LL_MW_V"
@@ -57,14 +62,15 @@
 
         <ImageView
             android:id="@+id/img_arrow"
-            style="@style/WW"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
             android:src="@drawable/arrow_up_right"/>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_0_13"
+        android:layout_height="@dimen/dp_0_5_divider"
         android:layout_marginLeft="@dimen/dp_58"
         android:background="@color/divider2"/>
 

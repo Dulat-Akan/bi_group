@@ -16,6 +16,7 @@ import android.widget.ScrollView;
 import java.io.IOException;
 import java.io.InputStream;
 
+import bi.bigroup.life.R;
 import okio.Okio;
 import timber.log.Timber;
 
@@ -47,6 +48,9 @@ public class ContextUtils {
         return dp * scale + 0.5f;
     }
 
+    public static int getSearchViewHeight(Context context) {
+        return (int) context.getResources().getDimension(R.dimen.dp_51);
+    }
 
     public static void showSoftKeyboard(EditText editText) {
         Context context = editText.getContext();

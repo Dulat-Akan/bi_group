@@ -1,12 +1,16 @@
 package bi.bigroup.life.ui.main.employees;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
@@ -20,7 +24,9 @@ import bi.bigroup.life.mvp.main.employees.AllEmployeesPresenter;
 import bi.bigroup.life.mvp.main.employees.AllEmployeesView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
 import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
+import bi.bigroup.life.utils.ContextUtils;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
+import bi.bigroup.life.utils.recycler_view.RecyclerScroll;
 import butterknife.BindView;
 
 import static bi.bigroup.life.utils.ConnectionDetector.isInternetOn;
@@ -31,12 +37,14 @@ import static bi.bigroup.life.views.edittext.EditTextUtils.setCursorColor;
 public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements AllEmployeesView, BottomNavigationTabFragment {
     @InjectPresenter
     AllEmployeesPresenter mvpPresenter;
+    @BindView(R.id.ll_search_container) LinearLayout ll_search_container;
     @BindView(R.id.search_view) SearchView search_view;
     private EmployeesAdapter mAdapter;
     private boolean isBirthdayToday;
 
     private EditText searchEditText;
     private List<Employee> originalEmployeesList;
+    private int searchViewHeight;
 
     public static AllEmployeesFragment newInstance(boolean isBirthdayToday) {
         AllEmployeesFragment fragment = new AllEmployeesFragment();
@@ -57,6 +65,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
         handleIntent();
         originalEmployeesList = new ArrayList<>();
 
+        searchViewHeight = ContextUtils.getSearchViewHeight(getContext());
         configureSearchView();
         configureRecyclerView();
         mvpPresenter.getEmployees(false, false, isBirthdayToday, isInternetOn(getContext()));
@@ -133,6 +142,57 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
                 if (!mAdapter.getLoading() && mAdapter.getItemCount() > 1) {
                     mvpPresenter.getEmployees(true, false, isBirthdayToday, true);
                 }
+            }
+        });
+        recycler_view.addOnScrollListener(new RecyclerScroll() {
+            @Override
+            public void show() {
+                ll_search_container.animate().alpha(1).setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animator) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        ll_search_container.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animator) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animator) {
+
+                    }
+                }).setInterpolator(new DecelerateInterpolator(1)).start();
+            }
+
+            @Override
+            public void hide() {
+                ll_search_container.animate().alpha(0).setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animator) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        ll_search_container.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animator) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animator) {
+
+                    }
+                }).setInterpolator(new AccelerateInterpolator(1)).start();
             }
         });
     }

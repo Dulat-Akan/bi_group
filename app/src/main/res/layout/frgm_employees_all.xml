@@ -9,23 +9,27 @@
         style="@style/LL_MM_V"
         android:background="@color/main_bg">
 
-        <android.support.v7.widget.SearchView
-            android:id="@+id/search_view"
-            style="@style/MW"
-            android:layout_height="@dimen/dp_40"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginRight="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_11"
-            android:background="@drawable/et_selector_searchview"
-            app:iconifiedByDefault="false"
-            app:queryBackground="@android:color/transparent"
-            app:queryHint="@string/search_hint"/>
+        <LinearLayout
+            android:id="@+id/ll_search_container"
+            style="@style/MW">
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/search_view"
+                style="@style/MW"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginRight="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_11"
+                android:background="@drawable/et_selector_searchview"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="@string/search_hint"/>
+        </LinearLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
             style="@style/MM"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginRight="@dimen/dp_15">
+            android:layout_marginLeft="@dimen/dp_15">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
