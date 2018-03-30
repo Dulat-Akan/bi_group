@@ -5,97 +5,107 @@
              android:id="@+id/fl_parent"
              style="@style/MM">
 
-    <LinearLayout
-        android:id="@+id/ll_content"
-        style="@style/LL_MM_V"
-        android:background="@color/main_bg">
+    <ScrollView
+        style="@style/MM">
 
         <LinearLayout
-            android:id="@+id/ll_profile"
-            style="@style/LL_MW_H"
-            android:background="?android:selectableItemBackground"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/dp_16"
-            android:paddingRight="@dimen/dp_12">
-
-            <bi.bigroup.life.views.RoundedImageView
-                android:id="@+id/img_avatar"
-                android:layout_width="@dimen/dp_43"
-                android:layout_height="@dimen/dp_43"
-                android:layout_marginBottom="@dimen/dp_13"
-                android:layout_marginTop="@dimen/dp_13"
-                android:scaleType="centerCrop"
-                android:src="@color/user_avatar"
-                app:radius_width="@dimen/dp_11"/>
-
-            <LinearLayout
-                style="@style/LL_MM_V"
-                android:layout_marginLeft="@dimen/dp_12"
-                android:layout_weight="1"
-                android:gravity="center_vertical">
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoBold
-                    android:id="@+id/tv_name"
-                    style="@style/MW"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_16"
-                    tools:text="User Name"/>
-
-                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                    android:id="@+id/tv_username"
-                    style="@style/MW"
-                    android:textColor="@color/personal"
-                    android:textSize="@dimen/sp_12"
-                    tools:text="Personal"/>
-
-            </LinearLayout>
-
-            <ImageView
-                style="@style/WW"
-                android:src="@drawable/arrow_up_right"/>
-        </LinearLayout>
-
-        <LinearLayout
+            android:id="@+id/ll_content"
             style="@style/LL_MM_V"
             android:background="@color/main_bg">
 
-            <include
-                android:id="@+id/v1"
-                layout="@layout/inc_item_menu"/>
-
-            <include
-                android:id="@+id/v2"
-                layout="@layout/inc_item_menu"/>
-
-            <include
-                android:id="@+id/v3"
-                layout="@layout/inc_item_menu"/>
-
-            <include
-                android:id="@+id/v4"
-                layout="@layout/inc_item_menu"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1"
-                android:layout_marginLeft="@dimen/dp_16"
-                android:layout_marginTop="@dimen/dp_25"
-                android:background="@color/divider"/>
-
-            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                android:id="@+id/tv_logout"
-                style="@style/MW"
-                android:layout_height="@dimen/dp_40"
-                android:paddingLeft="@dimen/dp_16"
-                android:paddingRight="@dimen/dp_12"
-                android:gravity="center_vertical"
-                android:text="@string/logout"
+            <LinearLayout
+                android:id="@+id/ll_profile"
+                style="@style/LL_MW_H"
+                android:layout_marginTop="@dimen/dp_24"
                 android:background="?android:selectableItemBackground"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_14"/>
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_24"
+                android:paddingRight="@dimen/dp_15">
 
+                <bi.bigroup.life.views.RoundedImageView
+                    android:id="@+id/img_avatar"
+                    android:layout_width="@dimen/dp_56"
+                    android:layout_height="@dimen/dp_56"
+                    android:layout_marginBottom="@dimen/dp_13"
+                    android:layout_marginTop="@dimen/dp_13"
+                    android:scaleType="centerCrop"
+                    android:src="@color/user_avatar"
+                    app:radius_width="@dimen/dp_14"/>
+
+                <LinearLayout
+                    style="@style/LL_MM_V"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                        android:id="@+id/tv_name"
+                        style="@style/MW"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_20"
+                        tools:text="User Name"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_username"
+                        style="@style/MW"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:textColor="@color/personal"
+                        android:textSize="@dimen/sp_12"
+                        tools:text="Personal"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/img_arrow"
+                    android:layout_width="@dimen/dp_36"
+                    android:layout_height="@dimen/dp_36"
+                    android:src="@drawable/arrow_up_right"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LL_MM_V"
+                android:background="@color/main_bg">
+
+                <include
+                    android:id="@+id/v1"
+                    layout="@layout/inc_item_menu"/>
+
+                <include
+                    android:id="@+id/v2"
+                    layout="@layout/inc_item_menu"/>
+
+                <include
+                    android:id="@+id/v3"
+                    layout="@layout/inc_item_menu"/>
+
+                <include
+                    android:id="@+id/v4"
+                    layout="@layout/inc_item_menu"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_0_5_divider"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_25"
+                    android:background="@color/divider"/>
+
+                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                    android:id="@+id/tv_logout"
+                    style="@style/MW"
+                    android:background="?android:selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/dp_16"
+                    android:paddingLeft="@dimen/dp_24"
+                    android:paddingRight="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_16"
+                    android:text="@string/logout"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14"/>
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <include
         android:id="@+id/pb_indicator"

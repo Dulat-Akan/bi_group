@@ -10,9 +10,9 @@ import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur;
@@ -69,7 +69,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     private List<Fragment> fragments = new ArrayList<>();
     private Drawable windowBackground;
     @BindView(R.id.v_bottom_navigation) BottomNavigationView v_bottom_navigation;
-    @BindView(R.id.ll_toolbar_container) LinearLayout ll_toolbar_container;
+    @BindView(R.id.cv_toolbar_container) CardView cv_toolbar_container;
     @BindView(R.id.img_avatar) CircleImageView img_avatar;
     @BindView(R.id.blurView) BlurView blurView;
     @BindView(R.id.fam_feed) FloatingActionsMenu fam_feed;
@@ -134,8 +134,8 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
                                    boolean showBiBoard, boolean hideToolbar) {
         fam_feed.setVisibility(showFeedFab ? View.VISIBLE : View.GONE);
         fam_bi_office.setVisibility(showBiOfficeFab ? View.VISIBLE : View.GONE);
-        fam_bi_office.setVisibility(showBiBoard ? View.VISIBLE : View.GONE);
-        ll_toolbar_container.setVisibility(hideToolbar ? View.GONE : View.VISIBLE);
+        fam_bi_board.setVisibility(showBiBoard ? View.VISIBLE : View.GONE);
+        cv_toolbar_container.setVisibility(hideToolbar ? View.GONE : View.VISIBLE);
         super.replaceFragment(fragment, addToBackStack, tag, showFeedFab, showBiOfficeFab,
                 showBiBoard, hideToolbar);
     }

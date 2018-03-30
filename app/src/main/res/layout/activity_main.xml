@@ -13,13 +13,8 @@
             android:layout_marginBottom="@dimen/dp_55"
             android:fitsSystemWindows="true">
 
-            <LinearLayout
-                android:id="@+id/ll_toolbar_container"
-                style="@style/MW">
-
-                <include
-                    layout="@layout/mrg_toolbar"/>
-            </LinearLayout>
+            <include
+                layout="@layout/mrg_toolbar"/>
 
             <FrameLayout
                 android:id="@+id/fragment_container"

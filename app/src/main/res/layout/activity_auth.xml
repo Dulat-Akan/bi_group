@@ -2,6 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:id="@+id/fl_parent"
     style="@style/MM"
     android:background="@color/white"
@@ -14,8 +15,9 @@
         <android.support.v7.widget.CardView
             style="@style/MW"
             android:elevation="@dimen/dp_7"
-            app:cardCornerRadius="@dimen/dp_0"
-            app:cardElevation="@dimen/dp_7">
+            card_view:cardCornerRadius="@dimen/dp_0"
+            card_view:cardElevation="@dimen/dp_7"
+            card_view:cardUseCompatPadding="true">
 
             <LinearLayout
                 style="@style/MW"
