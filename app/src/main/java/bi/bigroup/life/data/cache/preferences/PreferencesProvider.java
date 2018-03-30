@@ -10,6 +10,7 @@ import bi.bigroup.life.data.models.user.User;
 
 import static android.text.TextUtils.isEmpty;
 import static bi.bigroup.life.utils.Constants.CACHE_TIME;
+import static bi.bigroup.life.utils.Constants.KEY_ROLES;
 import static bi.bigroup.life.utils.Constants.KEY_TOKEN;
 import static bi.bigroup.life.utils.Constants.KEY_USER;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
@@ -47,6 +48,18 @@ public class PreferencesProvider implements Preferences {
     @Override
     public String getToken() {
         return sharedPreferences.getString(KEY_TOKEN, EMPTY_STR);
+    }
+
+    @Override
+    public void setRoles(String roles) {
+        synchronized (sharedPreferences) {
+            sharedPreferences.edit().putString(KEY_ROLES, roles).apply();
+        }
+    }
+
+    @Override
+    public String getRoles() {
+        return sharedPreferences.getString(KEY_ROLES, EMPTY_STR);
     }
 
     /****** Gradient colors *******/

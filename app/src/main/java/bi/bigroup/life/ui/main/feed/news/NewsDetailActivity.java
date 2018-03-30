@@ -163,7 +163,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
             PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(object.getAuthorCode()), R.drawable.ic_user);
             tv_subhead_top.setText(filter_news);
             tv_title.setText(object.getTitle());
-            tv_time.setText(object.getDate(context));
+            tv_time.setText(object.getDate());
             tv_username.setText(object.getAuthorName());
             // TODO add images list
             adapter.addImages(Collections.singletonList(object.getImageUrl()));

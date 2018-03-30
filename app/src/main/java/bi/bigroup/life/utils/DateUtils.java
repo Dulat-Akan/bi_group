@@ -124,6 +124,18 @@ public class DateUtils {
         return cal;
     }
 
+    public static String getNewsDate(String origDateStr) {
+        if (isStringOk(origDateStr)) {
+            try {
+                Date origDate = FEED_DATE_FORMAT.parse(origDateStr);
+                return TASKS_SERVICES_DISPLAY_FORMAT.format(origDate).toLowerCase();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return EMPTY_STR;
+    }
+
     public static String getDisplayableTime(String origDateStr, Context context) {
         if (origDateStr.length() > 0) {
             try {

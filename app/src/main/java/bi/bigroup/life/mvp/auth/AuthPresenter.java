@@ -4,12 +4,13 @@ import android.content.Context;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import java.util.List;
+
 import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import bi.bigroup.life.data.repository.auth.AuthRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
-import bi.bigroup.life.utils.LOTimber;
 import rx.Subscriber;
 
 import static bi.bigroup.life.utils.StringUtils.isStringOk;
@@ -57,7 +58,6 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
 
                     @Override
                     public void onError(Throwable e) {
-                        LOTimber.d("asdklasjdla::" + e.toString());
                         handleResponseError(context, e);
                     }
 
@@ -66,6 +66,14 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
                         if (auth != null) {
                             if (isStringOk(auth.token)) {
                                 preferences.setToken(auth.token);
+                                List<String> roles = auth.roles;
+                                if (roles != null && roles.size() > 0) {
+                                    StringBuilder sb = new StringBuilder();
+                                    for (int i = 0; i < roles.size(); i++) {
+                                        sb.append(roles.get(i)).append(",");
+                                    }
+                                    preferences.setRoles(sb.toString());
+                                }
                                 getViewState().onAuthorizationSuccess();
                             }
                         }

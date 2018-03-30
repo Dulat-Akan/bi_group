@@ -4,14 +4,14 @@
     <item
         android:id="@+id/action_main"
         android:enabled="true"
-        android:icon="@drawable/tab_selector_main"
+        android:icon="@drawable/tab_selector_board"
         android:title="@null"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/action_board"
         android:enabled="true"
-        android:icon="@drawable/tab_selector_board"
+        android:icon="@drawable/tab_selector_main"
         android:title="@null"
         app:showAsAction="always"/>
 

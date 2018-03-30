@@ -2,10 +2,9 @@ package bi.bigroup.life.data.models.feed;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.content.Context;
 import android.support.annotation.NonNull;
 
-import static bi.bigroup.life.utils.DateUtils.getDisplayableTime;
+import static bi.bigroup.life.utils.DateUtils.getNewsDate;
 import static bi.bigroup.life.utils.StringUtils.getOkInt;
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
@@ -85,8 +84,8 @@ public class Feed {
         return getOkInt(sum);
     }
 
-    public String getDate(Context context) {
-        return getDisplayableTime(createDate, context);
+    public String getDate() {
+        return getNewsDate(createDate);
     }
 
     public class ImageSize {

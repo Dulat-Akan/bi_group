@@ -205,7 +205,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
             PicassoUtils.showNewsImage(picasso, img_slider, feed.getImageUrl());
 
             tv_content.setText(feed.title);
-            tv_time.setText(feed.getDate(context));
+            tv_time.setText(feed.getDate());
             tv_username.setText(feed.authorName);
 
             tv_like_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.likesQuantity)));
@@ -267,7 +267,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
                 return;
             }
             tv_content.setText(feed.title);
-            tv_time.setText(feed.getDate(context));
+            tv_time.setText(feed.getDate());
             tv_username.setText(feed.authorName);
 
             tv_like_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.likesQuantity)));
@@ -357,7 +357,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
                 return;
             }
             tv_content.setText(feed.title);
-            tv_time.setText(feed.getDate(context));
+            tv_time.setText(feed.getDate());
             tv_username.setText(feed.authorName);
 
             tv_like_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.likesQuantity)));

@@ -20,6 +20,7 @@ import bi.bigroup.life.utils.EmailUtils;
 import bi.bigroup.life.utils.animation.AvatarAnimation;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -42,6 +43,7 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     @BindView(R.id.tv_email) TextView tv_email;
     @BindView(R.id.img_expanded) ImageView img_expanded;
     @BindView(R.id.user_photo_container) RelativeLayout user_photo_container;
+    @BindString(R.string.no_data) String noData;
 
     private AvatarAnimation avatarAnimation;
     private String code;
@@ -77,8 +79,10 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
 
     @Override
     public void onBackPressed() {
-        if (img_expanded.getVisibility() == View.VISIBLE) {
-            avatarAnimation.closeImage();
+        if (user_photo_container.getVisibility() == View.VISIBLE) {
+            if (avatarAnimation != null) {
+                avatarAnimation.closeImage();
+            }
         } else {
             super.onBackPressed();
         }
@@ -137,11 +141,13 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
         PicassoUtils.showAvatar(dataLayer.getPicasso(), img_expanded, getProfilePicture(code), R.color.transparent);
         tv_surname.setText(employee.getFullName());
         tv_firstname.setText(employee.getFirstName());
-        tv_specialty.setText(employee.getJobPosition());
-        tv_administrative_manager.setText(employee.getAdministrativeChiefName());
-        tv_functional_manager.setText(employee.getFunctionalChiefName());
-        tv_phone.setText(employee.getWorkPhoneNumber());
-        tv_dob.setText(employee.getBirthDate(this));
-        tv_email.setText(employee.getEmail());
+        tv_specialty.setText(isStringOk(employee.getJobPosition()) ? employee.getJobPosition() : noData);
+        tv_administrative_manager.setText(isStringOk(employee.getAdministrativeChiefName())
+                ? employee.getAdministrativeChiefName() : noData);
+        tv_functional_manager.setText(isStringOk(employee.getFunctionalChiefName()) ? employee.getFunctionalChiefName()
+                : noData);
+        tv_phone.setText(isStringOk(employee.getWorkPhoneNumber()) ? employee.getWorkPhoneNumber() : noData);
+        tv_dob.setText(isStringOk(employee.getBirthDate(this)) ? employee.getBirthDate(this) : noData);
+        tv_email.setText(isStringOk(employee.getEmail()) ? employee.getEmail() : noData);
     }
 }

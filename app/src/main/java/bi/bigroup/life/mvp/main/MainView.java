@@ -6,4 +6,6 @@ import bi.bigroup.life.mvp.BaseMvpView;
 public interface MainView extends BaseMvpView {
 
     void showUserInfo(User localUser);
+
+    void configureRolePR(boolean isRolePR);
 }

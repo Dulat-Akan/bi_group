@@ -76,7 +76,7 @@ public class ProfileActivity extends BaseFragmentActivity implements ProfileView
 
     @OnClick(R.id.img_full_close)
     void onCloseImage() {
-        if (img_expanded.getVisibility() == View.VISIBLE) {
+        if (user_photo_container.getVisibility() == View.VISIBLE) {
             if (avatarAnimation != null)
                 avatarAnimation.closeImage();
         }

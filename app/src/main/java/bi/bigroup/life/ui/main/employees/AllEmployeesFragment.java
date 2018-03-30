@@ -139,7 +139,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
         recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view) {
             @Override
             public void onRequestMoreItems() {
-                if (!mAdapter.getLoading() && mAdapter.getItemCount() > 1) {
+                if (!mAdapter.getLoading() && mAdapter.getItemCount() > 1 && searchEditText.getText().toString().length() == 0) {
                     mvpPresenter.getEmployees(true, false, isBirthdayToday, true);
                 }
             }

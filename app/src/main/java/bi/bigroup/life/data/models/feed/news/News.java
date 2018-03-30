@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import static bi.bigroup.life.utils.DateUtils.getDisplayableTime;
+import static bi.bigroup.life.utils.DateUtils.getNewsDate;
 import static bi.bigroup.life.utils.StringUtils.getOkInt;
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
@@ -53,8 +54,8 @@ public class News {
         return replaceNull(imageUrl);
     }
 
-    public String getDate(Context context) {
-        return getDisplayableTime(createDate, context);
+    public String getDate() {
+        return getNewsDate(createDate);
     }
 
     public List<Comment> getComments() {

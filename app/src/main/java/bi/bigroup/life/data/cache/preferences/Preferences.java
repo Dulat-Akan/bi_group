@@ -9,6 +9,10 @@ public interface Preferences {
 
     String getToken();
 
+    void setRoles(String roles);
+
+    String getRoles();
+
     void setGradientCacheTime(long time);
 
     long getGradientCacheTime();
@@ -16,5 +20,4 @@ public interface Preferences {
     void setUser(User user);
 
     User getUser();
-
 }

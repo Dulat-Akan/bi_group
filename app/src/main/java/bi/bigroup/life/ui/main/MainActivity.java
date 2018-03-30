@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.cache.preferences.Preferences;
 import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.mvp.main.MainPresenter;
 import bi.bigroup.life.mvp.main.MainView;
@@ -68,6 +69,8 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     private static final int ACTION_MENU = 4;
     private List<Fragment> fragments = new ArrayList<>();
     private Drawable windowBackground;
+    private Preferences preferences;
+
     @BindView(R.id.v_bottom_navigation) BottomNavigationView v_bottom_navigation;
     @BindView(R.id.cv_toolbar_container) CardView cv_toolbar_container;
     @BindView(R.id.img_avatar) CircleImageView img_avatar;
@@ -75,6 +78,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @BindView(R.id.fam_feed) FloatingActionsMenu fam_feed;
     @BindView(R.id.fam_bi_office) FloatingActionsMenu fam_bi_office;
     @BindView(R.id.fam_bi_board) FloatingActionsMenu fam_bi_board;
+    private boolean isRolePR;
 
     @Override
     protected int getLayoutResourceId() {
@@ -85,6 +89,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mvpPresenter.init(this, dataLayer);
+        preferences = dataLayer.getPreferences();
 
         initBottomNavigationView();
         initFragments();
@@ -132,7 +137,13 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     protected void replaceFragment(Fragment fragment, boolean addToBackStack, String tag,
                                    boolean showFeedFab, boolean showBiOfficeFab,
                                    boolean showBiBoard, boolean hideToolbar) {
-        fam_feed.setVisibility(showFeedFab ? View.VISIBLE : View.GONE);
+
+        if (isRolePR) {
+            fam_feed.setVisibility(showFeedFab ? View.VISIBLE : View.GONE);
+        } else {
+            fam_feed.setVisibility(View.GONE);
+        }
+
         fam_bi_office.setVisibility(showBiOfficeFab ? View.VISIBLE : View.GONE);
         fam_bi_board.setVisibility(showBiBoard ? View.VISIBLE : View.GONE);
         cv_toolbar_container.setVisibility(hideToolbar ? View.GONE : View.VISIBLE);
@@ -271,6 +282,12 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @Override
     public void showUserInfo(User localUser) {
         PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(localUser.getCode()), R.drawable.ic_user);
+    }
+
+    @Override
+    public void configureRolePR(boolean isRolePR) {
+        this.isRolePR = isRolePR;
+        fam_feed.setVisibility(isRolePR ? View.VISIBLE : View.GONE);
     }
 
     ///////////////////////////////////////////////////////////////////////////
