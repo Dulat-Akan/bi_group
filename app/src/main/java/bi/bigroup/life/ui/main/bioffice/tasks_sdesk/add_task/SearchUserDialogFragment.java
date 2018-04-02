@@ -104,6 +104,11 @@ public class SearchUserDialogFragment extends BaseDialogFragment implements Sear
                     dismiss();
                 }
             }
+
+            @Override
+            public void onDobCongratsClick(String code) {
+
+            }
         });
         recycler_view.setAdapter(mAdapter);
     }

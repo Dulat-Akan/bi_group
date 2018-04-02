@@ -60,12 +60,12 @@
     <string name="label_yesterday">вчера</string>
 
     <!-- AuthActivity -->
-    <string name="enter_username">Введите логин</string>
-    <string name="enter_pwd">Введите пароль</string>
+    <string name="enter_username">Логин AD (с которым входите в ваш компьютер)</string>
+    <string name="enter_pwd">Пароль AD (с которым входите в компьютер)</string>
     <string name="label_login">Войти</string>
     <string name="forgot_your_data">Забыли свои данные для входа?</string>
     <string name="help">Помощь</string>
-    <string name="help_description">Для смены пароля позвонить в Service desk: 8 (7172) 918989</string>
+    <string name="help_description">Пароль необходимо сменить с вашего компьютера, нажав на ctrl+alt+delete и выбрав \"Сменить пароль\". Для подробной информации просим связаться с операторами Service desk по номеру 8 (7172)91-89-89.</string>
     <string name="copyright">BI Group %s</string>
 
     <!-- ForgotPwdActivity -->
@@ -128,6 +128,7 @@
     <string name="employees_vacancies">Вакансии</string>
     <string name="search_hint">Поиск</string>
     <string name="employees">Сотрудники</string>
+    <string name="dob_congrats_msg">Поздравительное письмо</string>
 
     <!-- NotificationsActivity -->
     <string name="notifications">Уведомления</string>
@@ -159,7 +160,7 @@
     <string name="label_working">Трудовая деятельность</string>
     <string name="label_experience">Общий стаж</string>
     <string name="label_coorporative_experience">Корпоративный стаж</string>
-    <string name="developing_stage">Все еще находятся на стадии разработки</string>
+    <string name="developing_stage">Данный раздел в разработке. Приносим свои извинения за предоставленные неудобства. 🤗</string>
     <string name="label_medical">Медосмотр</string>
     <string name="last_medical">Последнее прохождение</string>
     <string name="closest_medical">Ближайшие</string>

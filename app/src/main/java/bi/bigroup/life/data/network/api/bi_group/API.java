@@ -21,6 +21,7 @@ import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
 import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.data.params.auth.AuthParams;
+import bi.bigroup.life.data.params.employees.DobCongrats;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
@@ -154,6 +155,9 @@ public interface API {
 
     @GET("employees/{code}")
     Observable<Employee> getEmployee(@Path("code") String code);
+
+    @POST("employees/{employeeCode}/congratulations")
+    Observable<ResponseBody> sendCongrats(@Path("employeeCode") String employeeCode, @Body DobCongrats params);
 
     /****** Tasks & Service (Request) *******/
     @GET("tasks/outbox/")

@@ -56,8 +56,9 @@
 
         <ImageView
             android:id="@+id/img_rounded"
-            android:layout_width="@dimen/dp_23"
-            android:layout_height="@dimen/dp_23"
+            android:layout_width="@dimen/dp_33"
+            android:layout_height="@dimen/dp_33"
+            android:padding="@dimen/dp_3"
             android:src="@drawable/ic_bd_active"/>
 
         <ImageView

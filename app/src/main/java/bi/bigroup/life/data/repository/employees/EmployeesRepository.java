@@ -6,6 +6,8 @@ import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.network.api.bi_group.API;
+import bi.bigroup.life.data.params.employees.DobCongrats;
+import okhttp3.ResponseBody;
 import rx.Observable;
 
 public interface EmployeesRepository {
@@ -21,4 +23,6 @@ public interface EmployeesRepository {
     Observable<List<Vacancy>> getVacancies();
 
     Observable<Employee> getEmployee(String code);
+
+    Observable<ResponseBody> sendCongrats(String code, DobCongrats params);
 }

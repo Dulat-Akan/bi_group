@@ -182,11 +182,18 @@ public class EmployeesAdapter extends RecyclerViewBaseAdapter {
                 callback.onItemClick(bindedObject.getCode());
             }
         }
+
+        @OnClick(R.id.img_rounded)
+        void onDobCongratsClick() {
+            callback.onDobCongratsClick(bindedObject.getCode());
+        }
     }
 
     public interface Callback {
         void onItemClick(String code);
 
         void onUserClick(Employee employee);
+
+        void onDobCongratsClick(String code);
     }
 }

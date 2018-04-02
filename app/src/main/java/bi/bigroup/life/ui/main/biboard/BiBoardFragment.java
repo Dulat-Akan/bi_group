@@ -77,7 +77,7 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
 
         footer.findViewById(R.id.ll_open_top_question)
                 .setOnClickListener(view -> startActivity(TopQuestionsActivity.getIntent(getContext())));
-        lv_board.addFooterView(footer, null, false);
+//        lv_board.addFooterView(footer, null, false);
 
         // ========== Add header ==============
         ViewGroup header = (ViewGroup) inflater.inflate(R.layout.adapter_biboard_header, lv_board, false);

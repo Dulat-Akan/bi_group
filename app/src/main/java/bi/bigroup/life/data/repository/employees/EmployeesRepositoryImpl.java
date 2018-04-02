@@ -6,6 +6,8 @@ import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.employees.Employee;
 import bi.bigroup.life.data.models.employees.Vacancy;
 import bi.bigroup.life.data.network.api.bi_group.API;
+import bi.bigroup.life.data.params.employees.DobCongrats;
+import okhttp3.ResponseBody;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -55,6 +57,14 @@ class EmployeesRepositoryImpl implements EmployeesRepository {
     public Observable<Employee> getEmployee(String code) {
         return api
                 .getEmployee(code)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<ResponseBody> sendCongrats(String code, DobCongrats params) {
+        return api
+                .sendCongrats(code, params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

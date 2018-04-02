@@ -27,6 +27,7 @@ import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
 import bi.bigroup.life.utils.ContextUtils;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 import bi.bigroup.life.utils.recycler_view.RecyclerScroll;
+import bi.bigroup.life.views.dialogs.CommonDialog;
 import butterknife.BindView;
 
 import static bi.bigroup.life.utils.ConnectionDetector.isInternetOn;
@@ -45,6 +46,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
     private EditText searchEditText;
     private List<Employee> originalEmployeesList;
     private int searchViewHeight;
+    private CommonDialog commonDialog;
 
     public static AllEmployeesFragment newInstance(boolean isBirthdayToday) {
         AllEmployeesFragment fragment = new AllEmployeesFragment();
@@ -64,7 +66,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
         mvpPresenter.init(getContext(), dataLayer);
         handleIntent();
         originalEmployeesList = new ArrayList<>();
-
+        commonDialog = new CommonDialog(getContext());
         searchViewHeight = ContextUtils.getSearchViewHeight(getContext());
         configureSearchView();
         configureRecyclerView();
@@ -133,6 +135,12 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
             @Override
             public void onUserClick(Employee employee) {
 
+            }
+
+            @Override
+            public void onDobCongratsClick(String code) {
+                commonDialog.showEnterText();
+                commonDialog.setCallback(content -> mvpPresenter.sendCongrats(code, content));
             }
         });
         recycler_view.setAdapter(mAdapter);

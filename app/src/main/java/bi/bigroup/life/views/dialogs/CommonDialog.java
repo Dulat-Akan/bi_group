@@ -8,12 +8,15 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.rengwuxian.materialedittext.MaterialEditText;
+
 import bi.bigroup.life.R;
 
 public class CommonDialog {
     private Context context;
     private CallbackYesNo callbackYesNo;
     private CallbackDouble callDoubleButtons;
+    private CallbackEnterMsgBtn callbackEnterMsgBtn;
 
     public CommonDialog(Context context) {
         this.context = context;
@@ -25,6 +28,10 @@ public class CommonDialog {
 
     public void setCallDoubleButtons(CallbackDouble callDoubleButtons) {
         this.callDoubleButtons = callDoubleButtons;
+    }
+
+    public void setCallback(CallbackEnterMsgBtn callbackEnterMsgBtn) {
+        this.callbackEnterMsgBtn = callbackEnterMsgBtn;
     }
 
     public void showDialogYesNo(String title) {
@@ -80,6 +87,26 @@ public class CommonDialog {
         dialog.show();
     }
 
+    public void showEnterText() {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialog_enter_text);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        final MaterialEditText et_msg = dialog.findViewById(R.id.et_msg);
+        final Button btn_send_comment = dialog.findViewById(R.id.btn_send_comment);
+        View.OnClickListener clickListener = v -> {
+            if (callbackEnterMsgBtn != null) {
+                if (v.equals(btn_send_comment)) {
+                    callbackEnterMsgBtn.onClickAction(et_msg.getText().toString());
+                    dialog.dismiss();
+                }
+            }
+        };
+        btn_send_comment.setOnClickListener(clickListener);
+        dialog.show();
+    }
+
 //    public void showDatePickerDialog(boolean isEndDate) {
 //        final Dialog dialog = new Dialog(context);
 //        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -131,5 +158,9 @@ public class CommonDialog {
         void onClickFirst();
 
         void onClickSecond();
+    }
+
+    public interface CallbackEnterMsgBtn {
+        void onClickAction(String content);
     }
 }

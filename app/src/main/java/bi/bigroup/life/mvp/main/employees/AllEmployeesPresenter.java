@@ -9,12 +9,15 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import bi.bigroup.life.R;
 import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.cache.db.EmployeeDao;
 import bi.bigroup.life.data.models.ListOf;
 import bi.bigroup.life.data.models.employees.Employee;
+import bi.bigroup.life.data.params.employees.DobCongrats;
 import bi.bigroup.life.data.repository.employees.EmployeesRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
+import okhttp3.ResponseBody;
 import rx.Subscriber;
 import rx.Subscription;
 
@@ -164,5 +167,31 @@ public class AllEmployeesPresenter extends BaseMvpPresenter<AllEmployeesView> {
             }
         }
         return filteredModelList;
+    }
+
+    public void sendCongrats(String code, String content) {
+        Subscription subscription = EmployeesRepositoryProvider.provideRepository(dataLayer.getApi())
+                .sendCongrats(code, new DobCongrats(content))
+                .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
+                .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
+                .subscribe(new Subscriber<ResponseBody>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        if (responseBody != null) {
+                            getViewState().showRequestSuccess(R.string.success_response);
+                        }
+                    }
+                });
+        compositeSubscription.add(subscription);
     }
 }
