@@ -5,7 +5,6 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -16,6 +15,7 @@ import java.util.List;
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
+import bi.bigroup.life.views.RoundedImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -73,7 +73,7 @@ public class HotBoardViewPager extends PagerAdapter {
     class ViewHolder {
         Context context;
         News bindedObject;
-        @BindView(R.id.img_slider) ImageView img_slider;
+        @BindView(R.id.img_slider) RoundedImageView img_slider;
         @BindView(R.id.tv_title) TextView tv_title;
 
         ViewHolder(View view) {

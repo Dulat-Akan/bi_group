@@ -17,7 +17,6 @@ import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.biboard.BiBoard;
-import bi.bigroup.life.data.models.bioffice.BiOffice;
 import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
 import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
 import bi.bigroup.life.utils.LOTimber;
@@ -218,7 +217,6 @@ public class BiBoardAdapter extends BaseAdapter {
     }
 
     public interface Callback {
-        void onItemClick(BiOffice biOffice);
 
         void openEmployeePage(String code);
 

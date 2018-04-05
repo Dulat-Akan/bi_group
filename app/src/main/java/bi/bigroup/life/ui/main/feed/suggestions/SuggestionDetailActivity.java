@@ -124,7 +124,7 @@ public class SuggestionDetailActivity extends BaseActivity implements Suggestion
 
     @Override
     public void onBackPressed() {
-        if (img_expanded.getVisibility() == View.VISIBLE) {
+        if (user_photo_container.getVisibility() == View.VISIBLE) {
             if (avatarAnimation != null)
                 avatarAnimation.closeImage();
         } else {

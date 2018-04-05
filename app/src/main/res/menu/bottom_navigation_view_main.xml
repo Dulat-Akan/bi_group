@@ -8,12 +8,12 @@
         android:title="@null"
         app:showAsAction="always"/>
 
-    <item
-        android:id="@+id/action_board"
-        android:enabled="true"
-        android:icon="@drawable/tab_selector_main"
-        android:title="@null"
-        app:showAsAction="always"/>
+    <!--<item-->
+        <!--android:id="@+id/action_board"-->
+        <!--android:enabled="true"-->
+        <!--android:icon="@drawable/tab_selector_main"-->
+        <!--android:title="@null"-->
+        <!--app:showAsAction="always"/>-->
 
     <item
         android:id="@+id/action_feed"

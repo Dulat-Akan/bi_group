@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:paddingRight="@dimen/dp_10"
+    android:paddingLeft="@dimen/dp_10"
     style="@style/MW">
 
-    <ImageView
+    <bi.bigroup.life.views.RoundedImageView
         android:id="@+id/img_slider"
         style="@style/MM"
         android:scaleType="centerCrop"
-        android:src="@drawable/temp_img"/>
+        android:src="@drawable/temp_img"
+        app:radius_width="@dimen/dp_12"/>
 
     <bi.bigroup.life.views.fonts.TextViewRobotoMedium
         android:id="@+id/tv_subhead_top"
@@ -30,7 +34,7 @@
         android:id="@+id/tv_title"
         style="@style/MW"
         android:layout_alignParentBottom="true"
-        android:background="@color/black_transparent"
+        android:background="@drawable/tv_selector_transparent"
         android:paddingBottom="@dimen/dp_18"
         android:paddingLeft="@dimen/dp_18"
         android:paddingRight="@dimen/dp_18"

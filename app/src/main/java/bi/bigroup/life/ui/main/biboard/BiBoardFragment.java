@@ -18,7 +18,6 @@ import java.util.List;
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.biboard.BiBoard;
 import bi.bigroup.life.data.models.biboard.top_questions.TopQuestions;
-import bi.bigroup.life.data.models.bioffice.BiOffice;
 import bi.bigroup.life.data.models.feed.news.News;
 import bi.bigroup.life.mvp.main.biboard.BiBoardPresenter;
 import bi.bigroup.life.mvp.main.biboard.BiBoardView;
@@ -67,6 +66,7 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
 
     private void configureListView() {
         // ========== Add footer ==============
+        assert getContext() != null;
         LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
         ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.adapter_biboard_footer, lv_board, false);
         RecyclerView recycler_view = footer.findViewById(R.id.recycler_view);
@@ -85,11 +85,6 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
         lv_board.addHeaderView(header, null, false);
         biBoardAdapter = new BiBoardAdapter(getContext());
         biBoardAdapter.setCallback(new BiBoardAdapter.Callback() {
-            @Override
-            public void onItemClick(BiOffice biOffice) {
-
-            }
-
             @Override
             public void openEmployeePage(String code) {
                 startActivity(EmployeePageActivity.getIntent(getContext(), code));
@@ -139,14 +134,7 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
         top7Adapter.addList(list);
     }
 }
-/*
-    @OnClick(R.id.btn_new_publication)
-    void onNewPublication() {
-        startActivity(PublicationActivity.getIntent(getContext()));
-    }
-
-    @OnClick(R.id.btn_new_sdesk)
-    void onNewSdesk() {
-        startActivity(AddSdeskActivity.getIntent(getContext()));
-    }
-*/
+//    @OnClick(R.id.btn_new_publication)
+//    void onNewPublication() {
+//        startActivity(PublicationActivity.getIntent(getContext()));
+//    }

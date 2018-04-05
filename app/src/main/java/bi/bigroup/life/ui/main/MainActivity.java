@@ -24,12 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.data.cache.preferences.Preferences;
 import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.mvp.main.MainPresenter;
 import bi.bigroup.life.mvp.main.MainView;
 import bi.bigroup.life.ui.base.BaseFragmentActivity;
-import bi.bigroup.life.ui.main.biboard.BiBoardFragment;
 import bi.bigroup.life.ui.main.bioffice.BiOfficeFragment;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_task.AddTaskActivity;
@@ -64,13 +62,12 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     MainPresenter mvpPresenter;
 
     private static final int ACTION_MAIN = 0;
-    private static final int ACTION_BOARD = 1;
-    private static final int ACTION_FEED = 2;
-    private static final int ACTION_EMPLOYEES = 3;
-    private static final int ACTION_MENU = 4;
+//    private static final int ACTION_BOARD = 1;
+    private static final int ACTION_FEED = 1;
+    private static final int ACTION_EMPLOYEES = 2;
+    private static final int ACTION_MENU = 3;
     private List<Fragment> fragments = new ArrayList<>();
     private Drawable windowBackground;
-    private Preferences preferences;
 
     @BindView(R.id.v_bottom_navigation) BottomNavigationView v_bottom_navigation;
     @BindView(R.id.cv_toolbar_container) CardView cv_toolbar_container;
@@ -91,7 +88,6 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mvpPresenter.init(this, dataLayer);
-        preferences = dataLayer.getPreferences();
 
         initBottomNavigationView();
         initFragments();
@@ -209,7 +205,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
 
     private void initFragments() {
         fragments.add(ACTION_MAIN, BiOfficeFragment.newInstance());
-        fragments.add(ACTION_BOARD, BiBoardFragment.newInstance());
+//        fragments.add(ACTION_BOARD, BiBoardFragment.newInstance());
         fragments.add(ACTION_FEED, FeedFragment.newInstance());
         fragments.add(ACTION_EMPLOYEES, EmployeesFragment.newInstance());
         fragments.add(ACTION_MENU, MenuFragment.newInstance());
@@ -256,10 +252,10 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
                 replaceFragment(fragments.get(ACTION_MAIN), false, null,
                         false, true, false, false);
                 return true;
-            case R.id.action_board:
-                replaceFragment(fragments.get(ACTION_BOARD), false, null,
-                        false, false, true, false);
-                return true;
+//            case R.id.action_board:
+//                replaceFragment(fragments.get(ACTION_BOARD), false, null,
+//                        false, false, true, false);
+//                return true;
             case R.id.action_feed:
                 replaceFragment(fragments.get(ACTION_FEED), false, null,
                         true, false, false, false);
