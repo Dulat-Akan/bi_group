@@ -17,17 +17,25 @@ import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ViewPagerImage extends PagerAdapter {
     private Context context;
     private Picasso picasso;
+    private ImageView img_expanded;
+    private Callback callback;
 
     private List<String> sliders = new ArrayList<>();
     private Feed.ImageSize imageSize;
 
-    public ViewPagerImage(Context context, Picasso picasso) {
+    public ViewPagerImage(Context context, Picasso picasso, ImageView img_expanded) {
         this.context = context;
         this.picasso = picasso;
+        this.img_expanded = img_expanded;
+    }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
     }
 
     public void setImageSize(Feed.ImageSize imageSize) {
@@ -78,8 +86,20 @@ public class ViewPagerImage extends PagerAdapter {
         }
 
         void bindNews(String sliderImg) {
+            PicassoUtils.showAvatar(picasso, img_expanded, sliderImg, R.color.transparent);
             PicassoUtils.showNewsImage(picasso, img_slider, sliderImg);
         }
+
+        @OnClick(R.id.img_slider)
+        void onImageClick() {
+            if (callback != null) {
+                callback.onImageClick();
+            }
+        }
+    }
+
+    public interface Callback {
+        void onImageClick();
     }
 }
 

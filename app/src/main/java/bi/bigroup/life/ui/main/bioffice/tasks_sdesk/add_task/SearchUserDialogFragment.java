@@ -106,7 +106,7 @@ public class SearchUserDialogFragment extends BaseDialogFragment implements Sear
             }
 
             @Override
-            public void onDobCongratsClick(String code) {
+            public void onDobCongratsClick(Employee employee) {
 
             }
         });

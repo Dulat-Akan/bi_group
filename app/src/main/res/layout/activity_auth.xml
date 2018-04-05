@@ -50,7 +50,6 @@
                     style="@style/et_auth"
                     android:layout_marginTop="@dimen/dp_40"
                     android:inputType="text"
-                    android:maxLength="12"
                     android:textColorHint="@color/et_hint_secondary"/>
             </android.support.design.widget.TextInputLayout>
 

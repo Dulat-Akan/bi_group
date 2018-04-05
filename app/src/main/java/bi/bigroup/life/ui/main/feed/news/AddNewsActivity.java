@@ -18,11 +18,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.bumptech.glide.Glide;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ import bi.bigroup.life.mvp.main.feed.news.AddNewsPresenter;
 import bi.bigroup.life.mvp.main.feed.news.AddNewsView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import bi.bigroup.life.utils.ToastUtils;
+import bi.bigroup.life.views.RoundedImageView;
 import bi.bigroup.life.views.dialogs.CommonDialog;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -63,6 +66,7 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
     @BindView(R.id.et_content) MaterialEditText et_content;
     @BindView(R.id.et_tags) AutoCompleteTextView et_tags;
     @BindView(R.id.cb_popular_event) CheckBox cb_popular_event;
+    @BindView(R.id.img_cover) RoundedImageView img_cover;
 
     @BindView(R.id.tags_layout) TagFlowLayout tags_layout;
     private TagAdapter<Tags> selectedTagsAdapter;
@@ -186,6 +190,10 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
             if (isSingleImage) {
                 if (images.size() > 0) {
                     imageSingle = images.get(0);
+                    Uri uri = Uri.fromFile(new File(imageSingle.path));
+                    Glide.with(this).load(uri)
+                            .centerCrop()
+                            .into(img_cover);
                 }
             } else {
                 imagesMultiple = new ArrayList<>(images);

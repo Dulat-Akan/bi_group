@@ -12,6 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -28,6 +29,7 @@ import bi.bigroup.life.mvp.main.feed.suggestion.SuggestionDetailView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import bi.bigroup.life.ui.main.feed.ViewPagerImage;
 import bi.bigroup.life.ui.main.feed.news.CommentsAdapter;
+import bi.bigroup.life.utils.animation.AvatarAnimation;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
@@ -51,6 +53,10 @@ public class SuggestionDetailActivity extends BaseActivity implements Suggestion
     @BindView(R.id.lv_detail) ListView lv_detail;
     @BindView(R.id.pb_indicator_transparent) ViewGroup pb_indicator_transparent;
     @BindView(R.id.et_content) MaterialEditText et_content;
+    @BindView(R.id.img_expanded) ImageView img_expanded;
+    @BindView(R.id.user_photo_container) RelativeLayout user_photo_container;
+    private AvatarAnimation avatarAnimation;
+
     private CommentsAdapter adapter;
     private ViewHeader headerHolder;
     private String id;
@@ -108,6 +114,24 @@ public class SuggestionDetailActivity extends BaseActivity implements Suggestion
         mvpPresenter.onDestroyView();
     }
 
+    @OnClick(R.id.img_full_close)
+    void onCloseImage() {
+        if (user_photo_container.getVisibility() == View.VISIBLE) {
+            if (avatarAnimation != null)
+                avatarAnimation.closeImage();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (img_expanded.getVisibility() == View.VISIBLE) {
+            if (avatarAnimation != null)
+                avatarAnimation.closeImage();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     @OnClick(R.id.img_close)
     void onCloseClick() {
         finish();
@@ -144,7 +168,9 @@ public class SuggestionDetailActivity extends BaseActivity implements Suggestion
         ViewHeader(Context context, View view) {
             ButterKnife.bind(this, view);
             this.context = context;
-            adapter = new ViewPagerImage(context, dataLayer.getPicasso());
+            avatarAnimation = new AvatarAnimation(context, user_photo_container,
+                    img_expanded, img_avatar);
+            adapter = new ViewPagerImage(context, dataLayer.getPicasso(), img_expanded);
         }
 
         void bindHolder(Suggestion object) {
@@ -154,8 +180,8 @@ public class SuggestionDetailActivity extends BaseActivity implements Suggestion
             tv_title.setText(object.getTitle());
             tv_time.setText(object.getDate(context));
             tv_username.setText(object.getAuthorName());
-            // TODO add images list
             adapter.addImages(Collections.singletonList(object.getImageUrl()));
+            adapter.setCallback(() -> avatarAnimation.onOpenUserPhoto());
             vp_images.setAdapter(adapter);
             ci_images.setViewPager(vp_images);
 

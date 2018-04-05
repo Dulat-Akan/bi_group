@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.lang.reflect.Field;
@@ -76,6 +77,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @BindView(R.id.img_avatar) CircleImageView img_avatar;
     @BindView(R.id.blurView) BlurView blurView;
     @BindView(R.id.fam_feed) FloatingActionsMenu fam_feed;
+    @BindView(R.id.fbn_add_news) FloatingActionButton fbn_add_news;
     @BindView(R.id.fam_bi_office) FloatingActionsMenu fam_bi_office;
     @BindView(R.id.fam_bi_board) FloatingActionsMenu fam_bi_board;
     private boolean isRolePR;
@@ -139,9 +141,9 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
                                    boolean showBiBoard, boolean hideToolbar) {
 
         if (isRolePR) {
-            fam_feed.setVisibility(showFeedFab ? View.VISIBLE : View.GONE);
+            fbn_add_news.setVisibility(showFeedFab ? View.VISIBLE : View.GONE);
         } else {
-            fam_feed.setVisibility(View.GONE);
+            fbn_add_news.setVisibility(View.GONE);
         }
 
         fam_bi_office.setVisibility(showBiOfficeFab ? View.VISIBLE : View.GONE);
@@ -287,7 +289,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @Override
     public void configureRolePR(boolean isRolePR) {
         this.isRolePR = isRolePR;
-        fam_feed.setVisibility(isRolePR ? View.VISIBLE : View.GONE);
+        fbn_add_news.setVisibility(isRolePR ? View.VISIBLE : View.GONE);
     }
 
     ///////////////////////////////////////////////////////////////////////////

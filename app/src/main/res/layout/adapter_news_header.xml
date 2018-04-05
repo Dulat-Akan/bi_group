@@ -9,11 +9,11 @@
     <RelativeLayout
         style="@style/MW">
 
-        <android.support.v4.view.ViewPager
+        <bi.bigroup.life.views.ViewPagerWrapContent
             android:id="@+id/vp_images"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_205"
-            android:background="@color/slider_img_bg"/>
+            style="@style/MW"
+            android:background="@color/slider_img_bg"
+            android:minHeight="@dimen/dp_205"/>
 
         <bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator
             android:id="@+id/ci_images"

@@ -106,10 +106,21 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
         finish();
     }
 
+    @OnClick(R.id.img_share)
+    void onShareClick() {
+        if (employee != null && isStringOk(employee.getFullName()) && isStringOk(employee.getWorkPhoneNumber())) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, employee.getFullName() + ": " + employee.getWorkPhoneNumber());
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+        }
+    }
+
     @OnClick({R.id.img_call, R.id.tv_phone})
     void onCallClick() {
-        if (employee != null && isStringOk(employee.getMobilePhoneNumber())) {
-            startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + employee.getMobilePhoneNumber())));
+        if (employee != null && isStringOk(employee.getWorkPhoneNumber())) {
+            startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + employee.getWorkPhoneNumber())));
         }
     }
 

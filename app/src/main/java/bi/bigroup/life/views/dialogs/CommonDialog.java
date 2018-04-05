@@ -6,11 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.squareup.picasso.Picasso;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.models.employees.Employee;
+import bi.bigroup.life.utils.picasso.PicassoUtils;
+
+import static bi.bigroup.life.utils.Constants.getProfilePicture;
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 
 public class CommonDialog {
     private Context context;
@@ -87,7 +94,7 @@ public class CommonDialog {
         dialog.show();
     }
 
-    public void showEnterText() {
+    public void showBirthdayEnterText(Employee employee, Picasso picasso) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -95,15 +102,26 @@ public class CommonDialog {
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         final MaterialEditText et_msg = dialog.findViewById(R.id.et_msg);
         final Button btn_send_comment = dialog.findViewById(R.id.btn_send_comment);
+        final ImageView img_avatar = dialog.findViewById(R.id.img_avatar);
+        PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(employee.getCode()), R.drawable.ic_user);
+
+        final ImageView img_close = dialog.findViewById(R.id.img_close);
         View.OnClickListener clickListener = v -> {
             if (callbackEnterMsgBtn != null) {
                 if (v.equals(btn_send_comment)) {
-                    callbackEnterMsgBtn.onClickAction(et_msg.getText().toString());
+                    if (isStringOk(et_msg.getText().toString())) {
+                        callbackEnterMsgBtn.onClickAction(et_msg.getText().toString());
+                        dialog.dismiss();
+                    } else {
+                        et_msg.setError(context.getString(R.string.field_error));
+                    }
+                } else if (v.equals(img_close)) {
                     dialog.dismiss();
                 }
             }
         };
         btn_send_comment.setOnClickListener(clickListener);
+        img_close.setOnClickListener(clickListener);
         dialog.show();
     }
 

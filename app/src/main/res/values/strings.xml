@@ -128,7 +128,9 @@
     <string name="employees_vacancies">Вакансии</string>
     <string name="search_hint">Поиск</string>
     <string name="employees">Сотрудники</string>
-    <string name="dob_congrats_msg">Поздравительное письмо</string>
+    <string name="congratulate">Поздравить</string>
+    <string name="congratulate_desc">с Днем рождения</string>
+    <string name="dob_congrats_msg">Текст поздравления</string>
 
     <!-- NotificationsActivity -->
     <string name="notifications">Уведомления</string>

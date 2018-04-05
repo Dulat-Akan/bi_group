@@ -10,10 +10,6 @@
         style="@style/LL_MW_H"
         android:gravity="center_vertical">
 
-        <LinearLayout
-            style="@style/LL_MW_V"
-            android:layout_weight="1">
-
             <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                 android:id="@+id/tv_title"
                 style="@style/MW"
@@ -28,12 +24,6 @@
                 tools:text="5 minutes ago"
                 android:textColor="@color/item_description"
                 android:textSize="@dimen/sp_12"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="@dimen/dp_25"
-            android:layout_height="@dimen/dp_25"
-            android:background="@drawable/view_selector_rounded_option_gray"/>
 
     </LinearLayout>
 

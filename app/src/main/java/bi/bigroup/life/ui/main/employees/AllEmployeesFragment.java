@@ -24,7 +24,6 @@ import bi.bigroup.life.mvp.main.employees.AllEmployeesPresenter;
 import bi.bigroup.life.mvp.main.employees.AllEmployeesView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
 import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
-import bi.bigroup.life.utils.ContextUtils;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 import bi.bigroup.life.utils.recycler_view.RecyclerScroll;
 import bi.bigroup.life.views.dialogs.CommonDialog;
@@ -45,7 +44,6 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
 
     private EditText searchEditText;
     private List<Employee> originalEmployeesList;
-    private int searchViewHeight;
     private CommonDialog commonDialog;
 
     public static AllEmployeesFragment newInstance(boolean isBirthdayToday) {
@@ -67,7 +65,6 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
         handleIntent();
         originalEmployeesList = new ArrayList<>();
         commonDialog = new CommonDialog(getContext());
-        searchViewHeight = ContextUtils.getSearchViewHeight(getContext());
         configureSearchView();
         configureRecyclerView();
         mvpPresenter.getEmployees(false, false, isBirthdayToday, isInternetOn(getContext()));
@@ -93,6 +90,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
         ImageView search_close_btn = search_view.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
         search_close_btn.setOnClickListener(view -> closeSearchView());
 
+        if (getContext() == null) return;
         setCursorColor(searchEditText, ContextCompat.getColor(getContext(), R.color.feed_time));
         searchEditText.setTextColor(ContextCompat.getColor(getContext(), R.color.feed_time));
         searchEditText.setHintTextColor(ContextCompat.getColor(getContext(), R.color.feed_time));
@@ -138,9 +136,9 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
             }
 
             @Override
-            public void onDobCongratsClick(String code) {
-                commonDialog.showEnterText();
-                commonDialog.setCallback(content -> mvpPresenter.sendCongrats(code, content));
+            public void onDobCongratsClick(Employee employee) {
+                commonDialog.showBirthdayEnterText(employee, dataLayer.getPicasso());
+                commonDialog.setCallback(content -> mvpPresenter.sendCongrats(employee.getCode(), content));
             }
         });
         recycler_view.setAdapter(mAdapter);

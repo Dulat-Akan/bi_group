@@ -185,7 +185,7 @@ public class EmployeesAdapter extends RecyclerViewBaseAdapter {
 
         @OnClick(R.id.img_rounded)
         void onDobCongratsClick() {
-            callback.onDobCongratsClick(bindedObject.getCode());
+            callback.onDobCongratsClick(bindedObject);
         }
     }
 
@@ -194,6 +194,6 @@ public class EmployeesAdapter extends RecyclerViewBaseAdapter {
 
         void onUserClick(Employee employee);
 
-        void onDobCongratsClick(String code);
+        void onDobCongratsClick(Employee employee);
     }
 }

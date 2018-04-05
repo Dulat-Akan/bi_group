@@ -2,6 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fl_parent"
     style="@style/MM"
     android:background="@color/white"
@@ -46,32 +47,52 @@
                     <LinearLayout
                         android:id="@+id/img_single"
                         style="@style/LL_MW_H"
+                        android:layout_height="@dimen/dp_62"
                         android:layout_weight="1"
-                        android:background="@drawable/btn_selector_attachment"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:padding="@dimen/dp_20">
+                        android:background="@drawable/btn_selector_attachment">
 
-                        <ImageView
-                            android:layout_width="@dimen/dp_22"
-                            android:layout_height="@dimen/dp_22"
-                            android:src="@drawable/ic_img_attachment"/>
+                        <RelativeLayout
+                            style="@style/MW">
 
-                        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                            style="@style/WW"
-                            android:layout_marginLeft="@dimen/dp_10"
-                            android:text="@string/add_cover"
-                            android:textColor="@color/tasks_sdesk_description"
-                            android:textSize="@dimen/sp_12"/>
+                            <LinearLayout
+                                style="@style/LL_MM_H"
+                                android:gravity="center_vertical|center_horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/dp_22"
+                                    android:layout_height="@dimen/dp_22"
+                                    android:src="@drawable/ic_img_attachment"/>
+
+                                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                                    style="@style/WW"
+                                    android:layout_marginLeft="@dimen/dp_10"
+                                    android:text="@string/add_cover"
+                                    android:textColor="@color/tasks_sdesk_description"
+                                    android:textSize="@dimen/sp_12"/>
+
+                            </LinearLayout>
+
+                            <bi.bigroup.life.views.RoundedImageView
+                                android:id="@+id/img_cover"
+                                style="@style/MM"
+                                android:scaleType="centerCrop"
+                                tools:src="@drawable/temp_img"
+                                app:radius_width="@dimen/dp_12"/>
+
+                        </RelativeLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/img_multiple"
                         style="@style/LL_MW_H"
+                        android:layout_height="@dimen/dp_62"
                         android:layout_marginLeft="@dimen/dp_6"
                         android:layout_weight="3"
                         android:background="@drawable/btn_selector_attachment"
                         android:gravity="center_vertical|center_horizontal"
-                        android:padding="@dimen/dp_20">
+                        android:paddingLeft="@dimen/dp_20"
+                        android:paddingRight="@dimen/dp_20">
 
                         <ImageView
                             android:layout_width="@dimen/dp_22"
