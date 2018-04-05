@@ -50,6 +50,8 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
         this.data = new ArrayList<>();
 
         filterButtonList = new ArrayList<>();
+        filterButtonList.add(new FilterButton(context.getString(R.string.filter_all), 0,
+                ContextCompat.getColor(context, R.color.filter_bg)));
         filterButtonList.add(new FilterButton(context.getString(R.string.filter_news), 0,
                 ContextCompat.getColor(context, R.color.filter_bg)));
         filterButtonList.add(new FilterButton(context.getString(R.string.filter_poll), 0,
@@ -118,7 +120,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
             if (data.get(getPos(position)).getLayoutType() == FEED_TYPE_NEWS) {
                 return NEWS_LAYOUT_ID;
             } else if (data.get(getPos(position)).getLayoutType() == FEED_TYPE_SUGGESTION) {
-                return SUGGESTION_LAYOUT_ID; // предложение
+                return SUGGESTION_LAYOUT_ID;
             } else if (data.get(getPos(position)).getLayoutType() == FEED_TYPE_QUESTIONNAIRE) {
                 return QUESTIONNAIRE_LAYOUT_ID;
             }

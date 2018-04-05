@@ -119,6 +119,7 @@
 
     <!-- FeedFragment -->
     <string name="label_feed">Лента</string>
+    <string name="filter_all">Все</string>
     <string name="filter_news">Новости</string>
     <string name="filter_poll">Опросы</string>
     <string name="filter_offer">Предложения</string>

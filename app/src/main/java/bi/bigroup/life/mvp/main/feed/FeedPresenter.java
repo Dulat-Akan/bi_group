@@ -28,6 +28,12 @@ public class FeedPresenter extends BaseMvpPresenter<FeedView> {
     private Subscription suggestionLikeUnlikeSubscription;
     private FeedDao feedDao;
 
+    //  LENTA http://life.bi-group.org:8090/api/lenta?rows=3&offset=0&withDescription=false
+//  NEWS  http://life.bi-group.org:8090/api/news/withDetails?rows=3&offset=3
+//  Questionnaires http://life.bi-group.org:8090/api/questionnaires/withDetails?rows=3&offset=0
+//  Suggestions http://life.bi-group.org:8090/api/suggestions/withDetails?rows=3&offset=0
+
+
     @Override
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
