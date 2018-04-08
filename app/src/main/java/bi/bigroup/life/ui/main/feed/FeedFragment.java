@@ -151,12 +151,4 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
         if (mAdapter.getItemCount() > 0)
             ((LinearLayoutManager) recycler_view.getLayoutManager()).scrollToPositionWithOffset(0, 0);
     }
-
-    public void onAddSuggestionClick() {
-        startActivityForResult(NewSuggestionActivity.getIntent(getContext()), UPDATE_NEWS_FEED);
-    }
-
-    public void onAddNewsClick() {
-        startActivityForResult(AddNewsActivity.getIntent(getContext()), UPDATE_NEWS_FEED);
-    }
 }

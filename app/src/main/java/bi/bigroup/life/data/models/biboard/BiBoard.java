@@ -21,6 +21,10 @@ public class BiBoard {
     public List<Vacancy> vacancies;
     public int allEmployeesCount;
 
+    public BiBoard(int title) {
+        this.title = title;
+    }
+
     public BiBoard(int title, int first, int second, int third, List<Suggestion> popularSuggestions, List<Suggestion> allSuggestions, List<Questionnaire> popularQuestionnaires,
                    List<Questionnaire> allQuestionnaires,
                    List<Employee> employees, List<Vacancy> vacancies, Integer allEmployeesCount) {

@@ -31,7 +31,8 @@
 
                     <android.support.design.widget.TabLayout
                         android:id="@+id/tabs"
-                        style="@style/customTabLayout"/>
+                        style="@style/customTabLayout"
+                        app:tabBackground="@color/white"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 

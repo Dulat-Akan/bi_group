@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               style="@style/LL_MW_V"
               android:orientation="vertical">
 
@@ -15,7 +16,7 @@
         app:cardElevation="@dimen/dp_3">
 
         <LinearLayout
-            android:id="@+id/ll_area"
+            android:id="@+id/ll_item_container"
             style="@style/LL_MW_V"
             android:background="?android:selectableItemBackground">
 
@@ -37,7 +38,7 @@
                         android:id="@+id/tv_row_title"
                         style="@style/WW"
                         android:layout_marginLeft="@dimen/dp_10"
-                        android:text="@string/zayavki_i_zadachi"
+                        tools:text="@string/zayavki_i_zadachi"
                         android:textAllCaps="true"
                         android:textColor="@color/bi_header_date"
                         android:textSize="@dimen/sp_12"/>
@@ -66,7 +67,7 @@
                         android:id="@+id/tv_first_label"
                         style="@style/WW"
                         android:layout_marginLeft="@dimen/dp_5"
-                        android:text="@string/row_new"
+                        android:text="@string/label_all"
                         android:textColor="@color/bi_header_date"
                         android:textSize="@dimen/sp_12"/>
 
@@ -90,7 +91,7 @@
                         android:id="@+id/tv_second_label"
                         style="@style/WW"
                         android:layout_marginLeft="@dimen/dp_5"
-                        android:text="@string/row_prin"
+                        android:text="@string/label_all"
                         android:textColor="@color/bi_header_date"
                         android:textSize="@dimen/sp_12"/>
 
@@ -114,7 +115,7 @@
                         android:id="@+id/tv_third_label"
                         style="@style/WW"
                         android:layout_marginLeft="@dimen/dp_5"
-                        android:text="@string/row_pros"
+                        android:text="@string/label_popular"
                         android:textColor="@color/bi_header_date"
                         android:textSize="@dimen/sp_12"/>
 

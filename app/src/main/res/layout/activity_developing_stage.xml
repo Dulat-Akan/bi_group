@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_parent"
+    style="@style/MM"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        style="@style/LL_MM_V"
+        android:gravity="center_horizontal">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/back_toolbar"
+            android:title="@string/no_data"
+            app:title="@string/no_data"/>
+
+        <include
+            layout="@layout/developing_stage"/>
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/pb_indicator"
+        layout="@layout/inc_pb_opaque"/>
+
+</FrameLayout>

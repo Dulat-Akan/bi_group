@@ -5,4 +5,7 @@ public interface PageSwapCallback {
 
     void onFeedTabsSelect();
 
+    void onSuggestionClick();
+
+    void onQuestionnaireClick();
 }

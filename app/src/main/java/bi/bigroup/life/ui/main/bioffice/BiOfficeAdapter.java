@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class BiOfficeAdapter extends BaseAdapter {
-    public static final int TYPE_TASKS_SERVICES = 0;
+    static final int TYPE_TASKS_SERVICES = 0;
     public static final int TYPE_SUGGESTIONS = 1;
     public static final int TYPE_QUESTIONNAIRE = 2;
 //    public static final int TYPE_EMPLOYEES = 3;
@@ -35,17 +35,15 @@ public class BiOfficeAdapter extends BaseAdapter {
     private static final int ITEM_LAYOUT = R.layout.adapter_bioffice;
     private static final int ITEM_BI_BOARD_LAYOUT = R.layout.adapter_biboard;
 
-    private Context context;
     private List<Object> data = new ArrayList<>();
     private Callback callback;
     private CallbackBiBoard callbackBiBoard;
     private LayoutInflater inflater;
 
     BiOfficeAdapter(Context context) {
-        this.context = context;
         data.add(null);
-        data.add(null);
-        data.add(null);
+        data.add(new BiBoard(R.string.predlojeniya));
+        data.add(new BiBoard(R.string.oprosnik));
         inflater = ((Activity) context).getLayoutInflater();
     }
 
@@ -53,7 +51,7 @@ public class BiOfficeAdapter extends BaseAdapter {
         this.callback = callback;
     }
 
-    public void setCallbackBiBoard(CallbackBiBoard callbackBiBoard) {
+    void setCallbackBiBoard(CallbackBiBoard callbackBiBoard) {
         this.callbackBiBoard = callbackBiBoard;
     }
 
@@ -184,8 +182,9 @@ public class BiOfficeAdapter extends BaseAdapter {
 //                                    context.getString(R.string.service_status, ((Service) item).getStatus()));
 //                        } else if (item instanceof Task) {
                         tv_title.setText(((Task) item).getTopic());
-                        tv_desc.setText(((Task) item).getStartDate() + "\n" +
-                                context.getString(((Task) item).getStatusCode()));
+                        tv_desc.setText(String.valueOf(
+                                ((Task) item).getStartDate() + "\n" +
+                                context.getString(((Task) item).getStatusCode())));
 //                        }
                         ll_programmatically.addView(itemView);
                     }
@@ -229,9 +228,8 @@ public class BiOfficeAdapter extends BaseAdapter {
 
         @BindView(R.id.exp_layout) ExpandableLayout exp_layout;
         @BindView(R.id.ll_programmatically) LinearLayout ll_programmatically;
-        @BindView(R.id.ll_area) LinearLayout ll_area;
 
-        public ViewHolderBiBoard(View view) {
+        ViewHolderBiBoard(View view) {
             super(view);
             context = view.getContext();
             ButterKnife.bind(this, view);
@@ -243,20 +241,18 @@ public class BiOfficeAdapter extends BaseAdapter {
             bindedPosition = position;
 
             tv_row_title.setText(context.getString(object.title));
-            tv_first_label.setText(context.getString(object.first));
-            tv_second_label.setText(context.getString(object.second));
-            tv_third_label.setText(context.getString(object.third));
+            if (object.first != 0) tv_first_label.setText(context.getString(object.first));
+            if (object.second != 0) tv_second_label.setText(context.getString(object.second));
+            if (object.third != 0) tv_third_label.setText(context.getString(object.third));
 
             if (object.allSuggestions != null) {
                 tv_first_value.setText(String.valueOf(object.allSuggestions.size()));
                 tv_second_value.setText(String.valueOf(object.allSuggestions.size()));
                 tv_third_value.setText(String.valueOf(object.popularSuggestions.size()));
-                ll_area.setClickable(false);
             } else if (object.allQuestionnaires != null) {
                 tv_first_value.setText(String.valueOf(object.allQuestionnaires.size()));
                 tv_second_value.setText(String.valueOf(object.allQuestionnaires.size()));
                 tv_third_value.setText(String.valueOf(object.popularQuestionnaires.size()));
-                ll_area.setClickable(false);
             }
 //            else if (object.employees != null && object.vacancies != null) {
 //                tv_first_value.setText(String.valueOf(object.allEmployeesCount));
@@ -334,16 +330,20 @@ public class BiOfficeAdapter extends BaseAdapter {
             }
         }
 
-        @OnClick(R.id.ll_area)
+        @OnClick(R.id.ll_item_container)
         void onAreaClick() {
-//            if (bindedPosition == TYPE_EMPLOYEES) {
-//                callback.selectEmployeesTab();
-//            }
+            if (bindedPosition == TYPE_SUGGESTIONS) {
+                callbackBiBoard.onSuggestionClick();
+            } else if (bindedPosition == TYPE_QUESTIONNAIRE) {
+                callbackBiBoard.onQuestionnaireClick();
+            }
         }
     }
 
     public interface CallbackBiBoard {
-        void openEmployeePage(String code);
+        void onSuggestionClick();
+
+        void onQuestionnaireClick();
 
         void selectEmployeesTab();
     }

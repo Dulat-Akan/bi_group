@@ -140,24 +140,13 @@
                     android:layout_marginTop="@dimen/dp_16"
                     android:text="@string/label_phone"/>
 
-                <LinearLayout
-                    style="@style/LL_MW_H">
-
-                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                        android:id="@+id/tv_phone"
-                        style="@style/extra_info_value"
-                        android:layout_weight="1"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:paddingBottom="@dimen/dp_5"
-                        android:paddingTop="@dimen/dp_5"
-                        tools:text="+7 771 777 77 77"/>
-
-                    <ImageView
-                        android:id="@+id/img_share"
-                        android:layout_width="@dimen/dp_32"
-                        android:layout_height="@dimen/dp_32"
-                        android:src="@drawable/ic_share"/>
-                </LinearLayout>
+                <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                    android:id="@+id/tv_phone"
+                    style="@style/extra_info_value"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    tools:text="+7 771 777 77 77"/>
 
                 <bi.bigroup.life.views.fonts.TextViewRobotoRegular
                     style="@style/extra_info_label"
@@ -190,9 +179,35 @@
         </ScrollView>
     </LinearLayout>
 
+    <FrameLayout
+        style="@style/WW"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24">
+
+        <com.getbase.floatingactionbutton.AddFloatingActionButton
+            android:id="@+id/fb_share"
+            style="@style/WW"
+            app:fab_colorNormal="@color/float_menu_default"
+            app:fab_colorPressed="@color/float_menu_default"
+            app:fab_icon="@drawable/ic_share"
+            app:fab_plusIconColor="@color/float_menu_default"
+            app:fab_size="normal"/>
+
+        <ImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dp_2"
+            android:layout_marginRight="@dimen/dp_1"
+            android:src="@drawable/ic_share"/>
+
+    </FrameLayout>
+
     <include
         android:id="@+id/pb_indicator"
         layout="@layout/inc_pb_opaque"/>
+
 
     <include
         layout="@layout/merge_view_photo"/>

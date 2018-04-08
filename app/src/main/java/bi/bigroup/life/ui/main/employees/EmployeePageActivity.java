@@ -17,6 +17,7 @@ import bi.bigroup.life.mvp.main.employees.EmployeePagePresenter;
 import bi.bigroup.life.mvp.main.employees.EmployeePageView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import bi.bigroup.life.utils.EmailUtils;
+import bi.bigroup.life.utils.ToastUtils;
 import bi.bigroup.life.utils.animation.AvatarAnimation;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
@@ -44,6 +45,7 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
     @BindView(R.id.img_expanded) ImageView img_expanded;
     @BindView(R.id.user_photo_container) RelativeLayout user_photo_container;
     @BindString(R.string.no_data) String noData;
+    @BindString(R.string.not_configured) String not_configured;
 
     private AvatarAnimation avatarAnimation;
     private String code;
@@ -106,7 +108,7 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
         finish();
     }
 
-    @OnClick(R.id.img_share)
+    @OnClick(R.id.fb_share)
     void onShareClick() {
         if (employee != null && isStringOk(employee.getFullName()) && isStringOk(employee.getWorkPhoneNumber())) {
             Intent sendIntent = new Intent();
@@ -119,8 +121,11 @@ public class EmployeePageActivity extends BaseActivity implements EmployeePageVi
 
     @OnClick({R.id.img_call, R.id.tv_phone})
     void onCallClick() {
-        if (employee != null && isStringOk(employee.getWorkPhoneNumber())) {
+        if (employee != null && isStringOk(employee.getWorkPhoneNumber())
+                && !employee.getWorkPhoneNumber().equals(not_configured)) {
             startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + employee.getWorkPhoneNumber())));
+        } else {
+            ToastUtils.showCenteredToast(this, R.string.not_configured);
         }
     }
 

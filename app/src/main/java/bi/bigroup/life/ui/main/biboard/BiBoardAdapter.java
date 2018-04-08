@@ -103,7 +103,6 @@ public class BiBoardAdapter extends BaseAdapter {
 
         @BindView(R.id.exp_layout) ExpandableLayout exp_layout;
         @BindView(R.id.ll_programmatically) LinearLayout ll_programmatically;
-        @BindView(R.id.ll_area) LinearLayout ll_area;
 
         public ViewHolder(View view) {
             super(view);
@@ -125,12 +124,10 @@ public class BiBoardAdapter extends BaseAdapter {
                 tv_first_value.setText(String.valueOf(object.allSuggestions.size()));
                 tv_second_value.setText(String.valueOf(object.allSuggestions.size()));
                 tv_third_value.setText(String.valueOf(object.popularSuggestions.size()));
-                ll_area.setClickable(false);
             } else if (object.allQuestionnaires != null) {
                 tv_first_value.setText(String.valueOf(object.allQuestionnaires.size()));
                 tv_second_value.setText(String.valueOf(object.allQuestionnaires.size()));
                 tv_third_value.setText(String.valueOf(object.popularQuestionnaires.size()));
-                ll_area.setClickable(false);
             }
 //            else if (object.employees != null && object.vacancies != null) {
 //                tv_first_value.setText(String.valueOf(object.allEmployeesCount));
@@ -208,7 +205,7 @@ public class BiBoardAdapter extends BaseAdapter {
             }
         }
 
-        @OnClick(R.id.ll_area)
+        @OnClick(R.id.ll_item_container)
         void onAreaClick() {
 //            if (bindedPosition == TYPE_EMPLOYEES) {
 //                callback.selectEmployeesTab();

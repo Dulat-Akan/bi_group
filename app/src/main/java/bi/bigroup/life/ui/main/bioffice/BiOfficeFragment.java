@@ -29,7 +29,6 @@ import bi.bigroup.life.ui.main.PageSwapCallback;
 import bi.bigroup.life.ui.main.biboard.BricksTop7Adapter;
 import bi.bigroup.life.ui.main.biboard.top_questions.TopQuestionsActivity;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.TasksSdeskActivity;
-import bi.bigroup.life.ui.main.employees.EmployeePageActivity;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
 import bi.bigroup.life.utils.view_pager.ParallaxPageTransformer;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
@@ -108,8 +107,17 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
 
         adapter.setCallbackBiBoard(new BiOfficeAdapter.CallbackBiBoard() {
             @Override
-            public void openEmployeePage(String code) {
-                startActivity(EmployeePageActivity.getIntent(getContext(), code));
+            public void onSuggestionClick() {
+                if (callback != null) {
+                    callback.onSuggestionClick();
+                }
+            }
+
+            @Override
+            public void onQuestionnaireClick() {
+                if (callback != null) {
+                    callback.onQuestionnaireClick();
+                }
             }
 
             @Override

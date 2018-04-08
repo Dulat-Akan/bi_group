@@ -66,7 +66,7 @@
                         android:id="@+id/tv_first_label"
                         style="@style/WW"
                         android:layout_marginLeft="@dimen/dp_5"
-                        android:text="@string/row_new"
+                        android:text="@string/label_all"
                         android:textColor="@color/bi_header_date"
                         android:textSize="@dimen/sp_12"/>
 
@@ -83,7 +83,7 @@
                         android:id="@+id/tv_second_value"
                         style="@style/WW"
                         android:text="0"
-                        android:textColor="@color/bi_header_blues"
+                        android:textColor="@color/bi_header_green"
                         android:textSize="@dimen/sp_20"/>
 
                     <bi.bigroup.life.views.fonts.TextViewRobotoRegular
@@ -107,7 +107,7 @@
                         android:id="@+id/tv_third_value"
                         style="@style/WW"
                         android:text="0"
-                        android:textColor="@color/bi_header_blues"
+                        android:textColor="@color/bi_header_mango"
                         android:textSize="@dimen/sp_20"/>
 
                     <bi.bigroup.life.views.fonts.TextViewRobotoRegular

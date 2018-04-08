@@ -23,6 +23,7 @@
     <string name="reject">Отклонить</string>
     <string name="finish">Завершить</string>
     <string name="no_data">Нет данных</string>
+    <string name="not_configured">Не указан</string>
     <string name="not_found">не найдено</string>
     <string name="invalid_token_title">Ошибка</string>
     <string name="invalid_token">Ошибка аутентификации</string>
@@ -91,7 +92,7 @@
     <string name="menu_desc_2">Просмотрено</string>
     <string name="menu_title_3">BI Wiki</string>
     <string name="menu_desc_3">Текст</string>
-    <string name="menu_title_4">Вопрос ТОП-7</string>
+    <string name="menu_title_4">Questions</string>
     <string name="menu_desc_4">Последний вопрос</string>
     <string name="logout">Выход</string>
     <string name="logout_confirm">Вы действительно хотите выйти?</string>

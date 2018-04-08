@@ -13,9 +13,7 @@ import bi.bigroup.life.mvp.main.menu.MenuPresenter;
 import bi.bigroup.life.mvp.main.menu.MenuView;
 import bi.bigroup.life.ui.auth.AuthActivity;
 import bi.bigroup.life.ui.base.BaseFragment;
-import bi.bigroup.life.ui.main.biboard.top_questions.TopQuestionsActivity;
 import bi.bigroup.life.ui.profile.ProfileActivity;
-import bi.bigroup.life.utils.LOTimber;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.dialogs.CommonDialog;
 import butterknife.BindView;
@@ -47,19 +45,19 @@ public class MenuFragment extends BaseFragment implements MenuView {
 
         RowViewHolder v1 = new RowViewHolder(view.findViewById(R.id.v1), false);
         v1.bindHolder(R.string.menu_title_1, R.string.menu_desc_1);
-        v1.setCallback(() -> LOTimber.d("asldkasjd clicked 1"));
+        v1.setCallback(() -> startActivity(DevelopingStageActivity.getIntent(getContext())));
 
         RowViewHolder v2 = new RowViewHolder(view.findViewById(R.id.v2), false);
         v2.bindHolder(R.string.menu_title_2, R.string.menu_desc_2);
-        v2.setCallback(() -> LOTimber.d("asldkasjd clicked 2"));
+        v2.setCallback(() -> startActivity(DevelopingStageActivity.getIntent(getContext())));
 
         RowViewHolder v3 = new RowViewHolder(view.findViewById(R.id.v3), false);
         v3.bindHolder(R.string.menu_title_3, R.string.menu_desc_3);
-        v3.setCallback(() -> LOTimber.d("asldkasjd clicked 3"));
+        v3.setCallback(() -> startActivity(DevelopingStageActivity.getIntent(getContext())));
 
-        RowViewHolder v4 = new RowViewHolder(view.findViewById(R.id.v4), true);
-        v4.bindHolder(R.string.menu_title_4, R.string.menu_desc_4);
-        v4.setCallback(() -> startActivity(TopQuestionsActivity.getIntent(getContext())));
+//        RowViewHolder v4 = new RowViewHolder(view.findViewById(R.id.v4), true);
+//        v4.bindHolder(R.string.menu_title_4, R.string.menu_desc_4);
+//        v4.setCallback(() -> startActivity(TopQuestionsActivity.getIntent(getContext())));
     }
 
     @OnClick(R.id.ll_profile)

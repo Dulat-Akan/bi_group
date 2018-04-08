@@ -16,7 +16,6 @@ import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur;
-import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.lang.reflect.Field;
@@ -32,7 +31,6 @@ import bi.bigroup.life.ui.main.bioffice.BiOfficeFragment;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_task.AddTaskActivity;
 import bi.bigroup.life.ui.main.employees.EmployeesFragment;
-import bi.bigroup.life.ui.main.feed.FeedFragment;
 import bi.bigroup.life.ui.main.feed.MainFeedFragment;
 import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
 import bi.bigroup.life.ui.main.menu.MenuFragment;
@@ -63,7 +61,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     MainPresenter mvpPresenter;
 
     private static final int ACTION_MAIN = 0;
-//    private static final int ACTION_BOARD = 1;
+    //    private static final int ACTION_BOARD = 1;
     private static final int ACTION_FEED = 1;
     private static final int ACTION_EMPLOYEES = 2;
     private static final int ACTION_MENU = 3;
@@ -75,9 +73,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @BindView(R.id.img_avatar) CircleImageView img_avatar;
     @BindView(R.id.blurView) BlurView blurView;
     @BindView(R.id.fam_feed) FloatingActionsMenu fam_feed;
-    @BindView(R.id.fbn_add_news) FloatingActionButton fbn_add_news;
     @BindView(R.id.fam_bi_office) FloatingActionsMenu fam_bi_office;
-    @BindView(R.id.fam_bi_board) FloatingActionsMenu fam_bi_board;
     private boolean isRolePR;
 
     @Override
@@ -95,7 +91,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         if (v_bottom_navigation != null) {
             v_bottom_navigation.setSelectedItemId(R.id.action_feed);
             replaceFragment(fragments.get(ACTION_FEED), false, null,
-                    true, false, false, false);
+                    true, false, false);
         }
 
         FloatingActionsMenu.OnFloatingActionsMenuUpdateListener listener = new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
@@ -111,7 +107,6 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         };
         fam_feed.setOnFloatingActionsMenuUpdateListener(listener);
         fam_bi_office.setOnFloatingActionsMenuUpdateListener(listener);
-        fam_bi_board.setOnFloatingActionsMenuUpdateListener(listener);
 
         if (windowBackground == null) {
             float radius = 1.3f;
@@ -134,20 +129,11 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
 
     @Override
     protected void replaceFragment(Fragment fragment, boolean addToBackStack, String tag,
-                                   boolean showFeedFab, boolean showBiOfficeFab,
-                                   boolean showBiBoard, boolean hideToolbar) {
-
-        if (isRolePR) {
-            fbn_add_news.setVisibility(showFeedFab ? View.VISIBLE : View.GONE);
-        } else {
-            fbn_add_news.setVisibility(View.GONE);
-        }
-
+                                   boolean showFeedFab, boolean showBiOfficeFab, boolean hideToolbar) {
+        fam_feed.setVisibility((showFeedFab && isRolePR) ? View.VISIBLE : View.GONE);
         fam_bi_office.setVisibility(showBiOfficeFab ? View.VISIBLE : View.GONE);
-        fam_bi_board.setVisibility(showBiBoard ? View.VISIBLE : View.GONE);
         cv_toolbar_container.setVisibility(hideToolbar ? View.GONE : View.VISIBLE);
-        super.replaceFragment(fragment, addToBackStack, tag, showFeedFab, showBiOfficeFab,
-                showBiBoard, hideToolbar);
+        super.replaceFragment(fragment, addToBackStack, tag, showFeedFab, showBiOfficeFab, hideToolbar);
     }
 
     // ========== Feed float buttons actions =======
@@ -155,15 +141,15 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     void onAddNewsClick() {
         fam_feed.collapse();
         if (fragments.get(ACTION_FEED) != null) {
-            ((FeedFragment) fragments.get(ACTION_FEED)).onAddNewsClick();
+            ((MainFeedFragment) fragments.get(ACTION_FEED)).onAddNewsClick();
         }
     }
 
     @OnClick(R.id.fbn_add_suggestion)
     void onAddSuggestionClick() {
-        fam_feed.collapse();
-        if (fragments.get(ACTION_FEED) != null) {
-            ((FeedFragment) fragments.get(ACTION_FEED)).onAddSuggestionClick();
+        fam_bi_office.collapse();
+        if (fragments.get(ACTION_MAIN) != null) {
+            startActivity(NewSuggestionActivity.getIntent(this));
         }
     }
 
@@ -178,13 +164,6 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     void onNewTaskClick() {
         fam_bi_office.collapse();
         startActivity(AddTaskActivity.getIntent(this));
-    }
-
-    // ========== Bi Office float buttons actions =======
-    @OnClick(R.id.fbn_new_suggestion)
-    void onNewSuggestion() {
-        fam_bi_board.collapse();
-        startActivity(NewSuggestionActivity.getIntent(this));
     }
 
     @OnClick(R.id.img_notification)
@@ -251,7 +230,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         switch (item.getItemId()) {
             case R.id.action_main:
                 replaceFragment(fragments.get(ACTION_MAIN), false, null,
-                        false, true, false, false);
+                        false, true, false);
                 return true;
 //            case R.id.action_board:
 //                replaceFragment(fragments.get(ACTION_BOARD), false, null,
@@ -259,15 +238,15 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
 //                return true;
             case R.id.action_feed:
                 replaceFragment(fragments.get(ACTION_FEED), false, null,
-                        true, false, false, false);
+                        true, false, false);
                 return true;
             case R.id.action_stuff:
-                replaceFragment(fragments.get(ACTION_EMPLOYEES), true, null,
-                        false, false, false, true);
+                replaceFragment(fragments.get(ACTION_EMPLOYEES), false, null,
+                        false, false, true);
                 return true;
             case R.id.action_menu:
                 replaceFragment(fragments.get(ACTION_MENU), false, null,
-                        false, false, false, false);
+                        false, false, false);
                 return true;
             default:
                 return false;
@@ -286,7 +265,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @Override
     public void configureRolePR(boolean isRolePR) {
         this.isRolePR = isRolePR;
-        fbn_add_news.setVisibility(isRolePR ? View.VISIBLE : View.GONE);
+        fam_feed.setVisibility(isRolePR ? View.VISIBLE : View.GONE);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -304,6 +283,26 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     public void onFeedTabsSelect() {
         if (v_bottom_navigation != null) {
             v_bottom_navigation.setSelectedItemId(R.id.action_feed);
+        }
+    }
+
+    @Override
+    public void onSuggestionClick() {
+        if (v_bottom_navigation != null) {
+            v_bottom_navigation.setSelectedItemId(R.id.action_feed);
+            if (fragments.get(ACTION_FEED) != null) {
+                ((MainFeedFragment) fragments.get(ACTION_FEED)).selectSuggestion();
+            }
+        }
+    }
+
+    @Override
+    public void onQuestionnaireClick() {
+        if (v_bottom_navigation != null) {
+            v_bottom_navigation.setSelectedItemId(R.id.action_feed);
+            if (fragments.get(ACTION_FEED) != null) {
+                ((MainFeedFragment) fragments.get(ACTION_FEED)).selectQuestionnaire();
+            }
         }
     }
 }

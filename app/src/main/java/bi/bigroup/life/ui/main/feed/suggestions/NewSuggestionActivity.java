@@ -42,8 +42,6 @@ import in.myinnos.awesomeimagepicker.activities.AlbumSelectActivity;
 import in.myinnos.awesomeimagepicker.helpers.ConstantsCustomGallery;
 import in.myinnos.awesomeimagepicker.models.Image;
 
-import static bi.bigroup.life.ui.main.feed.FeedFragment.UPDATE_NEWS_FEED;
-import static bi.bigroup.life.utils.Constants.KEY_CODE;
 import static bi.bigroup.life.utils.Constants.LIMIT_FILES;
 import static bi.bigroup.life.utils.Constants.LIMIT_SINGLE_FILE;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
@@ -281,9 +279,6 @@ public class NewSuggestionActivity extends BaseActivity implements NewSuggestion
     @Override
     public void suggestionAddedSuccessfully() {
         ToastUtils.showCenteredToast(this, R.string.success_response);
-        Intent intent = new Intent();
-        intent.putExtra(KEY_CODE, UPDATE_NEWS_FEED);
-        setResult(RESULT_OK, intent);
         finish();
     }
 }

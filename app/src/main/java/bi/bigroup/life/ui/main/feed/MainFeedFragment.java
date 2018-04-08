@@ -2,6 +2,7 @@ package bi.bigroup.life.ui.main.feed;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -17,6 +18,7 @@ import bi.bigroup.life.mvp.main.feed.MainFeedView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.base.view_pager.ViewPagerAdapter;
 import bi.bigroup.life.ui.main.bioffice.HotBoardViewPager;
+import bi.bigroup.life.ui.main.feed.news.AddNewsActivity;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
 import bi.bigroup.life.utils.view_pager.ParallaxPageTransformer;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
@@ -90,6 +92,18 @@ public class MainFeedFragment extends BaseFragment implements MainFeedView {
         }
     }
 
+    public void onAddNewsClick() {
+        startActivityForResult(AddNewsActivity.getIntent(getContext()), UPDATE_NEWS_FEED);
+    }
+
+    public void selectSuggestion() {
+        new Handler().post(() -> viewPager.setCurrentItem(2));
+    }
+
+    public void selectQuestionnaire() {
+        new Handler().post(() -> viewPager.setCurrentItem(3));
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // MainFeedView implementation
     ///////////////////////////////////////////////////////////////////////////
@@ -102,4 +116,5 @@ public class MainFeedFragment extends BaseFragment implements MainFeedView {
     public void setPopularNews(List<News> list) {
         sliderAdapter.addList(list);
     }
+
 }
