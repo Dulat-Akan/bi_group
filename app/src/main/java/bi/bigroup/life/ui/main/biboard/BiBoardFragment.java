@@ -24,6 +24,7 @@ import bi.bigroup.life.mvp.main.biboard.BiBoardView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.main.PageSwapCallback;
 import bi.bigroup.life.ui.main.biboard.top_questions.TopQuestionsActivity;
+import bi.bigroup.life.ui.main.bioffice.HotBoardViewPager;
 import bi.bigroup.life.ui.main.employees.EmployeePageActivity;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
 import bi.bigroup.life.utils.view_pager.ParallaxPageTransformer;
@@ -103,7 +104,7 @@ public class BiBoardFragment extends BaseFragment implements BiBoardView {
     private void configureViewPager(ViewGroup header) {
         ViewPager vp_images = header.findViewById(R.id.vp_images);
         CirclePageIndicator ci_images = header.findViewById(R.id.ci_images);
-        adapter = new HotBoardViewPager(getContext(), dataLayer.getPicasso());
+        adapter = new HotBoardViewPager(getContext(), dataLayer.getPicasso(), R.layout.adapter_biboard_view_pager);
         adapter.setCallback(newsId -> startActivity(NewsDetailActivity.getIntent(getContext(), newsId)));
 
         vp_images.setAdapter(adapter);

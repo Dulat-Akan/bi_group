@@ -27,7 +27,6 @@ import bi.bigroup.life.mvp.main.bioffice.BiOfficeView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.main.PageSwapCallback;
 import bi.bigroup.life.ui.main.biboard.BricksTop7Adapter;
-import bi.bigroup.life.ui.main.biboard.HotBoardViewPager;
 import bi.bigroup.life.ui.main.biboard.top_questions.TopQuestionsActivity;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.TasksSdeskActivity;
 import bi.bigroup.life.ui.main.employees.EmployeePageActivity;
@@ -126,7 +125,7 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
     private void configureViewPager(ViewGroup header) {
         ViewPager vp_images = header.findViewById(R.id.vp_images);
         CirclePageIndicator ci_images = header.findViewById(R.id.ci_images);
-        sliderAdapter = new HotBoardViewPager(getContext(), dataLayer.getPicasso());
+        sliderAdapter = new HotBoardViewPager(getContext(), dataLayer.getPicasso(), R.layout.adapter_biboard_view_pager);
         sliderAdapter.setCallback(newsId -> startActivity(NewsDetailActivity.getIntent(getContext(), newsId)));
 
         vp_images.setAdapter(sliderAdapter);

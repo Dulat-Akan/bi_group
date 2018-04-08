@@ -163,9 +163,6 @@ dependencies {
     // ExpandableLayout
     compile "net.cachapa.expandablelayout:expandablelayout:${expandableLayout}"
 
-    // Horizontal ListView
-    compile "it.sephiroth.android.library.horizontallistview:hlistview:${horizontalListView}"
-
     // Float menu
     compile "com.getbase:floatingactionbutton:${floatMenu}"
 

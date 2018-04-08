@@ -23,15 +23,27 @@ import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
 
 import static bi.bigroup.life.utils.ConnectionDetector.isInternetOn;
 import static bi.bigroup.life.utils.Constants.KEY_CODE;
+import static bi.bigroup.life.utils.Constants.KEY_TYPE;
 
 public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, BottomNavigationTabFragment {
+    public static final int TAB_FEED_ALL = 1;
+    public static final int TAB_FEED_NEWS = 2;
+    public static final int TAB_FEED_SUGGESTIONS = 3;
+    public static final int TAB_FEED_QUESTIONNAIRES = 4;
+
     public static final int UPDATE_NEWS_FEED = 12;
+    private int tabType;
+
     @InjectPresenter
     FeedPresenter mvpPresenter;
     private FeedAdapter mAdapter;
 
-    public static FeedFragment newInstance() {
-        return new FeedFragment();
+    public static FeedFragment newInstance(int tabType) {
+        FeedFragment fragment = new FeedFragment();
+        Bundle data = new Bundle();
+        data.putInt(KEY_TYPE, tabType);
+        fragment.setArguments(data);
+        return fragment;
     }
 
     @Override
@@ -42,13 +54,20 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
+        handleIntent();
         mvpPresenter.getFeedList(false, false, isInternetOn(getContext()));
         configureRecyclerView();
     }
 
+    private void handleIntent() {
+        if (getArguments() != null && getArguments().containsKey(KEY_TYPE)) {
+            tabType = getArguments().getInt(KEY_TYPE);
+        }
+    }
+
     protected void configureRecyclerView() {
         super.configureRecyclerView();
-        mAdapter = new FeedAdapter(getContext(), dataLayer.getPicasso());
+        mAdapter = new FeedAdapter(dataLayer.getPicasso());
         mAdapter.setCallback(new FeedAdapter.Callback() {
             @Override
             public void onNewsItemClick(String newsId) {
@@ -137,7 +156,6 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
         if (mAdapter.getItemCount() > 0)
             ((LinearLayoutManager) recycler_view.getLayoutManager()).scrollToPositionWithOffset(0, 0);
     }
-
 
     public void onAddSuggestionClick() {
         startActivityForResult(NewSuggestionActivity.getIntent(getContext()), UPDATE_NEWS_FEED);

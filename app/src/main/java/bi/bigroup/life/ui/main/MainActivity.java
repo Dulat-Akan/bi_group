@@ -33,6 +33,7 @@ import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_task.AddTaskActivity;
 import bi.bigroup.life.ui.main.employees.EmployeesFragment;
 import bi.bigroup.life.ui.main.feed.FeedFragment;
+import bi.bigroup.life.ui.main.feed.MainFeedFragment;
 import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
 import bi.bigroup.life.ui.main.menu.MenuFragment;
 import bi.bigroup.life.ui.notifications.NotificationsActivity;
@@ -206,7 +207,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     private void initFragments() {
         fragments.add(ACTION_MAIN, BiOfficeFragment.newInstance());
 //        fragments.add(ACTION_BOARD, BiBoardFragment.newInstance());
-        fragments.add(ACTION_FEED, FeedFragment.newInstance());
+        fragments.add(ACTION_FEED, MainFeedFragment.newInstance());
         fragments.add(ACTION_EMPLOYEES, EmployeesFragment.newInstance());
         fragments.add(ACTION_MENU, MenuFragment.newInstance());
     }

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/MW"
-    android:padding="@dimen/dp_11">
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MM">
 
-    <bi.bigroup.life.views.RoundedImageView
+    <ImageView
         android:id="@+id/img_slider"
         style="@style/MM"
         android:scaleType="centerCrop"
-        android:src="@drawable/temp_img"
-        app:radius_width="@dimen/dp_15"/>
+        tools:src="@drawable/temp_img"/>
 
     <bi.bigroup.life.views.fonts.TextViewRobotoMedium
         android:id="@+id/tv_subhead_top"
@@ -23,7 +21,7 @@
         android:paddingLeft="@dimen/dp_6"
         android:paddingRight="@dimen/dp_6"
         android:paddingTop="@dimen/dp_4"
-        android:text="календ"
+        android:text="@string/main_news"
         android:textAllCaps="true"
         android:textColor="@color/pager_indicator_fill"
         android:textSize="@dimen/sp_12"/>
@@ -32,10 +30,12 @@
         android:id="@+id/tv_title"
         style="@style/MW"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dp_18"
-        android:layout_marginLeft="@dimen/dp_18"
-        android:layout_marginRight="@dimen/dp_18"
-        android:text="Встреча по ERP в малом зале на 9 этаже"
+        android:background="@drawable/tv_selector_transparent"
+        android:paddingBottom="@dimen/dp_18"
+        android:paddingLeft="@dimen/dp_18"
+        android:paddingRight="@dimen/dp_18"
+        android:paddingTop="@dimen/dp_5"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp_22"/>
+        android:textSize="@dimen/sp_22"
+        tools:text="@string/lorem_ipsum_short"/>
 </RelativeLayout>

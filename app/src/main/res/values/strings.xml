@@ -116,13 +116,14 @@
     <string name="label_all">все</string>
     <string name="label_popular">попул.</string>
     <string name="news">новости</string>
+    <string name="main_news">Главные новости</string>
 
     <!-- FeedFragment -->
     <string name="label_feed">Лента</string>
     <string name="filter_all">Все</string>
     <string name="filter_news">Новости</string>
-    <string name="filter_poll">Опросы</string>
     <string name="filter_offer">Предложения</string>
+    <string name="filter_poll">Опросы</string>
     <!-- EmployeesFragment -->
     <string name="employees_all">Все</string>
     <string name="employees_dob">Дни рождения</string>

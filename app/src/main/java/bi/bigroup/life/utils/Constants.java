@@ -14,6 +14,7 @@ public class Constants {
     public static final String KEY_TOKEN = "token";
     public static final String KEY_ROLES = "roles";
     public static final String KEY_BOOL = "bool";
+    public static final String KEY_TYPE = "type";
     public static final String CACHE_TIME = "cache_time";
     public static final String KEY_CODE = "code";
     public static final String KEY_MAIN_IMAGE = "MainImage";
