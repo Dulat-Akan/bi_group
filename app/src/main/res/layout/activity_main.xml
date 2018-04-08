@@ -9,16 +9,17 @@
         style="@style/MM">
 
         <LinearLayout
+            android:id="@+id/ll_page_container"
             style="@style/LL_MM_V"
-            android:layout_marginBottom="@dimen/dp_55"
-            android:fitsSystemWindows="true">
+            android:layout_marginBottom="@dimen/dp_55">
 
             <include
                 layout="@layout/mrg_toolbar"/>
 
             <FrameLayout
                 android:id="@+id/fragment_container"
-                style="@style/MM"/>
+                style="@style/MM"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 

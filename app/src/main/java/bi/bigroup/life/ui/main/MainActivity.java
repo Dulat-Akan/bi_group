@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur;
@@ -74,6 +75,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @BindView(R.id.blurView) BlurView blurView;
     @BindView(R.id.fam_feed) FloatingActionsMenu fam_feed;
     @BindView(R.id.fam_bi_office) FloatingActionsMenu fam_bi_office;
+    @BindView(R.id.ll_page_container) LinearLayout ll_page_container;
     private boolean isRolePR;
 
     @Override

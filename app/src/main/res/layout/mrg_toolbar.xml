@@ -5,9 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     style="@style/MW"
+    android:fitsSystemWindows="true"
     card_view:cardCornerRadius="@dimen/dp_0"
-    card_view:cardElevation="@dimen/dp_5"
-    card_view:cardUseCompatPadding="true">
+    card_view:cardElevation="@dimen/dp_5">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
