@@ -84,7 +84,8 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
             case PROGRESS_BAR_LAYOUT_ID:
                 return new SimpleViewHolder(inflate(parent, PROGRESS_BAR_LAYOUT_ID));
             default:
-                throw incorrectOnCreateViewHolder();
+                return new SimpleViewHolder(inflate(parent, HEADER_LAYOUT_ID));
+//                throw incorrectOnCreateViewHolder();
         }
     }
 

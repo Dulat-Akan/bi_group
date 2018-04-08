@@ -11,4 +11,10 @@ public interface FeedRepository {
     void setAPI(API api);
 
     Observable<List<Feed>> getFeedList(int rows, int offset, Boolean withDescription);
+
+    Observable<List<Feed>> getNewsList(int rows, int offset);
+
+    Observable<List<Feed>> getSuggestionsList(int rows, int offset);
+
+    Observable<List<Feed>> getQuestionnairesList(int rows, int offset);
 }

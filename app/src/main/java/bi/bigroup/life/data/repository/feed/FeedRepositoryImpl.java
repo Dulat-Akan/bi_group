@@ -23,4 +23,29 @@ class FeedRepositoryImpl implements FeedRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    @Override
+    public Observable<List<Feed>> getNewsList(int rows, int offset) {
+        return api
+                .getNewsList(rows, offset)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<List<Feed>> getSuggestionsList(int rows, int offset) {
+        return api
+                .getSuggestionsList(rows, offset)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<List<Feed>> getQuestionnairesList(int rows, int offset) {
+        return api
+                .getQuestionnairesList(rows, offset)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+    }
 }

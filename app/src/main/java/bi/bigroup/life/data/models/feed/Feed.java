@@ -72,6 +72,14 @@ public class Feed {
         }
     }
 
+    public void setLayoutType(int code) {
+        if (entityType != null) {
+            entityType.setCode(code);
+        } else {
+            entityType = new FeedEntityType(code);
+        }
+    }
+
     public String getId() {
         return replaceNull(id);
     }

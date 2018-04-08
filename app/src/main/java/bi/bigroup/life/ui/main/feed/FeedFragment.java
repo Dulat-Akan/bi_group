@@ -26,11 +26,6 @@ import static bi.bigroup.life.utils.Constants.KEY_CODE;
 import static bi.bigroup.life.utils.Constants.KEY_TYPE;
 
 public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, BottomNavigationTabFragment {
-    public static final int TAB_FEED_ALL = 1;
-    public static final int TAB_FEED_NEWS = 2;
-    public static final int TAB_FEED_SUGGESTIONS = 3;
-    public static final int TAB_FEED_QUESTIONNAIRES = 4;
-
     public static final int UPDATE_NEWS_FEED = 12;
     private int tabType;
 
@@ -55,13 +50,13 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
         handleIntent();
-        mvpPresenter.getFeedList(false, false, isInternetOn(getContext()));
         configureRecyclerView();
     }
 
     private void handleIntent() {
         if (getArguments() != null && getArguments().containsKey(KEY_TYPE)) {
             tabType = getArguments().getInt(KEY_TYPE);
+            mvpPresenter.getFeedList(false, false, isInternetOn(getContext()), tabType);
         }
     }
 
@@ -95,8 +90,8 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
         recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view) {
             @Override
             public void onRequestMoreItems() {
-                if (!mAdapter.getLoading() && mAdapter.getItemCount() > 1) {
-                    mvpPresenter.getFeedList(true, false, true);
+                if (!mAdapter.getLoading() && mAdapter.getItemCount() > 5) {
+                    mvpPresenter.getFeedList(true, false, true, tabType);
                 }
             }
         });
@@ -109,13 +104,13 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView, 
             return;
         }
         if (data.getIntExtra(KEY_CODE, 0) == UPDATE_NEWS_FEED) {
-            mvpPresenter.getFeedList(false, true, true);
+            mvpPresenter.getFeedList(false, true, true, tabType);
         }
     }
 
     @Override
     protected void swipeToRefresh() {
-        mvpPresenter.getFeedList(false, true, isInternetOn(getContext()));
+        mvpPresenter.getFeedList(false, true, isInternetOn(getContext()), tabType);
     }
 
     ///////////////////////////////////////////////////////////////////////////

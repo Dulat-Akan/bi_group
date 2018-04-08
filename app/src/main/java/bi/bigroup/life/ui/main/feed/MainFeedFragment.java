@@ -22,10 +22,10 @@ import bi.bigroup.life.utils.view_pager.ParallaxPageTransformer;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
 import butterknife.BindView;
 
-import static bi.bigroup.life.ui.main.feed.FeedFragment.TAB_FEED_ALL;
-import static bi.bigroup.life.ui.main.feed.FeedFragment.TAB_FEED_NEWS;
-import static bi.bigroup.life.ui.main.feed.FeedFragment.TAB_FEED_QUESTIONNAIRES;
-import static bi.bigroup.life.ui.main.feed.FeedFragment.TAB_FEED_SUGGESTIONS;
+import static bi.bigroup.life.mvp.main.feed.FeedPresenter.TAB_FEED_ALL;
+import static bi.bigroup.life.mvp.main.feed.FeedPresenter.TAB_FEED_NEWS;
+import static bi.bigroup.life.mvp.main.feed.FeedPresenter.TAB_FEED_QUESTIONNAIRES;
+import static bi.bigroup.life.mvp.main.feed.FeedPresenter.TAB_FEED_SUGGESTIONS;
 import static bi.bigroup.life.ui.main.feed.FeedFragment.UPDATE_NEWS_FEED;
 import static bi.bigroup.life.utils.Constants.KEY_CODE;
 

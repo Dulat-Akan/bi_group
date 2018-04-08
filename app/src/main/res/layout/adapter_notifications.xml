@@ -10,20 +10,21 @@
         style="@style/LL_MW_H"
         android:gravity="center_vertical">
 
-            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                android:id="@+id/tv_title"
-                style="@style/MW"
-                android:lineSpacingExtra="6sp"
-                tools:text="Type something notification"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_14"/>
+        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+            android:id="@+id/tv_title"
+            style="@style/MW"
+            android:layout_weight="1"
+            android:lineSpacingExtra="6sp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14"
+            tools:text="Type something notification"/>
 
-            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
-                android:id="@+id/tv_time"
-                style="@style/MW"
-                tools:text="5 minutes ago"
-                android:textColor="@color/item_description"
-                android:textSize="@dimen/sp_12"/>
+        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+            android:id="@+id/tv_time"
+            style="@style/WW"
+            android:textColor="@color/item_description"
+            android:textSize="@dimen/sp_12"
+            tools:text="5 minutes ago"/>
 
     </LinearLayout>
 

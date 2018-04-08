@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
     <RelativeLayout
         android:id="@+id/user_photo_container"
@@ -15,7 +16,8 @@
                 style="@style/MM"
                 android:layout_gravity="center"
                 android:background="@color/photo_pager_window_bg"
-                android:scaleType="centerCrop"/>
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"/>
         </LinearLayout>
 
         <ImageView

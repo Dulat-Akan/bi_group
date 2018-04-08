@@ -18,6 +18,16 @@ public class PicassoUtils {
         }
     }
 
+    public static void showExpandedAvatar(Picasso picasso, ImageView view, String url, int placeholder) {
+        if (isStringOk(url)) {
+            picasso.load(url)
+                    .placeholder(placeholder)
+                    .error(placeholder)
+                    .fit().centerInside()
+                    .into(view);
+        }
+    }
+
     public static void showNewsImage(Picasso picasso, ImageView view, String url) {
         if (isStringOk(url)) {
             picasso.load(url)
