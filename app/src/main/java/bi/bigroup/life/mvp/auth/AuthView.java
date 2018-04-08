@@ -2,6 +2,7 @@ package bi.bigroup.life.mvp.auth;
 
 import android.support.annotation.StringRes;
 
+import bi.bigroup.life.data.params.auth.AuthParams;
 import bi.bigroup.life.mvp.BaseMvpView;
 
 public interface AuthView extends BaseMvpView {
@@ -14,4 +15,10 @@ public interface AuthView extends BaseMvpView {
     void onAuthorizationSuccess();
 
     void alreadyAuthorized();
+
+    void showFingerPrintContainer(boolean show);
+
+    void openFingerPrintActivity(AuthParams form);
+
+    void openFingerPrintActivity();
 }

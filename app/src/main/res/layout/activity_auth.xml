@@ -91,6 +91,26 @@
             </android.support.v7.widget.CardView>
 
             <LinearLayout
+                android:id="@+id/ll_fingerprint"
+                style="@style/LL_MW_H"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginRight="@dimen/dp_25"
+                android:gravity="center_horizontal|center_vertical">
+
+                <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                    style="@style/MW"
+                    android:layout_weight="1"
+                    android:text="@string/login_finger_print"
+                    android:textColor="@color/forgot_your_data"
+                    android:textSize="@dimen/sp_13"/>
+
+                <Switch
+                    android:id="@+id/sw_finger_print"
+                    style="@style/WW"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 style="@style/LL_MW_H"
                 android:layout_marginTop="@dimen/dp_28"
                 android:gravity="center_horizontal|center_vertical">

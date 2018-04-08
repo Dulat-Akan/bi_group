@@ -6,6 +6,7 @@ import com.arellomobile.mvp.InjectViewState;
 
 import java.util.List;
 
+import bi.bigroup.life.R;
 import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.models.auth.Auth;
 import bi.bigroup.life.data.params.auth.AuthParams;
@@ -13,6 +14,7 @@ import bi.bigroup.life.data.repository.auth.AuthRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
 import rx.Subscriber;
 
+import static bi.bigroup.life.utils.FingerPrintUtils.isAvailableFingerPrint;
 import static bi.bigroup.life.utils.StringUtils.isStringOk;
 import static bi.bigroup.life.utils.StringUtils.trim;
 
@@ -22,10 +24,12 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
 
     public void init(Context context, DataLayer dataLayer) {
         super.init(context, dataLayer);
+        getViewState().showFingerPrintContainer(isAvailableFingerPrint(context));
         form = new AuthParams();
-
         if (preferences.isAuthenticated()) {
             getViewState().alreadyAuthorized();
+        } else if (preferences.hasFingerPrint()) {
+            getViewState().openFingerPrintActivity();
         }
     }
 
@@ -37,15 +41,15 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
         form.password = trim(password);
     }
 
-    public void checkGeneralInfo() {
+    public void checkGeneralInfo(boolean fpChecked) {
         boolean ok = validateUsername();
         ok &= validatePwd();
         if (ok) {
-            signIn();
+            signIn(fpChecked);
         }
     }
 
-    private void signIn() {
+    private void signIn(boolean fpChecked) {
         AuthRepositoryProvider.provideRepository(dataLayer.getApi())
                 .signIn(form)
                 .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
@@ -74,16 +78,27 @@ public class AuthPresenter extends BaseMvpPresenter<AuthView> {
                                     }
                                     preferences.setRoles(sb.toString());
                                 }
-                                getViewState().onAuthorizationSuccess();
+                                if (fpChecked) {
+                                    if (!isAvailableFingerPrint(context)) {
+                                        // If there is no way to authorize through finger
+                                        getViewState().showRequestSuccess(R.string.fingerprint_not_available);
+                                        getViewState().onAuthorizationSuccess();
+                                    } else {
+                                        getViewState().openFingerPrintActivity(form);
+                                    }
+                                } else {
+                                    // If there is no way to authorize through finger
+                                    getViewState().onAuthorizationSuccess();
+                                }
                             }
                         }
                     }
                 });
     }
 
-    public void onForgotPwdClick() {
-        getViewState().openForgotPwdActivity();
-    }
+//    public void onForgotPwdClick() {
+//        getViewState().openForgotPwdActivity();
+//    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Validation                                                           ///

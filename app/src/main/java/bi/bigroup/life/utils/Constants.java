@@ -11,6 +11,7 @@ public class Constants {
     // Constant keys
     public static final String OS_ANDROID = "android";
     public static final String KEY_USER = "user";
+    public static final String KEY_PARAMS = "params";
     public static final String KEY_TOKEN = "token";
     public static final String KEY_ROLES = "roles";
     public static final String KEY_BOOL = "bool";

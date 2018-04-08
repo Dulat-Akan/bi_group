@@ -53,6 +53,10 @@ public class DataLayer {
     }
 
     public void wipeOut() {
+        preferencesProvider.wipeOut();
+    }
+
+    public void clearAllPreferences() {
         preferencesProvider.clearAllPreferences();
     }
 
@@ -67,4 +71,5 @@ public class DataLayer {
     public AppDatabase getDatabase() {
         return mDb;
     }
+
 }

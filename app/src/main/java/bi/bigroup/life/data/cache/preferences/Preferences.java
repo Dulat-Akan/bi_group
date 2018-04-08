@@ -1,6 +1,7 @@
 package bi.bigroup.life.data.cache.preferences;
 
 import bi.bigroup.life.data.models.user.User;
+import bi.bigroup.life.data.params.auth.AuthParams;
 
 public interface Preferences {
     boolean isAuthenticated();
@@ -20,4 +21,11 @@ public interface Preferences {
     void setUser(User user);
 
     User getUser();
+
+    void setAuthParams(AuthParams params);
+
+    AuthParams getAuthParams();
+
+    boolean hasFingerPrint();
+
 }

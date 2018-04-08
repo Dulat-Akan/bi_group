@@ -7,7 +7,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -16,6 +19,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.Calendar;
 
 import bi.bigroup.life.R;
+import bi.bigroup.life.data.params.auth.AuthParams;
 import bi.bigroup.life.mvp.auth.AuthPresenter;
 import bi.bigroup.life.mvp.auth.AuthView;
 import bi.bigroup.life.ui.base.BaseActivity;
@@ -37,6 +41,8 @@ public class AuthActivity extends BaseActivity implements AuthView {
     @BindView(R.id.et_username) MaterialEditText et_username;
     @BindView(R.id.et_pwd) MaterialEditText et_pwd;
     @BindView(R.id.tv_bi_group_year) TextView tv_bi_group_year;
+    @BindView(R.id.ll_fingerprint) LinearLayout ll_fingerprint;
+    @BindView(R.id.sw_finger_print) Switch sw_finger_print;
 
     public static Intent newLogoutIntent(Context context) {
         return new Intent(context, AuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -88,7 +94,7 @@ public class AuthActivity extends BaseActivity implements AuthView {
         hideSoftKeyboard(fl_parent);
         mvpPresenter.setUsername(et_username.getText().toString());
         mvpPresenter.setPwd(et_pwd.getText().toString());
-        mvpPresenter.checkGeneralInfo();
+        mvpPresenter.checkGeneralInfo(sw_finger_print.isChecked());
     }
 
     @OnClick(R.id.tv_help)
@@ -164,5 +170,21 @@ public class AuthActivity extends BaseActivity implements AuthView {
     public void alreadyAuthorized() {
         startActivity(MainActivity.alreadyAuthorized(this));
         finish();
+    }
+
+    @Override
+    public void showFingerPrintContainer(boolean show) {
+        ll_fingerprint.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void openFingerPrintActivity(AuthParams form) {
+        startActivity(FingerPrintActivity.getIntent(this, form));
+    }
+
+    @Override
+    public void openFingerPrintActivity() {
+        // Call this method when user already registered finger print
+        startActivity(FingerPrintActivity.getIntent(this));
     }
 }

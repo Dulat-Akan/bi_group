@@ -7,13 +7,16 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 
 import bi.bigroup.life.data.models.user.User;
+import bi.bigroup.life.data.params.auth.AuthParams;
 
 import static android.text.TextUtils.isEmpty;
 import static bi.bigroup.life.utils.Constants.CACHE_TIME;
+import static bi.bigroup.life.utils.Constants.KEY_PARAMS;
 import static bi.bigroup.life.utils.Constants.KEY_ROLES;
 import static bi.bigroup.life.utils.Constants.KEY_TOKEN;
 import static bi.bigroup.life.utils.Constants.KEY_USER;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 
 public class PreferencesProvider implements Preferences {
     private final SharedPreferences sharedPreferences;
@@ -22,6 +25,19 @@ public class PreferencesProvider implements Preferences {
     public PreferencesProvider(Context context) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         gson = new Gson();
+    }
+
+    public void wipeOut() {
+        synchronized (sharedPreferences) {
+            // Don't clear the AUTH PARAMS (for re-authorizing with finger print)
+            AuthParams authParams = getAuthParams();
+            if (authParams != null && isStringOk(authParams.login) && isStringOk(authParams.password)) {
+                sharedPreferences.edit().clear()
+                        .putString(KEY_PARAMS, gson.toJson(authParams)).apply();
+            } else {
+                sharedPreferences.edit().clear().apply();
+            }
+        }
     }
 
     public void clearAllPreferences() {
@@ -86,5 +102,23 @@ public class PreferencesProvider implements Preferences {
     @Override
     public User getUser() {
         return gson.fromJson(sharedPreferences.getString(KEY_USER, null), User.class);
+    }
+
+    @Override
+    public void setAuthParams(AuthParams params) {
+        synchronized (sharedPreferences) {
+            sharedPreferences.edit().putString(KEY_PARAMS, gson.toJson(params)).apply();
+        }
+    }
+
+    @Override
+    public AuthParams getAuthParams() {
+        return gson.fromJson(sharedPreferences.getString(KEY_PARAMS, null), AuthParams.class);
+    }
+
+    @Override
+    public boolean hasFingerPrint() {
+        AuthParams params = getAuthParams();
+        return params != null && isStringOk(params.login) && isStringOk(params.password);
     }
 }
