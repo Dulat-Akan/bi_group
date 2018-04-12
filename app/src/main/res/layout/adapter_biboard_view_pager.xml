@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingRight="@dimen/dp_10"
+    style="@style/MW"
     android:paddingLeft="@dimen/dp_10"
-    style="@style/MW">
+    android:paddingRight="@dimen/dp_10">
 
     <bi.bigroup.life.views.RoundedImageView
         android:id="@+id/img_slider"
@@ -25,10 +25,10 @@
         android:paddingLeft="@dimen/dp_6"
         android:paddingRight="@dimen/dp_6"
         android:paddingTop="@dimen/dp_4"
-        android:text="@string/news"
+        android:text="@string/main_news"
         android:textAllCaps="true"
         android:textColor="@color/pager_indicator_fill"
-        android:textSize="@dimen/sp_12"/>
+        android:textSize="@dimen/sp_10"/>
 
     <bi.bigroup.life.views.fonts.TextViewRobotoMedium
         android:id="@+id/tv_title"
@@ -40,6 +40,6 @@
         android:paddingRight="@dimen/dp_18"
         android:paddingTop="@dimen/dp_5"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp_22"
+        android:textSize="@dimen/sp_17"
         tools:text="@string/lorem_ipsum_short"/>
 </RelativeLayout>

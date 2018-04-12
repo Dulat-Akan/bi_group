@@ -97,6 +97,7 @@ public interface API {
             @Part("title") String title,
             @Part("text") String text,
             @Part("rawText") String rawText,
+            @Part("IsPressService") Boolean IsPressService,
             @Part("isHistoryEvent") Boolean isHistoryEvent,
             @Part("tags[]") List<String> tags);
 

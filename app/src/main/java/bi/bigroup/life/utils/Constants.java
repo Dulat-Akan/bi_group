@@ -1,6 +1,7 @@
 package bi.bigroup.life.utils;
 
 import static bi.bigroup.life.config.BiGroupConfig.API_BASE_URL;
+import static bi.bigroup.life.config.BiGroupConfig.BASE_URL;
 
 public class Constants {
     // TEST users
@@ -45,6 +46,15 @@ public class Constants {
     // Databases
     public static final String DB_NAME = "bi_group_db";
 
+    // Share urls
+    public static final String SHARE_SUGGESTIONS = "suggestions";
+    public static final String SHARE_QUESTIONNAIRES = "questionnaires";
+    public static final String SHARE_NEWS = "news";
+    public static final String shareUrlFormat = BASE_URL + "%s/%s";
+
+    public static String buildShareUrl(String type, String id) {
+        return String.format(shareUrlFormat, type, id);
+    }
 
     public static String getProfilePicture(String employeeCode) {
         return String.format(PROFILE_PICTURE, employeeCode);

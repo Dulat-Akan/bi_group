@@ -17,6 +17,7 @@ import bi.bigroup.life.mvp.main.feed.MainFeedPresenter;
 import bi.bigroup.life.mvp.main.feed.MainFeedView;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.base.view_pager.ViewPagerAdapter;
+import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
 import bi.bigroup.life.ui.main.bioffice.HotBoardViewPager;
 import bi.bigroup.life.ui.main.feed.news.AddNewsActivity;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
@@ -31,7 +32,7 @@ import static bi.bigroup.life.mvp.main.feed.FeedPresenter.TAB_FEED_SUGGESTIONS;
 import static bi.bigroup.life.ui.main.feed.FeedFragment.UPDATE_NEWS_FEED;
 import static bi.bigroup.life.utils.Constants.KEY_CODE;
 
-public class MainFeedFragment extends BaseFragment implements MainFeedView {
+public class MainFeedFragment extends BaseFragment implements MainFeedView, BottomNavigationTabFragment {
     @InjectPresenter
     MainFeedPresenter mvpPresenter;
 
@@ -42,6 +43,7 @@ public class MainFeedFragment extends BaseFragment implements MainFeedView {
 
     private HotBoardViewPager sliderAdapter;
     private FeedFragment feedAll;
+    private ViewPagerAdapter adapter;
 
     public static MainFeedFragment newInstance() {
         return new MainFeedFragment();
@@ -68,7 +70,7 @@ public class MainFeedFragment extends BaseFragment implements MainFeedView {
     }
 
     private void configureViewPager() {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+        adapter = new ViewPagerAdapter(getChildFragmentManager());
         tabs.setupWithViewPager(viewPager);
         feedAll = FeedFragment.newInstance(TAB_FEED_ALL);
 
@@ -117,4 +119,15 @@ public class MainFeedFragment extends BaseFragment implements MainFeedView {
         sliderAdapter.addList(list);
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // BottomNavigationTabFragment implementation
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onBottomNavigationTabReselected() {
+        FeedFragment fragment = (FeedFragment)adapter.getItem(viewPager.getCurrentItem());
+        if (fragment != null) {
+            fragment.onBottomNavigationTabReselected();
+        }
+    }
 }

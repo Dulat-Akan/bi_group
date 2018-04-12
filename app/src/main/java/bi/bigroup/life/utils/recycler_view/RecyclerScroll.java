@@ -2,8 +2,8 @@ package bi.bigroup.life.utils.recycler_view;
 
 import android.support.v7.widget.RecyclerView;
 public abstract class RecyclerScroll extends RecyclerView.OnScrollListener {
-    private static final float HIDE_THRESHOLD = 100;
-    private static final float SHOW_THRESHOLD = 50;
+    private static final float HIDE_THRESHOLD = 150;
+    private static final float SHOW_THRESHOLD = 150;
 
     int scrollDist = 0;
     private boolean isVisible = true;
@@ -35,7 +35,6 @@ public abstract class RecyclerScroll extends RecyclerView.OnScrollListener {
         }
 
     }
-
 
     public abstract void show();
 

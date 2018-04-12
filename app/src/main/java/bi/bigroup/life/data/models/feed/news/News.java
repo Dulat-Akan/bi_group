@@ -1,10 +1,7 @@
 package bi.bigroup.life.data.models.feed.news;
 
-import android.content.Context;
-
 import java.util.List;
 
-import static bi.bigroup.life.utils.DateUtils.getDisplayableTime;
 import static bi.bigroup.life.utils.DateUtils.getNewsDate;
 import static bi.bigroup.life.utils.StringUtils.getOkInt;
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
@@ -26,6 +23,7 @@ public class News {
     public Boolean isLikedByMe;
     public Boolean isHistoryEvent;
     public Boolean isFromSharepoint;
+    public Boolean isPublishedAsGroup;
     public List<Comment> comments;
     public List<SecondaryImage> secondaryImages;
     public List<Tags> tags;
@@ -70,6 +68,10 @@ public class News {
         return isOkBoolean(isLikedByMe);
     }
 
+    public boolean isPublishedAsGroup() {
+        return isOkBoolean(isPublishedAsGroup);
+    }
+
     public int getLikesQuantity() {
         return getOkInt(likesQuantity);
     }
@@ -81,4 +83,6 @@ public class News {
     public void setLikesQuantity(int likesQuantity) {
         this.likesQuantity = likesQuantity;
     }
+
+
 }

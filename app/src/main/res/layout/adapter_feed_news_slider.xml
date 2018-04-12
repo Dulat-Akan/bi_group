@@ -16,7 +16,6 @@
         android:layout_marginLeft="@dimen/dp_17"
         android:layout_marginTop="@dimen/dp_17"
         android:background="@drawable/tv_selector_white_rounded"
-        android:maxLines="2"
         android:paddingBottom="@dimen/dp_4"
         android:paddingLeft="@dimen/dp_6"
         android:paddingRight="@dimen/dp_6"
@@ -24,7 +23,7 @@
         android:text="@string/main_news"
         android:textAllCaps="true"
         android:textColor="@color/pager_indicator_fill"
-        android:textSize="@dimen/sp_8"/>
+        android:textSize="@dimen/sp_10"/>
 
     <bi.bigroup.life.views.fonts.TextViewRobotoMedium
         android:id="@+id/tv_title"
@@ -36,6 +35,6 @@
         android:paddingRight="@dimen/dp_18"
         android:paddingTop="@dimen/dp_5"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp_22"
+        android:textSize="@dimen/sp_17"
         tools:text="@string/lorem_ipsum_short"/>
 </RelativeLayout>

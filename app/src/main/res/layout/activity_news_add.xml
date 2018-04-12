@@ -76,8 +76,8 @@
                                 android:id="@+id/img_cover"
                                 style="@style/MM"
                                 android:scaleType="centerCrop"
-                                tools:src="@drawable/temp_img"
-                                app:radius_width="@dimen/dp_12"/>
+                                app:radius_width="@dimen/dp_12"
+                                tools:src="@drawable/temp_img"/>
 
                         </RelativeLayout>
 
@@ -169,6 +169,14 @@
                     android:id="@+id/tags_layout"
                     style="@style/MW"
                     android:layout_marginTop="@dimen/dp_12"/>
+
+                <CheckBox
+                    android:id="@+id/cb_from_press_service"
+                    style="@style/checkBoxStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:text="@string/from_press_service"/>
 
                 <CheckBox
                     android:id="@+id/cb_popular_event"

@@ -29,6 +29,7 @@ public interface NewsRepository {
     Observable<List<Tags>> getNewsTags();
 
     Observable<ResponseBody> addNews(MultipartBody.Part mainImage, List<MultipartBody.Part> secondaryImages,
-                                     String title, String text, String rawText, Boolean isHistoryEvent,
+                                     String title, String text, String rawText,
+                                     Boolean isPressService, Boolean isHistoryEvent,
                                      List<String> tags);
 }

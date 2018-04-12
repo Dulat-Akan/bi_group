@@ -71,11 +71,12 @@ class NewsRepositoryImpl implements NewsRepository {
 
     @Override
     public Observable<ResponseBody> addNews(MultipartBody.Part mainImage, List<MultipartBody.Part> secondaryImages,
-                                            String title, String text, String rawText, Boolean isHistoryEvent,
+                                            String title, String text, String rawText,
+                                            Boolean isPressService, Boolean isHistoryEvent,
                                             List<String> tags) {
         return api
                 .addNews(mainImage, secondaryImages,
-                        title, text, rawText, isHistoryEvent,
+                        title, text, rawText, isPressService, isHistoryEvent,
                         tags)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

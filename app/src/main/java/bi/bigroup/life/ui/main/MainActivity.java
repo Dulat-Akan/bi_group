@@ -33,6 +33,7 @@ import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_task.AddTaskActivity;
 import bi.bigroup.life.ui.main.employees.EmployeesFragment;
 import bi.bigroup.life.ui.main.feed.MainFeedFragment;
+import bi.bigroup.life.ui.main.feed.news.AddNewsActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
 import bi.bigroup.life.ui.main.menu.MenuFragment;
 import bi.bigroup.life.ui.notifications.NotificationsActivity;

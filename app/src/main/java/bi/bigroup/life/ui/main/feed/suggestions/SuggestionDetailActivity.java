@@ -41,10 +41,13 @@ import static android.support.customtabs.CustomTabsIntent.KEY_ID;
 import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_DEFAULT;
 import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_DISLIKED;
 import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_LIKED;
+import static bi.bigroup.life.utils.Constants.SHARE_SUGGESTIONS;
+import static bi.bigroup.life.utils.Constants.buildShareUrl;
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
 import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 
 public class SuggestionDetailActivity extends BaseActivity implements SuggestionDetailView {
     @InjectPresenter
@@ -60,6 +63,7 @@ public class SuggestionDetailActivity extends BaseActivity implements Suggestion
     private CommentsAdapter adapter;
     private ViewHeader headerHolder;
     private String id;
+    private Suggestion bindedObject;
 
     public static Intent getIntent(Context context, String id) {
         Intent intent = new Intent(context, SuggestionDetailActivity.class);
@@ -142,9 +146,20 @@ public class SuggestionDetailActivity extends BaseActivity implements Suggestion
         mvpPresenter.addComment(id, et_content.getText().toString());
     }
 
+    @OnClick(R.id.fb_share)
+    void onShareClick() {
+        if (bindedObject != null && isStringOk(bindedObject.getTitle()) && isStringOk(bindedObject.getId())) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, bindedObject.getTitle() + "\n" +
+                    buildShareUrl(SHARE_SUGGESTIONS, bindedObject.getId()));
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+        }
+    }
+
     class ViewHeader {
         Context context;
-        private Suggestion bindedObject;
 
         @BindView(R.id.tv_subhead_top) TextView tv_subhead_top;
         @BindView(R.id.vp_images) ViewPager vp_images;

@@ -29,8 +29,6 @@ import butterknife.OnClick;
 import butterknife.OnEditorAction;
 
 import static bi.bigroup.life.utils.Constants.HELP_PHONE;
-import static bi.bigroup.life.utils.Constants.TEST_PWD;
-import static bi.bigroup.life.utils.Constants.TEST_USERNAME;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
 import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
 import static bi.bigroup.life.utils.ViewUtils.setStatusBarGradient;

@@ -1,4 +1,21 @@
 <resources>
+        <string name="lorem_ipsum_long" translatable="false">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+        Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of
+        type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+        into electronic typesetting, remaining essentially unchanged.\n\n
+        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+        recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is
+        simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy
+        text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+        specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged.
+    </string>
+    <string name="lorem_ipsum_short" translatable="false">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+        Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of
+        type and scrambled it to make a type specimen book.
+    </string>
+    <string name="lorem_ipsum_short_2" translatable="false">Greyhound divisively hello coldly wonderfully marginally far upon excluding.</string>
+
     <!-- Сonstants -->
     <string name="yes">Да</string>
     <string name="empty_str"></string>
@@ -122,7 +139,7 @@
     <string name="label_all">все</string>
     <string name="label_popular">попул.</string>
     <string name="news">новости</string>
-    <string name="main_news">Главные новости</string>
+    <string name="main_news">Новость</string>
 
     <!-- FeedFragment -->
     <string name="label_feed">Лента</string>
@@ -227,6 +244,7 @@
     <string name="enter_text">Введите текст</string>
     <string name="tags">Теги</string>
     <string name="create_tag">Создать тег</string>
+    <string name="from_press_service">От имени Пресс-Службы BI Group</string>
     <string name="popular_event">Знаменательное событие (в историю)</string>
     <string name="tag_already_exist">Такой тег уже существует</string>
     <string name="please_select_tag">Пожалуйста выберите тег</string>

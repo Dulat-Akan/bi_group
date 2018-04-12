@@ -51,10 +51,13 @@ import butterknife.OnClick;
 import static android.support.customtabs.CustomTabsIntent.KEY_ID;
 import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_DISLIKED;
 import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_LIKED;
+import static bi.bigroup.life.utils.Constants.SHARE_NEWS;
+import static bi.bigroup.life.utils.Constants.buildShareUrl;
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
 import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
 import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 
 public class NewsDetailActivity extends BaseActivity implements NewsDetailView, FullScreenImageGalleryAdapter.FullScreenImageLoader {
     @InjectPresenter
@@ -71,6 +74,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
     private CommentsAdapter adapter;
     private NewsHeader headerHolder;
     private String newsId;
+    private News bindedObject;
 
     public static Intent getIntent(Context context, String id) {
         Intent intent = new Intent(context, NewsDetailActivity.class);
@@ -154,9 +158,20 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
         mvpPresenter.addComment(newsId, et_content.getText().toString());
     }
 
+    @OnClick(R.id.fb_share)
+    void onShareClick() {
+        if (bindedObject != null && isStringOk(bindedObject.getTitle()) && isStringOk(bindedObject.getId())) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, bindedObject.getTitle() + "\n" +
+                    buildShareUrl(SHARE_NEWS, bindedObject.getId()));
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+        }
+    }
+
     class NewsHeader {
         Context context;
-        private News bindedObject;
 
         @BindView(R.id.tv_subhead_top) TextView tv_subhead_top;
         @BindView(R.id.vp_images) ViewPager vp_images;
@@ -187,7 +202,9 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
         @SuppressLint("ClickableViewAccessibility")
         void bindHolder(News object) {
             bindedObject = object;
-            PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(object.getAuthorCode()), R.drawable.ic_user);
+            if (!object.isPublishedAsGroup()) {
+                PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(object.getAuthorCode()), R.drawable.ic_user);
+            }
             tv_subhead_top.setText(filter_news);
             tv_title.setText(object.getTitle());
             tv_time.setText(object.getDate());
@@ -201,7 +218,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
             wv_content.setWebViewClient(new WebViewClientQ());
             wv_content.setOnTouchListener((v, event) -> {
                 long eventDuration = event.getEventTime() - event.getDownTime();
-                if(event.getAction() == MotionEvent.ACTION_UP && eventDuration > 100) {
+                if (event.getAction() == MotionEvent.ACTION_UP && eventDuration > 100) {
                     WebView.HitTestResult result = ((WebView) v).getHitTestResult();
                     if (result != null) {
                         int type = result.getType();

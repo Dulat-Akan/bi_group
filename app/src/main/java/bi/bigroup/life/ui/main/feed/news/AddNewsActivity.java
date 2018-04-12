@@ -65,6 +65,7 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
     @BindView(R.id.et_title) MaterialEditText et_title;
     @BindView(R.id.et_content) MaterialEditText et_content;
     @BindView(R.id.et_tags) AutoCompleteTextView et_tags;
+    @BindView(R.id.cb_from_press_service) CheckBox cb_from_press_service;
     @BindView(R.id.cb_popular_event) CheckBox cb_popular_event;
     @BindView(R.id.img_cover) RoundedImageView img_cover;
 
@@ -144,6 +145,7 @@ public class AddNewsActivity extends BaseActivity implements AddNewsView {
                 et_title.getText().toString(),
                 et_content.getText().toString(),
                 selectedTagsList,
+                cb_from_press_service.isChecked(),
                 cb_popular_event.isChecked());
     }
 

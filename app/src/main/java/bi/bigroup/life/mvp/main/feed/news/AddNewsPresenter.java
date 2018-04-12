@@ -83,7 +83,8 @@ public class AddNewsPresenter extends BaseMvpPresenter<AddNewsView> {
     }
 
     public void addNews(Image imageSingle, ArrayList<Image> imagesMultiple,
-                        String title, String content, List<Tags> selectedTagsList, boolean isHistoryEvent) {
+                        String title, String content, List<Tags> selectedTagsList,
+                        boolean isPressService, boolean isHistoryEvent) {
         if (!isStringOk(title)) {
             getViewState().showTitleError(R.string.field_error);
             return;
@@ -126,14 +127,14 @@ public class AddNewsPresenter extends BaseMvpPresenter<AddNewsView> {
                 tagsList.add(tag.getNsiTagId());
             }
         }
-        addNews(mainImage, secondaryImages, title, content, title, isHistoryEvent, tagsList);
+        addNews(mainImage, secondaryImages, title, content, title, isPressService, isHistoryEvent, tagsList);
     }
 
     private void addNews(MultipartBody.Part mainImage, List<MultipartBody.Part> secondaryImages,
-                         String title, String text, String rawText, Boolean isHistoryEvent,
+                         String title, String text, String rawText, Boolean isPressService, Boolean isHistoryEvent,
                          List<String> tags) {
         Subscription subscription = NewsRepositoryProvider.provideRepository(dataLayer.getApi())
-                .addNews(mainImage, secondaryImages, title, text, rawText, isHistoryEvent, tags)
+                .addNews(mainImage, secondaryImages, title, text, rawText, isPressService, isHistoryEvent, tags)
                 .doOnSubscribe(() -> getViewState().showTransparentIndicator(true))
                 .doOnTerminate(() -> getViewState().showTransparentIndicator(false))
                 .subscribe(new Subscriber<ResponseBody>() {
