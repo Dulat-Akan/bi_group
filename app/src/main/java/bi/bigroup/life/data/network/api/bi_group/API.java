@@ -146,6 +146,9 @@ public interface API {
     @GET("Questionnaires/")
     Observable<List<Questionnaire>> getAllQuestionnaires();
 
+    @GET("Questionnaires/{id}/statistics")
+    Observable<List<Questionnaire>> getQuestStatistics(@Path("id") String id);
+
     /****** Notifications *******/
     @GET("Notifications/")
     Observable<List<Notification>> getNotifications();

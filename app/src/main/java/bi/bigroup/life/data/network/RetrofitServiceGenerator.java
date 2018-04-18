@@ -35,7 +35,6 @@ public class RetrofitServiceGenerator {
     private OkHttpClient okHttpClient;
     private Retrofit retrofit;
 
-
     public static RetrofitServiceGenerator getInstance(Preferences preferences) {
         if (instance == null) {
             instance = new RetrofitServiceGenerator(preferences);

@@ -39,4 +39,12 @@ class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    @Override
+    public Observable<List<Questionnaire>> getQuestStatistics(String id) {
+        return api
+                .getQuestStatistics(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }
