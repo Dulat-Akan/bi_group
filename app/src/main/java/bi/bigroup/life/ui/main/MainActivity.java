@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.lang.reflect.Field;
@@ -33,7 +34,6 @@ import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_sdesk.AddSdeskActivity;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.add_task.AddTaskActivity;
 import bi.bigroup.life.ui.main.employees.EmployeesFragment;
 import bi.bigroup.life.ui.main.feed.MainFeedFragment;
-import bi.bigroup.life.ui.main.feed.news.AddNewsActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.NewSuggestionActivity;
 import bi.bigroup.life.ui.main.menu.MenuFragment;
 import bi.bigroup.life.ui.notifications.NotificationsActivity;
@@ -76,6 +76,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @BindView(R.id.blurView) BlurView blurView;
     @BindView(R.id.fam_feed) FloatingActionsMenu fam_feed;
     @BindView(R.id.fam_bi_office) FloatingActionsMenu fam_bi_office;
+    @BindView(R.id.fbn_add_news) FloatingActionButton fbn_add_news;
     @BindView(R.id.ll_page_container) LinearLayout ll_page_container;
     private boolean isRolePR;
 
@@ -133,7 +134,8 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @Override
     protected void replaceFragment(Fragment fragment, boolean addToBackStack, String tag,
                                    boolean showFeedFab, boolean showBiOfficeFab, boolean hideToolbar) {
-        fam_feed.setVisibility((showFeedFab && isRolePR) ? View.VISIBLE : View.GONE);
+        fam_feed.setVisibility(showFeedFab ? View.VISIBLE : View.GONE);
+        fbn_add_news.setVisibility((showFeedFab && isRolePR) ? View.VISIBLE : View.GONE);
         fam_bi_office.setVisibility(showBiOfficeFab ? View.VISIBLE : View.GONE);
         cv_toolbar_container.setVisibility(hideToolbar ? View.GONE : View.VISIBLE);
         super.replaceFragment(fragment, addToBackStack, tag, showFeedFab, showBiOfficeFab, hideToolbar);
@@ -148,9 +150,10 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
         }
     }
 
-    @OnClick(R.id.fbn_add_suggestion)
+    @OnClick({R.id.fbn_add_suggestion, R.id.fbn_suggestion})
     void onAddSuggestionClick() {
         fam_bi_office.collapse();
+        fam_feed.collapse();
         if (fragments.get(ACTION_MAIN) != null) {
             startActivity(NewSuggestionActivity.getIntent(this));
         }
@@ -268,7 +271,7 @@ public class MainActivity extends BaseFragmentActivity implements MainView, Bott
     @Override
     public void configureRolePR(boolean isRolePR) {
         this.isRolePR = isRolePR;
-        fam_feed.setVisibility(isRolePR ? View.VISIBLE : View.GONE);
+        fbn_add_news.setVisibility(isRolePR ? View.VISIBLE : View.GONE);
     }
 
     ///////////////////////////////////////////////////////////////////////////

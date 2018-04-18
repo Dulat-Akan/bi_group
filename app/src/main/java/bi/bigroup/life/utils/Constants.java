@@ -51,9 +51,14 @@ public class Constants {
     public static final String SHARE_QUESTIONNAIRES = "questionnaires";
     public static final String SHARE_NEWS = "news";
     public static final String shareUrlFormat = BASE_URL + "%s/%s";
+    public static final String streamUrlFormat = API_BASE_URL + "files/%s?width=?&height=?";
 
     public static String buildShareUrl(String type, String id) {
         return String.format(shareUrlFormat, type, id);
+    }
+
+    public static String buildStreamUrl(String streamId) {
+        return String.format(streamUrlFormat, streamId);
     }
 
     public static String getProfilePicture(String employeeCode) {

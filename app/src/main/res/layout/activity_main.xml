@@ -71,6 +71,11 @@
             style="@style/fb_sub_menu"
             app:fab_title="@string/add_news"/>
 
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbn_suggestion"
+            style="@style/fb_sub_menu"
+            app:fab_title="@string/new_suggestion"/>
+
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu

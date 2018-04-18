@@ -123,6 +123,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
 
     protected void configureRecyclerView() {
         super.configureRecyclerView();
+        recycler_view.setNestedScrollingEnabled(false);
         mAdapter = new EmployeesAdapter(getContext(), dataLayer.getPicasso(), isBirthdayToday, false);
         mAdapter.setCallback(new EmployeesAdapter.Callback() {
             @Override
@@ -150,57 +151,57 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
                 }
             }
         });
-        recycler_view.addOnScrollListener(new RecyclerScroll() {
-            @Override
-            public void show() {
-                ll_search_container.animate().alpha(1).setListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        ll_search_container.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animator) {
-
-                    }
-                }).setInterpolator(new DecelerateInterpolator(1)).start();
-            }
-
-            @Override
-            public void hide() {
-                ll_search_container.animate().alpha(0).setListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        ll_search_container.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animator) {
-
-                    }
-                }).setInterpolator(new AccelerateInterpolator(1)).start();
-            }
-        });
+//        recycler_view.addOnScrollListener(new RecyclerScroll() {
+//            @Override
+//            public void show() {
+//                ll_search_container.animate().alpha(1).setListener(new Animator.AnimatorListener() {
+//                    @Override
+//                    public void onAnimationStart(Animator animator) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onAnimationEnd(Animator animator) {
+//                        ll_search_container.setVisibility(View.VISIBLE);
+//                    }
+//
+//                    @Override
+//                    public void onAnimationCancel(Animator animator) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onAnimationRepeat(Animator animator) {
+//
+//                    }
+//                }).setInterpolator(new DecelerateInterpolator(1)).start();
+//            }
+//
+//            @Override
+//            public void hide() {
+//                ll_search_container.animate().alpha(0).setListener(new Animator.AnimatorListener() {
+//                    @Override
+//                    public void onAnimationStart(Animator animator) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onAnimationEnd(Animator animator) {
+//                        ll_search_container.setVisibility(View.GONE);
+//                    }
+//
+//                    @Override
+//                    public void onAnimationCancel(Animator animator) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onAnimationRepeat(Animator animator) {
+//
+//                    }
+//                }).setInterpolator(new AccelerateInterpolator(1)).start();
+//            }
+//        });
     }
 
     @Override

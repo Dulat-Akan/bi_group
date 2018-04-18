@@ -28,7 +28,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.bioffice.BiOffice;
@@ -209,7 +209,16 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
             tv_title.setText(object.getTitle());
             tv_time.setText(object.getDate());
             tv_username.setText(object.getAuthorName());
-            adapter.addImages(Collections.singletonList(object.getImageUrl()));
+
+            List<String> sliderImages = new ArrayList<>();
+            sliderImages.add(object.getImageUrl());
+            if (object.secondaryImages != null && object.secondaryImages.size() > 0) {
+                for (int i = 0; i < object.secondaryImages.size(); i++) {
+                    sliderImages.add(object.secondaryImages.get(i).getImageUrl());
+                }
+            }
+
+            adapter.addImages(sliderImages);
             adapter.setCallback(() -> avatarAnimation.onOpenUserPhoto());
             vp_images.setAdapter(adapter);
             ci_images.setViewPager(vp_images);

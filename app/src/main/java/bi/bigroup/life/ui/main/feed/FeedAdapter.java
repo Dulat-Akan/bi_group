@@ -25,6 +25,11 @@ import static bi.bigroup.life.data.models.feed.FeedEntityType.FEED_TYPE_SUGGESTI
 import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_DEFAULT;
 import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_DISLIKED;
 import static bi.bigroup.life.data.models.feed.news.Comment.VOTE_LIKED;
+import static bi.bigroup.life.utils.Constants.SHARE_NEWS;
+import static bi.bigroup.life.utils.Constants.SHARE_QUESTIONNAIRES;
+import static bi.bigroup.life.utils.Constants.SHARE_SUGGESTIONS;
+import static bi.bigroup.life.utils.Constants.buildShareUrl;
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 
 class FeedAdapter extends RecyclerViewBaseAdapter {
     private static final int HEADER_LAYOUT_ID = R.layout.adapter_feed_header;
@@ -196,6 +201,12 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 
         @OnClick(R.id.img_more)
         void onMoreClick() {
+            if (callback != null && bindedObject != null
+                    && isStringOk(bindedObject.title) && isStringOk(bindedObject.getId())) {
+                String text = bindedObject.title + "\n" +
+                        buildShareUrl(SHARE_NEWS, bindedObject.getId());
+                callback.onShareClick(text);
+            }
         }
 
         @OnClick(R.id.ll_like)
@@ -252,7 +263,6 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
             tv_dislike_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.dislikesQuantity)));
             tv_view_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.viewsQuantity)));
 
-
             img_like.setImageResource(feed.getUserVote() == VOTE_LIKED ? R.drawable.like_active
                     : R.drawable.like_inactive);
 
@@ -262,9 +272,12 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 
         @OnClick(R.id.img_more)
         void onMoreClick() {
-//            if (callback != null) {
-//                callback.onItemClick(bindedObject);
-//            }
+            if (callback != null && bindedObject != null
+                    && isStringOk(bindedObject.title) && isStringOk(bindedObject.getId())) {
+                String text = bindedObject.title + "\n" +
+                        buildShareUrl(SHARE_SUGGESTIONS, bindedObject.getId());
+                callback.onShareClick(text);
+            }
         }
 
         @OnClick(R.id.ll_like)
@@ -345,9 +358,12 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 
         @OnClick(R.id.img_more)
         void onMoreClick() {
-//            if (callback != null) {
-//                callback.onItemClick(bindedObject);
-//            }
+            if (callback != null && bindedObject != null
+                    && isStringOk(bindedObject.title) && isStringOk(bindedObject.getId())) {
+                String text = bindedObject.title + "\n" +
+                        buildShareUrl(SHARE_QUESTIONNAIRES, bindedObject.getId());
+                callback.onShareClick(text);
+            }
         }
 
         @OnClick(R.id.ll_content)
@@ -366,5 +382,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
         void onNewsLike(String id, boolean liked);
 
         void onSuggestionLike(String id, int voteType);
+
+        void onShareClick(String text);
     }
 }

@@ -64,6 +64,7 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
 
     protected void configureRecyclerView() {
         super.configureRecyclerView();
+        recycler_view.setNestedScrollingEnabled(false);
         mAdapter = new FeedAdapter(dataLayer.getPicasso());
         mAdapter.setCallback(new FeedAdapter.Callback() {
             @Override
@@ -91,6 +92,15 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
             public void onSuggestionLike(String id, int voteType) {
                 mvpPresenter.suggestionLikeSubscriptionUnsubscribe();
                 mvpPresenter.likeSuggestion(id, voteType);
+            }
+
+            @Override
+            public void onShareClick(String text) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
             }
         });
         recycler_view.setAdapter(mAdapter);
