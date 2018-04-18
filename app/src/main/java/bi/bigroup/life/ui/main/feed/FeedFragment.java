@@ -11,12 +11,14 @@ import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.feed.Feed;
+import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
 import bi.bigroup.life.mvp.main.feed.FeedPresenter;
 import bi.bigroup.life.mvp.main.feed.FeedView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.SuggestionDetailActivity;
 import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
+import bi.bigroup.life.views.dialogs.CommonDialog;
 
 import static bi.bigroup.life.utils.ConnectionDetector.isInternetOn;
 import static bi.bigroup.life.utils.Constants.KEY_CODE;
@@ -29,6 +31,7 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     @InjectPresenter
     FeedPresenter mvpPresenter;
     private FeedAdapter mAdapter;
+    private CommonDialog commonDialog;
 
     public static FeedFragment newInstance(int tabType) {
         FeedFragment fragment = new FeedFragment();
@@ -46,6 +49,18 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
+        commonDialog = new CommonDialog(getContext());
+        commonDialog.setCallback(new CommonDialog.CallbackQuestionnaire() {
+            @Override
+            public void onPassClick(String id) {
+
+            }
+
+            @Override
+            public void onShowStatisticsClick(String id) {
+
+            }
+        });
         handleIntent();
         configureRecyclerView();
     }
@@ -78,8 +93,8 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
             }
 
             @Override
-            public void onQuestionnaireItemClick(Feed feed) {
-
+            public void onQuestionnaireItemClick(String id) {
+                mvpPresenter.getQuestionnaire(id);
             }
 
             @Override
@@ -157,6 +172,11 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
     @Override
     public void showTransparentIndicator(boolean show) {
         pb_indicator.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void setQuestionnaire(Questionnaire object) {
+        commonDialog.showQuestionnaireDialog(object);
     }
 
     public void onBottomNavigationTabReselected() {

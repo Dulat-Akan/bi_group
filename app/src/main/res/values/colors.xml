@@ -72,6 +72,8 @@
     <color name="pager_indicator_unselected">#d1d1d2</color>
     <color name="pager_indicator_fill">#6d6d72</color>
     <color name="slider_img_bg">#e5e8ef</color>
+    <color name="gray_btn_default">#e5e8ef</color>
+    <color name="gray_btn_active">#d5d8de</color>
 
     <!-- BiOfficeFragment -->
     <color name="bi_header_date">#6d6d72</color>

@@ -9,9 +9,11 @@ import java.util.List;
 import bi.bigroup.life.data.DataLayer;
 import bi.bigroup.life.data.cache.db.FeedDao;
 import bi.bigroup.life.data.models.feed.Feed;
+import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
 import bi.bigroup.life.data.repository.feed.FeedRepository;
 import bi.bigroup.life.data.repository.feed.FeedRepositoryProvider;
 import bi.bigroup.life.data.repository.feed.news.NewsRepositoryProvider;
+import bi.bigroup.life.data.repository.feed.questionnaire.QuestionnaireRepositoryProvider;
 import bi.bigroup.life.data.repository.feed.suggestions.SuggestionsRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
 import okhttp3.ResponseBody;
@@ -197,4 +199,31 @@ public class FeedPresenter extends BaseMvpPresenter<FeedView> {
                     }
                 });
     }
+
+    public void getQuestionnaire(String id) {
+        Subscription subscription = QuestionnaireRepositoryProvider.provideRepository(dataLayer.getApi())
+                .getQuestionnaire(id)
+                .doOnSubscribe(() -> getViewState().showTransparentIndicator(true))
+                .doOnTerminate(() -> getViewState().showTransparentIndicator(false))
+                .subscribe(new Subscriber<Questionnaire>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleResponseError(context, e);
+                    }
+
+                    @Override
+                    public void onNext(Questionnaire object) {
+                        if (object != null) {
+                            getViewState().setQuestionnaire(object);
+                        }
+                    }
+                });
+        compositeSubscription.add(subscription);
+    }
+
 }

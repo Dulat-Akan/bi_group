@@ -17,6 +17,14 @@ class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
     }
 
     @Override
+    public Observable<Questionnaire> getQuestionnaire(String id) {
+        return api
+                .getQuestionnaire(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
     public Observable<List<Questionnaire>> getPopularQuestionnaires() {
         return api
                 .getPopularQuestionnaires()

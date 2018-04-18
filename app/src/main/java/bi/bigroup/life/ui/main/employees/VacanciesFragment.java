@@ -58,10 +58,11 @@ public class VacanciesFragment extends BaseSwipeRefreshFragment implements Vacan
 
         ImageView search_close_btn = search_view.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
         search_close_btn.setOnClickListener(view -> closeSearchView());
-
-        setCursorColor(searchEditText, ContextCompat.getColor(getContext(), R.color.feed_time));
-        searchEditText.setTextColor(ContextCompat.getColor(getContext(), R.color.feed_time));
-        searchEditText.setHintTextColor(ContextCompat.getColor(getContext(), R.color.feed_time));
+        if (getContext() != null) {
+            setCursorColor(searchEditText, ContextCompat.getColor(getContext(), R.color.feed_time));
+            searchEditText.setTextColor(ContextCompat.getColor(getContext(), R.color.feed_time));
+            searchEditText.setHintTextColor(ContextCompat.getColor(getContext(), R.color.feed_time));
+        }
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

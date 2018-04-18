@@ -368,7 +368,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 
         @OnClick(R.id.ll_content)
         void onItemClick() {
-            callback.onQuestionnaireItemClick(bindedObject);
+            callback.onQuestionnaireItemClick(bindedObject.getId());
         }
     }
 
@@ -377,7 +377,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 
         void onSuggestionItemClick(String suggestionId);
 
-        void onQuestionnaireItemClick(Feed feed);
+        void onQuestionnaireItemClick(String id);
 
         void onNewsLike(String id, boolean liked);
 

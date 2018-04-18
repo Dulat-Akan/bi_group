@@ -41,7 +41,6 @@ public interface API {
     Observable<Auth> signIn(@Body AuthParams params);
 
     /****** Feed *******/
-    //  LENTA http://life.bi-group.org:8090/api/lenta?rows=3&offset=0&withDescription=false
     @GET("Lenta/")
     Observable<List<Feed>> getFeedList(@Query("rows") int rows,
                                        @Query("offset") int offset,
@@ -138,6 +137,9 @@ public interface API {
             @Part("tags[]") List<String> tags);
 
     /****** Questionnaires *******/
+    @GET("Questionnaires/{id}")
+    Observable<Questionnaire> getQuestionnaire(@Path("id") String id);
+
     @GET("Questionnaires/popular")
     Observable<List<Questionnaire>> getPopularQuestionnaires();
 

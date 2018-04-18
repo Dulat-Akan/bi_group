@@ -38,6 +38,7 @@ import bi.bigroup.life.mvp.main.feed.news.NewsDetailPresenter;
 import bi.bigroup.life.mvp.main.feed.news.NewsDetailView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import bi.bigroup.life.ui.main.feed.ViewPagerImage;
+import bi.bigroup.life.utils.LOTimber;
 import bi.bigroup.life.utils.animation.AvatarAnimation;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
@@ -214,7 +215,11 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
             sliderImages.add(object.getImageUrl());
             if (object.secondaryImages != null && object.secondaryImages.size() > 0) {
                 for (int i = 0; i < object.secondaryImages.size(); i++) {
-                    sliderImages.add(object.secondaryImages.get(i).getImageUrl());
+                    String imgUrl = object.secondaryImages.get(i).getImageUrl();
+                    if (isStringOk(imgUrl)) {
+                        sliderImages.add(imgUrl);
+                        LOTimber.d("aslkdjaskld link=" + imgUrl);
+                    }
                 }
             }
 

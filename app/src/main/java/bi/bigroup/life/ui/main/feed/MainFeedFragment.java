@@ -22,7 +22,6 @@ import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
 import bi.bigroup.life.ui.main.bioffice.HotBoardViewPager;
 import bi.bigroup.life.ui.main.feed.news.AddNewsActivity;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
-import bi.bigroup.life.utils.LOTimber;
 import bi.bigroup.life.utils.view_pager.ParallaxPageTransformer;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
 import butterknife.BindView;

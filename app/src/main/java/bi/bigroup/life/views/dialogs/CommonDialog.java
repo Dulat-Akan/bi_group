@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.employees.Employee;
-import bi.bigroup.life.data.models.feed.Feed;
+import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
@@ -23,7 +23,7 @@ import static bi.bigroup.life.utils.StringUtils.isStringOk;
 public class CommonDialog {
     private Context context;
     private CallbackYesNo callbackYesNo;
-    private CallbackDouble callDoubleButtons;
+    private CallbackQuestionnaire callbackQuestionnaire;
     private CallbackEnterMsgBtn callbackEnterMsgBtn;
 
     public CommonDialog(Context context) {
@@ -34,8 +34,8 @@ public class CommonDialog {
         this.callbackYesNo = callbackYesNo;
     }
 
-    public void setCallDoubleButtons(CallbackDouble callDoubleButtons) {
-        this.callDoubleButtons = callDoubleButtons;
+    public void setCallback(CallbackQuestionnaire callback) {
+        this.callbackQuestionnaire = callback;
     }
 
     public void setCallback(CallbackEnterMsgBtn callbackEnterMsgBtn) {
@@ -46,6 +46,7 @@ public class CommonDialog {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_yesno);
+        if (dialog.getWindow() == null) return;
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false);
         final Button btn_yes = dialog.findViewById(R.id.btn_yes);
@@ -68,38 +69,12 @@ public class CommonDialog {
         dialog.show();
     }
 
-    public void showDoubleDialog(String first, String second) {
-        final Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_double_buttons);
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setCancelable(false);
-        final Button btn_first = dialog.findViewById(R.id.btn_first);
-        btn_first.setText(first);
-        final Button btn_second = dialog.findViewById(R.id.btn_second);
-        final Button btn_cancel = dialog.findViewById(R.id.btn_cancel);
-        btn_second.setText(second);
-        View.OnClickListener clickListener = v -> {
-            if (callDoubleButtons != null) {
-                if (v.equals(btn_first))
-                    callDoubleButtons.onClickFirst();
-                else if (v.equals(btn_second))
-                    callDoubleButtons.onClickSecond();
-
-                dialog.dismiss();
-            }
-        };
-        btn_first.setOnClickListener(clickListener);
-        btn_second.setOnClickListener(clickListener);
-        btn_cancel.setOnClickListener(clickListener);
-        dialog.show();
-    }
-
     public void showBirthdayEnterText(Employee employee, Picasso picasso) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.dialog_enter_text);
+        if (dialog.getWindow() == null) return;
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         final MaterialEditText et_msg = dialog.findViewById(R.id.et_msg);
         final Button btn_send_comment = dialog.findViewById(R.id.btn_send_comment);
@@ -126,32 +101,47 @@ public class CommonDialog {
         dialog.show();
     }
 
-    public void showQuestionnaireDialog(Feed feed) {
+    public void showQuestionnaireDialog(Questionnaire questionnaire) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
-        dialog.setContentView(R.layout.dialog_enter_text);
+        dialog.setContentView(R.layout.dialog_questionnaire);
+        if (dialog.getWindow() == null) return;
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        final MaterialEditText et_msg = dialog.findViewById(R.id.et_msg);
-        final Button btn_send_comment = dialog.findViewById(R.id.btn_send_comment);
-        final ImageView img_avatar = dialog.findViewById(R.id.img_avatar);
+        final TextView tv_title = dialog.findViewById(R.id.tv_title);
+        tv_title.setText(questionnaire.getTitle());
+
+        final TextView tv_text = dialog.findViewById(R.id.tv_text);
+        tv_text.setText(questionnaire.getDescription());
+        final TextView tv_author_name = dialog.findViewById(R.id.tv_author_name);
+        tv_author_name.setText(questionnaire.isAuthorVisible() ? questionnaire.getAuthorName() : context.getString(R.string.not_configured));
+
+        final TextView tv_asked = dialog.findViewById(R.id.tv_asked);
+        tv_asked.setText(String.valueOf(questionnaire.getRespondentsQuantity()));
+        final TextView tv_questions = dialog.findViewById(R.id.tv_questions);
+        tv_questions.setText(String.valueOf(questionnaire.getQuestionsQuantity()));
+        final TextView tv_type = dialog.findViewById(R.id.tv_type);
+        tv_type.setText(context.getString(questionnaire.isAnonymous() ? R.string.anonymous : R.string.label_not_anonymous));
+
+        final Button btn_show_statistics = dialog.findViewById(R.id.btn_show_statistics);
+        btn_show_statistics.setVisibility(questionnaire.isCurrentUserInterviewed() ? View.VISIBLE : View.GONE);
+        final Button btn_pass = dialog.findViewById(R.id.btn_pass);
+        btn_pass.setText(context.getString(questionnaire.isCurrentUserInterviewed() ? R.string.change_answers : R.string.action_pass));
 
         final ImageView img_close = dialog.findViewById(R.id.img_close);
         View.OnClickListener clickListener = v -> {
-            if (callbackEnterMsgBtn != null) {
-                if (v.equals(btn_send_comment)) {
-                    if (isStringOk(et_msg.getText().toString())) {
-                        callbackEnterMsgBtn.onClickAction(et_msg.getText().toString());
-                        dialog.dismiss();
-                    } else {
-                        et_msg.setError(context.getString(R.string.field_error));
-                    }
+            if (callbackQuestionnaire != null) {
+                if (v.equals(btn_pass)) {
+                    callbackQuestionnaire.onPassClick(questionnaire.getId());
+                } else if (v.equals(btn_show_statistics)) {
+                    callbackQuestionnaire.onShowStatisticsClick(questionnaire.getId());
                 } else if (v.equals(img_close)) {
                     dialog.dismiss();
                 }
             }
         };
-        btn_send_comment.setOnClickListener(clickListener);
+        btn_pass.setOnClickListener(clickListener);
+        btn_show_statistics.setOnClickListener(clickListener);
         img_close.setOnClickListener(clickListener);
         dialog.show();
     }
@@ -204,10 +194,10 @@ public class CommonDialog {
         void onClickNo();
     }
 
-    public interface CallbackDouble {
-        void onClickFirst();
+    public interface CallbackQuestionnaire {
+        void onPassClick(String id);
 
-        void onClickSecond();
+        void onShowStatisticsClick(String id);
     }
 
     public interface CallbackEnterMsgBtn {

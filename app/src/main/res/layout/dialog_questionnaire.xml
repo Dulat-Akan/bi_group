@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              style="@style/LL_MW_V"
+              android:padding="@dimen/dp_18">
+
+    <LinearLayout
+        style="@style/LL_MW_H"
+        android:gravity="center_vertical">
+
+        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+            android:id="@+id/tv_title"
+            style="@style/MW"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16"
+            tools:text="@string/lorem_ipsum_short_2"/>
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="@dimen/dp_27"
+            android:layout_height="@dimen/dp_27"
+            android:clickable="true"
+            android:padding="@dimen/dp_3"
+            android:src="@drawable/close_circle_dark"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_5_divider"
+        android:layout_marginTop="@dimen/dp_11"
+        android:background="@color/divider2"/>
+
+    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+        android:id="@+id/tv_text"
+        style="@style/MW"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_14"
+        tools:text="@string/lorem_ipsum_short_2"/>
+
+    <LinearLayout
+        style="@style/LL_MW_H"
+        android:layout_marginTop="@dimen/dp_7">
+
+        <LinearLayout
+            style="@style/LL_MW_V"
+            android:layout_weight="1">
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                style="@style/MW"
+                android:text="@string/label_author"
+                android:textColor="@color/feed_time"
+                android:textSize="@dimen/sp_12"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_author_name"
+                style="@style/MW"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                tools:text="Jason Statham"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                style="@style/MW"
+                android:layout_marginTop="@dimen/dp_7"
+                android:text="@string/label_asked"
+                android:textColor="@color/feed_time"
+                android:textSize="@dimen/sp_12"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_asked"
+                style="@style/MW"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LL_MW_V"
+            android:layout_marginLeft="@dimen/dp_7"
+            android:layout_weight="1">
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                style="@style/MW"
+                android:text="@string/label_questions"
+                android:textColor="@color/feed_time"
+                android:textSize="@dimen/sp_12"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_questions"
+                style="@style/MW"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                style="@style/MW"
+                android:layout_marginTop="@dimen/dp_7"
+                android:text="@string/label_type"
+                android:textColor="@color/feed_time"
+                android:textSize="@dimen/sp_12"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                android:id="@+id/tv_type"
+                style="@style/MW"
+                android:text="@string/label_not_anonymous"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <bi.bigroup.life.views.fonts.ButtonRobotoRegular
+        android:id="@+id/btn_show_statistics"
+        style="@style/MW"
+        android:layout_height="@dimen/dp_42"
+        android:layout_marginBottom="@dimen/dp_4_ngtv"
+        android:layout_marginTop="@dimen/dp_18"
+        android:background="@drawable/btn_selector_gray_rounded"
+        android:paddingBottom="@dimen/dp_5"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_5"
+        android:text="@string/show_statistics"
+        android:textColor="@color/main_color"
+        android:visibility="gone"/>
+
+    <bi.bigroup.life.views.fonts.ButtonRobotoRegular
+        android:id="@+id/btn_pass"
+        style="@style/MW"
+        android:layout_height="@dimen/dp_42"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/btn_selector_blue_rounded"
+        android:paddingBottom="@dimen/dp_5"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_5"
+        android:text="@string/action_pass"
+        android:textColor="@color/white"/>
+</LinearLayout>
