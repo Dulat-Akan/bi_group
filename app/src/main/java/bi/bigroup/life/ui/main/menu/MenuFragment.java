@@ -1,6 +1,8 @@
 package bi.bigroup.life.ui.main.menu;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,19 +69,21 @@ public class MenuFragment extends BaseFragment implements MenuView {
 
     @OnClick(R.id.tv_logout)
     void onLogoutClick() {
-        commonDialog.showDialogYesNo(getString(R.string.logout_confirm));
-        commonDialog.setCallback(new CommonDialog.CallbackYesNo() {
-            @Override
-            public void onClickYes() {
-                dataLayer.wipeOut();
-                startActivity(AuthActivity.newLogoutIntent(getContext()));
-            }
+        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    dataLayer.wipeOut();
+                    startActivity(AuthActivity.newLogoutIntent(getContext()));
+                    break;
 
-            @Override
-            public void onClickNo() {
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    break;
             }
-        });
-
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(getString(R.string.logout_confirm)).setPositiveButton(getString(R.string.yes), dialogClickListener)
+                .setNegativeButton(getString(R.string.no), dialogClickListener).show();
     }
 
     ///////////////////////////////////////////////////////////////////////////

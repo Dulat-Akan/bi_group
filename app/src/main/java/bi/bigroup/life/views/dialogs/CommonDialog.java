@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.employees.Employee;
+import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 
 import static bi.bigroup.life.utils.Constants.getProfilePicture;
@@ -124,6 +125,37 @@ public class CommonDialog {
         img_close.setOnClickListener(clickListener);
         dialog.show();
     }
+
+    public void showQuestionnaireDialog(Feed feed) {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialog_enter_text);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        final MaterialEditText et_msg = dialog.findViewById(R.id.et_msg);
+        final Button btn_send_comment = dialog.findViewById(R.id.btn_send_comment);
+        final ImageView img_avatar = dialog.findViewById(R.id.img_avatar);
+
+        final ImageView img_close = dialog.findViewById(R.id.img_close);
+        View.OnClickListener clickListener = v -> {
+            if (callbackEnterMsgBtn != null) {
+                if (v.equals(btn_send_comment)) {
+                    if (isStringOk(et_msg.getText().toString())) {
+                        callbackEnterMsgBtn.onClickAction(et_msg.getText().toString());
+                        dialog.dismiss();
+                    } else {
+                        et_msg.setError(context.getString(R.string.field_error));
+                    }
+                } else if (v.equals(img_close)) {
+                    dialog.dismiss();
+                }
+            }
+        };
+        btn_send_comment.setOnClickListener(clickListener);
+        img_close.setOnClickListener(clickListener);
+        dialog.show();
+    }
+
 
 //    public void showDatePickerDialog(boolean isEndDate) {
 //        final Dialog dialog = new Dialog(context);

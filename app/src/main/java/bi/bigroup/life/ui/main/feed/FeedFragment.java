@@ -77,6 +77,11 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
             }
 
             @Override
+            public void onQuestionnaireItemClick(Feed feed) {
+
+            }
+
+            @Override
             public void onNewsLike(String id, boolean liked) {
                 mvpPresenter.likeSubscriptionUnsubscribe();
                 mvpPresenter.likeNews(id);

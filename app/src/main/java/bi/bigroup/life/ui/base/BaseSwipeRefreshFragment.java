@@ -10,7 +10,7 @@ import bi.bigroup.life.utils.recycler_view.SwipeRefreshUtils;
 import butterknife.BindView;
 
 public abstract class BaseSwipeRefreshFragment extends BaseFragment implements BaseSwipeRefreshMvpView {
-    @BindView(R.id.swipeRefresh) protected SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.swipeRefresh) public SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.recycler_view) protected RecyclerView recycler_view;
 
     protected void configureRecyclerView() {

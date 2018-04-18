@@ -3,6 +3,7 @@ package bi.bigroup.life.ui.main.feed;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -21,6 +22,7 @@ import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
 import bi.bigroup.life.ui.main.bioffice.HotBoardViewPager;
 import bi.bigroup.life.ui.main.feed.news.AddNewsActivity;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
+import bi.bigroup.life.utils.LOTimber;
 import bi.bigroup.life.utils.view_pager.ParallaxPageTransformer;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
 import butterknife.BindView;
@@ -32,7 +34,7 @@ import static bi.bigroup.life.mvp.main.feed.FeedPresenter.TAB_FEED_SUGGESTIONS;
 import static bi.bigroup.life.ui.main.feed.FeedFragment.UPDATE_NEWS_FEED;
 import static bi.bigroup.life.utils.Constants.KEY_CODE;
 
-public class MainFeedFragment extends BaseFragment implements MainFeedView, BottomNavigationTabFragment {
+public class MainFeedFragment extends BaseFragment implements MainFeedView, BottomNavigationTabFragment, AppBarLayout.OnOffsetChangedListener {
     @InjectPresenter
     MainFeedPresenter mvpPresenter;
 
@@ -40,6 +42,7 @@ public class MainFeedFragment extends BaseFragment implements MainFeedView, Bott
     @BindView(R.id.ci_images) CirclePageIndicator ci_images;
     @BindView(R.id.tabs) TabLayout tabs;
     @BindView(R.id.vp_pager) ViewPager viewPager;
+    @BindView(R.id.appbar_layout) AppBarLayout appbar_layout;
 
     private HotBoardViewPager sliderAdapter;
     private FeedFragment feedAll;
@@ -57,6 +60,7 @@ public class MainFeedFragment extends BaseFragment implements MainFeedView, Bott
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
+        appbar_layout.addOnOffsetChangedListener(this);
         configureSliderViewPager();
         configureViewPager();
     }
@@ -125,9 +129,26 @@ public class MainFeedFragment extends BaseFragment implements MainFeedView, Bott
 
     @Override
     public void onBottomNavigationTabReselected() {
-        FeedFragment fragment = (FeedFragment)adapter.getItem(viewPager.getCurrentItem());
+        FeedFragment fragment = (FeedFragment) adapter.getItem(viewPager.getCurrentItem());
         if (fragment != null) {
             fragment.onBottomNavigationTabReselected();
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // AppBarLayout.OnOffsetChangedListener implementation
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        enableDisableSwipeRefresh(verticalOffset);
+    }
+
+    private void enableDisableSwipeRefresh(int verticalOffset) {
+        for (int i = 0; i < adapter.getCount(); i++) {
+            if (((FeedFragment) adapter.getItem(i)).swipeRefreshLayout != null) {
+                ((FeedFragment) adapter.getItem(i)).swipeRefreshLayout.setEnabled(verticalOffset == 0);
+            }
         }
     }
 }

@@ -18,8 +18,7 @@
 
             <FrameLayout
                 android:id="@+id/fragment_container"
-                style="@style/MM"
-                android:layout_weight="1"/>
+                style="@style/MM"/>
 
         </LinearLayout>
 

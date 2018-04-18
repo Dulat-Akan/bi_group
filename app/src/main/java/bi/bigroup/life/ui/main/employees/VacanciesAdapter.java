@@ -151,10 +151,10 @@ class VacanciesAdapter extends RecyclerViewBaseAdapter {
             tv_salary.setText(context.getString(R.string.salary, object.getSalary()));
         }
 
-        @OnClick(R.id.ll_row)
-        void onRowClick() {
-//            callback.onItemClick(bindedObject.getCode());
-        }
+//        @OnClick(R.id.ll_row)
+//        void onRowClick() {
+////            callback.onItemClick(bindedObject.getCode());
+//        }
     }
 
     interface Callback {

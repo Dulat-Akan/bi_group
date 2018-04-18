@@ -249,7 +249,7 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
 
     @Override
     public void onBottomNavigationTabReselected() {
-        if (mAdapter.getItemCount() > 0)
+        if (mAdapter != null && mAdapter.getItemCount() > 0)
             ((LinearLayoutManager) recycler_view.getLayoutManager()).scrollToPositionWithOffset(0, 0);
     }
 }
