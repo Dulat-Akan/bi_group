@@ -39,9 +39,7 @@ public class PicassoUtils {
         if (isStringOk(url)) {
             int MAX_WIDTH = 1024;
             int MAX_HEIGHT = 768;
-
             int size = (int) Math.ceil(Math.sqrt(MAX_WIDTH * MAX_HEIGHT));
-
             picasso.load(url)
                     .transform(new BitmapTransform(MAX_WIDTH, MAX_HEIGHT))
                     .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)

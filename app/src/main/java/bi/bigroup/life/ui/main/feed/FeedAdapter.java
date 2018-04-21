@@ -29,6 +29,7 @@ import static bi.bigroup.life.utils.Constants.SHARE_NEWS;
 import static bi.bigroup.life.utils.Constants.SHARE_QUESTIONNAIRES;
 import static bi.bigroup.life.utils.Constants.SHARE_SUGGESTIONS;
 import static bi.bigroup.life.utils.Constants.buildShareUrl;
+import static bi.bigroup.life.utils.Constants.getProfilePicture;
 import static bi.bigroup.life.utils.StringUtils.isStringOk;
 
 class FeedAdapter extends RecyclerViewBaseAdapter {
@@ -185,6 +186,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 //            adapter.addImages(Collections.singletonList(feed.getImageUrl()));
 //            vp_images.setAdapter(adapter);
 //            ci_images.setViewPager(vp_images);
+            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(feed.getCode()), R.color.user_avatar);
             PicassoUtils.showNewsImage(picasso, img_slider, feed.getImageUrl());
 
             tv_content.setText(feed.title);
@@ -268,6 +270,8 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
 
             img_dislike.setImageResource(feed.getUserVote() == VOTE_DISLIKED ? R.drawable.dislike_active
                     : R.drawable.dislike_inactive);
+
+            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(feed.getCode()), R.color.user_avatar);
         }
 
         @OnClick(R.id.img_more)
@@ -354,6 +358,7 @@ class FeedAdapter extends RecyclerViewBaseAdapter {
             tv_like_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.likesQuantity)));
             tv_comment_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.commentsQuantity)));
             tv_poll_quantity.setText(String.valueOf(feed.getOkIntQuantity(feed.questionsQuantity)));
+            PicassoUtils.showAvatar(picasso, img_avatar, getProfilePicture(feed.getCode()), R.color.user_avatar);
         }
 
         @OnClick(R.id.img_more)

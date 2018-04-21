@@ -8,6 +8,8 @@ import static bi.bigroup.life.utils.DateUtils.getNewsDate;
 import static bi.bigroup.life.utils.StringUtils.getOkInt;
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
+import static bi.bigroup.life.utils.StringUtils.replaceNullTrim;
+
 @Entity
 public class Feed {
     @PrimaryKey
@@ -94,6 +96,10 @@ public class Feed {
 
     public String getDate() {
         return getNewsDate(createDate);
+    }
+
+    public String getCode() {
+        return replaceNullTrim(authorCode);
     }
 
     public class ImageSize {

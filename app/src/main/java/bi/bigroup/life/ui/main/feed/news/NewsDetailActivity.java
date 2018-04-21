@@ -218,7 +218,6 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
                     String imgUrl = object.secondaryImages.get(i).getImageUrl();
                     if (isStringOk(imgUrl)) {
                         sliderImages.add(imgUrl);
-                        LOTimber.d("aslkdjaskld link=" + imgUrl);
                     }
                 }
             }

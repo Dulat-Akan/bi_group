@@ -78,6 +78,7 @@ public class ViewPagerImage extends PagerAdapter {
 
     class ViewHolder {
         Context context;
+        String sliderImg;
         @BindView(R.id.img_slider) ImageView img_slider;
 
         ViewHolder(View view) {
@@ -86,13 +87,14 @@ public class ViewPagerImage extends PagerAdapter {
         }
 
         void bindNews(String sliderImg) {
-            PicassoUtils.showAvatar(picasso, img_expanded, sliderImg, R.color.transparent);
+            this.sliderImg = sliderImg;
             PicassoUtils.showNewsImage(picasso, img_slider, sliderImg);
         }
 
         @OnClick(R.id.img_slider)
         void onImageClick() {
             if (callback != null) {
+                PicassoUtils.showAvatar(picasso, img_expanded, sliderImg, R.color.transparent);
                 callback.onImageClick();
             }
         }
