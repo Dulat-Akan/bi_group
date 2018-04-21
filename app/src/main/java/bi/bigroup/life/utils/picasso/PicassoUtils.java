@@ -13,7 +13,7 @@ public class PicassoUtils {
             picasso.load(url)
                     .placeholder(placeholder)
                     .error(placeholder)
-                    .fit().centerCrop()
+                    .fit()
                     .into(view);
         }
     }
@@ -31,7 +31,6 @@ public class PicassoUtils {
     public static void showNewsImage(Picasso picasso, ImageView view, String url) {
         if (isStringOk(url)) {
             picasso.load(url)
-                    .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                     .into(view);
         }
     }

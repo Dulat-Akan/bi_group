@@ -1,13 +1,11 @@
 package bi.bigroup.life.ui.main.employees;
 
-import android.animation.Animator;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,8 +22,8 @@ import bi.bigroup.life.mvp.main.employees.AllEmployeesPresenter;
 import bi.bigroup.life.mvp.main.employees.AllEmployeesView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
 import bi.bigroup.life.ui.main.BottomNavigationTabFragment;
-import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
-import bi.bigroup.life.utils.recycler_view.RecyclerScroll;
+import bi.bigroup.life.utils.LOTimber;
+import bi.bigroup.life.utils.recycler_view.EndlessRecyclerViewScrollListener;
 import bi.bigroup.life.views.dialogs.CommonDialog;
 import butterknife.BindView;
 
@@ -143,14 +141,23 @@ public class AllEmployeesFragment extends BaseSwipeRefreshFragment implements Al
             }
         });
         recycler_view.setAdapter(mAdapter);
-        recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view) {
+        recycler_view.addOnScrollListener(new EndlessRecyclerViewScrollListener(mLayoutManager) {
             @Override
-            public void onRequestMoreItems() {
-                if (!mAdapter.getLoading() && mAdapter.getItemCount() > 1 && searchEditText.getText().toString().length() == 0) {
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                if (!mAdapter.getLoading() && totalItemsCount > 5 && searchEditText.getText().toString().length() == 0) {
                     mvpPresenter.getEmployees(true, false, isBirthdayToday, true);
                 }
             }
+
+            @Override
+            public void onScrolled() {
+                if (recycler_view.getChildAt(0) != null) {
+                    swipeRefreshLayout.setEnabled(mLayoutManager.findFirstVisibleItemPosition() == 1 &&
+                            recycler_view.getChildAt(0).getTop() == 0);
+                }
+            }
         });
+
 //        recycler_view.addOnScrollListener(new RecyclerScroll() {
 //            @Override
 //            public void show() {

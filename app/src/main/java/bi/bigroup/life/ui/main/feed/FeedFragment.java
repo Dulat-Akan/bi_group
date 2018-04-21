@@ -3,6 +3,7 @@ package bi.bigroup.life.ui.main.feed;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -16,8 +17,9 @@ import bi.bigroup.life.mvp.main.feed.FeedPresenter;
 import bi.bigroup.life.mvp.main.feed.FeedView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
+import bi.bigroup.life.ui.main.feed.questionnaires.QuestStatisticsActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.SuggestionDetailActivity;
-import bi.bigroup.life.utils.recycler_view.EndlessScrollListener;
+import bi.bigroup.life.utils.recycler_view.EndlessRecyclerViewScrollListener;
 import bi.bigroup.life.views.dialogs.CommonDialog;
 
 import static bi.bigroup.life.utils.ConnectionDetector.isInternetOn;
@@ -58,11 +60,12 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
 
             @Override
             public void onShowStatisticsClick(String id) {
-
+                startActivity(QuestStatisticsActivity.getIntent(getContext(), id));
             }
         });
         handleIntent();
         configureRecyclerView();
+        mvpPresenter.getFeedList(false, false, isInternetOn(getContext()), tabType);
     }
 
     private void handleIntent() {
@@ -71,15 +74,8 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        mvpPresenter.getFeedList(false, false, isInternetOn(getContext()), tabType);
-    }
-
     protected void configureRecyclerView() {
         super.configureRecyclerView();
-        recycler_view.setNestedScrollingEnabled(false);
         mAdapter = new FeedAdapter(dataLayer.getPicasso());
         mAdapter.setCallback(new FeedAdapter.Callback() {
             @Override
@@ -119,11 +115,19 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
             }
         });
         recycler_view.setAdapter(mAdapter);
-        recycler_view.addOnScrollListener(new EndlessScrollListener(recycler_view) {
+        recycler_view.addOnScrollListener(new EndlessRecyclerViewScrollListener(mLayoutManager) {
             @Override
-            public void onRequestMoreItems() {
-                if (!mAdapter.getLoading() && mAdapter.getItemCount() > 5) {
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                if (!mAdapter.getLoading() && totalItemsCount > 5) {
                     mvpPresenter.getFeedList(true, false, true, tabType);
+                }
+            }
+
+            @Override
+            public void onScrolled() {
+                if (recycler_view.getChildAt(0) != null) {
+                    swipeRefreshLayout.setEnabled(mLayoutManager.findFirstVisibleItemPosition() == 1 &&
+                            recycler_view.getChildAt(0).getTop() == 0);
                 }
             }
         });

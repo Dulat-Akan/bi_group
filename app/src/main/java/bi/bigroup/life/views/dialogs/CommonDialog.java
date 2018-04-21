@@ -135,9 +135,8 @@ public class CommonDialog {
                     callbackQuestionnaire.onPassClick(questionnaire.getId());
                 } else if (v.equals(btn_show_statistics)) {
                     callbackQuestionnaire.onShowStatisticsClick(questionnaire.getId());
-                } else if (v.equals(img_close)) {
-                    dialog.dismiss();
                 }
+                dialog.dismiss();
             }
         };
         btn_pass.setOnClickListener(clickListener);

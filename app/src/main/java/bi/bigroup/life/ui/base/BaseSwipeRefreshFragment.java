@@ -12,10 +12,13 @@ import butterknife.BindView;
 public abstract class BaseSwipeRefreshFragment extends BaseFragment implements BaseSwipeRefreshMvpView {
     @BindView(R.id.swipeRefresh) public SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.recycler_view) protected RecyclerView recycler_view;
+    protected LinearLayoutManager mLayoutManager;
 
     protected void configureRecyclerView() {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager = new LinearLayoutManager(getContext());
         recycler_view.setLayoutManager(mLayoutManager);
+        recycler_view.setHasFixedSize(true);
+
         setSwipeRefreshLayout();
         SwipeRefreshUtils.setColorSchemeColors(getContext(), swipeRefreshLayout);
     }

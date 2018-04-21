@@ -99,7 +99,7 @@ public class FeedPresenter extends BaseMvpPresenter<FeedView> {
                                     }
                                 }
 
-                                if (is_refresh) {
+                                if (is_refresh || !is_load_more) {
                                     getViewState().setFeedList(feedList);
                                 } else {
                                     getViewState().showLoadingIndicator(false);

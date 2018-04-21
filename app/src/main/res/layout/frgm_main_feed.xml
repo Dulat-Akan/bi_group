@@ -27,7 +27,7 @@
                         style="@style/MW"
                         android:layout_height="@dimen/dp_230"
                         android:fitsSystemWindows="true"
-                        app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
                         <LinearLayout
                             style="@style/LL_MW_V"

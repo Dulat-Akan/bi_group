@@ -26,10 +26,6 @@ public class QuestStatisticsActivity extends BaseSwipeRefreshActivity implements
     @BindView(R.id.tv_title) TextView tv_title;
     private String questionnaireId;
 
-    public static Intent getIntent(Context context) {
-        return new Intent(context, QuestStatisticsActivity.class);
-    }
-
     public static Intent getIntent(Context context, String id) {
         Intent intent = new Intent(context, QuestStatisticsActivity.class);
         intent.putExtra(KEY_ID, id);

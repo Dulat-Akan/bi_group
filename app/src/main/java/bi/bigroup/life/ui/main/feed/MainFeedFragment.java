@@ -59,7 +59,6 @@ public class MainFeedFragment extends BaseFragment implements MainFeedView, Bott
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
-        appbar_layout.addOnOffsetChangedListener(this);
         configureSliderViewPager();
         configureViewPager();
     }
@@ -82,6 +81,7 @@ public class MainFeedFragment extends BaseFragment implements MainFeedView, Bott
         adapter.addFrag(FeedFragment.newInstance(TAB_FEED_SUGGESTIONS), getString(R.string.filter_offer));
         adapter.addFrag(FeedFragment.newInstance(TAB_FEED_QUESTIONNAIRES), getString(R.string.filter_poll));
         viewPager.setAdapter(adapter);
+        appbar_layout.addOnOffsetChangedListener(this);
     }
 
     @Override

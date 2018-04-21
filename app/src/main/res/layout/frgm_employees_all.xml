@@ -31,7 +31,7 @@
             style="@style/MM"
             android:layout_marginLeft="@dimen/dp_15">
 
-            <android.support.v4.widget.NestedScrollView
+            <FrameLayout
                 style="@style/MM">
 
                 <android.support.v7.widget.RecyclerView
@@ -39,7 +39,7 @@
                     style="@style/MM"
                     android:scrollbarSize="@dimen/dp_2"
                     android:scrollbars="vertical"/>
-            </android.support.v4.widget.NestedScrollView>
+            </FrameLayout>
         </android.support.v4.widget.SwipeRefreshLayout>
 
     </LinearLayout>
