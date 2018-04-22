@@ -43,8 +43,6 @@ public class MainPresenter extends BaseMvpPresenter<MainView> {
     private void getUser() {
         UserRepositoryProvider.provideRepository(dataLayer.getApi())
                 .getUser()
-                .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
-                .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
                 .subscribe(new Subscriber<User>() {
                     @Override
                     public void onCompleted() {

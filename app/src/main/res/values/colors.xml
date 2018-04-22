@@ -109,6 +109,9 @@
     <color name="topq_divider">#bcbbc1</color>
     <color name="topq_answered_results">#6d6d72</color>
 
-    <!-- AddNewsActivity -->
+    <!-- QuestStatisticsActivity -->
+    <color name="pb_default">#dce2eb</color>
+    <color name="pb_active">#b7cceb</color>
+
 
 </resources>

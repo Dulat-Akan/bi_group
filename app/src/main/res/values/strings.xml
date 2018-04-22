@@ -304,5 +304,9 @@
     </string-array>
     <string name="employee_already_exist">Сотрудник уже существует</string>
 
+    <!-- QuestStatisticsActivity -->
+    <string name="label_votes">%s голосов</string>
+    <string name="another_in_comment">Другое (в комментарии)</string>
+
     <string name="q"></string>
 </resources>

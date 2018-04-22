@@ -10,14 +10,15 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import java.util.List;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
+import bi.bigroup.life.data.models.feed.questionnaire.Question;
 import bi.bigroup.life.mvp.main.feed.questionnaires.QuestStatisticsPresenter;
 import bi.bigroup.life.mvp.main.feed.questionnaires.QuestStatisticsView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static android.support.customtabs.CustomTabsIntent.KEY_ID;
+import static bi.bigroup.life.utils.Constants.KEY_ID;
+import static bi.bigroup.life.utils.Constants.KEY_TITLE;
 
 public class QuestStatisticsActivity extends BaseSwipeRefreshActivity implements QuestStatisticsView {
     @InjectPresenter
@@ -26,9 +27,10 @@ public class QuestStatisticsActivity extends BaseSwipeRefreshActivity implements
     @BindView(R.id.tv_title) TextView tv_title;
     private String questionnaireId;
 
-    public static Intent getIntent(Context context, String id) {
+    public static Intent getIntent(Context context, String id, String title) {
         Intent intent = new Intent(context, QuestStatisticsActivity.class);
         intent.putExtra(KEY_ID, id);
+        intent.putExtra(KEY_TITLE, title);
         return intent;
     }
 
@@ -55,6 +57,8 @@ public class QuestStatisticsActivity extends BaseSwipeRefreshActivity implements
         Intent intent = getIntent();
         if (intent != null) {
             questionnaireId = intent.getStringExtra(KEY_ID);
+            String title = intent.getStringExtra(KEY_TITLE);
+            tv_title.setText(title);
             mvpPresenter.getQuestStatistics(questionnaireId,false);
         }
     }
@@ -67,7 +71,6 @@ public class QuestStatisticsActivity extends BaseSwipeRefreshActivity implements
     protected void configureRecyclerView() {
         super.configureRecyclerView();
         mAdapter = new QuestStatisticsAdapter(this);
-//        mAdapter.setCallback(area -> startActivity(AreaDetailActivity.getIntent(this, area.id)));
         recycler_view.setAdapter(mAdapter);
         recycler_view.setHasFixedSize(true);
     }
@@ -82,13 +85,8 @@ public class QuestStatisticsActivity extends BaseSwipeRefreshActivity implements
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void setQuestionnaireList(List<Questionnaire> list) {
+    public void setQuestionnaireList(List<Question> list) {
         mAdapter.clearData();
-        mAdapter.addQuestionnaireList(list);
-    }
-
-    @Override
-    public void addQuestionnaireList(List<Questionnaire> list) {
         mAdapter.addQuestionnaireList(list);
     }
 }

@@ -29,9 +29,9 @@ public abstract class BaseMvpPresenter<T extends BaseMvpView> extends MvpPresent
     }
 
     protected void handleResponseError(Context context, Throwable e) {
-        if (DebugConfig.DEV_BUILD) {
+//        if (DebugConfig.DEV_BUILD) {
             e.printStackTrace();
-        }
+//        }
         try {
             RetrofitErrorHandler.handleException(e);
         } catch (APIException e1) {

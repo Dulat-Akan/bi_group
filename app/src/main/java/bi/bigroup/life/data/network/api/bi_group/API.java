@@ -147,7 +147,7 @@ public interface API {
     Observable<List<Questionnaire>> getAllQuestionnaires();
 
     @GET("Questionnaires/{id}/statistics")
-    Observable<List<Questionnaire>> getQuestStatistics(@Path("id") String id);
+    Observable<Questionnaire> getQuestStatistics(@Path("id") String id);
 
     /****** Notifications *******/
     @GET("Notifications/")

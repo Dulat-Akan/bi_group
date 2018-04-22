@@ -2,10 +2,7 @@ package bi.bigroup.life.mvp.main.feed.questionnaires;
 
 import com.arellomobile.mvp.InjectViewState;
 
-import java.util.List;
-
 import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
-import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.repository.feed.questionnaire.QuestionnaireRepositoryProvider;
 import bi.bigroup.life.data.repository.notifications.NotificationsRepositoryProvider;
 import bi.bigroup.life.mvp.BaseMvpPresenter;
@@ -21,7 +18,7 @@ public class QuestStatisticsPresenter extends BaseMvpPresenter<QuestStatisticsVi
                 .getQuestStatistics(id)
                 .doOnSubscribe(() -> showLoading(true, is_refresh))
                 .doOnTerminate(() -> showLoading(false, is_refresh))
-                .subscribe(new Subscriber<List<Questionnaire>>() {
+                .subscribe(new Subscriber<Questionnaire>() {
                     @Override
                     public void onCompleted() {
 
@@ -33,13 +30,10 @@ public class QuestStatisticsPresenter extends BaseMvpPresenter<QuestStatisticsVi
                     }
 
                     @Override
-                    public void onNext(List<Questionnaire> list) {
-                        if (list != null && list.size() > 0) {
-                            if (is_refresh) {
-                                getViewState().setQuestionnaireList(list);
-                            } else {
-                                getViewState().addQuestionnaireList(list);
-                            }
+                    public void onNext(Questionnaire questionnaire) {
+                        if (questionnaire != null && questionnaire.questions != null &&
+                                questionnaire.questions.size() > 0) {
+                            getViewState().setQuestionnaireList(questionnaire.questions);
                         } else {
                             getViewState().showNotFoundPlaceholder();
                         }

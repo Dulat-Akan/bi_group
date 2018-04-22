@@ -41,7 +41,7 @@ class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
     }
 
     @Override
-    public Observable<List<Questionnaire>> getQuestStatistics(String id) {
+    public Observable<Questionnaire> getQuestStatistics(String id) {
         return api
                 .getQuestStatistics(id)
                 .subscribeOn(Schedulers.io())

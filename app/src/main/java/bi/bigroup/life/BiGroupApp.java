@@ -6,9 +6,6 @@ import android.content.Context;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
 
-import bi.bigroup.life.config.DebugConfig;
-import bi.bigroup.life.data.cache.preferences.Preferences;
-import bi.bigroup.life.data.cache.preferences.PreferencesProvider;
 import bi.bigroup.life.utils.stetho.StethoCustomConfigBuilder;
 import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
@@ -20,10 +17,7 @@ public class BiGroupApp extends Application {
         super.onCreate();
         setupFabric();
         setupTimber();
-//        if (DebugConfig.DEV_BUILD) {
         setupStetho();
-//        }
-        Preferences preferences = new PreferencesProvider(this);
     }
 
     @Override
@@ -32,12 +26,7 @@ public class BiGroupApp extends Application {
     }
 
     private void setupTimber() {
-        if (DebugConfig.DEV_BUILD) {
-            Timber.plant(new Timber.DebugTree());
-        } else {
-            Timber.plant(new Timber.DebugTree());
-//            Timber.plant(new CrashlyticsTree());
-        }
+        Timber.plant(new Timber.DebugTree());
     }
 
     private void setupStetho() {

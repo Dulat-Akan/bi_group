@@ -1,16 +1,21 @@
 package bi.bigroup.life.ui.main.feed.questionnaires;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
+import bi.bigroup.life.data.models.feed.questionnaire.Question;
+import bi.bigroup.life.data.models.feed.questionnaire.Variants;
 import bi.bigroup.life.ui.base.recycler_view.RecyclerViewBaseAdapter;
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -18,14 +23,14 @@ import butterknife.OnClick;
 class QuestStatisticsAdapter extends RecyclerViewBaseAdapter {
     private static final int LAYOUT_ID = R.layout.adapter_quest_statistics;
 
-    private Context context;
-    private List<Questionnaire> data;
+    private List<Question> data;
     private Callback callback;
+    private Context context;
     private boolean loading;
 
     QuestStatisticsAdapter(Context context) {
-        this.context = context;
         this.data = new ArrayList<>();
+        this.context = context;
     }
 
     void setCallback(Callback callback) {
@@ -51,18 +56,9 @@ class QuestStatisticsAdapter extends RecyclerViewBaseAdapter {
         notifyDataSetChanged();
     }
 
-    void addQuestionnaireList(List<Questionnaire> newItems) {
+    void addQuestionnaireList(List<Question> newItems) {
         data.addAll(newItems);
         notifyDataSetChanged();
-    }
-
-    String getId(int position) {
-        return data.get(position).id;
-    }
-
-    void remove(int position) {
-        data.remove(position);
-        notifyItemRemoved(position);
     }
 
     @Override
@@ -105,10 +101,11 @@ class QuestStatisticsAdapter extends RecyclerViewBaseAdapter {
     }
 
     class BViewHolder extends MainViewHolder {
-        @BindView(R.id.tv_title) TextView tv_title;
-        @BindView(R.id.tv_time) TextView tv_time;
-
-        Questionnaire bindedObject;
+        @BindView(R.id.tv_question_name) TextView tv_question_name;
+        @BindView(R.id.tv_poll_quantity) TextView tv_poll_quantity;
+        @BindView(R.id.ll_row) LinearLayout ll_row;
+        @BindString(R.string.another_in_comment) String another_in_comment;
+        Question bindedObject;
         int bindedPosition;
 
         BViewHolder(View v) {
@@ -116,14 +113,38 @@ class QuestStatisticsAdapter extends RecyclerViewBaseAdapter {
             ButterKnife.bind(this, v);
         }
 
-        void bind(Questionnaire object, int position) {
+        void bind(Question object, int position) {
             bindedObject = object;
             bindedPosition = position;
             if (object == null) {
                 return;
             }
-//            tv_title.setText(object.getMessage());
-//            tv_time.setText(notification.getCreateDate(context));
+            tv_question_name.setText(object.getQuestionText());
+            tv_poll_quantity.setText(context.getString(R.string.label_votes, String.valueOf(object.getUserVote())));
+
+            ll_row.removeAllViews();
+            if (object.variants != null && object.variants.size() > 0) {
+                List<Variants> variants = object.variants;
+                for (Variants item : variants) {
+                    setStatistics(item.getVariantText(), item.getPercentage());
+                }
+            }
+
+            if (object.comments != null && object.comments.size() > 0) {
+                setStatistics(another_in_comment, object.comments.size() * 100 / object.getUserVote());
+            }
+        }
+
+        void setStatistics(String variantText, int percentage) {
+            View variantLayout = ((Activity) context).getLayoutInflater().inflate(R.layout.adapter_questionnaire_variants, null);
+            ProgressBar progressBar = variantLayout.findViewById(R.id.progressBar);
+            progressBar.setProgress(percentage);
+            TextView tv_variant = variantLayout.findViewById(R.id.tv_variant);
+            tv_variant.setText(variantText);
+            TextView tv_percentage = variantLayout.findViewById(R.id.tv_percentage);
+            tv_percentage.setText(String.valueOf(percentage + "%"));
+
+            ll_row.addView(variantLayout);
         }
 
         @OnClick(R.id.ll_content)
@@ -135,6 +156,6 @@ class QuestStatisticsAdapter extends RecyclerViewBaseAdapter {
     }
 
     interface Callback {
-        void onItemClick(Questionnaire notification);
+        void onItemClick(Question question);
     }
 }

@@ -59,8 +59,8 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
             }
 
             @Override
-            public void onShowStatisticsClick(String id) {
-                startActivity(QuestStatisticsActivity.getIntent(getContext(), id));
+            public void onShowStatisticsClick(String id, String title) {
+                startActivity(QuestStatisticsActivity.getIntent(getContext(), id, title));
             }
         });
         handleIntent();

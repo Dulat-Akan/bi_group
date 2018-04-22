@@ -16,5 +16,5 @@ public interface QuestionnaireRepository {
 
     Observable<List<Questionnaire>> getAllQuestionnaire();
 
-    Observable<List<Questionnaire>> getQuestStatistics(String id);
+    Observable<Questionnaire> getQuestStatistics(String id);
 }

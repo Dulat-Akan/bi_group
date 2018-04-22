@@ -26,8 +26,6 @@ public class MainFeedPresenter extends BaseMvpPresenter<MainFeedView> {
     private void getPopularNews() {
         Subscription subscription = NewsRepositoryProvider.provideRepository(dataLayer.getApi())
                 .getPopularNews(TOP_3)
-                .doOnSubscribe(() -> getViewState().showLoadingIndicator(true))
-                .doOnTerminate(() -> getViewState().showLoadingIndicator(false))
                 .subscribe(new Subscriber<List<News>>() {
                     @Override
                     public void onCompleted() {

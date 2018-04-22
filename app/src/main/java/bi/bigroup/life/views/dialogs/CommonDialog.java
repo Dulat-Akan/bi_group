@@ -134,7 +134,7 @@ public class CommonDialog {
                 if (v.equals(btn_pass)) {
                     callbackQuestionnaire.onPassClick(questionnaire.getId());
                 } else if (v.equals(btn_show_statistics)) {
-                    callbackQuestionnaire.onShowStatisticsClick(questionnaire.getId());
+                    callbackQuestionnaire.onShowStatisticsClick(questionnaire.getId(), questionnaire.getTitle());
                 }
                 dialog.dismiss();
             }
@@ -196,7 +196,7 @@ public class CommonDialog {
     public interface CallbackQuestionnaire {
         void onPassClick(String id);
 
-        void onShowStatisticsClick(String id);
+        void onShowStatisticsClick(String id, String title);
     }
 
     public interface CallbackEnterMsgBtn {

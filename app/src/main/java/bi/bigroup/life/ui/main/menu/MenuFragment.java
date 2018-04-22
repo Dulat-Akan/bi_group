@@ -17,7 +17,6 @@ import bi.bigroup.life.ui.auth.AuthActivity;
 import bi.bigroup.life.ui.base.BaseFragment;
 import bi.bigroup.life.ui.profile.ProfileActivity;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
-import bi.bigroup.life.views.dialogs.CommonDialog;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -29,7 +28,6 @@ public class MenuFragment extends BaseFragment implements MenuView {
     @BindView(R.id.img_avatar) ImageView img_avatar;
     @BindView(R.id.tv_name) TextView tv_name;
     @BindView(R.id.tv_username) TextView tv_username;
-    private CommonDialog commonDialog;
 
     public static MenuFragment newInstance() {
         return new MenuFragment();
@@ -43,8 +41,6 @@ public class MenuFragment extends BaseFragment implements MenuView {
     @Override
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
-        commonDialog = new CommonDialog(getContext());
-
         RowViewHolder v1 = new RowViewHolder(view.findViewById(R.id.v1), false);
         v1.bindHolder(R.string.menu_title_1, R.string.menu_desc_1);
         v1.setCallback(() -> startActivity(DevelopingStageActivity.getIntent(getContext())));
@@ -69,30 +65,28 @@ public class MenuFragment extends BaseFragment implements MenuView {
 
     @OnClick(R.id.tv_logout)
     void onLogoutClick() {
-        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
-            switch (which) {
-                case DialogInterface.BUTTON_POSITIVE:
-                    dataLayer.wipeOut();
-                    startActivity(AuthActivity.newLogoutIntent(getContext()));
-                    break;
+        if (getContext() != null) {
+            DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        dataLayer.wipeOut();
+                        startActivity(AuthActivity.newLogoutIntent(getContext()));
+                        break;
 
-                case DialogInterface.BUTTON_NEGATIVE:
-                    //No button clicked
-                    break;
-            }
-        };
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage(getString(R.string.logout_confirm)).setPositiveButton(getString(R.string.yes), dialogClickListener)
-                .setNegativeButton(getString(R.string.no), dialogClickListener).show();
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            };
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage(getString(R.string.logout_confirm)).setPositiveButton(getString(R.string.yes), dialogClickListener)
+                    .setNegativeButton(getString(R.string.no), dialogClickListener).show();
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // MenuView implementation
     ///////////////////////////////////////////////////////////////////////////
-
-    @Override
-    public void successSent() {
-    }
 
     @Override
     public void showUserInfo(User localUser) {

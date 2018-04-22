@@ -13,6 +13,7 @@ import static bi.bigroup.life.utils.StringUtils.replaceNull;
 public class Questionnaire {
     public String id;
     public String title;
+    public String name;
     public String createDate;
     public String endDate;
     public String imageStreamId;
