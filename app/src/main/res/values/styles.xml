@@ -127,7 +127,6 @@
     <style name="customTabLayout" parent="Widget.Design.TabLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/toolbar_bg</item>
         <item name="tabIndicatorColor">@color/tab_indicator</item>
         <item name="tabIndicatorHeight">@dimen/dp_2</item>
         <item name="tabTextColor">@color/tab_text</item>

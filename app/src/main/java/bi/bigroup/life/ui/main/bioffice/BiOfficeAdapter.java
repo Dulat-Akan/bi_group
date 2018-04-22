@@ -21,7 +21,6 @@ import bi.bigroup.life.data.models.bioffice.BiOffice;
 import bi.bigroup.life.data.models.bioffice.tasks_sdesk.Task;
 import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
 import bi.bigroup.life.data.models.feed.suggestions.Suggestion;
-import bi.bigroup.life.utils.LOTimber;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -275,7 +274,7 @@ public class BiOfficeAdapter extends BaseAdapter {
                     tv_desc.setText(item.getDate(context));
                     LinearLayout ll_row = itemView.findViewById(R.id.ll_row);
                     ll_row.setOnClickListener(view ->
-                            LOTimber.d("askdlajsldkajsld title=" + item.getTitle()));
+                            callbackBiBoard.openSuggestionDetail(item.getId()));
                     ll_programmatically.addView(itemView);
                 }
             }
@@ -294,7 +293,7 @@ public class BiOfficeAdapter extends BaseAdapter {
                     tv_desc.setText(item.getDate(context));
                     LinearLayout ll_row = itemView.findViewById(R.id.ll_row);
                     ll_row.setOnClickListener(view ->
-                            LOTimber.d("askdlajsldkajsld title=" + item.getTitle()));
+                            callbackBiBoard.openQuestionnaireDetail(item.getId()));
                     ll_programmatically.addView(itemView);
                 }
             }
@@ -346,6 +345,10 @@ public class BiOfficeAdapter extends BaseAdapter {
         void onQuestionnaireClick();
 
         void selectEmployeesTab();
+
+        void openSuggestionDetail(String id);
+
+        void openQuestionnaireDetail(String id);
     }
 
     public interface Callback {
