@@ -29,8 +29,6 @@ import butterknife.OnClick;
 import butterknife.OnEditorAction;
 
 import static bi.bigroup.life.utils.Constants.HELP_PHONE;
-import static bi.bigroup.life.utils.Constants.TEST_PWD_2;
-import static bi.bigroup.life.utils.Constants.TEST_USERNAME_2;
 import static bi.bigroup.life.utils.ContextUtils.clearFocusFromAllViews;
 import static bi.bigroup.life.utils.ContextUtils.hideSoftKeyboard;
 import static bi.bigroup.life.utils.ViewUtils.setStatusBarGradient;
@@ -62,8 +60,8 @@ public class AuthActivity extends BaseActivity implements AuthView {
         super.onCreate(savedInstanceState);
         setStatusBarGradient(this, R.drawable.gradient_blue_bg);
 //        if (DebugConfig.DEV_BUILD) {
-        et_username.setText(TEST_USERNAME_2);
-        et_pwd.setText(TEST_PWD_2);
+//        et_username.setText(TEST_USERNAME_2);
+//        et_pwd.setText(TEST_PWD_2);
 //        }
 
         mvpPresenter.init(this, dataLayer);
