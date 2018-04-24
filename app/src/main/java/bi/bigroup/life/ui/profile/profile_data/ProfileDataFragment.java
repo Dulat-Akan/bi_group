@@ -62,16 +62,16 @@ public class ProfileDataFragment extends BaseFragment implements ProfileDataView
     protected void onViewCreated(Bundle savedInstanceState, View view) {
         mvpPresenter.init(getContext(), dataLayer);
         v1 = new RowViewHolder(view.findViewById(R.id.v1));
-        v1.setCallback(() -> LOTimber.d("asldkasjd clicked 1"));
+        v1.setCallback(() -> LOTimber.d("clicked 1"));
 
         v2 = new RowViewHolder(view.findViewById(R.id.v2));
-        v2.setCallback(() -> LOTimber.d("asldkasjd clicked 2"));
+        v2.setCallback(() -> LOTimber.d("clicked 2"));
 
         v3 = new RowViewHolder(view.findViewById(R.id.v3));
-        v3.setCallback(() -> LOTimber.d("asldkasjd clicked 3"));
+        v3.setCallback(() -> LOTimber.d("clicked 3"));
 
         v4 = new RowViewHolder(view.findViewById(R.id.v4));
-        v4.setCallback(() -> LOTimber.d("asldkasjd clicked 4"));
+        v4.setCallback(() -> LOTimber.d("clicked 4"));
     }
 
     @OnClick(R.id.ll_extra_info)

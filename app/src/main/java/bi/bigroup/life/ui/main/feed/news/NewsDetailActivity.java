@@ -17,7 +17,6 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -28,7 +27,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.bioffice.BiOffice;
@@ -38,12 +36,9 @@ import bi.bigroup.life.mvp.main.feed.news.NewsDetailPresenter;
 import bi.bigroup.life.mvp.main.feed.news.NewsDetailView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import bi.bigroup.life.ui.main.feed.ViewPagerImage;
-import bi.bigroup.life.utils.LOTimber;
-import bi.bigroup.life.utils.animation.AvatarAnimation;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
-import butterknife.BindColor;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,10 +62,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
     @BindView(R.id.lv_news_detail) ListView lv_news_detail;
     @BindView(R.id.pb_indicator_transparent) ViewGroup pb_indicator_transparent;
     @BindView(R.id.et_content) MaterialEditText et_content;
-    @BindColor(R.color.black_transparent) int black_transparent;
-    @BindView(R.id.img_expanded) ImageView img_expanded;
-    @BindView(R.id.user_photo_container) RelativeLayout user_photo_container;
-    private AvatarAnimation avatarAnimation;
+//    @BindColor(R.color.black_transparent) int black_transparent;
 
     private CommentsAdapter adapter;
     private NewsHeader headerHolder;
@@ -131,24 +123,6 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
         mvpPresenter.onDestroyView();
     }
 
-    @OnClick(R.id.img_full_close)
-    void onCloseImage() {
-        if (user_photo_container.getVisibility() == View.VISIBLE) {
-            if (avatarAnimation != null)
-                avatarAnimation.closeImage();
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (user_photo_container.getVisibility() == View.VISIBLE) {
-            if (avatarAnimation != null)
-                avatarAnimation.closeImage();
-        } else {
-            super.onBackPressed();
-        }
-    }
-
     @OnClick(R.id.img_close)
     void onCloseClick() {
         finish();
@@ -194,24 +168,24 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
         NewsHeader(Context context, View view) {
             ButterKnife.bind(this, view);
             this.context = context;
-            avatarAnimation = new AvatarAnimation(context, user_photo_container,
-                    img_expanded, img_avatar);
-
-            adapter = new ViewPagerImage(context, dataLayer.getPicasso(), img_expanded);
+            adapter = new ViewPagerImage(context, dataLayer.getPicasso());
         }
 
         @SuppressLint("ClickableViewAccessibility")
         void bindHolder(News object) {
             bindedObject = object;
-            if (!object.isPublishedAsGroup()) {
+            if (object.isPressService()) {
+                img_avatar.setImageResource(R.drawable.ic_pr);
+            } else {
                 PicassoUtils.showAvatar(dataLayer.getPicasso(), img_avatar, getProfilePicture(object.getAuthorCode()), R.drawable.ic_user);
             }
+
             tv_subhead_top.setText(filter_news);
             tv_title.setText(object.getTitle());
             tv_time.setText(object.getDate());
             tv_username.setText(object.getAuthorName());
 
-            List<String> sliderImages = new ArrayList<>();
+            ArrayList<String> sliderImages = new ArrayList<>();
             sliderImages.add(object.getImageUrl());
             if (object.secondaryImages != null && object.secondaryImages.size() > 0) {
                 for (int i = 0; i < object.secondaryImages.size(); i++) {
@@ -223,9 +197,17 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailView, 
             }
 
             adapter.addImages(sliderImages);
-            adapter.setCallback(() -> avatarAnimation.onOpenUserPhoto());
+            adapter.setCallback(position -> {
+                Intent intent = new Intent(NewsDetailActivity.this, FullScreenImageGalleryActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList(FullScreenImageGalleryActivity.KEY_IMAGES, sliderImages);
+                bundle.putInt(FullScreenImageGalleryActivity.KEY_POSITION, position);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            });
             vp_images.setAdapter(adapter);
             ci_images.setViewPager(vp_images);
+
             wv_content.getSettings().setJavaScriptEnabled(true);
             wv_content.setWebChromeClient(new WebChromeClientHelper());
             wv_content.setWebViewClient(new WebViewClientQ());

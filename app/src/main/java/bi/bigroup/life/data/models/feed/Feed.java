@@ -31,11 +31,16 @@ public class Feed {
     public Integer viewsQuantity;
     public Boolean isLikedByMe;
     public Boolean isFromSharepoint;
+    public Boolean isPressService;
     public FeedEntityType entityType;
     public ImageSize imageSize;
 
     public boolean isLiked() {
         return isOkBoolean(isLikedByMe);
+    }
+
+    public boolean isPressService() {
+        return isOkBoolean(isPressService);
     }
 
     public int getLikesQuantity() {

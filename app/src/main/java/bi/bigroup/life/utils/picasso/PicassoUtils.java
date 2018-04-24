@@ -13,7 +13,7 @@ public class PicassoUtils {
             picasso.load(url)
                     .placeholder(placeholder)
                     .error(placeholder)
-                    .fit()
+                    .fit().centerCrop()
                     .into(view);
         }
     }

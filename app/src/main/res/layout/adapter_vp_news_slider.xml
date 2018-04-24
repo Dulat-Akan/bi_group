@@ -6,8 +6,8 @@
     <ImageView
         android:id="@+id/img_slider"
         style="@style/MW"
-        android:layout_height="@dimen/dp_300"
+        android:layout_height="@dimen/dp_280"
         android:adjustViewBounds="true"
         android:background="@color/slider_img_bg"
-        android:scaleType="fitXY"/>
+        android:scaleType="centerCrop"/>
 </LinearLayout>

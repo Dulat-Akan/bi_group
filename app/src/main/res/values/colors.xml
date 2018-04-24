@@ -57,6 +57,7 @@
     <color name="divider2">#bcbbc1</color>
     <!-- FeedFragment -->
     <color name="filter_bg">#d1d1d6</color>
+    <color name="press_service">#4dd0e2</color>
 
     <!-- NotificationsActivity -->
     <color name="notification_option">#d8d8d8</color>

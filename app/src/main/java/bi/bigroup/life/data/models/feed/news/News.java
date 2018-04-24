@@ -23,6 +23,7 @@ public class News {
     public Boolean isLikedByMe;
     public Boolean isHistoryEvent;
     public Boolean isFromSharepoint;
+    public Boolean isPressService;
     public Boolean isPublishedAsGroup;
     public List<Comment> comments;
     public List<SecondaryImage> secondaryImages;
@@ -70,6 +71,10 @@ public class News {
 
     public boolean isPublishedAsGroup() {
         return isOkBoolean(isPublishedAsGroup);
+    }
+
+    public boolean isPressService() {
+        return isOkBoolean(isPressService);
     }
 
     public int getLikesQuantity() {

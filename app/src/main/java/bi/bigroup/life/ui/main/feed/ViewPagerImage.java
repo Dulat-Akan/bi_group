@@ -1,6 +1,7 @@
 package bi.bigroup.life.ui.main.feed;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bi.bigroup.life.R;
-import bi.bigroup.life.data.models.feed.Feed;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,24 +22,17 @@ import butterknife.OnClick;
 public class ViewPagerImage extends PagerAdapter {
     private Context context;
     private Picasso picasso;
-    private ImageView img_expanded;
     private Callback callback;
 
     private List<String> sliders = new ArrayList<>();
-    private Feed.ImageSize imageSize;
 
-    public ViewPagerImage(Context context, Picasso picasso, ImageView img_expanded) {
+    public ViewPagerImage(Context context, Picasso picasso) {
         this.context = context;
         this.picasso = picasso;
-        this.img_expanded = img_expanded;
     }
 
     public void setCallback(Callback callback) {
         this.callback = callback;
-    }
-
-    public void setImageSize(Feed.ImageSize imageSize) {
-        this.imageSize = imageSize;
     }
 
     public void addImages(List<String> newSliders) {
@@ -57,28 +50,31 @@ public class ViewPagerImage extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup container, final int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        assert inflater != null;
         View itemView = inflater.inflate(R.layout.adapter_vp_news_slider, container, false);
         ViewHolder viewHolder = new ViewHolder(itemView);
-        viewHolder.bindNews(sliders.get(position));
+        viewHolder.bindNews(sliders.get(position), position);
         container.addView(itemView);
         return itemView;
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
 
     class ViewHolder {
         Context context;
         String sliderImg;
+        int position;
         @BindView(R.id.img_slider) ImageView img_slider;
 
         ViewHolder(View view) {
@@ -86,22 +82,22 @@ public class ViewPagerImage extends PagerAdapter {
             ButterKnife.bind(this, view);
         }
 
-        void bindNews(String sliderImg) {
+        void bindNews(String sliderImg, int position) {
             this.sliderImg = sliderImg;
+            this.position = position;
             PicassoUtils.showNewsImage(picasso, img_slider, sliderImg);
         }
 
         @OnClick(R.id.img_slider)
         void onImageClick() {
             if (callback != null) {
-                PicassoUtils.showAvatar(picasso, img_expanded, sliderImg, R.color.transparent);
-                callback.onImageClick();
+                callback.onImageClick(position);
             }
         }
     }
 
     public interface Callback {
-        void onImageClick();
+        void onImageClick(int position);
     }
 }
 

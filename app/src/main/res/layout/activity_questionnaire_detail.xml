@@ -205,7 +205,4 @@
         android:id="@+id/pb_indicator_transparent"
         layout="@layout/inc_pb_transparent"/>
 
-    <include
-        layout="@layout/merge_view_photo"/>
-
 </FrameLayout>

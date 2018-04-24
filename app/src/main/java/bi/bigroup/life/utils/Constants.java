@@ -7,6 +7,8 @@ public class Constants {
     // TEST users
     public static final String TEST_USERNAME = "test_bi_life";
     public static final String TEST_PWD = "opimr-BL2";
+    public static final String TEST_USERNAME_2 = "dinislam_b";
+    public static final String TEST_PWD_2 = "Qweasd123";
     public static final String HELP_PHONE = "8 (7172) 918989";
 
     // Constant keys

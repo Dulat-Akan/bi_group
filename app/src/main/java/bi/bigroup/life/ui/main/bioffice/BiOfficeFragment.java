@@ -30,6 +30,7 @@ import bi.bigroup.life.ui.main.biboard.BricksTop7Adapter;
 import bi.bigroup.life.ui.main.biboard.top_questions.TopQuestionsActivity;
 import bi.bigroup.life.ui.main.bioffice.tasks_sdesk.TasksSdeskActivity;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
+import bi.bigroup.life.ui.main.feed.questionnaires.QuestionnaireDetailActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.SuggestionDetailActivity;
 import bi.bigroup.life.utils.view_pager.ParallaxPageTransformer;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
@@ -135,7 +136,7 @@ public class BiOfficeFragment extends BaseFragment implements BiOfficeView {
 
             @Override
             public void openQuestionnaireDetail(String id) {
-
+                startActivity(QuestionnaireDetailActivity.getIntent(getContext(), id));
             }
         });
         lv_office.setAdapter(adapter);

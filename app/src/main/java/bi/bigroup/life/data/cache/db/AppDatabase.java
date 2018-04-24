@@ -11,7 +11,7 @@ import bi.bigroup.life.data.models.feed.Feed;
 
 import static bi.bigroup.life.utils.Constants.DB_NAME;
 
-@Database(entities = {Employee.class, Feed.class}, version = 1)
+@Database(entities = {Employee.class, Feed.class}, version = 2)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 

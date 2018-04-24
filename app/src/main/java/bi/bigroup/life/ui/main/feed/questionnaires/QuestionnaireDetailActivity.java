@@ -7,14 +7,12 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.etiennelawlor.imagegallery.library.activities.FullScreenImageGalleryActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import bi.bigroup.life.R;
 import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
@@ -22,12 +20,10 @@ import bi.bigroup.life.mvp.main.feed.questionnaires.QuestionnaireDetailPresenter
 import bi.bigroup.life.mvp.main.feed.questionnaires.QuestionnaireDetailView;
 import bi.bigroup.life.ui.base.BaseActivity;
 import bi.bigroup.life.ui.main.feed.ViewPagerImage;
-import bi.bigroup.life.utils.animation.AvatarAnimation;
 import bi.bigroup.life.utils.picasso.PicassoUtils;
 import bi.bigroup.life.views.RoundedImageView;
 import bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator;
 import bi.bigroup.life.views.viewpager.ViewPagerDisabled;
-import butterknife.BindColor;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,9 +39,6 @@ public class QuestionnaireDetailActivity extends BaseActivity implements Questio
     QuestionnaireDetailPresenter mvpPresenter;
 
     @BindView(R.id.pb_indicator_transparent) ViewGroup pb_indicator_transparent;
-    @BindColor(R.color.black_transparent) int black_transparent;
-    @BindView(R.id.img_expanded) ImageView img_expanded;
-    @BindView(R.id.user_photo_container) RelativeLayout user_photo_container;
     @BindView(R.id.vp_images) ViewPager vp_images;
     @BindView(R.id.vp_questions) ViewPagerDisabled vp_questions;
     @BindView(R.id.ci_images) CirclePageIndicator ci_images;
@@ -58,7 +51,6 @@ public class QuestionnaireDetailActivity extends BaseActivity implements Questio
     @BindString(R.string.finish) String labelFinish;
     @BindString(R.string.continue_label) String labelNext;
 
-    private AvatarAnimation avatarAnimation;
     private Questionnaire bindedObject;
     private ViewPagerImage adapter;
     private QuestionVpAdapter questAdapter;
@@ -79,9 +71,7 @@ public class QuestionnaireDetailActivity extends BaseActivity implements Questio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mvpPresenter.init(this, dataLayer);
-        avatarAnimation = new AvatarAnimation(this, user_photo_container,
-                img_expanded, img_avatar);
-        adapter = new ViewPagerImage(this, dataLayer.getPicasso(), img_expanded);
+        adapter = new ViewPagerImage(this, dataLayer.getPicasso());
         questAdapter = new QuestionVpAdapter(this);
         vp_questions.setPagingEnabled(false);
         vp_questions.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -117,24 +107,6 @@ public class QuestionnaireDetailActivity extends BaseActivity implements Questio
     protected void onDestroy() {
         super.onDestroy();
         mvpPresenter.onDestroyView();
-    }
-
-    @OnClick(R.id.img_full_close)
-    void onCloseImage() {
-        if (user_photo_container.getVisibility() == View.VISIBLE) {
-            if (avatarAnimation != null)
-                avatarAnimation.closeImage();
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (user_photo_container.getVisibility() == View.VISIBLE) {
-            if (avatarAnimation != null)
-                avatarAnimation.closeImage();
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @OnClick(R.id.img_close)
@@ -189,7 +161,7 @@ public class QuestionnaireDetailActivity extends BaseActivity implements Questio
         tv_username.setText(object.getAuthorName());
 
         // Image slider
-        List<String> sliderImages = new ArrayList<>();
+        ArrayList<String> sliderImages = new ArrayList<>();
         sliderImages.add(object.getImageUrl());
         if (object.secondaryImages != null && object.secondaryImages.size() > 0) {
             for (int i = 0; i < object.secondaryImages.size(); i++) {
@@ -201,7 +173,15 @@ public class QuestionnaireDetailActivity extends BaseActivity implements Questio
         }
 
         adapter.addImages(sliderImages);
-        adapter.setCallback(() -> avatarAnimation.onOpenUserPhoto());
+        adapter.setCallback(position -> {
+            Intent intent = new Intent(QuestionnaireDetailActivity.this, FullScreenImageGalleryActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList(FullScreenImageGalleryActivity.KEY_IMAGES, sliderImages);
+            bundle.putInt(FullScreenImageGalleryActivity.KEY_POSITION, position);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        });
+
         vp_images.setAdapter(adapter);
         ci_images.setViewPager(vp_images);
 
