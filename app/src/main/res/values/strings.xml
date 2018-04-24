@@ -79,7 +79,7 @@
     <string name="label_yesterday">вчера</string>
 
     <!-- AuthActivity -->
-    <string name="enter_username">Логин AD (с которым входите в ваш компьютер)</string>
+    <string name="enter_username">Логин AD (Пример: zhaparov_zh)</string>
     <string name="enter_pwd">Пароль AD (с которым входите в компьютер)</string>
     <string name="label_login">Войти</string>
     <string name="forgot_your_data">Забыли свои данные для входа?</string>
