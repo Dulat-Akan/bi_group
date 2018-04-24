@@ -140,6 +140,10 @@
             android:name=".ui.main.feed.questionnaires.QuestStatisticsActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".ui.main.feed.questionnaires.QuestionnaireDetailActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

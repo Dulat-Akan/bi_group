@@ -22,6 +22,7 @@ import bi.bigroup.life.data.models.notifications.Notification;
 import bi.bigroup.life.data.models.user.User;
 import bi.bigroup.life.data.params.auth.AuthParams;
 import bi.bigroup.life.data.params.employees.DobCongrats;
+import bi.bigroup.life.data.params.questionnaire.QuestionnaireAnswer;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
@@ -148,6 +149,10 @@ public interface API {
 
     @GET("Questionnaires/{id}/statistics")
     Observable<Questionnaire> getQuestStatistics(@Path("id") String id);
+
+    @POST("Questionnaires/{id}/questions/{questionId}/userAnswers")
+    Observable<ResponseBody> questionnaireUserAnswers(@Path("id") String id, @Path("questionId") String questionId,
+                                                      @Body QuestionnaireAnswer dto);
 
     /****** Notifications *******/
     @GET("Notifications/")

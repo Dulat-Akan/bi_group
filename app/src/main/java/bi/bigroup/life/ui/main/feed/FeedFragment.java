@@ -18,6 +18,7 @@ import bi.bigroup.life.mvp.main.feed.FeedView;
 import bi.bigroup.life.ui.base.BaseSwipeRefreshFragment;
 import bi.bigroup.life.ui.main.feed.news.NewsDetailActivity;
 import bi.bigroup.life.ui.main.feed.questionnaires.QuestStatisticsActivity;
+import bi.bigroup.life.ui.main.feed.questionnaires.QuestionnaireDetailActivity;
 import bi.bigroup.life.ui.main.feed.suggestions.SuggestionDetailActivity;
 import bi.bigroup.life.utils.recycler_view.EndlessRecyclerViewScrollListener;
 import bi.bigroup.life.views.dialogs.CommonDialog;
@@ -55,7 +56,7 @@ public class FeedFragment extends BaseSwipeRefreshFragment implements FeedView {
         commonDialog.setCallback(new CommonDialog.CallbackQuestionnaire() {
             @Override
             public void onPassClick(String id) {
-
+                startActivity(QuestionnaireDetailActivity.getIntent(getContext(), id));
             }
 
             @Override

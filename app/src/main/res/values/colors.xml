@@ -113,5 +113,7 @@
     <color name="pb_default">#dce2eb</color>
     <color name="pb_active">#b7cceb</color>
 
+    <!-- QuestionnaireDetailActivity -->
+    <color name="variant_title">#128beb</color>
 
 </resources>

@@ -4,6 +4,8 @@ import java.util.List;
 
 import bi.bigroup.life.data.models.feed.questionnaire.Questionnaire;
 import bi.bigroup.life.data.network.api.bi_group.API;
+import bi.bigroup.life.data.params.questionnaire.QuestionnaireAnswer;
+import okhttp3.ResponseBody;
 import rx.Observable;
 
 public interface QuestionnaireRepository {
@@ -17,4 +19,6 @@ public interface QuestionnaireRepository {
     Observable<List<Questionnaire>> getAllQuestionnaire();
 
     Observable<Questionnaire> getQuestStatistics(String id);
+
+    Observable<ResponseBody> questionnaireUserAnswers(String id, String questionId, QuestionnaireAnswer params);
 }

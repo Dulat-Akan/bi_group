@@ -6,9 +6,13 @@ import java.util.List;
 
 import bi.bigroup.life.data.models.feed.news.SecondaryImage;
 
+import static bi.bigroup.life.utils.Constants.buildStreamUrl;
 import static bi.bigroup.life.utils.DateUtils.getDisplayableTime;
+import static bi.bigroup.life.utils.StringUtils.EMPTY_STR;
 import static bi.bigroup.life.utils.StringUtils.isOkBoolean;
+import static bi.bigroup.life.utils.StringUtils.isStringOk;
 import static bi.bigroup.life.utils.StringUtils.replaceNull;
+import static bi.bigroup.life.utils.StringUtils.replaceNullTrim;
 
 public class Questionnaire {
     public String id;
@@ -40,6 +44,10 @@ public class Questionnaire {
     public List<SecondaryImage> secondaryImages;
     public List<Question> questions;
 
+    public String getImageUrl() {
+        return isStringOk(imageStreamId) ? buildStreamUrl(imageStreamId) : EMPTY_STR;
+    }
+
     public boolean isAuthorVisible() {
         return isOkBoolean(isAuthorVisible);
     }
@@ -50,6 +58,10 @@ public class Questionnaire {
 
     public boolean isCurrentUserInterviewed() {
         return isOkBoolean(isCurrentUserInterviewed);
+    }
+
+    public boolean isEditingAnswersAllowed() {
+        return isOkBoolean(isEditingAnswersAllowed);
     }
 
     public String getId() {
@@ -78,6 +90,10 @@ public class Questionnaire {
 
     public String getDate(Context context) {
         return getDisplayableTime(createDate, context);
+    }
+
+    public String getAuthorCode() {
+        return replaceNullTrim(authorCode);
     }
 
     public class Respondents {

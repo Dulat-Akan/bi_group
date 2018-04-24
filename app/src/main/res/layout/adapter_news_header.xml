@@ -9,7 +9,7 @@
     <RelativeLayout
         style="@style/MW">
 
-        <bi.bigroup.life.views.ViewPagerWrapContent
+        <bi.bigroup.life.views.viewpager.ViewPagerWrapContent
             android:id="@+id/vp_images"
             style="@style/MW"
             android:background="@color/slider_img_bg"

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fl_parent"
+    style="@style/MM"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <ScrollView
+        style="@style/MM">
+
+        <LinearLayout
+            style="@style/LL_MM_V"
+            android:gravity="center_horizontal">
+
+            <RelativeLayout
+                style="@style/MW">
+
+                <bi.bigroup.life.views.viewpager.ViewPagerWrapContent
+                    android:id="@+id/vp_images"
+                    style="@style/MW"
+                    android:background="@color/slider_img_bg"
+                    android:minHeight="@dimen/dp_205"/>
+
+                <bi.bigroup.life.views.circle_page_indicator.CirclePageIndicator
+                    android:id="@+id/ci_images"
+                    style="@style/MW"
+                    android:layout_below="@id/vp_images"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dp_6"
+                    app:fillColor="@color/pager_indicator_fill"
+                    app:pageColor="@color/pager_indicator_unselected"
+                    app:radius="@dimen/dp_4"/>
+
+                <LinearLayout
+                    style="@style/LL_MW_H"
+                    android:layout_marginLeft="@dimen/dp_18"
+                    android:layout_marginRight="@dimen/dp_18"
+                    android:layout_marginTop="@dimen/dp_15">
+
+                    <LinearLayout
+                        style="@style/MW"
+                        android:layout_weight="1">
+
+                        <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                            android:id="@+id/tv_subhead_top"
+                            style="@style/WW"
+                            android:background="@drawable/tv_selector_white_rounded"
+                            android:maxLines="2"
+                            android:paddingBottom="@dimen/dp_4"
+                            android:paddingLeft="@dimen/dp_6"
+                            android:paddingRight="@dimen/dp_6"
+                            android:paddingTop="@dimen/dp_4"
+                            android:text="@string/filter_questionnaire"
+                            android:textAllCaps="true"
+                            android:textColor="@color/pager_indicator_fill"
+                            android:textSize="@dimen/sp_12"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/WW"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:src="@drawable/ic_close"
+                        android:visibility="invisible"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/LL_MW_H"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_marginRight="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_15"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dp_12">
+
+                <bi.bigroup.life.views.RoundedImageView
+                    android:id="@+id/img_avatar"
+                    android:layout_width="@dimen/dp_42"
+                    android:layout_height="@dimen/dp_42"
+                    android:scaleType="centerCrop"
+                    android:src="@color/user_avatar"
+                    app:radius_width="@dimen/dp_6"/>
+
+                <LinearLayout
+                    style="@style/LL_MW_V"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:gravity="center_vertical">
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                        android:id="@+id/tv_username"
+                        style="@style/MW"
+                        android:text="Имя пользователя"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"/>
+
+                    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+                        android:id="@+id/tv_time"
+                        style="@style/MW"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:textColor="@color/feed_time"
+                        android:textSize="@dimen/sp_14"
+                        tools:text="5 минут назад"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                style="@style/PARENT_DIVIDER"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_marginRight="@dimen/dp_24"/>
+
+            <bi.bigroup.life.views.fonts.TextViewRobotoMedium
+                android:id="@+id/tv_title"
+                style="@style/MW"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_marginRight="@dimen/dp_24"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                tools:text="Sudheads text"/>
+
+            <bi.bigroup.life.views.viewpager.ViewPagerDisabled
+                android:id="@+id/vp_questions"
+                style="@style/MW"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_marginRight="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_12"/>
+
+            <LinearLayout
+                style="@style/LL_MW_H"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_marginRight="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_20"
+                android:paddingBottom="@dimen/dp_22">
+
+                <bi.bigroup.life.views.fonts.ButtonRobotoRegular
+                    android:id="@+id/btn_back"
+                    style="@style/MW"
+                    android:layout_height="@dimen/dp_42"
+                    android:layout_marginBottom="@dimen/dp_4_ngtv"
+                    android:layout_marginRight="@dimen/dp_6"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_selector_gray_rounded"
+                    android:paddingBottom="@dimen/dp_3"
+                    android:paddingTop="@dimen/dp_3"
+                    android:text="@string/back"
+                    android:textColor="@color/main_color"
+                    android:visibility="invisible"/>
+
+                <bi.bigroup.life.views.fonts.ButtonRobotoRegular
+                    android:id="@+id/btn_next"
+                    style="@style/MW"
+                    android:layout_height="@dimen/dp_42"
+                    android:layout_marginLeft="@dimen/dp_6"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_selector_blue_rounded"
+                    android:paddingBottom="@dimen/dp_3"
+                    android:paddingTop="@dimen/dp_3"
+                    android:text="@string/continue_label"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/img_close"
+        style="@style/WW"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_15"
+        android:src="@drawable/ic_close"/>
+
+    <FrameLayout
+        style="@style/WW"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:layout_marginRight="@dimen/dp_24">
+
+        <com.getbase.floatingactionbutton.AddFloatingActionButton
+            android:id="@+id/fb_share"
+            style="@style/WW"
+            app:fab_colorNormal="@color/float_menu_default"
+            app:fab_colorPressed="@color/float_menu_default"
+            app:fab_icon="@drawable/ic_share"
+            app:fab_plusIconColor="@color/float_menu_default"
+            app:fab_size="normal"/>
+
+        <ImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dp_2"
+            android:layout_marginRight="@dimen/dp_1"
+            android:src="@drawable/ic_share"/>
+
+    </FrameLayout>
+
+    <include
+        android:id="@+id/pb_indicator"
+        layout="@layout/inc_pb_opaque"/>
+
+    <include
+        android:id="@+id/pb_indicator_transparent"
+        layout="@layout/inc_pb_transparent"/>
+
+    <include
+        layout="@layout/merge_view_photo"/>
+
+</FrameLayout>

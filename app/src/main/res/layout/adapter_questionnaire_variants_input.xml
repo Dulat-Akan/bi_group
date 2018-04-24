@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              style="@style/LL_MW_H"
+              android:paddingBottom="@dimen/dp_5"
+              android:paddingTop="@dimen/dp_5">
+
+    <CheckBox
+        android:id="@+id/cb_variant"
+        style="@style/WW"
+        android:theme="@style/checkBoxVariantInput"/>
+
+    <bi.bigroup.life.views.fonts.TextViewRobotoRegular
+        android:id="@+id/tv_variant_title"
+        style="@style/MW"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:textColor="@color/variant_title"
+        android:textSize="@dimen/sp_16"
+        tools:text="@string/choose_variant"/>
+
+</LinearLayout>

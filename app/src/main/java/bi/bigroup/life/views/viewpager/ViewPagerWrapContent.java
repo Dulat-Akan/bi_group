@@ -1,4 +1,4 @@
-package bi.bigroup.life.views;
+package bi.bigroup.life.views.viewpager;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;

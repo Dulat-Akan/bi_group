@@ -27,6 +27,7 @@
     <string name="call">Позвонить</string>
     <string name="apply">Применить</string>
     <string name="choose">Выбрать</string>
+    <string name="back">Назад</string>
     <string name="continue_label">Далее</string>
     <string name="ready">Готово</string>
     <string name="action_start">Начать</string>
@@ -145,6 +146,7 @@
     <string name="label_feed">Лента</string>
     <string name="filter_all">Все</string>
     <string name="filter_news">Новости</string>
+    <string name="filter_questionnaire">Опрос</string>
     <string name="filter_offer">Предложения</string>
     <string name="filter_poll">Опросы</string>
     <string name="label_author">Автор</string>
@@ -307,6 +309,13 @@
     <!-- QuestStatisticsActivity -->
     <string name="label_votes">%s голосов</string>
     <string name="another_in_comment">Другое (в комментарии)</string>
+
+    <!-- QuestionnaireDetailActivity-->
+    <string name="choose_variant">Выберите %s варианта</string>
+    <string name="out_of_questions">%1$s/%2$s вопросов</string>
+    <string name="write_comment">Написать комментарии</string>
+    <string name="add_another_in_comment">Другое в комментарии</string>
+
 
     <string name="q"></string>
 </resources>
