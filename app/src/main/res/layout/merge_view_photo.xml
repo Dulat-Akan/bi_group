@@ -14,17 +14,19 @@
                 android:id="@+id/img_expanded"
                 style="@style/MM"
                 android:layout_gravity="center"
-                android:background="@color/photo_pager_window_bg"
                 android:adjustViewBounds="true"
+                android:background="@color/photo_pager_window_bg"
                 android:scaleType="fitCenter"/>
         </LinearLayout>
 
-        <ImageView
+        <bi.bigroup.life.views.fonts.TextViewRobotoRegular
             android:id="@+id/img_full_close"
             style="@style/WW"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dp_26"
-            android:layout_marginTop="@dimen/dp_20"
-            android:src="@drawable/ic_close"/>
+            android:layout_marginRight="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_60"
+            android:text="@string/close"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"/>
     </RelativeLayout>
 </merge>

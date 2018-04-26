@@ -126,7 +126,6 @@ public class CommonDialog {
         final Button btn_show_statistics = dialog.findViewById(R.id.btn_show_statistics);
         btn_show_statistics.setVisibility(questionnaire.isCurrentUserInterviewed() ? View.VISIBLE : View.GONE);
         final Button btn_pass = dialog.findViewById(R.id.btn_pass);
-        btn_pass.setVisibility(questionnaire.isEditingAnswersAllowed() ? View.VISIBLE : View.GONE);
         btn_pass.setText(context.getString(questionnaire.isCurrentUserInterviewed() ? R.string.change_answers : R.string.action_pass));
 
         final ImageView img_close = dialog.findViewById(R.id.img_close);
